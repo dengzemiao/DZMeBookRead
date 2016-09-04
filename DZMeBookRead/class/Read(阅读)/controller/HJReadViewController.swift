@@ -95,7 +95,7 @@ class HJReadViewController: HJTableViewController {
         }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
             
         }else{}
-        print("\(readPageController.readModel.readChapterListModels.count)")
+        
         return readPageController.readModel.readChapterListModels.count
     }
     
@@ -126,7 +126,7 @@ class HJReadViewController: HJTableViewController {
             cell.contentH = CGFloat(readChapterListModel.chapterHeight.floatValue)
             
             cell.content = tempReadChapterModel.chapterContent
-            print("\(cell.content)")
+            
             readPageController.title = readChapterListModel.chapterName
             
         }else{}
