@@ -14,7 +14,6 @@
 		AF2959321D7BB33700C880E7 /* HJReadSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959151D7BB33700C880E7 /* HJReadSetup.swift */; };
 		AF2959331D7BB33700C880E7 /* HJReadUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959161D7BB33700C880E7 /* HJReadUI.swift */; };
 		AF2959341D7BB33700C880E7 /* HJReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959171D7BB33700C880E7 /* HJReadViewController.swift */; };
-		AF2959371D7BB33700C880E7 /* HJReadBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29591B1D7BB33700C880E7 /* HJReadBookModel.swift */; };
 		AF2959381D7BB33700C880E7 /* HJReadChapterListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29591C1D7BB33700C880E7 /* HJReadChapterListModel.swift */; };
 		AF2959391D7BB33700C880E7 /* HJReadChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29591D1D7BB33700C880E7 /* HJReadChapterModel.swift */; };
 		AF29593A1D7BB33700C880E7 /* HJReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29591E1D7BB33700C880E7 /* HJReadModel.swift */; };
@@ -90,7 +89,6 @@
 		AF2959151D7BB33700C880E7 /* HJReadSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadSetup.swift; sourceTree = "<group>"; };
 		AF2959161D7BB33700C880E7 /* HJReadUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadUI.swift; sourceTree = "<group>"; };
 		AF2959171D7BB33700C880E7 /* HJReadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadViewController.swift; sourceTree = "<group>"; };
-		AF29591B1D7BB33700C880E7 /* HJReadBookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadBookModel.swift; sourceTree = "<group>"; };
 		AF29591C1D7BB33700C880E7 /* HJReadChapterListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadChapterListModel.swift; sourceTree = "<group>"; };
 		AF29591D1D7BB33700C880E7 /* HJReadChapterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadChapterModel.swift; sourceTree = "<group>"; };
 		AF29591E1D7BB33700C880E7 /* HJReadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadModel.swift; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 		AF29591A1D7BB33700C880E7 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				AF29591B1D7BB33700C880E7 /* HJReadBookModel.swift */,
 				AF29591C1D7BB33700C880E7 /* HJReadChapterListModel.swift */,
 				AF29591D1D7BB33700C880E7 /* HJReadChapterModel.swift */,
 				AF29591E1D7BB33700C880E7 /* HJReadModel.swift */,
@@ -514,7 +511,6 @@
 				AF2959461D7BB33700C880E7 /* HJReadSettingView.swift in Sources */,
 				AF2959321D7BB33700C880E7 /* HJReadSetup.swift in Sources */,
 				AFA682FC1D76D31800870EBF /* HJUIFuncOne.swift in Sources */,
-				AF2959371D7BB33700C880E7 /* HJReadBookModel.swift in Sources */,
 				AFA682FE1D76D31800870EBF /* HJViewController.swift in Sources */,
 				AF2959431D7BB33700C880E7 /* HJReadSettingFlipEffectView.swift in Sources */,
 				AF29594C1D7BB4CF00C880E7 /* HJTableView.swift in Sources */,
