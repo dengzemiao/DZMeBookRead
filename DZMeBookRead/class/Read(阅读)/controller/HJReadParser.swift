@@ -124,21 +124,9 @@ class HJReadParser: NSObject {
                     
                     readChapterModel.chapterContent = content.substringWithRange(NSMakeRange(lastRange.location, location - lastRange.location))
                 }
-                print("\(readChapterModel.chapterID)   \(readChapterModel.chapterName)")
+                
                 // 阅读章节list模型
-                
-                let readChapterListModel = HJReadChapterListModel()
-                
-                // 计算高度
-                readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(readChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace)
-                
-                readChapterListModel.chapterID = readChapterModel.chapterID
-                
-                readChapterListModel.volumeID = readChapterModel.volumeID
-                
-                readChapterListModel.isDownload = 1
-                
-                readChapterListModel.chapterName = readChapterModel.chapterName
+                let readChapterListModel = GetReadChapterListModelTransformation(readChapterModel)
                 
                 readChapterListModels.append(readChapterListModel)
                 
@@ -152,7 +140,7 @@ class HJReadParser: NSObject {
             
             let readChapterModel = HJReadChapterModel()
             
-            readChapterModel.chapterID = "0"
+            readChapterModel.chapterID = "1"
             
             readChapterModel.volumeID = "0"
             
@@ -160,9 +148,33 @@ class HJReadParser: NSObject {
             
             readChapterModel.chapterContent = content
             
+            // 阅读章节list模型
+            let readChapterListModel = GetReadChapterListModelTransformation(readChapterModel)
+            
+            readChapterListModels.append(readChapterListModel)
+            
         }
         
         return readChapterListModels
+    }
+    
+    /// 通过阅读模型 转换章节list模型
+    class func GetReadChapterListModelTransformation(readChapterModel:HJReadChapterModel) ->HJReadChapterListModel {
+        
+        let readChapterListModel = HJReadChapterListModel()
+        
+        // 计算高度
+        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(readChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace)
+        
+        readChapterListModel.chapterID = readChapterModel.chapterID
+        
+        readChapterListModel.volumeID = readChapterModel.volumeID
+        
+        readChapterListModel.isDownload = 1
+        
+        readChapterListModel.chapterName = readChapterModel.chapterName
+        
+        return readChapterListModel
     }
     
     

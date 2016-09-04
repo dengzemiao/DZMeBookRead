@@ -95,7 +95,7 @@ class HJReadViewController: HJTableViewController {
         }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
             
         }else{}
-        
+        print("\(readPageController.readModel.readChapterListModels.count)")
         return readPageController.readModel.readChapterListModels.count
     }
     
@@ -126,7 +126,7 @@ class HJReadViewController: HJTableViewController {
             cell.contentH = CGFloat(readChapterListModel.chapterHeight.floatValue)
             
             cell.content = tempReadChapterModel.chapterContent
-            
+            print("\(cell.content)")
             readPageController.title = readChapterListModel.chapterName
             
         }else{}
@@ -239,7 +239,7 @@ class HJReadViewController: HJTableViewController {
             tableView.scrollEnabled = true
             
             // 获取当前章节
-            let readChapterListModel = readPageController.readConfigure.GetReadChapterListModel(readPageController.readModel.readRecord.readChapterListModel.chapterID)
+            let readChapterListModel = readPageController.readConfigure.GetReadChapterListModel(readRecord.readChapterListModel.chapterID)
             
             if (readChapterListModel != nil) { // 有章节
                 
@@ -262,6 +262,9 @@ class HJReadViewController: HJTableViewController {
                     
                     tableView.setContentOffset(CGPointMake(tableView.contentOffset.x, tableView.contentOffset.y + CGFloat(readPageController.readModel.readRecord.page.integerValue) * redFrame.height), animated: false)
                 }
+                
+                // 获取准确页面
+                GetCurrentPage()
             }
             
         }else{}
