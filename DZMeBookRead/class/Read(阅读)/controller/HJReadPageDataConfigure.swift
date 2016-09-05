@@ -73,8 +73,10 @@ class HJReadPageDataConfigure: NSObject {
      - parameter chapterID:            章节ID
      - parameter isInit:               是否为初始化true 还是跳转章节false
      - parameter chapterLookPageClear: 阅读到的章节页码是否清0
+     - parameter transitionStyle:      PageController 样式
+     - parameter result:               跳转结果
      */
-    func GoToReadChapter(chapterID:String,isInit:Bool,chapterLookPageClear:Bool,transitionStyle: UIPageViewControllerTransitionStyle) ->Bool {
+    func GoToReadChapter(chapterID:String,isInit:Bool,chapterLookPageClear:Bool,transitionStyle: UIPageViewControllerTransitionStyle,result:((isOK:Bool)->Void)?) {
         
         if !readPageController.readModel.readChapterListModels.isEmpty {
             
@@ -82,32 +84,54 @@ class HJReadPageDataConfigure: NSObject {
             
             if readChapterModel != nil { // 有这个章节
                 
-                changeLookPage = readPageController.readModel.readRecord.page.integerValue
+                GoToReadChapter(readChapterModel!, isInit: isInit, chapterLookPageClear: chapterLookPageClear, transitionStyle: transitionStyle, result: result)
                 
-                if chapterLookPageClear {
+            }else{ // 没有章节
+                
+                if readPageController.readModel.isLocalBook.boolValue { // 本地小说
                     
-                    readPageController.readModel.readRecord.page = 0
+                    if result != nil {result!(isOK: false)}
                     
-                    changeLookPage = 0
+                }else{ // 网络小说
+                    
                 }
-                
-                // 跳转
-                if isInit {
-                    
-                    readPageController.creatPageController(GetReadViewController(readChapterModel!, currentPage: readPageController.readModel.readRecord.page.integerValue),transitionStyle: transitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal)
-                }else{
-                    
-                    readPageController.pageViewController.setViewControllers([GetReadViewController(readChapterModel!, currentPage: readPageController.readModel.readRecord.page.integerValue)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-                }
-                
-                // 同步本地进度
-                synchronizationChangeData()
-                
-                return  true
             }
         }
+    }
+    
+    /**
+     跳转指定章节
+     
+     - parameter readChapterModel:     章节模型
+     - parameter isInit:               是否为初始化true 还是跳转章节false
+     - parameter chapterLookPageClear: 阅读到的章节页码是否清0
+     - parameter transitionStyle:      PageController 样式
+     - parameter result:               跳转结果
+     */
+    private func GoToReadChapter(readChapterModel:HJReadChapterModel,isInit:Bool,chapterLookPageClear:Bool,transitionStyle: UIPageViewControllerTransitionStyle,result:((isOK:Bool)->Void)?) {
         
-        return false
+        changeLookPage = readPageController.readModel.readRecord.page.integerValue
+        
+        if chapterLookPageClear {
+            
+            readPageController.readModel.readRecord.page = 0
+            
+            changeLookPage = 0
+        }
+        
+        // 跳转
+        if isInit {
+            
+            readPageController.creatPageController(GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue),transitionStyle: transitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal)
+        }else{
+            
+            readPageController.pageViewController.setViewControllers([GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        }
+        
+        // 同步本地进度
+        synchronizationChangeData()
+        
+        if result != nil {result!(isOK: true)}
     }
     
     // MARK: -- 通过章节ID 获取 数组索引

@@ -206,25 +206,53 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
         if flipEffect == HJReadFlipEffect.None { // 无效果
             
             // 跳转章节
-            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.PageCurl)
+            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.PageCurl, result: { [weak self] (isOK) in
+                
+                if isOK {
+                    
+                    self?.setupReadPageControllerGestureRecognizerEnabled(flipEffect)
+                }
+                })
             
         }else if flipEffect == HJReadFlipEffect.Translation { // 平滑
             
             // 跳转章节
-            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.Scroll)
+            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.Scroll, result: { [weak self] (isOK) in
+                
+                if isOK {
+                    
+                    self?.setupReadPageControllerGestureRecognizerEnabled(flipEffect)
+                }
+                })
             
         }else if flipEffect == HJReadFlipEffect.Simulation { // 仿真
             
-            
             // 跳转章节
-            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.PageCurl)
+            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.PageCurl, result: { [weak self] (isOK) in
+                
+                if isOK {
+                    
+                    self?.setupReadPageControllerGestureRecognizerEnabled(flipEffect)
+                }
+                })
             
         }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
             
             // 跳转章节
-            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.PageCurl)
+            readPageController.readConfigure.GoToReadChapter(chapterID,isInit: true,chapterLookPageClear: chapterLookPageClear, transitionStyle: UIPageViewControllerTransitionStyle.PageCurl, result: { [weak self] (isOK) in
+                
+                if isOK {
+                    
+                    self?.setupReadPageControllerGestureRecognizerEnabled(flipEffect)
+                }
+                })
             
         }else{}
+        
+    }
+    
+    // 设置翻页手势禁用
+    private func setupReadPageControllerGestureRecognizerEnabled(flipEffect:HJReadFlipEffect) {
         
         if flipEffect == HJReadFlipEffect.None || flipEffect == HJReadFlipEffect.Translation || flipEffect == HJReadFlipEffect.UpAndDown {
             
