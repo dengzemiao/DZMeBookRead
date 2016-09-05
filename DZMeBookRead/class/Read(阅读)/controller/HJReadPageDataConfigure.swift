@@ -82,6 +82,8 @@ class HJReadPageDataConfigure: NSObject {
             
             if readChapterModel != nil { // 有这个章节
                 
+                changeLookPage = readPageController.readModel.readRecord.page.integerValue
+                
                 if chapterLookPageClear {
                     
                     readPageController.readModel.readRecord.page = 0
