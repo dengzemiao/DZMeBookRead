@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // 允许获取电量
+        UIDevice.currentDevice().batteryMonitoringEnabled = true
+        
         // 显示状态栏
         application.setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         

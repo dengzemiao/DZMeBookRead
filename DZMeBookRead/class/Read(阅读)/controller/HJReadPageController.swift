@@ -23,9 +23,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 允许获取电量
-        UIDevice.currentDevice().batteryMonitoringEnabled = true
-        
         // 初始化
         readConfigure = HJReadPageDataConfigure.setupWithReadController(self)
         readSetup = HJReadSetup.setupWithReadController(self)
@@ -188,6 +185,4 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         // 内存警告保存记录
         readConfigure.updateReadRecord()
     }
-    
-
 }
