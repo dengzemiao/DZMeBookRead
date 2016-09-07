@@ -55,3 +55,6 @@ let HJSpaceOne:CGFloat = 10
 
 /// 间距 15
 let HJSpaceTwo:CGFloat = 15
+
+/// 间距 5
+let HJSpaceThree:CGFloat = 5

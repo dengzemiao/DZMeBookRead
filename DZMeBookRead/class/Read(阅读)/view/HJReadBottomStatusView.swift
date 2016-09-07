@@ -71,11 +71,11 @@ class HJReadBottomStatusView: UIView {
         numberPageLabel.frame = CGRectMake(HJSpaceTwo, (height - h)/2, width/2, h)
         
         // 时间
-        let timeLabelW:CGFloat = width - numberPageLabelW - 2*HJBatterySize.width
+        let timeLabelW:CGFloat = width - numberPageLabelW - 2*HJBatterySize.width - HJSpaceThree
         timeLabel.frame = CGRectMake(CGRectGetMaxX(numberPageLabel.frame), (height - h)/2, timeLabelW, h)
         
         // 电池
-        batteryView.frame.origin = CGPointMake(CGRectGetMaxX(timeLabel.frame) + 5, (height - HJBatterySize.height)/2)
+        batteryView.frame.origin = CGPointMake(CGRectGetMaxX(timeLabel.frame) + HJSpaceThree, (height - HJBatterySize.height)/2)
         
     }
     
