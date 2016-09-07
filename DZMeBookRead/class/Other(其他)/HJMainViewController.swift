@@ -10,6 +10,8 @@ import UIKit
 
 class HJMainViewController: UIViewController {
 
+    var readVC:HJReadPageController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,15 +35,19 @@ class HJMainViewController: UIViewController {
         
         let fileURL = NSBundle.mainBundle().URLForResource("求魔", withExtension: "txt")
         
+        readVC = HJReadPageController()
+        
         HJReadParser.separateLocalURL(fileURL!) { [weak self] (isOK) in
             
              MBProgressHUD.hideHUD()
             
-            let readVC = HJReadPageController()
-            
-            readVC.readModel = HJReadModel.readModelWithFileName("求魔")
-            
-            self?.navigationController?.pushViewController(readVC, animated: true)
+            if self != nil {
+                
+                self!.readVC!.readModel = HJReadModel.readModelWithFileName("求魔")
+                
+                self!.navigationController?.pushViewController(self!.readVC!, animated: true)
+                
+            }
         }
         
         // 方法一

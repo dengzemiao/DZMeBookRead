@@ -16,7 +16,7 @@ class HJReadViewCell: UITableViewCell {
     var readView:HJReadView!
     
     /// 当前是否为这一章的最后一页
-    var isLast:Bool = false
+    var isLastPage:Bool = false
     
     // 章节信息
     var readChapterListModel:HJReadChapterListModel?
@@ -135,7 +135,7 @@ class HJReadViewCell: UITableViewCell {
             
             readView.frame = HJReadParser.GetReadViewFrame()
             
-            if isLast && content != nil && content!.length < 250 {
+            if isLastPage && content != nil && content!.length < 250 {
                 
                 advertisementButton.frame = CGRectMake(HJSpaceTwo, height - HJAdvertisementButtonH - 30, ScreenWidth - 2*HJSpaceTwo, HJAdvertisementButtonH)
                 

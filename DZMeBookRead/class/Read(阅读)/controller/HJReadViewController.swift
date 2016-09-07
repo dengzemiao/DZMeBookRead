@@ -18,7 +18,7 @@ class HJReadViewController: HJTableViewController {
     private var flipEffect:HJReadFlipEffect!
     
     /// 当前是否为这一章的最后一页
-    var isLast:Bool = false
+    var isLastPage:Bool = false
     
     /// 单独模式的时候显示的内容
     var content:String!
@@ -45,11 +45,11 @@ class HJReadViewController: HJTableViewController {
         changeFlipEffect()
         
         // 设置页码
-        if flipEffect != HJReadFlipEffect.None {
+        if flipEffect != HJReadFlipEffect.UpAndDown {
             
             readBottomStatusView.setNumberPage(readRecord.page.integerValue, tatolPage: readChapterModel.pageCount.integerValue)
             
-            isLast = (readRecord.page.integerValue == (readChapterModel.pageCount.integerValue - 1))
+            isLastPage = (readRecord.page.integerValue == (readChapterModel.pageCount.integerValue - 1))
         }
         
         // 通知在deinit 中会释放
@@ -127,7 +127,7 @@ class HJReadViewController: HJTableViewController {
         
         let cell = HJReadViewCell.cellWithTableView(tableView)
         
-        cell.isLast = isLast
+        cell.isLastPage = isLastPage
         
         if flipEffect == HJReadFlipEffect.None { // 无效果
             
@@ -326,6 +326,12 @@ class HJReadViewController: HJTableViewController {
     deinit{
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        readBottomStatusView.removeTimer()
     }
     
 }

@@ -36,7 +36,7 @@ class HJReadRecord: NSObject,NSCoding {
         
         contentOffsetY = aDecoder.decodeObjectForKey("contentOffsetY") as? NSNumber
         
-        readChapterListModel = aDecoder.decodeObjectForKey("readChapterListModel") as! HJReadChapterListModel
+        readChapterListModel = aDecoder.decodeObjectForKey("readChapterListModel") as? HJReadChapterListModel
         
         page = aDecoder.decodeObjectForKey("page") as! NSNumber
         

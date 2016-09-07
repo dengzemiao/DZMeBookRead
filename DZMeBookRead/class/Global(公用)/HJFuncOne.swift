@@ -101,6 +101,18 @@ func Size(string:NSAttributedString?,constrainedToSize:CGSize) ->CGSize {
     return TempSize
 }
 
+// MARK: -- 获取时间
+
+/// 获取当前时间传入 时间格式 "YYYY-MM-dd-HH-mm-ss"
+func GetCurrentTimerString(dateFormat:String) ->String {
+    
+    let dateformatter = NSDateFormatter()
+    
+    dateformatter.dateFormat = dateFormat
+    
+    return dateformatter.stringFromDate(NSDate())
+}
+
 // MARK: -- 归档对象
 
 /**
