@@ -17,6 +17,9 @@ class HJReadViewController: HJTableViewController {
     /// 当前阅读形式
     private var flipEffect:HJReadFlipEffect!
     
+    /// 当前是否为这一章的最后一页
+    var isLast:Bool = false
+    
     /// 单独模式的时候显示的内容
     var content:String!
     
@@ -25,6 +28,12 @@ class HJReadViewController: HJTableViewController {
     
     /// 当前使用的阅读模型
     var readChapterModel:HJReadChapterModel!
+    
+    /// 底部状态栏
+    private var readBottomStatusView:HJReadBottomStatusView!
+    
+    /// 当前滚动经过的indexPath   UpAndDown 模式使用
+    private var currentIndexPath:NSIndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +44,14 @@ class HJReadViewController: HJTableViewController {
         // 设置翻页方式
         changeFlipEffect()
         
+        // 设置页码
+        if flipEffect != HJReadFlipEffect.None {
+            
+            readBottomStatusView.setNumberPage(readRecord.page.integerValue, tatolPage: readChapterModel.pageCount.integerValue)
+            
+            isLast = (readRecord.page.integerValue == (readChapterModel.pageCount.integerValue - 1))
+        }
+        
         // 通知在deinit 中会释放
         // 添加背景颜色改变通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HJReadViewController.changeBGColor), name: HJReadChangeBGColorKey, object: nil)
@@ -42,7 +59,6 @@ class HJReadViewController: HJTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func initTableView(style: UITableViewStyle) {
@@ -50,7 +66,15 @@ class HJReadViewController: HJTableViewController {
         
         tableView.backgroundColor = UIColor.clearColor()
         
-        tableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight)
+        tableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - HJReadBottomStatusViewH)
+    }
+    
+    override func addSubviews() {
+        super.addSubviews()
+        
+        readBottomStatusView = HJReadBottomStatusView()
+        readBottomStatusView.frame = CGRectMake(0, ScreenHeight - HJReadBottomStatusViewH, ScreenWidth, HJReadBottomStatusViewH)
+        view.addSubview(readBottomStatusView)
     }
     
     // MARK: -- UITableViewDataSource
@@ -103,6 +127,8 @@ class HJReadViewController: HJTableViewController {
         
         let cell = HJReadViewCell.cellWithTableView(tableView)
         
+        cell.isLast = isLast
+        
         if flipEffect == HJReadFlipEffect.None { // 无效果
             
             cell.content = content
@@ -117,17 +143,20 @@ class HJReadViewController: HJTableViewController {
             
         }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
             
+            currentIndexPath = indexPath
+            
             let readChapterListModel = readPageController.readModel.readChapterListModels[indexPath.row]
             
             let tempReadChapterModel = GetReadChapterModel(readChapterListModel)
-     
-            cell.readChapterListModel = readChapterListModel
             
             cell.contentH = CGFloat(readChapterListModel.chapterHeight.floatValue)
             
             cell.content = tempReadChapterModel.chapterContent
             
             readPageController.title = readChapterListModel.chapterName
+            
+            // 设置页码
+            readBottomStatusView.setNumberPage(indexPath.row, tatolPage: readPageController.readModel.readChapterListModels.count)
             
         }else{}
         
@@ -162,21 +191,22 @@ class HJReadViewController: HJTableViewController {
         
         if flipEffect == HJReadFlipEffect.UpAndDown { // 滚动模式
             
-            let indexPath = tableView.indexPathForRowAtPoint(CGPointMake(tableView.contentOffset.x, tableView.contentOffset.y + ScreenHeight/2))
-            
-            if indexPath != nil {
+            if  currentIndexPath != nil {
                 
-                let cell = tableView.cellForRowAtIndexPath(indexPath!) as! HJReadViewCell
+                let cell = tableView.cellForRowAtIndexPath(currentIndexPath) as? HJReadViewCell
                 
-                let spaceH = tableView.contentOffset.y - cell.y
-                
-                let redFrame = HJReadParser.GetReadViewFrame()
-                
-                let page = spaceH / redFrame.height
-                
-                readPageController.readModel.readRecord.page = (page + 0.5)
-                
-                readPageController.readModel.readRecord.readChapterListModel = cell.readChapterListModel
+                if cell != nil {
+                    
+                    let spaceH = tableView.contentOffset.y - cell!.y
+                    
+                    let redFrame = HJReadParser.GetReadViewFrame()
+                    
+                    let page = spaceH / redFrame.height
+                    
+                    readPageController.readModel.readRecord.page = (page + 0.5)
+                    
+                    readPageController.readModel.readRecord.readChapterListModel = cell!.readChapterListModel
+                }
             }
         }
     }
@@ -202,7 +232,8 @@ class HJReadViewController: HJTableViewController {
                 return ScreenHeight
             }
             
-            return CGFloat(readChapterListModel.chapterHeight.floatValue) + HJReadViewTopSpace
+            // 不要广告可注销 删除 后面 HJAdvertisementButtonH 广告高度
+            return CGFloat(readChapterListModel.chapterHeight.floatValue) + HJReadViewTopSpace + HJAdvertisementButtonH
             
         }else{}
         

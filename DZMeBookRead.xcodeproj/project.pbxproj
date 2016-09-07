@@ -34,6 +34,7 @@
 		AF29594A1D7BB4AC00C880E7 /* HJTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959491D7BB4AC00C880E7 /* HJTableViewController.swift */; };
 		AF29594C1D7BB4CF00C880E7 /* HJTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29594B1D7BB4CF00C880E7 /* HJTableView.swift */; };
 		AF29594E1D7BB50700C880E7 /* HJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29594D1D7BB50700C880E7 /* HJNavigationController.swift */; };
+		AF30BCDE1D7FAF79006390AC /* HJReadBottomStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */; };
 		AF6964C71D76CA9F005FF098 /* DZMeBookReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964C61D76CA9F005FF098 /* DZMeBookReadTests.swift */; };
 		AF6964D21D76CA9F005FF098 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964D11D76CA9F005FF098 /* DZMeBookReadUITests.swift */; };
 		AF69654F1D76CF1C005FF098 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF69654D1D76CF1C005FF098 /* 求魔.txt */; };
@@ -109,6 +110,7 @@
 		AF2959491D7BB4AC00C880E7 /* HJTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJTableViewController.swift; sourceTree = "<group>"; };
 		AF29594B1D7BB4CF00C880E7 /* HJTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJTableView.swift; sourceTree = "<group>"; };
 		AF29594D1D7BB50700C880E7 /* HJNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJNavigationController.swift; sourceTree = "<group>"; };
+		AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadBottomStatusView.swift; sourceTree = "<group>"; };
 		AF6964AE1D76CA9F005FF098 /* DZMeBookRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZMeBookRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6964C21D76CA9F005FF098 /* DZMeBookReadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DZMeBookReadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6964C61D76CA9F005FF098 /* DZMeBookReadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMeBookReadTests.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				AF29592B1D7BB33700C880E7 /* HJReadSettingView.swift */,
 				AF29592C1D7BB33700C880E7 /* HJReadView.swift */,
 				AF29592D1D7BB33700C880E7 /* HJReadViewCell.swift */,
+				AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				AF2959321D7BB33700C880E7 /* HJReadSetup.swift in Sources */,
 				AFA682FC1D76D31800870EBF /* HJUIFuncOne.swift in Sources */,
 				AFA682FE1D76D31800870EBF /* HJViewController.swift in Sources */,
+				AF30BCDE1D7FAF79006390AC /* HJReadBottomStatusView.swift in Sources */,
 				AF2959431D7BB33700C880E7 /* HJReadSettingFlipEffectView.swift in Sources */,
 				AF29594C1D7BB4CF00C880E7 /* HJTableView.swift in Sources */,
 				AF2959401D7BB33700C880E7 /* HJReadLightView.swift in Sources */,
