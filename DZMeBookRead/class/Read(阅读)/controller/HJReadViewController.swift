@@ -245,7 +245,14 @@ class HJReadViewController: HJTableViewController {
     /// 修改背景颜色
     func changeBGColor() {
         
-        view.backgroundColor = HJReadConfigureManger.shareManager.readColor
+        if HJReadConfigureManger.shareManager.readColor == HJColor_12 { // 牛皮黄
+            
+            view.backgroundColor = UIColor(patternImage:UIImage(named: "icon_read_bg_0")!)
+            
+        }else{
+            
+            view.backgroundColor = HJReadConfigureManger.shareManager.readColor
+        }
     }
     
     /// 修改阅读方式

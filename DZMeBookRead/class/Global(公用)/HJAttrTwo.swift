@@ -35,7 +35,7 @@ let HJColor_8:UIColor = RGB(229, g: 229, b: 229)
 let HJColor_9:UIColor = RGB(218, g: 227, b: 182)
 let HJColor_10:UIColor = RGB(200, g: 231, b: 240)
 let HJColor_11:UIColor = RGB(245, g: 214, b: 214)
-let HJColor_12:UIColor = RGB(40, g: 82, b: 117)
+let HJColor_12:UIColor = RGB(251, g: 237, b: 199)
 let HJColor_13:UIColor = RGB(251, g: 252, b: 255)
 
 // MARK: -- 图书相关 ------------------
