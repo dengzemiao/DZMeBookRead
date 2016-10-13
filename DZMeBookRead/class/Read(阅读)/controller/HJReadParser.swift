@@ -110,19 +110,19 @@ class HJReadParser: NSObject {
                     
                     readChapterModel.chapterName = "开始"
                     
-                    readChapterModel.chapterContent = content.substringWithRange(NSMakeRange(0, location))
+                    readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(0, location)))
                     
                 }else if index == (results.count - 1) { // 结尾
                     
                     readChapterModel.chapterName = content.substringWithRange(lastRange)
                     
-                    readChapterModel.chapterContent = content.substringWithRange(NSMakeRange(location, content.length - location))
+                    readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(location, content.length - location)))
                     
                 }else{ // 中间章节
                     
                     readChapterModel.chapterName = content.substringWithRange(lastRange)
                     
-                    readChapterModel.chapterContent = content.substringWithRange(NSMakeRange(lastRange.location, location - lastRange.location))
+                    readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(lastRange.location, location - lastRange.location)))
                 }
                 
                 // 阅读章节list模型
@@ -146,7 +146,7 @@ class HJReadParser: NSObject {
             
             readChapterModel.chapterName = "开始"
             
-            readChapterModel.chapterContent = content
+            readChapterModel.chapterContent = repairsContent(content)
             
             // 阅读章节list模型
             let readChapterListModel = GetReadChapterListModelTransformation(readChapterModel)
@@ -156,6 +156,22 @@ class HJReadParser: NSObject {
         }
         
         return readChapterListModels
+    }
+    
+    /// 修整字符串
+    class func repairsContent(content:String) ->String {
+        
+        var str = content as NSString;
+        
+        let spaceStr = "    "
+        
+        str = str.stringByReplacingOccurrencesOfString("\r\n", withString: "\n")
+        
+        str = str.stringByReplacingOccurrencesOfString(" ", withString: "")
+        
+        str = str.stringByReplacingOccurrencesOfString("\n", withString: "\n" + spaceStr)
+        
+        return (spaceStr + (str as String))
     }
     
     /// 通过阅读模型 转换章节list模型
