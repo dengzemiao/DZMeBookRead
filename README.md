@@ -4,4 +4,6 @@
 
 最新添加了时间 电池 章节尾部占位广告图片(可取消)
 
+小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
+
 ![CarouselView in action](Untitled.gif)

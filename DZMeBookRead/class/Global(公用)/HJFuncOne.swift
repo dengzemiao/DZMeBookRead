@@ -11,6 +11,16 @@ import UIKit
 
 // MARK: -- 该页面只存放与系统全局使用有关的
 
+// 自定义LOG
+func HJLog<T>(message:T) {
+    
+    #if DEBUG
+        
+        print("\(message)")
+        
+    #endif
+}
+
 // MARK: -- 代码屏幕适配
 
 ///  以iPhone6为比例
