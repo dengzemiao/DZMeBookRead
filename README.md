@@ -1,12 +1,10 @@
 # DZMeBookRead
 
-(这几天准备将平移换成覆盖效果)
-
 小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
 
 原作者DZM 最完整小说阅读器Demo 
 
-翻页效果(无效果,平滑,仿真,上下滚动) 
+翻页效果(无效果,覆盖,仿真,上下滚动) 
 
 时间 电池 章节尾部占位广告图片(可取消) 
 
