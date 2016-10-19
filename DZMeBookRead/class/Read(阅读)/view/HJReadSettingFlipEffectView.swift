@@ -29,7 +29,7 @@ class HJReadSettingFlipEffectView: HJReadSettingCustomView {
         
         super.init(frame: frame)
         
-        nomalNames = ["无效果","平移","仿真","上下"]
+        nomalNames = ["无效果","覆盖","仿真","上下"]
         
         addSubviews()
         

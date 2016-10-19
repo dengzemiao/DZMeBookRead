@@ -41,7 +41,75 @@ class HJTableView: UITableView {
             self?.isReloadData = false;
         }
     }
-
+    
+    
+    
+    // MARK: -- 获取当前显示的最大最小的IndexPath
+    
+    /**
+     获取当前显示最小的IndexPath
+     
+     - returns: 最小的indexPath
+     */
+    func minVisibleIndexPath() ->NSIndexPath? {
+        
+        if indexPathsForVisibleRows != nil && !indexPathsForVisibleRows!.isEmpty {
+            
+            var minIndexPath:NSIndexPath! = indexPathsForVisibleRows!.first
+            
+            for indexPath in indexPathsForVisibleRows! {
+                
+                let reuslt = minIndexPath.compare(indexPath) // 比较
+                
+                if reuslt == NSComparisonResult.OrderedSame { // 相等
+                    
+                }else if reuslt == NSComparisonResult.OrderedDescending { // 左边的操作对象大于右边的对象
+                    
+                    minIndexPath = indexPath
+                    
+                }else if reuslt == NSComparisonResult.OrderedAscending { // 左边的操作对象小于右边的对象
+                    
+                }else{}
+            }
+            
+            return minIndexPath
+        }
+        
+        return nil
+    }
+    
+    /**
+     获取当前显示最大的IndexPath
+     
+     - returns: 最大的indexPath
+     */
+    func maxVisibleIndexPath() ->NSIndexPath? {
+        
+        if indexPathsForVisibleRows != nil && !indexPathsForVisibleRows!.isEmpty {
+            
+            var maxIndexPath:NSIndexPath! = indexPathsForVisibleRows!.first
+            
+            for indexPath in indexPathsForVisibleRows! {
+                
+                let reuslt = maxIndexPath.compare(indexPath) // 比较
+                
+                if reuslt == NSComparisonResult.OrderedSame { // 相等
+                    
+                }else if reuslt == NSComparisonResult.OrderedDescending { // 左边的操作对象大于右边的对象
+                    
+                }else if reuslt == NSComparisonResult.OrderedAscending { // 左边的操作对象小于右边的对象
+                    
+                    maxIndexPath = indexPath
+                    
+                }else{}
+            }
+            
+            return maxIndexPath
+        }
+        
+        return nil
+    }
+    
     
     
     // MARK: -- 手势处理 可选项 一般不需要使用

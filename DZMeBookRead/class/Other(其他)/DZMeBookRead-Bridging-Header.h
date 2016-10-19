@@ -7,3 +7,6 @@
 
 // MBProgressHUD
 #import "MBProgressHUD+DZM.h"
+
+// 覆盖翻页
+#import "DZMCoverController.h"

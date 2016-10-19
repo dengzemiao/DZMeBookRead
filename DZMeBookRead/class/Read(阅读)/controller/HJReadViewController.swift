@@ -31,9 +31,13 @@ class HJReadViewController: HJTableViewController {
     
     /// 底部状态栏
     private var readBottomStatusView:HJReadBottomStatusView!
+    private var readTopStatusView:HJReadTopStatusView!
     
     /// 当前滚动经过的indexPath   UpAndDown 模式使用
     private var currentIndexPath:NSIndexPath!
+    
+    /// 当前是往上滚还是往下滚 default: 往上
+    private var isScrollTop:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +48,11 @@ class HJReadViewController: HJTableViewController {
         // 设置翻页方式
         changeFlipEffect()
         
+        // 设置头部名字
+        readTopStatusView.setLeftTitle(readChapterModel.chapterName)
+        
         // 设置页码
-        if flipEffect != HJReadFlipEffect.UpAndDown {
-            
-            readBottomStatusView.setNumberPage(readRecord.page.integerValue, tatolPage: readChapterModel.pageCount.integerValue)
-            
-            isLastPage = (readRecord.page.integerValue == (readChapterModel.pageCount.integerValue - 1))
-        }
+        readBottomStatusView.setNumberPage(readRecord.page.integerValue, tatolPage: readChapterModel.pageCount.integerValue)
         
         // 通知在deinit 中会释放
         // 添加背景颜色改变通知
@@ -71,6 +73,10 @@ class HJReadViewController: HJTableViewController {
     
     override func addSubviews() {
         super.addSubviews()
+        
+        readTopStatusView = HJReadTopStatusView()
+        readTopStatusView.frame = CGRectMake(0, 0, ScreenWidth, HJReadTopStatusViewH)
+        view.addSubview(readTopStatusView)
         
         readBottomStatusView = HJReadBottomStatusView()
         readBottomStatusView.frame = CGRectMake(0, ScreenHeight - HJReadBottomStatusViewH, ScreenWidth, HJReadBottomStatusViewH)
@@ -149,6 +155,10 @@ class HJReadViewController: HJTableViewController {
             
             let tempReadChapterModel = GetReadChapterModel(readChapterListModel)
             
+            cell.readChapterModel = tempReadChapterModel
+            
+            cell.readChapterListModel = readChapterListModel
+            
             cell.contentH = CGFloat(readChapterListModel.chapterHeight.floatValue)
             
             cell.content = tempReadChapterModel.chapterContent
@@ -168,10 +178,19 @@ class HJReadViewController: HJTableViewController {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-//        if flipEffect == HJReadFlipEffect.UpAndDown { // 滚动模式
+        readPageController.readModel.readRecord.contentOffsetY = scrollView.contentOffset.y
+
+        // 判断是滚上还是滚下
+        let translation = scrollView.panGestureRecognizer.translationInView(view)
         
-            readPageController.readModel.readRecord.contentOffsetY = scrollView.contentOffset.y
-//        }
+        if translation.y > 0 {
+            
+            isScrollTop = true
+            
+        }else if translation.y < 0 {
+            
+            isScrollTop = false
+        }
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -191,6 +210,15 @@ class HJReadViewController: HJTableViewController {
         
         if flipEffect == HJReadFlipEffect.UpAndDown { // 滚动模式
             
+            if isScrollTop {
+                
+                currentIndexPath = tableView.minVisibleIndexPath()
+                
+            }else{
+                
+                currentIndexPath = tableView.maxVisibleIndexPath()
+            }
+            
             if  currentIndexPath != nil {
                 
                 let cell = tableView.cellForRowAtIndexPath(currentIndexPath) as? HJReadViewCell
@@ -204,6 +232,8 @@ class HJReadViewController: HJTableViewController {
                     let page = spaceH / redFrame.height
                     
                     readPageController.readModel.readRecord.page = (page + 0.5)
+                    
+                    readTopStatusView.setLeftTitle("\(cell!.readChapterListModel!.chapterName)")
                     
                     readPageController.readModel.readRecord.readChapterListModel = cell!.readChapterListModel
                 }
@@ -245,13 +275,21 @@ class HJReadViewController: HJTableViewController {
     /// 修改背景颜色
     func changeBGColor() {
         
-        if HJReadConfigureManger.shareManager.readColor == HJColor_12 { // 牛皮黄
+        if HJReadConfigureManger.shareManager.readColorInex.integerValue == HJReadColors.indexOf(HJColor_12) { // 牛皮黄
             
-            view.backgroundColor = UIColor(patternImage:UIImage(named: "icon_read_bg_0")!)
+            let color:UIColor = UIColor(patternImage:UIImage(named: "icon_read_bg_0")!)
+            
+            readTopStatusView.backgroundColor = color
+            
+            view.backgroundColor = color
             
         }else{
             
-            view.backgroundColor = HJReadConfigureManger.shareManager.readColor
+            let color = HJReadColors[HJReadConfigureManger.shareManager.readColorInex.integerValue]
+            
+            readTopStatusView.backgroundColor = color
+            
+            view.backgroundColor = color
         }
     }
     

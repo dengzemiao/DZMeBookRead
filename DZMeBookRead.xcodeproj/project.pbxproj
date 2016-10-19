@@ -36,6 +36,8 @@
 		AF29594E1D7BB50700C880E7 /* HJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29594D1D7BB50700C880E7 /* HJNavigationController.swift */; };
 		AF30BCDE1D7FAF79006390AC /* HJReadBottomStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */; };
 		AF33A0601D7FEA61007B79EE /* HJBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF33A05F1D7FEA61007B79EE /* HJBatteryView.swift */; };
+		AF3742AE1DB7122E00E448DC /* HJReadTopStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3742AD1DB7122E00E448DC /* HJReadTopStatusView.swift */; };
+		AF6424691DB6216D005252A4 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6424681DB6216D005252A4 /* DZMCoverController.m */; };
 		AF6964C71D76CA9F005FF098 /* DZMeBookReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964C61D76CA9F005FF098 /* DZMeBookReadTests.swift */; };
 		AF6964D21D76CA9F005FF098 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964D11D76CA9F005FF098 /* DZMeBookReadUITests.swift */; };
 		AF69654F1D76CF1C005FF098 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF69654D1D76CF1C005FF098 /* 求魔.txt */; };
@@ -113,6 +115,9 @@
 		AF29594D1D7BB50700C880E7 /* HJNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJNavigationController.swift; sourceTree = "<group>"; };
 		AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadBottomStatusView.swift; sourceTree = "<group>"; };
 		AF33A05F1D7FEA61007B79EE /* HJBatteryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJBatteryView.swift; sourceTree = "<group>"; };
+		AF3742AD1DB7122E00E448DC /* HJReadTopStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadTopStatusView.swift; sourceTree = "<group>"; };
+		AF6424671DB6216D005252A4 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
+		AF6424681DB6216D005252A4 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
 		AF6964AE1D76CA9F005FF098 /* DZMeBookRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZMeBookRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6964C21D76CA9F005FF098 /* DZMeBookReadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DZMeBookReadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6964C61D76CA9F005FF098 /* DZMeBookReadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMeBookReadTests.swift; sourceTree = "<group>"; };
@@ -179,13 +184,13 @@
 		AF2959101D7BB33700C880E7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				AF2959111D7BB33700C880E7 /* HJReadConfigureManger.swift */,
 				AF2959121D7BB33700C880E7 /* HJReadPageController.swift */,
+				AF2959171D7BB33700C880E7 /* HJReadViewController.swift */,
+				AF2959111D7BB33700C880E7 /* HJReadConfigureManger.swift */,
 				AF2959131D7BB33700C880E7 /* HJReadPageDataConfigure.swift */,
 				AF2959141D7BB33700C880E7 /* HJReadParser.swift */,
 				AF2959151D7BB33700C880E7 /* HJReadSetup.swift */,
 				AF2959161D7BB33700C880E7 /* HJReadUI.swift */,
-				AF2959171D7BB33700C880E7 /* HJReadViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 		AF2959201D7BB33700C880E7 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				AF3742AD1DB7122E00E448DC /* HJReadTopStatusView.swift */,
 				AF2959211D7BB33700C880E7 /* HJReadBottomView.swift */,
 				AF2959221D7BB33700C880E7 /* HJReadLeftHeaderView.swift */,
 				AF2959231D7BB33700C880E7 /* HJReadLeftView.swift */,
@@ -221,6 +227,15 @@
 				AF33A05F1D7FEA61007B79EE /* HJBatteryView.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		AF6424661DB6216D005252A4 /* DZMCoverController */ = {
+			isa = PBXGroup;
+			children = (
+				AF6424671DB6216D005252A4 /* DZMCoverController.h */,
+				AF6424681DB6216D005252A4 /* DZMCoverController.m */,
+			);
+			path = DZMCoverController;
 			sourceTree = "<group>";
 		};
 		AF6964A51D76CA9F005FF098 = {
@@ -350,6 +365,7 @@
 		AFA682E51D76D31800870EBF /* ThirdParty(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				AF6424661DB6216D005252A4 /* DZMCoverController */,
 				AFA682E61D76D31800870EBF /* MBProgressHUD */,
 			);
 			path = "ThirdParty(第三方)";
@@ -510,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF2959421D7BB33700C880E7 /* HJReadSettingCustomView.swift in Sources */,
+				AF3742AE1DB7122E00E448DC /* HJReadTopStatusView.swift in Sources */,
 				AF29592E1D7BB33700C880E7 /* HJReadConfigureManger.swift in Sources */,
 				AF29593A1D7BB33700C880E7 /* HJReadModel.swift in Sources */,
 				AF2959311D7BB33700C880E7 /* HJReadParser.swift in Sources */,
@@ -534,6 +551,7 @@
 				AFA682F11D76D31800870EBF /* UIScrollView+Extension.swift in Sources */,
 				AF29593E1D7BB33700C880E7 /* HJReadLeftView.swift in Sources */,
 				AFA682FD1D76D31800870EBF /* HJUserDefaults.swift in Sources */,
+				AF6424691DB6216D005252A4 /* DZMCoverController.m in Sources */,
 				AF2959481D7BB33700C880E7 /* HJReadViewCell.swift in Sources */,
 				AF2959441D7BB33700C880E7 /* HJReadSettingFontSizeView.swift in Sources */,
 				AFA683251D76D33500870EBF /* HJMainViewController.swift in Sources */,
@@ -699,7 +717,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookRead;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/DZMeBookRead-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/class/Other(其他)/DZMeBookRead-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -716,7 +734,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookRead;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/DZMeBookRead-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/class/Other(其他)/DZMeBookRead-Bridging-Header.h";
 			};
 			name = Release;
 		};

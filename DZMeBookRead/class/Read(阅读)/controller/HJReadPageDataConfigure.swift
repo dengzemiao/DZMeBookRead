@@ -76,7 +76,7 @@ class HJReadPageDataConfigure: NSObject {
      - parameter transitionStyle:      PageController 样式
      - parameter result:               跳转结果
      */
-    func GoToReadChapter(chapterID:String,isInit:Bool,chapterLookPageClear:Bool,transitionStyle: UIPageViewControllerTransitionStyle,result:((isOK:Bool)->Void)?) {
+    func GoToReadChapter(chapterID:String,chapterLookPageClear:Bool,result:((isOK:Bool)->Void)?) {
         
         if !readPageController.readModel.readChapterListModels.isEmpty {
             
@@ -84,7 +84,7 @@ class HJReadPageDataConfigure: NSObject {
             
             if readChapterModel != nil { // 有这个章节
                 
-                GoToReadChapter(readChapterModel!, isInit: isInit, chapterLookPageClear: chapterLookPageClear, transitionStyle: transitionStyle, result: result)
+                GoToReadChapter(readChapterModel!, chapterLookPageClear: chapterLookPageClear, result: result)
                 
             }else{ // 没有章节
                 
@@ -108,7 +108,7 @@ class HJReadPageDataConfigure: NSObject {
      - parameter transitionStyle:      PageController 样式
      - parameter result:               跳转结果
      */
-    private func GoToReadChapter(readChapterModel:HJReadChapterModel,isInit:Bool,chapterLookPageClear:Bool,transitionStyle: UIPageViewControllerTransitionStyle,result:((isOK:Bool)->Void)?) {
+    private func GoToReadChapter(readChapterModel:HJReadChapterModel, chapterLookPageClear:Bool,result:((isOK:Bool)->Void)?) {
         
         changeLookPage = readPageController.readModel.readRecord.page.integerValue
         
@@ -119,14 +119,7 @@ class HJReadPageDataConfigure: NSObject {
             changeLookPage = 0
         }
         
-        // 跳转
-        if isInit {
-            
-            readPageController.creatPageController(GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue),transitionStyle: transitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal)
-        }else{
-            
-            readPageController.pageViewController.setViewControllers([GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        }
+        readPageController.creatPageController(GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue))
         
         // 同步本地进度
         synchronizationChangeData()

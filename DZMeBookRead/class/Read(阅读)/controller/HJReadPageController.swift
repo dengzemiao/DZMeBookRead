@@ -8,13 +8,14 @@
 
 import UIKit
 
-class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPageViewControllerDataSource,HJAppDelegate {
+class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPageViewControllerDataSource,HJAppDelegate,DZMCoverControllerDelegate {
     
     // 阅读主对象
     var readModel:HJReadModel!
     
     /// 翻页控制器
     var pageViewController:UIPageViewController!
+    var coverController:DZMCoverController!
     
     /// 阅读设置
     var readSetup:HJReadSetup!
@@ -53,29 +54,96 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     }
     
     // MARK: -- PageController
+    // MARK: -- PageController
     
-    func creatPageController(displayController:UIViewController,transitionStyle: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation) {
+    func creatPageController(displayController:UIViewController) {
         
         if pageViewController != nil {
             
-            pageViewController.removeFromParentViewController()
-            
             pageViewController.view.removeFromSuperview()
+            
+            pageViewController.removeFromParentViewController()
         }
         
-        let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(long: UIPageViewControllerSpineLocation.Min.rawValue)]
+        if coverController != nil {
+            
+            coverController.view.removeFromSuperview()
+            
+            coverController.removeFromParentViewController()
+        }
         
-        pageViewController = UIPageViewController(transitionStyle:transitionStyle,navigationOrientation:navigationOrientation,options: options)
+        if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.Simulation {
+            
+            let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(long: UIPageViewControllerSpineLocation.Min.rawValue)]
+            
+            pageViewController = UIPageViewController(transitionStyle:UIPageViewControllerTransitionStyle.PageCurl,navigationOrientation:UIPageViewControllerNavigationOrientation.Horizontal,options: options)
+            
+            pageViewController.delegate = self
+            
+            pageViewController.dataSource = self
+            
+            view.insertSubview(pageViewController.view, atIndex: 0)
+            
+            addChildViewController(pageViewController)
+            
+            pageViewController.setViewControllers([displayController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+            
+        }else{
+            
+            coverController = DZMCoverController()
+            
+            coverController.delegate = self
+            
+            view.insertSubview(coverController.view, atIndex: 0)
+            
+            addChildViewController(coverController)
+            
+            coverController.setController(displayController)
+            
+            if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.None {
+                
+                coverController.openAnimate = false
+                
+            }else if (HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.UpAndDown){
+                
+                coverController.openAnimate = false
+                
+                coverController.gestureRecognizerEnabled = false
+            }
+            
+        }
+    }
+    
+    // MARK: -- DZMCoverControllerDelegate
+    
+    func coverController(coverController: DZMCoverController, currentController: UIViewController?, finish isFinish: Bool) {
         
-        pageViewController.delegate = self
+        if !isFinish {
+            
+            // 重置阅读记录
+            
+            if currentController != nil {
+                
+                let vc  = currentController as! HJReadViewController
+                
+                synchronizationPageViewControllerData(vc)
+            }
+            
+        }else{
+            
+            // 刷新阅读记录
+            readConfigure.synchronizationChangeData()
+        }
+    }
+    
+    func coverController(coverController: DZMCoverController, getAboveControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
         
-        pageViewController.dataSource = self
+        return readConfigure.GetReadPreviousPage()
+    }
+    
+    func coverController(coverController: DZMCoverController, getBelowControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
         
-        view.insertSubview(pageViewController.view, atIndex: 0)
-        
-        self.addChildViewController(pageViewController)
-        
-        pageViewController.setViewControllers([displayController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        return readConfigure.GetReadNextPage()
     }
     
     // MARK: -- UIPageViewControllerDelegate
@@ -84,25 +152,15 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         
         if !completed {
             
-            if pageViewController.transitionStyle == UIPageViewControllerTransitionStyle.PageCurl {
-                
-                // 重置阅读记录
-                
-                let vc  = previousViewControllers.first as! HJReadViewController
-                
-                synchronizationPageViewControllerData(vc)
-            }
+            // 重置阅读记录
+            let vc  = previousViewControllers.first as! HJReadViewController
+            
+            synchronizationPageViewControllerData(vc)
             
         }else{
             
-            if pageViewController.transitionStyle == UIPageViewControllerTransitionStyle.PageCurl {
-            
-                // 刷新阅读记录
-                readConfigure.synchronizationChangeData()
-                
-            }else{
-                
-            }
+            // 刷新阅读记录
+            readConfigure.synchronizationChangeData()
         }
     }
     
@@ -116,21 +174,11 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     /// 获取上一页
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        if pageViewController.transitionStyle == UIPageViewControllerTransitionStyle.Scroll {
-            
-            synchronizationPageViewControllerData(viewController)
-        }
-        
         return readConfigure.GetReadPreviousPage()
     }
     
     /// 获取下一页
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        
-        if pageViewController.transitionStyle == UIPageViewControllerTransitionStyle.Scroll {
-       
-            synchronizationPageViewControllerData(viewController)
-        }
         
         return readConfigure.GetReadNextPage()
     }

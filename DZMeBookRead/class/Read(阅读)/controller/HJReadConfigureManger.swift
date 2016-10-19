@@ -33,7 +33,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
     // MARK: -- 设置 - 颜色属性
     
     /// 当前的阅读颜色
-    var readColor:UIColor = HJColor_13 {
+    var readColorInex:NSNumber = 4 {
         
         didSet{
             
@@ -44,7 +44,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
     // MARK: -- 阅读翻书效果
     
     /// 记录阅读翻书效果 不建议使用该值
-    var flipEffectNumber:NSNumber! = 0 {
+    var flipEffectNumber:NSNumber! = 1 {
         
         didSet{
           
@@ -57,7 +57,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
         
         get{
             
-            return HJReadFlipEffect(rawValue: flipEffectNumber.integerValue) ?? HJReadFlipEffect(rawValue: 0)
+            return HJReadFlipEffect(rawValue: flipEffectNumber.integerValue) ?? HJReadFlipEffect(rawValue: 1)
         }
         set{
             
@@ -182,7 +182,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
         
         super.init()
         
-        readColor = aDecoder.decodeObjectForKey("readColor") as! UIColor
+        readColorInex = aDecoder.decodeObjectForKey("readColorInex") as! NSNumber
         
         flipEffectNumber = aDecoder.decodeObjectForKey("flipEffectNumber") as! NSNumber
         
@@ -195,7 +195,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
     
     func encodeWithCoder(aCoder: NSCoder) {
         
-        aCoder.encodeObject(readColor, forKey: "readColor")
+        aCoder.encodeObject(readColorInex, forKey: "readColorInex")
         
         aCoder.encodeObject(flipEffectNumber, forKey: "flipEffectNumber")
         

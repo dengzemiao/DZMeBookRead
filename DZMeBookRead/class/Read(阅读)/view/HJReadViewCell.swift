@@ -18,6 +18,9 @@ class HJReadViewCell: UITableViewCell {
     /// 当前是否为这一章的最后一页
     var isLastPage:Bool = false
     
+    // 章节数据
+    var readChapterModel:HJReadChapterModel?
+    
     // 章节信息
     var readChapterListModel:HJReadChapterListModel?
     
@@ -59,6 +62,8 @@ class HJReadViewCell: UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(ID) as? HJReadViewCell
         
         cell?.readView.hidden = true
+        
+        cell?.readChapterModel = nil
         
         cell?.readChapterListModel = nil
         

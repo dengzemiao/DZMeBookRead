@@ -52,7 +52,7 @@ class HJReadSettingColorView: UIScrollView {
             button.addTarget(self, action: #selector(HJReadSettingColorView.clickButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             
             // 当前选中的颜色
-            if backgroundColor == HJReadConfigureManger.shareManager.readColor {
+            if i == HJReadConfigureManger.shareManager.readColorInex {
                 
                 clickButton(button)
             }
@@ -74,7 +74,7 @@ class HJReadSettingColorView: UIScrollView {
         
         let readColor = HJReadColors[button.tag]
         
-        HJReadConfigureManger.shareManager.readColor = readColor
+        HJReadConfigureManger.shareManager.readColorInex = button.tag
         
         aDelegate?.readSettingColorView?(self, changeReadColor: readColor)
     }

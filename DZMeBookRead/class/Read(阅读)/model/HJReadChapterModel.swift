@@ -11,27 +11,15 @@ import CoreText
 
 class HJReadChapterModel: NSObject,NSCoding {
     
-
-//    var chapterID: String!                 // 章节ID
-//    var chapterName: String!               // 章节名称
-//    var volumeID: String!                  // 卷ID
-//    var isDownload:NSNumber = 0            // 章节是否下载
-//    var isVIPChapter:NSNumber = 0          // 是否属于VIP章节
-//    var isPayChapter:NSNumber = 0          // 是否属于付费章节
-//    var isBuyChapter:NSNumber = 0          // 是否已购买该章节
-//    var price:NSNumber = 0                 // 价钱
-//    var pageCount:NSNumber = 0             // 本章有多少页
-//    var pageLocationArray:[Int] = []       // 分页的起始位置
-    
     var chapterID: String!                 // 章节ID
     var previousChapterId: String?         // 上一章ID
     var nextChapterId:String?              // 下一章ID
     var chapterName: String!               // 章节名称
     var volumeID: String!                  // 卷ID
+    var chapterContent: String! = ""       // 章节内容
+    
     var pageCount:NSNumber = 0             // 本章有多少页
     var pageLocationArray:[Int] = []       // 分页的起始位置
-    
-    var chapterContent: String! = ""       // 章节内容
     
     /// 刷新字体
     func updateFont() {
