@@ -16,6 +16,9 @@ class HJReadRecord: NSObject,NSCoding {
     /// 当前阅读到的章节模型
     var readChapterListModel:HJReadChapterListModel!
     
+    /// 当前阅读到的章节模型
+    var readChapterModel:HJReadChapterModel?
+    
     /// 当前阅读到章节的页码
     var page:NSNumber = 0
     
@@ -38,6 +41,8 @@ class HJReadRecord: NSObject,NSCoding {
         
         readChapterListModel = aDecoder.decodeObjectForKey("readChapterListModel") as? HJReadChapterListModel
         
+        readChapterModel = aDecoder.decodeObjectForKey("readChapterModel") as? HJReadChapterModel
+        
         page = aDecoder.decodeObjectForKey("page") as! NSNumber
         
         chapterIndex = aDecoder.decodeObjectForKey("chapterIndex") as! NSNumber
@@ -50,6 +55,8 @@ class HJReadRecord: NSObject,NSCoding {
         aCoder.encodeObject(contentOffsetY, forKey: "contentOffsetY")
         
         aCoder.encodeObject(readChapterListModel, forKey: "readChapterListModel")
+        
+        aCoder.encodeObject(readChapterModel, forKey: "readChapterModel")
         
         aCoder.encodeObject(page, forKey: "page")
         

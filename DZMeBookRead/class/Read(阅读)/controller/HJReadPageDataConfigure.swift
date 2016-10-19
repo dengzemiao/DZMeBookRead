@@ -19,9 +19,6 @@ class HJReadPageDataConfigure: NSObject {
     /// 阅读控制器
     private weak var readPageController:HJReadPageController!
     
-    /// 当前的阅读章节模型
-    var readChapterModel:HJReadChapterModel!
-    
     /// 临时记录值
     var changeReadChapterModel:HJReadChapterModel!
     var changeReadChapterListModel:HJReadChapterListModel!
@@ -293,8 +290,10 @@ class HJReadPageDataConfigure: NSObject {
     /// 同步临时数据
     func synchronizationChangeData() {
         
-        readChapterModel = changeReadChapterModel
+        readPageController.readModel.readRecord.readChapterModel = changeReadChapterModel
+        
         readPageController.readModel.readRecord.readChapterListModel = changeReadChapterListModel
+        
         readPageController.readModel.readRecord.page = changeLookPage
     }
     

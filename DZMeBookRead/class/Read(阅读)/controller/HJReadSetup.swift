@@ -229,8 +229,15 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
         readPageController.readConfigure.updateReadRecordFont()
         
         // 重新展示
-        let previousPageVC = readPageController.readConfigure.GetReadViewController(readPageController.readConfigure.readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue)
+        let previousPageVC = readPageController.readConfigure.GetReadViewController(readPageController.readModel.readRecord.readChapterModel!, currentPage: readPageController.readModel.readRecord.page.integerValue)
         
-        readPageController.coverController.setController(previousPageVC, animated: false, isAbove: true)
+        if (HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.Simulation) { // 仿真
+            
+            readPageController.pageViewController.setViewControllers([previousPageVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            
+        }else{
+            
+            readPageController.coverController.setController(previousPageVC, animated: false, isAbove: true)
+        }
     }
 }
