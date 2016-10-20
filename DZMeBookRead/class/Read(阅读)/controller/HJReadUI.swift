@@ -126,6 +126,11 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
         }else{ // 下载
             
             MBProgressHUD.showMessage("下载存成章节文件,进入沙河看下文件格式")
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(2.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+               
+                MBProgressHUD.hideHUD()
+            }
         }
     }
     

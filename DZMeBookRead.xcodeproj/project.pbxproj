@@ -37,6 +37,7 @@
 		AF30BCDE1D7FAF79006390AC /* HJReadBottomStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */; };
 		AF33A0601D7FEA61007B79EE /* HJBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF33A05F1D7FEA61007B79EE /* HJBatteryView.swift */; };
 		AF3742AE1DB7122E00E448DC /* HJReadTopStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3742AD1DB7122E00E448DC /* HJReadTopStatusView.swift */; };
+		AF3BA0981DB8633F0083514F /* 细说明朝.epub in Resources */ = {isa = PBXBuildFile; fileRef = AF3BA0971DB8633F0083514F /* 细说明朝.epub */; };
 		AF6424691DB6216D005252A4 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6424681DB6216D005252A4 /* DZMCoverController.m */; };
 		AF6964C71D76CA9F005FF098 /* DZMeBookReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964C61D76CA9F005FF098 /* DZMeBookReadTests.swift */; };
 		AF6964D21D76CA9F005FF098 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964D11D76CA9F005FF098 /* DZMeBookReadUITests.swift */; };
@@ -116,6 +117,7 @@
 		AF30BCDD1D7FAF79006390AC /* HJReadBottomStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadBottomStatusView.swift; sourceTree = "<group>"; };
 		AF33A05F1D7FEA61007B79EE /* HJBatteryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJBatteryView.swift; sourceTree = "<group>"; };
 		AF3742AD1DB7122E00E448DC /* HJReadTopStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadTopStatusView.swift; sourceTree = "<group>"; };
+		AF3BA0971DB8633F0083514F /* 细说明朝.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "细说明朝.epub"; sourceTree = "<group>"; };
 		AF6424671DB6216D005252A4 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
 		AF6424681DB6216D005252A4 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
 		AF6964AE1D76CA9F005FF098 /* DZMeBookRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZMeBookRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +266,7 @@
 				AFA682B11D76D31800870EBF /* class */,
 				AF69654D1D76CF1C005FF098 /* 求魔.txt */,
 				AF69654E1D76CF1C005FF098 /* mdjyml.txt */,
+				AF3BA0971DB8633F0083514F /* 细说明朝.epub */,
 			);
 			path = DZMeBookRead;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				AFA683261D76D33500870EBF /* Info.plist in Resources */,
 				AFA683231D76D33500870EBF /* Assets.xcassets in Resources */,
 				AFA683241D76D33500870EBF /* LaunchScreen.storyboard in Resources */,
+				AF3BA0981DB8633F0083514F /* 细说明朝.epub in Resources */,
 				AFA683181D76D31800870EBF /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
