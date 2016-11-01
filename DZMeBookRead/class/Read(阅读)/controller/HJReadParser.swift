@@ -153,6 +153,9 @@ class HJReadParser: NSObject {
             
             readChapterListModels.append(readChapterListModel)
             
+            // 归档阅读文件
+            ReadKeyedArchiver(bookID, fileName: readChapterModel.chapterID, object: readChapterModel)
+            
         }
         
         return readChapterListModels
