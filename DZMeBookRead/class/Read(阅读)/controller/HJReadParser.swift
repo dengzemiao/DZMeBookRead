@@ -88,15 +88,15 @@ class HJReadParser: NSObject {
         
         // 有搜索解决
         if !results.isEmpty {
-            
+       
             var lastRange = NSMakeRange(0, 0)
             
-            (results as NSArray).enumerateObjectsUsingBlock({ (obj, index, stop) in
+            // 便利
+            for index in 0..<(results.count + 1) {
                 
-                let range = (obj as! NSTextCheckingResult).range
+                let range = results[(index == results.count) ? (index - 1) : index].range
                 
                 let location = range.location
-                
                 
                 // 章节阅读内容模型
                 
@@ -112,11 +112,17 @@ class HJReadParser: NSObject {
                     
                     readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(0, location)))
                     
-                }else if index == (results.count - 1) { // 结尾
+                    // 优先记录一遍
+                    lastRange = range
+                    
+                    // 没有内容不需要添加到缓存
+                    if (readChapterModel.chapterContent.length == 0) {continue}
+                    
+                }else if index == results.count { // 结尾
                     
                     readChapterModel.chapterName = content.substringWithRange(lastRange)
                     
-                    readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(location, content.length - location)))
+                    readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(lastRange.location, content.length - location)))
                     
                 }else{ // 中间章节
                     
@@ -134,7 +140,7 @@ class HJReadParser: NSObject {
                 ReadKeyedArchiver(bookID, fileName: readChapterModel.chapterID, object: readChapterModel)
                 
                 lastRange = range
-            })
+            }
             
         }else{
             
