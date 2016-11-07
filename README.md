@@ -1,5 +1,7 @@
 # DZMeBookRead
 
+近期会加入ePub 阅读 （蛮多人用到的）
+
 小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
 
 原作者DZM 最完整小说阅读器Demo 
