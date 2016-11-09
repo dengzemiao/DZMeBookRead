@@ -14,7 +14,7 @@ class HJReadView: UIView {
     var content:String!
     
     /// 当前视图文字
-    var frameRef:CTFrameRef? {
+    var frameRef:CTFrame? {
         
         didSet{
             
@@ -22,7 +22,7 @@ class HJReadView: UIView {
         }
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         if (frameRef == nil) {
             
@@ -30,9 +30,9 @@ class HJReadView: UIView {
         }
         
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextSetTextMatrix(ctx, CGAffineTransformIdentity)
-        CGContextTranslateCTM(ctx, 0, self.bounds.size.height);
-        CGContextScaleCTM(ctx, 1.0, -1.0);
+        ctx?.textMatrix = CGAffineTransform.identity
+        ctx?.translateBy(x: 0, y: self.bounds.size.height);
+        ctx?.scaleBy(x: 1.0, y: -1.0);
         CTFrameDraw(frameRef!, ctx!);
     }
 

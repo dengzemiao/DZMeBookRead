@@ -65,9 +65,9 @@ extension String {
      
      - returns: String
      */
-    func substringWithRange(range:NSRange) ->String {
+    func substringWithRange(_ range:NSRange) ->String {
         
-        return NSString(string: self).substringWithRange(range)
+        return NSString(string: self).substring(with: range)
     }
     
     /**
@@ -97,7 +97,7 @@ extension String {
      */
     func stringByDeletingPathExtension() ->String {
         
-        return NSString(string: self).stringByDeletingPathExtension
+        return NSString(string: self).deletingPathExtension
     }
     
     /**
@@ -107,13 +107,13 @@ extension String {
      */
     func md5() ->String!{
         
-        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
+        let str = self.cString(using: String.Encoding.utf8)
         
-        let strLen = CUnsignedInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
         
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
         
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         
         CC_MD5(str!, strLen, result)
         
@@ -124,23 +124,23 @@ extension String {
             hash.appendFormat("%02x", result[i])
         }
         
-        result.destroy()
+        result.deinitialize()
         
         return String(format: hash as String)
     }
     
     /// 计算字符串大小
-    func size(font:UIFont) ->CGSize {
+    func size(_ font:UIFont) ->CGSize {
 
-       return size(font, constrainedToSize:CGSizeMake(CGFloat.max, CGFloat.max))
+       return size(font, constrainedToSize:CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
     }
     
     /// 计算字符串大小
-    func size(font:UIFont,constrainedToSize:CGSize) ->CGSize {
+    func size(_ font:UIFont,constrainedToSize:CGSize) ->CGSize {
         
         let string:NSString = self as NSString
         
-        return string.boundingRectWithSize(constrainedToSize, options: [.UsesLineFragmentOrigin,.UsesFontLeading], attributes: [NSFontAttributeName:font], context: nil).size
+        return string.boundingRect(with: constrainedToSize, options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSFontAttributeName:font], context: nil).size
     }
     
 }
@@ -148,12 +148,12 @@ extension String {
 extension NSAttributedString{
     
     /// 计算多态字符串的size
-    func size(constrainedToSize:CGSize?) ->CGSize{
+    func size(_ constrainedToSize:CGSize?) ->CGSize{
         
         var tempConstrainedToSize = constrainedToSize
         
-        if constrainedToSize == nil {tempConstrainedToSize = CGSizeMake(CGFloat.max, CGFloat.max)}
+        if constrainedToSize == nil {tempConstrainedToSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)}
         
-        return self.boundingRectWithSize(tempConstrainedToSize!, options: [NSStringDrawingOptions.UsesLineFragmentOrigin,NSStringDrawingOptions.UsesFontLeading], context: nil).size
+        return self.boundingRect(with: tempConstrainedToSize!, options: [NSStringDrawingOptions.usesLineFragmentOrigin,NSStringDrawingOptions.usesFontLeading], context: nil).size
     }
 }

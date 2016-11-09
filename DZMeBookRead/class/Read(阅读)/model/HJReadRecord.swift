@@ -37,31 +37,31 @@ class HJReadRecord: NSObject,NSCoding {
         
         super.init()
         
-        contentOffsetY = aDecoder.decodeObjectForKey("contentOffsetY") as? NSNumber
+        contentOffsetY = aDecoder.decodeObject(forKey: "contentOffsetY") as? NSNumber
         
-        readChapterListModel = aDecoder.decodeObjectForKey("readChapterListModel") as? HJReadChapterListModel
+        readChapterListModel = aDecoder.decodeObject(forKey: "readChapterListModel") as? HJReadChapterListModel
         
-        readChapterModel = aDecoder.decodeObjectForKey("readChapterModel") as? HJReadChapterModel
+        readChapterModel = aDecoder.decodeObject(forKey: "readChapterModel") as? HJReadChapterModel
         
-        page = aDecoder.decodeObjectForKey("page") as! NSNumber
+        page = aDecoder.decodeObject(forKey: "page") as! NSNumber
         
-        chapterIndex = aDecoder.decodeObjectForKey("chapterIndex") as! NSNumber
+        chapterIndex = aDecoder.decodeObject(forKey: "chapterIndex") as! NSNumber
         
-        chapterCount = aDecoder.decodeObjectForKey("chapterCount") as! NSNumber
+        chapterCount = aDecoder.decodeObject(forKey: "chapterCount") as! NSNumber
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(contentOffsetY, forKey: "contentOffsetY")
+        aCoder.encode(contentOffsetY, forKey: "contentOffsetY")
         
-        aCoder.encodeObject(readChapterListModel, forKey: "readChapterListModel")
+        aCoder.encode(readChapterListModel, forKey: "readChapterListModel")
         
-        aCoder.encodeObject(readChapterModel, forKey: "readChapterModel")
+        aCoder.encode(readChapterModel, forKey: "readChapterModel")
         
-        aCoder.encodeObject(page, forKey: "page")
+        aCoder.encode(page, forKey: "page")
         
-        aCoder.encodeObject(chapterIndex, forKey: "chapterIndex")
+        aCoder.encode(chapterIndex, forKey: "chapterIndex")
         
-        aCoder.encodeObject(chapterCount, forKey: "chapterCount")
+        aCoder.encode(chapterCount, forKey: "chapterCount")
     }
 }

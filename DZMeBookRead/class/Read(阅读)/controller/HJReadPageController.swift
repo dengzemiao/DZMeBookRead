@@ -36,27 +36,27 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterLookPageClear: false)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // 设置回调代理
-        (UIApplication.sharedApplication().delegate as! AppDelegate).delegate = self
+        (UIApplication.shared.delegate as! AppDelegate).delegate = self
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
         
-        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.fade)
     }
     
     // MARK: -- PageController
     // MARK: -- PageController
     
-    func creatPageController(displayController:UIViewController) {
+    func creatPageController(_ displayController:UIViewController) {
         
         if pageViewController != nil {
             
@@ -72,21 +72,21 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
             coverController.removeFromParentViewController()
         }
         
-        if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.Simulation {
+        if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.simulation {
             
-            let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(long: UIPageViewControllerSpineLocation.Min.rawValue)]
+            let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(value: UIPageViewControllerSpineLocation.min.rawValue as Int)]
             
-            pageViewController = UIPageViewController(transitionStyle:UIPageViewControllerTransitionStyle.PageCurl,navigationOrientation:UIPageViewControllerNavigationOrientation.Horizontal,options: options)
+            pageViewController = UIPageViewController(transitionStyle:UIPageViewControllerTransitionStyle.pageCurl,navigationOrientation:UIPageViewControllerNavigationOrientation.horizontal,options: options)
             
             pageViewController.delegate = self
             
             pageViewController.dataSource = self
             
-            view.insertSubview(pageViewController.view, atIndex: 0)
+            view.insertSubview(pageViewController.view, at: 0)
             
             addChildViewController(pageViewController)
             
-            pageViewController.setViewControllers([displayController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+            pageViewController.setViewControllers([displayController], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
             
         }else{
             
@@ -94,17 +94,17 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
             
             coverController.delegate = self
             
-            view.insertSubview(coverController.view, atIndex: 0)
+            view.insertSubview(coverController.view, at: 0)
             
             addChildViewController(coverController)
             
             coverController.setController(displayController)
             
-            if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.None {
+            if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.none {
                 
                 coverController.openAnimate = false
                 
-            }else if (HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.UpAndDown){
+            }else if (HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.upAndDown){
                 
                 coverController.openAnimate = false
                 
@@ -116,7 +116,7 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     
     // MARK: -- DZMCoverControllerDelegate
     
-    func coverController(coverController: DZMCoverController, currentController: UIViewController?, finish isFinish: Bool) {
+    func coverController(_ coverController: DZMCoverController, currentController: UIViewController?, finish isFinish: Bool) {
         
         if !isFinish {
             
@@ -136,19 +136,19 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         }
     }
     
-    func coverController(coverController: DZMCoverController, getAboveControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
+    func coverController(_ coverController: DZMCoverController, getAboveControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
         
         return readConfigure.GetReadPreviousPage()
     }
     
-    func coverController(coverController: DZMCoverController, getBelowControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
+    func coverController(_ coverController: DZMCoverController, getBelowControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
         
         return readConfigure.GetReadNextPage()
     }
     
     // MARK: -- UIPageViewControllerDelegate
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
         if !completed {
             
@@ -164,7 +164,7 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
     }
     
@@ -172,24 +172,24 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     // MARK: -- UIPageViewControllerDataSource
     
     /// 获取上一页
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         return readConfigure.GetReadPreviousPage()
     }
     
     /// 获取下一页
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         return readConfigure.GetReadNextPage()
     }
     
     /// 同步PageViewController 当前显示的控制器的内容
-    func synchronizationPageViewControllerData(viewController: UIViewController){
+    func synchronizationPageViewControllerData(_ viewController: UIViewController){
         
         let vc  = viewController as! HJReadViewController
         readConfigure.changeReadChapterListModel = vc.readRecord.readChapterListModel
         readConfigure.changeReadChapterModel = vc.readChapterModel
-        readConfigure.changeLookPage = vc.readRecord.page.integerValue
+        readConfigure.changeLookPage = vc.readRecord.page.intValue
         readModel.readRecord.chapterIndex = vc.readRecord.chapterIndex
         title = vc.readChapterModel.chapterName
         
@@ -209,13 +209,13 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     // MARK: -- HJAppDelegate 保存阅读记录
     
     /// app 即将退出
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         
         readConfigure.updateReadRecord()
     }
     
     /// app 内存警告可能要终止程序
-    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
         
         readConfigure.updateReadRecord()
     }

@@ -19,11 +19,11 @@ import UIKit
  
  - returns: 分割线view
  */
-func SpaceLineSetup(view:UIView,color:UIColor?) ->UIView {
+func SpaceLineSetup(_ view:UIView,color:UIColor?) ->UIView {
     
     let spaceLine = UIView()
     
-    spaceLine.backgroundColor = color != nil ? color : UIColor.redColor()
+    spaceLine.backgroundColor = color != nil ? color : UIColor.red
     
     view.addSubview(spaceLine)
     

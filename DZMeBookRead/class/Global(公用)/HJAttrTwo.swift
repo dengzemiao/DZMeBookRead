@@ -11,15 +11,15 @@ import UIKit
 
 // MARK: -- 常用字体存放
 
-let HJFont_6:UIFont = UIFont.systemFontOfSize(6)
-let HJFont_10:UIFont = UIFont.systemFontOfSize(10)
-let HJFont_12:UIFont = UIFont.systemFontOfSize(12)
-let HJFont_14:UIFont = UIFont.systemFontOfSize(14)
-let HJFont_16:UIFont = UIFont.systemFontOfSize(16)
-let HJFont_18:UIFont = UIFont.systemFontOfSize(18)
-let HJFont_20:UIFont = UIFont.systemFontOfSize(20)
-let HJFont_24:UIFont = UIFont.systemFontOfSize(24)
-let HJFont_26:UIFont = UIFont.systemFontOfSize(26)
+let HJFont_6:UIFont = UIFont.systemFont(ofSize: 6)
+let HJFont_10:UIFont = UIFont.systemFont(ofSize: 10)
+let HJFont_12:UIFont = UIFont.systemFont(ofSize: 12)
+let HJFont_14:UIFont = UIFont.systemFont(ofSize: 14)
+let HJFont_16:UIFont = UIFont.systemFont(ofSize: 16)
+let HJFont_18:UIFont = UIFont.systemFont(ofSize: 18)
+let HJFont_20:UIFont = UIFont.systemFont(ofSize: 20)
+let HJFont_24:UIFont = UIFont.systemFont(ofSize: 24)
+let HJFont_26:UIFont = UIFont.systemFont(ofSize: 26)
 
 // MARK: -- 常用颜色存放 ---------------
 

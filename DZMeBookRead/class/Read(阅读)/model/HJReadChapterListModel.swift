@@ -10,7 +10,7 @@ import UIKit
 
 class HJReadChapterListModel: NSObject {
     
-    var chapterHeight:NSNumber! = ScreenHeight    // 上下滚动使用
+    var chapterHeight:NSNumber! = ScreenHeight as NSNumber!    // 上下滚动使用
 
     var chapterID: String!                 // 章节ID
     var chapterName: String!               // 章节名称
@@ -32,43 +32,43 @@ class HJReadChapterListModel: NSObject {
         
         super.init()
         
-        chapterHeight = aDecoder.decodeObjectForKey("chapterHeight") as! NSNumber
+        chapterHeight = aDecoder.decodeObject(forKey: "chapterHeight") as! NSNumber
         
-        chapterID = aDecoder.decodeObjectForKey("chapterID") as! String
+        chapterID = aDecoder.decodeObject(forKey: "chapterID") as! String
         
-        chapterName = aDecoder.decodeObjectForKey("chapterName") as! String
+        chapterName = aDecoder.decodeObject(forKey: "chapterName") as! String
         
-        volumeID = aDecoder.decodeObjectForKey("volumeID") as! String
+        volumeID = aDecoder.decodeObject(forKey: "volumeID") as! String
         
-        isDownload = aDecoder.decodeObjectForKey("isDownload") as! NSNumber
+        isDownload = aDecoder.decodeObject(forKey: "isDownload") as! NSNumber
         
-        isVIPChapter = aDecoder.decodeObjectForKey("isVIPChapter") as! NSNumber
+        isVIPChapter = aDecoder.decodeObject(forKey: "isVIPChapter") as! NSNumber
         
-        isPayChapter = aDecoder.decodeObjectForKey("isPayChapter") as! NSNumber
+        isPayChapter = aDecoder.decodeObject(forKey: "isPayChapter") as! NSNumber
         
-        isBuyChapter = aDecoder.decodeObjectForKey("isBuyChapter") as! NSNumber
+        isBuyChapter = aDecoder.decodeObject(forKey: "isBuyChapter") as! NSNumber
         
-        price = aDecoder.decodeObjectForKey("price") as! NSNumber
+        price = aDecoder.decodeObject(forKey: "price") as! NSNumber
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encodeWithCoder(_ aCoder: NSCoder) {
         
-        aCoder.encodeObject(chapterHeight, forKey: "chapterHeight")
+        aCoder.encode(chapterHeight, forKey: "chapterHeight")
         
-        aCoder.encodeObject(chapterID, forKey: "chapterID")
+        aCoder.encode(chapterID, forKey: "chapterID")
         
-        aCoder.encodeObject(chapterName, forKey: "chapterName")
+        aCoder.encode(chapterName, forKey: "chapterName")
         
-        aCoder.encodeObject(volumeID, forKey: "volumeID")
+        aCoder.encode(volumeID, forKey: "volumeID")
         
-        aCoder.encodeObject(isDownload, forKey: "isDownload")
+        aCoder.encode(isDownload, forKey: "isDownload")
         
-        aCoder.encodeObject(isVIPChapter, forKey: "isVIPChapter")
+        aCoder.encode(isVIPChapter, forKey: "isVIPChapter")
         
-        aCoder.encodeObject(isPayChapter, forKey: "isPayChapter")
+        aCoder.encode(isPayChapter, forKey: "isPayChapter")
         
-        aCoder.encodeObject(isBuyChapter, forKey: "isBuyChapter")
+        aCoder.encode(isBuyChapter, forKey: "isBuyChapter")
         
-        aCoder.encodeObject(price, forKey: "price")
+        aCoder.encode(price, forKey: "price")
     }
 }

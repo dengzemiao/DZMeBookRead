@@ -14,12 +14,12 @@ extension UIFont {
     // MARK: -- System Font
     
     /// System 设置全部机型
-    class func fontOfSize(size:CGFloat) ->UIFont {
-        return systemFontOfSize(size)
+    class func fontOfSize(_ size:CGFloat) ->UIFont {
+        return systemFont(ofSize: size)
     }
     
     // System 区分机型设置 4 5 || 6 6P
-    class func fontOfSize(is45:CGFloat,other:CGFloat) ->UIFont {
+    class func fontOfSize(_ is45:CGFloat,other:CGFloat) ->UIFont {
         
         if (is4sOr4 || is5sOr5) {
             
@@ -31,7 +31,7 @@ extension UIFont {
     }
     
     // System 区分机型设置 区分 4 5 || 6 || 6P
-    class func fontOfSize(is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->UIFont {
+    class func fontOfSize(_ is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->UIFont {
         
         if (is4sOr4 || is5sOr5) {
             
@@ -50,12 +50,12 @@ extension UIFont {
     // MARK: -- BoldSystem Font
     
     /// BoldSystem 设置全部机型
-    class func boldFontOfSize(size:CGFloat) ->UIFont {
-        return boldSystemFontOfSize(size)
+    class func boldFontOfSize(_ size:CGFloat) ->UIFont {
+        return boldSystemFont(ofSize: size)
     }
     
     // BoldSystem 区分机型设置 4 5 || 6 6P
-    class func boldFontOfSize(is45:CGFloat,other:CGFloat) ->UIFont {
+    class func boldFontOfSize(_ is45:CGFloat,other:CGFloat) ->UIFont {
         
         if (is4sOr4 || is5sOr5) {
             
@@ -67,7 +67,7 @@ extension UIFont {
     }
     
     // BoldSystem 区分机型设置 区分 4 5 || 6 || 6P
-    class func boldFontOfSize(is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->UIFont {
+    class func boldFontOfSize(_ is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->UIFont {
         
         if (is4sOr4 || is5sOr5) {
             
@@ -86,12 +86,12 @@ extension UIFont {
     // MARK: -- Custom Font
     
     /// CustomFont 设置全部机型
-    class func fontOfNameSize(fontName:String,size:CGFloat) ->UIFont {
+    class func fontOfNameSize(_ fontName:String,size:CGFloat) ->UIFont {
         return UIFont(name: fontName, size: size)!
     }
     
     // CustomFont 区分机型设置 4 5 || 6 6P
-    class func fontOfNameSize(fontName:String,is45:CGFloat,other:CGFloat) ->UIFont {
+    class func fontOfNameSize(_ fontName:String,is45:CGFloat,other:CGFloat) ->UIFont {
         
         if (is4sOr4 || is5sOr5) {
             
@@ -103,7 +103,7 @@ extension UIFont {
     }
     
     // CustomFont 区分机型设置 区分 4 5 || 6 || 6P
-    class func fontOfNameSize(fontName:String,is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->UIFont {
+    class func fontOfNameSize(_ fontName:String,is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->UIFont {
         
         if (is4sOr4 || is5sOr5) {
             

@@ -13,10 +13,10 @@ import UIKit
 // MARK: -- 屏幕属性 -----------------------
 
 /// 屏幕宽度
-let ScreenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
+let ScreenWidth:CGFloat = UIScreen.main.bounds.size.width
 
 /// 屏幕高度
-let ScreenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
+let ScreenHeight:CGFloat = UIScreen.main.bounds.size.height
 
 /// 导航栏高度
 let NavgationBarHeight:CGFloat = 64
@@ -45,7 +45,7 @@ let is6sOr6:Bool = (ScreenHeight == CGFloat(667) && ScreenWidth == CGFloat(375))
 let is6sPlusOr6Plus:Bool = (ScreenHeight == CGFloat(736) && ScreenWidth == CGFloat(414))
 
 /// iOS7 以上版本
-let iOS7:Bool = (UIDevice.currentDevice().systemVersion.doubleValue() >= 7.0)
+let iOS7:Bool = (UIDevice.current.systemVersion.doubleValue() >= 7.0)
 
 
 
@@ -60,7 +60,7 @@ let Key_CFBundleVersion = "CFBundleVersion"
 // MARK: -- 其他全局属性 -----------------------
 
 /// 动画时间
-let AnimateDuration:NSTimeInterval = 0.25
+let AnimateDuration:TimeInterval = 0.25
 
 /// IDFA
-let HJIDFA:String = ASIdentifierManager.sharedManager().advertisingIdentifier.UUIDString
+let HJIDFA:String = ASIdentifierManager.shared().advertisingIdentifier.uuidString

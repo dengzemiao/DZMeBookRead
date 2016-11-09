@@ -13,7 +13,7 @@ import UIKit
 @objc protocol HJReadLeftViewDelegate:NSObjectProtocol {
     
     /// 点击章节模型
-    optional func readLeftView(readLeftView:HJReadLeftView,clickReadChapterModel model:HJReadChapterListModel)
+    @objc optional func readLeftView(_ readLeftView:HJReadLeftView,clickReadChapterModel model:HJReadChapterListModel)
 }
 
 class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
@@ -37,7 +37,7 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
         
         didSet{
             
-            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: scrollRow,inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
+            tableView.scrollToRow(at: IndexPath(row: scrollRow,section: 0), at: UITableViewScrollPosition.middle, animated: false)
         }
     }
     
@@ -46,15 +46,15 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
         
         let tableView = HJTableView()
         
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor.white
         
-        tableView.frame = CGRectMake(-TableViewW, 0, TableViewW, ScreenHeight)
+        tableView.frame = CGRect(x: -TableViewW, y: 0, width: TableViewW, height: ScreenHeight)
         
         tableView.delegate = self
         
         tableView.dataSource = self
         
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         
         tableView.showsVerticalScrollIndicator = false
         
@@ -71,7 +71,7 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
         myWindow.addSubview(coverButton)
         
         // 添加隐藏手势
-        coverButton.addTarget(self, action: #selector(HJReadLeftView.clickCoverButton), forControlEvents: UIControlEvents.TouchUpInside)
+        coverButton.addTarget(self, action: #selector(HJReadLeftView.clickCoverButton), for: UIControlEvents.touchUpInside)
         
         // 添加tableView
         myWindow.addSubview(tableView)
@@ -81,12 +81,12 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
     
     // MARK: -- UITableViewDelegate UITableViewDataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return dataArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = HJReadLeftViewCell.cellWithTableView(tableView)
         
@@ -108,24 +108,24 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 30
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let sectionHeader = HJReadLeftHeaderView()
         
         return sectionHeader
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         tableView.scrollViewWillDisplayCell(cell)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let model = dataArray[indexPath.row]
         
@@ -135,30 +135,30 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
     // MARK: -- UIWindow 相关
     
     /// 创建Window
-    private lazy var myWindow:UIWindow = {
+    fileprivate lazy var myWindow:UIWindow = {
         
         // 初始化window
-       let myWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
+       let myWindow = UIWindow(frame: UIScreen.main.bounds)
         
-        myWindow.backgroundColor = UIColor.clearColor()
+        myWindow.backgroundColor = UIColor.clear
         
         // 遮住状态 不需要遮住去掉即可
         myWindow.windowLevel = UIWindowLevelAlert
         
-        myWindow.hidden = true
+        myWindow.isHidden = true
     
         return myWindow
     }()
     
     /// 创建遮盖按钮
-    private lazy var coverButton:UIButton = {
+    fileprivate lazy var coverButton:UIButton = {
         
         // 初始化遮盖按钮
-        let coverButton = UIButton(type:UIButtonType.Custom)
+        let coverButton = UIButton(type:UIButtonType.custom)
         
-        coverButton.frame = UIScreen.mainScreen().bounds
+        coverButton.frame = UIScreen.main.bounds
         
-        coverButton.backgroundColor = UIColor.blackColor()
+        coverButton.backgroundColor = UIColor.black
         
         coverButton.alpha = 0
         
@@ -172,7 +172,7 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     
     /// 显示操作
-    func leftView(hidden:Bool,animated:Bool) {
+    func leftView(_ hidden:Bool,animated:Bool) {
         
         self.hidden = hidden
         
@@ -180,25 +180,25 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource {
         
         if hidden {
             
-            UIView.animateWithDuration(animateDuration, animations: { [weak self] ()->() in
+            UIView.animate(withDuration: animateDuration, animations: { [weak self] ()->() in
                 
-                self?.tableView.frame = CGRectMake(-TableViewW, 0, TableViewW, ScreenHeight)
+                self?.tableView.frame = CGRect(x: -TableViewW, y: 0, width: TableViewW, height: ScreenHeight)
                 self?.coverButton.alpha = 0
                 
                 }, completion: { [weak self] (isOK) in
                     
-                    self?.myWindow.hidden = hidden
+                    self?.myWindow.isHidden = hidden
             })
             
         }else{
             
-            myWindow.hidden = hidden
+            myWindow.isHidden = hidden
             
-            UIView.animateWithDuration(animateDuration) {[weak self] ()->() in
+            UIView.animate(withDuration: animateDuration, animations: {[weak self] ()->() in
                 
-                self?.tableView.frame = CGRectMake(0, 0, TableViewW, ScreenHeight)
+                self?.tableView.frame = CGRect(x: 0, y: 0, width: TableViewW, height: ScreenHeight)
                 self?.coverButton.alpha = 0.6
-            }
+            }) 
         }
     }
     

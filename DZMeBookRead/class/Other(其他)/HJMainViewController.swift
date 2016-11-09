@@ -15,15 +15,15 @@ class HJMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         
-        let button = UIButton(type:UIButtonType.Custom)
-        button.setTitle("点击阅读", forState: UIControlState.Normal)
-        button.backgroundColor = UIColor.greenColor()
-        button.frame = CGRectMake(100, 100, 100, 100)
+        let button = UIButton(type:UIButtonType.custom)
+        button.setTitle("点击阅读", for: UIControlState())
+        button.backgroundColor = UIColor.green
+        button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         view.addSubview(button)
-        button.addTarget(self, action: #selector(HJMainViewController.read), forControlEvents: UIControlEvents.TouchDown)
+        button.addTarget(self, action: #selector(HJMainViewController.read), for: UIControlEvents.touchDown)
         
     }
     
@@ -33,13 +33,13 @@ class HJMainViewController: UIViewController {
         
         MBProgressHUD.showMessage("本地文件第一次解析慢,以后就会秒进了")
         
-        let fileURL = NSBundle.mainBundle().URLForResource("求魔", withExtension: "txt")
+        let fileURL = Bundle.main.url(forResource: "求魔", withExtension: "txt")
         
         readVC = HJReadPageController()
         
         HJReadParser.separateLocalURL(fileURL!) { [weak self] (isOK) in
             
-             MBProgressHUD.hideHUD()
+             MBProgressHUD.hide()
             
             if self != nil {
                 

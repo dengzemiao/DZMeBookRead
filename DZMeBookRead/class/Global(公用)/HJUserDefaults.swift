@@ -18,97 +18,97 @@ class HJUserDefaults: NSObject {
     }
     
     /// 删除 对应Key 的值
-    class func removeObjectForKey(key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.removeObjectForKey(key)
+    class func removeObjectForKey(_ key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.removeObject(forKey: key)
         defaults.synchronize()
     }
     
     // MARK: -- 存
     
     /// 存储Object
-    class func setObject(value:AnyObject?,key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(value, forKey: key)
+    class func setObject(_ value:Any?,key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
     /// 存储String
-    class func setString(value:String?,key:String) {
+    class func setString(_ value:String?,key:String) {
         HJUserDefaults.setObject(value, key: key)
     }
     
     /// 存储NSInteger
-    class func setInteger(value:NSInteger,key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(value, forKey: key)
+    class func setInteger(_ value:NSInteger,key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
     /// 存储Bool
-    class func setBool(value:Bool,key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(value, forKey: key)
+    class func setBool(_ value:Bool,key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
     /// 存储Float
-    class func setFloat(value:Float,key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setFloat(value, forKey: key)
+    class func setFloat(_ value:Float,key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
     /// 存储Double
-    class func setDouble(value:Double,key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(value, forKey: key)
+    class func setDouble(_ value:Double,key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
     /// 存储URL
-    class func setURL(value:NSURL?,key:String) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setURL(value, forKey: key)
+    class func setURL(_ value:URL?,key:String) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
     // MARK: -- 取
     
     /// 获取Object
-    class func objectForKey(key:String) -> AnyObject? {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        return defaults.objectForKey(key)
+    class func objectForKey(_ key:String) -> Any? {
+        let defaults:UserDefaults = UserDefaults.standard
+        return defaults.object(forKey: key)
     }
     
     /// 获取String
-    class func stringForKey(key:String) -> String {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let string = defaults.objectForKey(key) as? String ??  ""
+    class func stringForKey(_ key:String) -> String {
+        let defaults:UserDefaults = UserDefaults.standard
+        let string = defaults.object(forKey: key) as? String ??  ""
         return string
     }
     
     /// 获取Bool
-    class func boolForKey(key:String) -> Bool {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        return defaults.boolForKey(key)
+    class func boolForKey(_ key:String) -> Bool {
+        let defaults:UserDefaults = UserDefaults.standard
+        return defaults.bool(forKey: key)
     }
     
     /// 获取Float
-    class func floatForKey(key:String) -> Float {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        return defaults.floatForKey(key)
+    class func floatForKey(_ key:String) -> Float {
+        let defaults:UserDefaults = UserDefaults.standard
+        return defaults.float(forKey: key)
     }
     
     /// 获取Double
-    class func doubleForKey(key:String) -> Double {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        return defaults.doubleForKey(key)
+    class func doubleForKey(_ key:String) -> Double {
+        let defaults:UserDefaults = UserDefaults.standard
+        return defaults.double(forKey: key)
     }
     
     /// 获取URL
-    class func URLForKey(key:String) -> NSURL? {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        return defaults.URLForKey(key)
+    class func URLForKey(_ key:String) -> URL? {
+        let defaults:UserDefaults = UserDefaults.standard
+        return defaults.url(forKey: key)
     }
 }

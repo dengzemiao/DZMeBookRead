@@ -13,7 +13,7 @@ protocol HJReadSettingFlipEffectViewDelegate:NSObjectProtocol {
     /**
      翻页效果发生变化的时候调用
      */
-    func readSettingFlipEffectView(readSettingFlipEffectView:HJReadSettingFlipEffectView,changeFlipEffect flipEffect:HJReadFlipEffect)
+    func readSettingFlipEffectView(_ readSettingFlipEffectView:HJReadSettingFlipEffectView,changeFlipEffect flipEffect:HJReadFlipEffect)
 }
 
 
@@ -23,7 +23,7 @@ class HJReadSettingFlipEffectView: HJReadSettingCustomView {
     weak var delegate:HJReadSettingFlipEffectViewDelegate?
     
     /// 当前选中的按钮
-    private var selectButton:UIButton?
+    fileprivate var selectButton:UIButton?
     
     override init(frame: CGRect) {
         
@@ -37,9 +37,9 @@ class HJReadSettingFlipEffectView: HJReadSettingCustomView {
         
         for button in Buttons {
             
-            button.contentHorizontalAlignment = .Center
+            button.contentHorizontalAlignment = .center
             
-            button.addTarget(self, action: #selector(HJReadSettingFlipEffectView.clickButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(HJReadSettingFlipEffectView.clickButton(_:)), for: UIControlEvents.touchUpInside)
         }
         
         if !Buttons.isEmpty {
@@ -49,7 +49,7 @@ class HJReadSettingFlipEffectView: HJReadSettingCustomView {
     }
     
     // 点击按钮
-    func clickButton(button:UIButton) {
+    func clickButton(_ button:UIButton) {
         
         if selectButton == button {return}
         
@@ -58,9 +58,9 @@ class HJReadSettingFlipEffectView: HJReadSettingCustomView {
         // 暂时不支持的效果
 //        if flipEffect == HJReadFlipEffect.UpAndDown {return}
         
-        selectButton?.selected = false
+        selectButton?.isSelected = false
         
-        button.selected = true
+        button.isSelected = true
         
         selectButton = button
         

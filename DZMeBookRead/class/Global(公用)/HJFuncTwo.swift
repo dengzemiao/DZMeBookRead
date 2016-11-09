@@ -12,7 +12,7 @@ import UIKit
 // MARK: -- 自动获取屏幕高度 -----------------------
 
 /// 自动获取view的高度 自动判断 是否有 导航栏跟TabBar
-func ViewHeight(controller:UIViewController) ->CGFloat {
+func ViewHeight(_ controller:UIViewController) ->CGFloat {
     
     var navigationHidden = true
     
@@ -20,32 +20,32 @@ func ViewHeight(controller:UIViewController) ->CGFloat {
     
     if controller.navigationController != nil { // 有导航栏
         
-        navigationHidden = controller.navigationController!.navigationBarHidden
+        navigationHidden = controller.navigationController!.isNavigationBarHidden
     }
     
     if controller.tabBarController != nil { // 有tabBar
         
-        tabBarHidden = controller.tabBarController!.tabBar.hidden
+        tabBarHidden = controller.tabBarController!.tabBar.isHidden
     }
     
     return ViewHeight(navigationHidden, tabBarHidden: tabBarHidden)
 }
 
 /// 自动判断 是否有 导航栏 手动设置 是否有 TabBar
-func ViewHeight(controller:UIViewController,tabBarHidden:Bool) ->CGFloat {
+func ViewHeight(_ controller:UIViewController,tabBarHidden:Bool) ->CGFloat {
     
     var navigationHidden = true
     
     if controller.navigationController != nil { // 有导航栏
         
-        navigationHidden = controller.navigationController!.navigationBarHidden
+        navigationHidden = controller.navigationController!.isNavigationBarHidden
     }
     
     return ViewHeight(navigationHidden, tabBarHidden: tabBarHidden)
 }
 
 /// 自定义计算View高 手动设置 是否有 导航栏跟TabBar
-func ViewHeight(navigationHidden:Bool,tabBarHidden:Bool) -> CGFloat {
+func ViewHeight(_ navigationHidden:Bool,tabBarHidden:Bool) -> CGFloat {
     
     var h = ScreenHeight
     
@@ -68,13 +68,13 @@ func ViewHeight(navigationHidden:Bool,tabBarHidden:Bool) -> CGFloat {
 
 // MARK: - "yyyy-MM-dd HH:mm:ss" 格式 字符串转成NSDate
 
-func DateWithString(str:String) ->NSDate {
+func DateWithString(_ str:String) ->Date {
     
-    let format = NSDateFormatter()
+    let format = DateFormatter()
     
     format.dateFormat = "yyyy-MM-dd HH:mm:ss"
     
-    let timeDate = format.dateFromString(str)
+    let timeDate = format.date(from: str)
     
     return timeDate!
 }
@@ -83,13 +83,13 @@ func DateWithString(str:String) ->NSDate {
 
 func DateString() ->String {
     
-    let format = NSDateFormatter()
+    let format = DateFormatter()
     
     format.dateFormat = "yyyy-MM-dd HH:mm:ss"
     
-    let timeDate = NSDate()
+    let timeDate = Date()
     
-    return format.stringFromDate(timeDate)
+    return format.string(from: timeDate)
 }
 
 
@@ -97,7 +97,7 @@ func DateString() ->String {
 // MARK: -- 手机号码处理 -----------------------
 
 /// 判断输入的是否是手机格式  YES 为是手机号码 NO 不是
-func CheckIsPhoneNumber(phoneNum:String) ->Bool {
+func CheckIsPhoneNumber(_ phoneNum:String) ->Bool {
     
     /// 手机号码
     let MOBILE:String = "^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$"
@@ -118,10 +118,10 @@ func CheckIsPhoneNumber(phoneNum:String) ->Bool {
     let regextestcm:NSPredicate = NSPredicate(format: "SELF MATCHES %@", CM)
     let regextestcu:NSPredicate = NSPredicate(format: "SELF MATCHES %@", CU)
     let regextestct:NSPredicate = NSPredicate(format: "SELF MATCHES %@", CT)
-    let res1:Bool = regextestmobile.evaluateWithObject(phoneNum)
-    let res2:Bool = regextestcm.evaluateWithObject(phoneNum)
-    let res3:Bool = regextestcu.evaluateWithObject(phoneNum)
-    let res4:Bool = regextestct.evaluateWithObject(phoneNum)
+    let res1:Bool = regextestmobile.evaluate(with: phoneNum)
+    let res2:Bool = regextestcm.evaluate(with: phoneNum)
+    let res3:Bool = regextestcu.evaluate(with: phoneNum)
+    let res4:Bool = regextestct.evaluate(with: phoneNum)
     
     if res1 || res2 || res3 || res4 {
         return true
@@ -137,24 +137,24 @@ func CheckIsPhoneNumber(phoneNum:String) ->Bool {
  
  - returns: 处理好的手机号码 188*****449
  */
-func phoneNumberEncryption(phoneNum:String) ->String {
+func phoneNumberEncryption(_ phoneNum:String) ->String {
     
     if CheckIsPhoneNumber(phoneNum) {
         
         let length:Int = 3 // 前后隐藏长度
         
-        let strOneStart = phoneNum.startIndex.advancedBy(0)
+        let strOneStart = phoneNum.characters.index(phoneNum.startIndex, offsetBy: 0)
         
-        let strOneEnd = phoneNum.startIndex.advancedBy(length)
+        let strOneEnd = phoneNum.characters.index(phoneNum.startIndex, offsetBy: length)
         
-        let strOne:String = phoneNum.substringWithRange(Range(strOneStart ..< strOneEnd))
+        let strOne:String = phoneNum.substring(with: Range(strOneStart ..< strOneEnd))
         
         
-        let strTwoStart = phoneNum.endIndex.advancedBy(-length)
+        let strTwoStart = phoneNum.characters.index(phoneNum.endIndex, offsetBy: -length)
         
-        let strTwoEnd = phoneNum.endIndex.advancedBy(0)
+        let strTwoEnd = phoneNum.characters.index(phoneNum.endIndex, offsetBy: 0)
         
-        let strTwo:String = phoneNum.substringWithRange(Range(strTwoStart ..< strTwoEnd))
+        let strTwo:String = phoneNum.substring(with: Range(strTwoStart ..< strTwoEnd))
         
         return strOne + "*****" + strTwo
     }
@@ -171,18 +171,18 @@ func phoneNumberEncryption(phoneNum:String) ->String {
  
  return 是否有文件夹存在
  */
-func CreatFilePath(filePath:String) ->Bool {
+func CreatFilePath(_ filePath:String) ->Bool {
     
-    let fileManager = NSFileManager.defaultManager()
+    let fileManager = FileManager.default
     
     // 文件夹是否存在
-    if fileManager.fileExistsAtPath(filePath) {
+    if fileManager.fileExists(atPath: filePath) {
         
         return true
     }
     
     do{
-        try fileManager.createDirectoryAtPath(filePath, withIntermediateDirectories: true, attributes: nil)
+        try fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
         
         return true
         
@@ -194,30 +194,30 @@ func CreatFilePath(filePath:String) ->Bool {
 // MARK: -- view的手势禁用开启
 
 /// 当前view的 Tap Enabled
-func ViewTapGestureRecognizerEnabled(view:UIView,enabled:Bool) {
+func ViewTapGestureRecognizerEnabled(_ view:UIView,enabled:Bool) {
     
     if (view.gestureRecognizers != nil) {
         
         for ges in view.gestureRecognizers! {
             
-            if ges.isKindOfClass(UITapGestureRecognizer.classForCoder()) {
+            if ges.isKind(of: UITapGestureRecognizer.classForCoder()) {
                 
-                ges.enabled = enabled
+                ges.isEnabled = enabled
             }
         }
     }
 }
 
 /// 当前view的 Pan Enabled
-func ViewPanGestureRecognizerEnabled(view:UIView,enabled:Bool) {
+func ViewPanGestureRecognizerEnabled(_ view:UIView,enabled:Bool) {
     
     if (view.gestureRecognizers != nil) {
         
         for ges in view.gestureRecognizers! {
             
-            if ges.isKindOfClass(UIPanGestureRecognizer.classForCoder()) {
+            if ges.isKind(of: UIPanGestureRecognizer.classForCoder()) {
                 
-                ges.enabled = enabled
+                ges.isEnabled = enabled
             }
         }
     }
@@ -226,40 +226,40 @@ func ViewPanGestureRecognizerEnabled(view:UIView,enabled:Bool) {
 // MARK: -- 阅读页面获取文件方法 ----------------
 
 /// 归档阅读文件文件
-func ReadKeyedArchiver(folderName:String,fileName:String,object:AnyObject) {
+func ReadKeyedArchiver(_ folderName:String,fileName:String,object:AnyObject) {
     
-    var path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/DZMeBookRead/DZM\(folderName)")
+    var path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!) + "/DZMeBookRead/DZM\(folderName)"
     
-    if (CreatFilePath(path!)) { // 创建文件夹成功或者文件夹存在
+    if (CreatFilePath(path)) { // 创建文件夹成功或者文件夹存在
         
-        path = path!.stringByAppendingString("/\(fileName)")
+        path = path + "/\(fileName)"
         
-        NSKeyedArchiver.archiveRootObject(object, toFile: path!)
+        NSKeyedArchiver.archiveRootObject(object, toFile: path)
     }
 }
 
 /// 解档阅读文件文件
-func ReadKeyedUnarchiver(folderName:String,fileName:String) ->AnyObject? {
+func ReadKeyedUnarchiver(_ folderName:String,fileName:String) ->AnyObject? {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/DZMeBookRead/DZM\(folderName)").stringByAppendingString("/\(fileName)")
+    let path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/DZMeBookRead/DZM\(folderName)") + "/\(fileName)"
     
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(path!)
+    return NSKeyedUnarchiver.unarchiveObject(withFile: path) as AnyObject?
 }
 
 /// 删除阅读归档文件
-func ReadKeyedRemoveArchiver(folderName:String,fileName:String) {
+func ReadKeyedRemoveArchiver(_ folderName:String,fileName:String) {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/DZMeBookRead/DZM\(folderName)").stringByAppendingString("/\(fileName)")
+    let path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/DZMeBookRead/DZM\(folderName)") + "/\(fileName)"
     
     do{
-        try NSFileManager.defaultManager().removeItemAtPath(path!)
+        try FileManager.default.removeItem(atPath: path)
     }catch{}
 }
 
 /// 是否存在了改归档文件
-func ReadKeyedIsExistArchiver(folderName:String,fileName:String) ->Bool {
+func ReadKeyedIsExistArchiver(_ folderName:String,fileName:String) ->Bool {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/DZMeBookRead/DZM\(folderName)").stringByAppendingString("/\(fileName)")
+    let path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/DZMeBookRead/DZM\(folderName)") + "/\(fileName)"
     
-    return NSFileManager.defaultManager().fileExistsAtPath(path!)
+    return FileManager.default.fileExists(atPath: path)
 }

@@ -13,15 +13,15 @@ class HJReadLeftViewCell: UITableViewCell {
     /// 分割线
     var spaceLine:UIView!
     
-    class func cellWithTableView(tableView:UITableView) ->HJReadLeftViewCell {
+    class func cellWithTableView(_ tableView:UITableView) ->HJReadLeftViewCell {
         
         let ID = "HJReadLeftViewCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(ID) as? HJReadLeftViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: ID) as? HJReadLeftViewCell
         
         if (cell == nil) {
             
-            cell = HJReadLeftViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ID);
+            cell = HJReadLeftViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: ID);
         }
         
         return cell!
@@ -32,7 +32,7 @@ class HJReadLeftViewCell: UITableViewCell {
         
         textLabel?.font = UIFont.fontOfSize(16)
         
-        selectionStyle = UITableViewCellSelectionStyle.None
+        selectionStyle = UITableViewCellSelectionStyle.none
         
         addSubViews()
     }
@@ -46,7 +46,7 @@ class HJReadLeftViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        spaceLine.frame = CGRectMake(0, height - HJSpaceLineHeight, width, HJSpaceLineHeight)
+        spaceLine.frame = CGRect(x: 0, y: height - HJSpaceLineHeight, width: width, height: HJSpaceLineHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {

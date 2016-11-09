@@ -16,27 +16,27 @@ extension UIBarButtonItem {
     // MARK: -- Item 文字
     
     /// Item 文字 左边
-    class func itemTitleLeft(title:String,titleColor:UIColor,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemTitleLeft(_ title:String,titleColor:UIColor,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         return self.itemTitleLeft(title, titleColor: titleColor, titleEdgeInsets: UIEdgeInsetsMake(0, 0, 0, 0), target: target, action: action)
     }
     
     /// Item 文字 左边
-    class func itemTitleLeft(title:String,titleColor:UIColor,titleEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemTitleLeft(_ title:String,titleColor:UIColor,titleEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
-        return self.item(title, titleColor: titleColor, contentHorizontalAlignment: UIControlContentHorizontalAlignment.Left, titleEdgeInsets: titleEdgeInsets, target: target, action: action)
+        return self.item(title, titleColor: titleColor, contentHorizontalAlignment: UIControlContentHorizontalAlignment.left, titleEdgeInsets: titleEdgeInsets, target: target, action: action)
     }
     
     /// Item 文字 右边
-    class func itemTitleRight(title:String,titleColor:UIColor,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemTitleRight(_ title:String,titleColor:UIColor,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         return self.itemTitleRight(title, titleColor: titleColor, titleEdgeInsets: UIEdgeInsetsMake(0, 0, 0, 0), target: target, action: action)
     }
     
     /// Item 文字 右边
-    class func itemTitleRight(title:String,titleColor:UIColor,titleEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemTitleRight(_ title:String,titleColor:UIColor,titleEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
-        return self.item(title, titleColor: titleColor, contentHorizontalAlignment: UIControlContentHorizontalAlignment.Right, titleEdgeInsets: titleEdgeInsets, target: target, action: action)
+        return self.item(title, titleColor: titleColor, contentHorizontalAlignment: UIControlContentHorizontalAlignment.right, titleEdgeInsets: titleEdgeInsets, target: target, action: action)
     }
     
     
@@ -50,16 +50,16 @@ extension UIBarButtonItem {
      - parameter target:                     事件对象
      - parameter action:                     事件
      */
-    class func item(title:String,titleColor:UIColor,contentHorizontalAlignment:UIControlContentHorizontalAlignment,titleEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func item(_ title:String,titleColor:UIColor,contentHorizontalAlignment:UIControlContentHorizontalAlignment,titleEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
-        let itemButton = UIButton(type:UIButtonType.Custom)
+        let itemButton = UIButton(type:UIButtonType.custom)
         itemButton.titleLabel!.font = ItemFont
-        itemButton.setTitle(title, forState: UIControlState.Normal)
-        itemButton.setTitleColor(titleColor, forState: UIControlState.Normal)
-        itemButton.bounds = CGRectMake(0, 0, 40, 40)
+        itemButton.setTitle(title, for: UIControlState())
+        itemButton.setTitleColor(titleColor, for: UIControlState())
+        itemButton.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
         itemButton.contentHorizontalAlignment = contentHorizontalAlignment
         itemButton.titleEdgeInsets = titleEdgeInsets
-        itemButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        itemButton.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         
         return UIBarButtonItem(customView: itemButton)
     }
@@ -68,19 +68,19 @@ extension UIBarButtonItem {
     // MARK: -- Item Image
     
     /// ImageName Item
-    class func itemImageName(imageName:String,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemImageName(_ imageName:String,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         return self.itemImage(UIImage(named: imageName)!, target: target, action: action)
     }
     
     /// ImageName Item
-    class func itemImageName(imageName:String,imageEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemImageName(_ imageName:String,imageEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         return self.item(UIImage(named: imageName)!, imageEdgeInsets: imageEdgeInsets, target: target, action: action)
     }
     
     /// Image Item
-    class func itemImage(image:UIImage,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemImage(_ image:UIImage,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         return self.item(image, imageEdgeInsets: UIEdgeInsetsMake(0, 0, 0, 0), target: target, action: action)
     }
@@ -93,13 +93,13 @@ extension UIBarButtonItem {
      - parameter imageEdgeInsets:            Image偏移
      - parameter action: 事件
      */
-    class func item(image:UIImage,imageEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func item(_ image:UIImage,imageEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
-        let itemButton = UIButton(type:UIButtonType.Custom)
-        itemButton.setImage(image, forState: UIControlState.Normal)
-        itemButton.bounds = CGRectMake(0, 0, image.size.width, image.size.height)
+        let itemButton = UIButton(type:UIButtonType.custom)
+        itemButton.setImage(image, for: UIControlState())
+        itemButton.bounds = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         itemButton.imageEdgeInsets = imageEdgeInsets
-        itemButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        itemButton.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         
         return UIBarButtonItem(customView: itemButton)
     }
@@ -108,18 +108,18 @@ extension UIBarButtonItem {
     // MARK: -- 自定义 Item
     
     /// 自定义点击View
-    class func itemControl(control:UIControl,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemControl(_ control:UIControl,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
-        control.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        control.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         
         return UIBarButtonItem(customView: control)
     }
     
-    class func itemButton(button:UIButton,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func itemButton(_ button:UIButton,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         button.titleLabel?.font = ItemFont
         
-        button.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         
         return UIBarButtonItem(customView: button)
     }
@@ -128,7 +128,7 @@ extension UIBarButtonItem {
     // MARK: -- 返回按钮
     
     /// app 导航栏返回按钮 类型 1
-    class func AppNavigationBarBackItemOne(imageEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
+    class func AppNavigationBarBackItemOne(_ imageEdgeInsets:UIEdgeInsets,target:AnyObject?,action:Selector) ->UIBarButtonItem {
         
         return self.itemImageName("Back_0", imageEdgeInsets: imageEdgeInsets, target: target, action: action)
     }

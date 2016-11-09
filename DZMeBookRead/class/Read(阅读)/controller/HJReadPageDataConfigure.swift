@@ -17,7 +17,7 @@ import UIKit
 class HJReadPageDataConfigure: NSObject {
 
     /// 阅读控制器
-    private weak var readPageController:HJReadPageController!
+    fileprivate weak var readPageController:HJReadPageController!
     
     /// 临时记录值
     var changeReadChapterModel:HJReadChapterModel!
@@ -26,7 +26,7 @@ class HJReadPageDataConfigure: NSObject {
     var changeChapterID:Int = 0
     
     /// 阅读控制器配置
-    class func setupWithReadController(readPageController:HJReadPageController) ->HJReadPageDataConfigure {
+    class func setupWithReadController(_ readPageController:HJReadPageController) ->HJReadPageDataConfigure {
         
         let readPageDataConfigure = HJReadPageDataConfigure()
         
@@ -43,7 +43,7 @@ class HJReadPageDataConfigure: NSObject {
      - parameter readChapterModel: 当前阅读的章节模型
      - parameter page:             当前章节阅读到page
      */
-    func GetReadViewController(readChapterModel:HJReadChapterModel,currentPage:Int) ->HJReadViewController {
+    func GetReadViewController(_ readChapterModel:HJReadChapterModel,currentPage:Int) ->HJReadViewController {
         
         let readVC = HJReadViewController()
 
@@ -52,7 +52,7 @@ class HJReadPageDataConfigure: NSObject {
         // 正对当前控制器的阅读记录
         let readRecord = HJReadRecord()
         readRecord.readChapterListModel = changeReadChapterListModel
-        readRecord.page = currentPage
+        readRecord.page = NSNumber(value: currentPage)
         readRecord.chapterIndex = readPageController.readModel.readRecord.chapterIndex
         readVC.readChapterModel = readChapterModel
         readVC.readRecord = readRecord
@@ -73,7 +73,7 @@ class HJReadPageDataConfigure: NSObject {
      - parameter transitionStyle:      PageController 样式
      - parameter result:               跳转结果
      */
-    func GoToReadChapter(chapterID:String,chapterLookPageClear:Bool,result:((isOK:Bool)->Void)?) {
+    func GoToReadChapter(_ chapterID:String,chapterLookPageClear:Bool,result:((_ isOK:Bool)->Void)?) {
         
         if !readPageController.readModel.readChapterListModels.isEmpty {
             
@@ -87,7 +87,7 @@ class HJReadPageDataConfigure: NSObject {
                 
                 if readPageController.readModel.isLocalBook.boolValue { // 本地小说
                     
-                    if result != nil {result!(isOK: false)}
+                    if result != nil {result!(false)}
                     
                 }else{ // 网络小说
                     
@@ -105,9 +105,9 @@ class HJReadPageDataConfigure: NSObject {
      - parameter transitionStyle:      PageController 样式
      - parameter result:               跳转结果
      */
-    private func GoToReadChapter(readChapterModel:HJReadChapterModel, chapterLookPageClear:Bool,result:((isOK:Bool)->Void)?) {
+    fileprivate func GoToReadChapter(_ readChapterModel:HJReadChapterModel, chapterLookPageClear:Bool,result:((_ isOK:Bool)->Void)?) {
         
-        changeLookPage = readPageController.readModel.readRecord.page.integerValue
+        changeLookPage = readPageController.readModel.readRecord.page.intValue
         
         if chapterLookPageClear {
             
@@ -116,32 +116,32 @@ class HJReadPageDataConfigure: NSObject {
             changeLookPage = 0
         }
         
-        readPageController.creatPageController(GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.integerValue))
+        readPageController.creatPageController(GetReadViewController(readChapterModel, currentPage: readPageController.readModel.readRecord.page.intValue))
         
         // 同步本地进度
         synchronizationChangeData()
         
-        if result != nil {result!(isOK: true)}
+        if result != nil {result!(true)}
     }
     
     // MARK: -- 通过章节ID 获取 数组索引
     
-    func GetReadChapterListModel(chapterID:String) ->HJReadChapterListModel? {
+    func GetReadChapterListModel(_ chapterID:String) ->HJReadChapterListModel? {
         
         let pre = NSPredicate(format: "chapterID == %@",chapterID)
         
-        let results = (readPageController.readModel.readChapterListModels as NSArray).filteredArrayUsingPredicate(pre)
+        let results = (readPageController.readModel.readChapterListModels as NSArray).filtered(using: pre)
         
         return results.first as? HJReadChapterListModel
     }
     
     
     // 通过章节ID获取章节模型 需要滚动到的 获取到阅读章节
-    func GetReadChapterModel(chapterID:String) ->HJReadChapterModel? {
+    func GetReadChapterModel(_ chapterID:String) ->HJReadChapterModel? {
         
         let pre = NSPredicate(format: "chapterID == %@",chapterID)
         
-        let results = (readPageController.readModel.readChapterListModels as NSArray).filteredArrayUsingPredicate(pre)
+        let results = (readPageController.readModel.readChapterListModels as NSArray).filtered(using: pre)
         
         if !results.isEmpty { // 获取当前数组位置
             
@@ -162,9 +162,9 @@ class HJReadPageDataConfigure: NSObject {
                 readPageController.title = readChapterListModel.chapterName
                 
                 // 章节list 进行滚动
-                let index = readPageController.readModel.readChapterListModels.indexOf(readChapterListModel)
+                let index = readPageController.readModel.readChapterListModels.index(of: readChapterListModel)
                 
-                readPageController.readModel.readRecord.chapterIndex = index!
+                readPageController.readModel.readRecord.chapterIndex = NSNumber(value: index!)
                 
                 readPageController.readSetup.readUI.leftView.scrollRow = index!
                 
@@ -183,7 +183,7 @@ class HJReadPageDataConfigure: NSObject {
         
         changeChapterID = readPageController.readModel.readRecord.readChapterListModel.chapterID.integerValue()
         
-        changeLookPage = readPageController.readModel.readRecord.page.integerValue
+        changeLookPage = readPageController.readModel.readRecord.page.intValue
         
         changeReadChapterListModel = readPageController.readModel.readRecord.readChapterListModel
         
@@ -202,7 +202,7 @@ class HJReadPageDataConfigure: NSObject {
                 
                 if readChapterModel != nil { // 有上一张
                     
-                    changeLookPage = changeReadChapterModel!.pageCount.integerValue - 1
+                    changeLookPage = changeReadChapterModel!.pageCount.intValue - 1
                     
                 }else{ // 没有上一章
                     
@@ -229,18 +229,18 @@ class HJReadPageDataConfigure: NSObject {
         
         changeChapterID = readPageController.readModel.readRecord.readChapterListModel.chapterID.integerValue()
         
-        changeLookPage = readPageController.readModel.readRecord.page.integerValue
+        changeLookPage = readPageController.readModel.readRecord.page.intValue
         
         changeReadChapterListModel = readPageController.readModel.readRecord.readChapterListModel
         
         if readPageController.readModel.isLocalBook.boolValue { // 本地小说
             
-            if changeChapterID == readPageController.readModel.readChapterListModels.count && changeLookPage == (changeReadChapterModel.pageCount.integerValue - 1) {
+            if changeChapterID == readPageController.readModel.readChapterListModels.count && changeLookPage == (changeReadChapterModel.pageCount.intValue - 1) {
                 
                 return nil
             }
             
-            if changeLookPage == (changeReadChapterModel.pageCount.integerValue - 1) { // 这一章到尾部了
+            if changeLookPage == (changeReadChapterModel.pageCount.intValue - 1) { // 这一章到尾部了
             
                 changeChapterID += 1
                 
@@ -277,11 +277,11 @@ class HJReadPageDataConfigure: NSObject {
         
         // 重新展示
         
-        let oldPage:Int = readPageController.readModel.readRecord.page.integerValue
+        let oldPage:Int = readPageController.readModel.readRecord.page.intValue
         
-        let newPage = changeReadChapterModel.pageCount.integerValue
+        let newPage = changeReadChapterModel.pageCount.intValue
         
-        readPageController.readModel.readRecord.page = (oldPage > (newPage - 1) ? (newPage - 1) : oldPage)
+        readPageController.readModel.readRecord.page = NSNumber(value: (oldPage > (newPage - 1) ? (newPage - 1) : oldPage))
         
     }
     
@@ -294,7 +294,7 @@ class HJReadPageDataConfigure: NSObject {
         
         readPageController.readModel.readRecord.readChapterListModel = changeReadChapterListModel
         
-        readPageController.readModel.readRecord.page = changeLookPage
+        readPageController.readModel.readRecord.page = NSNumber(value:changeLookPage)
     }
     
     /// 刷新保存阅读记录

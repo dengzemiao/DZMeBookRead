@@ -13,50 +13,50 @@ extension UIImage {
     
     // MARK: -- 绘制一张颜色图片
     
-    class func imageWithColor(color:UIColor,size:CGSize) ->UIImage {
+    class func imageWithColor(_ color:UIColor,size:CGSize) ->UIImage {
         
-        let rect = CGRectMake(0, 0, size.width, size.height);
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height);
         
         UIGraphicsBeginImageContext(rect.size);
         
         let context = UIGraphicsGetCurrentContext();
         
-        CGContextSetFillColorWithColor(context, color.CGColor);
+        context?.setFillColor(color.cgColor);
         
-        CGContextFillRect(context, rect);
+        context?.fill(rect);
         
         let image = UIGraphicsGetImageFromCurrentImageContext();
         
         UIGraphicsEndImageContext();
         
-        return image
+        return image!
     }
     
     // MARK: - 返回一张自由拉伸的图片
     
-    class func resizedImageName(name:String) ->UIImage {
+    class func resizedImageName(_ name:String) ->UIImage {
         
         return self.resizedImage(UIImage(named: name)!, left: 0.5, top: 0.5)
     }
     
-    class func resizedImageName(name:String,left:CGFloat,top:CGFloat) ->UIImage {
+    class func resizedImageName(_ name:String,left:CGFloat,top:CGFloat) ->UIImage {
         
         return self.resizedImage(UIImage(named: name)!, left: left, top: top)
     }
     
-    class func resizedImage(image:UIImage) ->UIImage {
+    class func resizedImage(_ image:UIImage) ->UIImage {
         
         return self.resizedImage(image, left: 0.5, top: 0.5)
     }
     
-    class func resizedImage(image:UIImage,left:CGFloat,top:CGFloat) ->UIImage {
+    class func resizedImage(_ image:UIImage,left:CGFloat,top:CGFloat) ->UIImage {
         
-        return image.stretchableImageWithLeftCapWidth(Int(image.size.width * left), topCapHeight: Int(image.size.height * top))
+        return image.stretchableImage(withLeftCapWidth: Int(image.size.width * left), topCapHeight: Int(image.size.height * top))
     }
     
     // MARK: - 对图片尺寸进行压缩
     
-    class func imageSizeCompress(image:UIImage,maxSize:CGSize) ->UIImage {
+    class func imageSizeCompress(_ image:UIImage,maxSize:CGSize) ->UIImage {
         
         let imageNewSize = UIImage.imageSize(image.size, maxSize: maxSize)
         
@@ -65,7 +65,7 @@ extension UIImage {
     
     // MARK: -  根据图片size  和  给予的最大范围size  进行等比例计算size
     
-    class func imageSize(imageSize:CGSize,maxSize:CGSize) ->CGSize {
+    class func imageSize(_ imageSize:CGSize,maxSize:CGSize) ->CGSize {
         
         var imageNewSize:CGSize = maxSize
         
@@ -94,16 +94,16 @@ extension UIImage {
     
     // MARK: -- 重新绘制一张图片生成UIImage对象
     
-    class func imageNew(image:UIImage,newSize:CGSize) ->UIImage {
+    class func imageNew(_ image:UIImage,newSize:CGSize) ->UIImage {
         
         UIGraphicsBeginImageContext(newSize)
         
-        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
 }

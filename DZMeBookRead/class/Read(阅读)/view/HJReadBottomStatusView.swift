@@ -13,16 +13,16 @@ import UIKit
 class HJReadBottomStatusView: UIView {
     
     /// 页码
-    private var numberPageLabel:UILabel!
+    fileprivate var numberPageLabel:UILabel!
 
     /// 时间
-    private var timeLabel:UILabel!
+    fileprivate var timeLabel:UILabel!
     
     /// 倒计时器
-    private var timer:NSTimer?
+    fileprivate var timer:Timer?
     
     /// 电池view
-    private var batteryView:HJBatteryView!
+    fileprivate var batteryView:HJBatteryView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +31,7 @@ class HJReadBottomStatusView: UIView {
     }
     
     /// 设置页码
-    func setNumberPage(page:Int,tatolPage:Int) {
+    func setNumberPage(_ page:Int,tatolPage:Int) {
         
         numberPageLabel.text = "\(page + 1)/\(tatolPage)"
     }
@@ -40,16 +40,16 @@ class HJReadBottomStatusView: UIView {
        
         // 页码
         numberPageLabel = UILabel()
-        numberPageLabel.textColor = UIColor.blackColor()
+        numberPageLabel.textColor = UIColor.black
         numberPageLabel.font = UIFont.fontOfSize(12)
-        numberPageLabel.textAlignment = .Left
+        numberPageLabel.textAlignment = .left
         addSubview(numberPageLabel)
         
         // 时间label
         timeLabel = UILabel()
-        timeLabel.textColor = UIColor.blackColor()
+        timeLabel.textColor = UIColor.black
         timeLabel.font = UIFont.fontOfSize(12)
-        timeLabel.textAlignment = .Right
+        timeLabel.textAlignment = .right
         addSubview(timeLabel)
         
         // 电池
@@ -68,14 +68,14 @@ class HJReadBottomStatusView: UIView {
         
         // 页码
         let numberPageLabelW:CGFloat = width/2
-        numberPageLabel.frame = CGRectMake(HJSpaceTwo, (height - h)/2, width/2, h)
+        numberPageLabel.frame = CGRect(x: HJSpaceTwo, y: (height - h)/2, width: width/2, height: h)
         
         // 时间
         let timeLabelW:CGFloat = width - numberPageLabelW - 2*HJBatterySize.width - HJSpaceThree
-        timeLabel.frame = CGRectMake(CGRectGetMaxX(numberPageLabel.frame), (height - h)/2, timeLabelW, h)
+        timeLabel.frame = CGRect(x: numberPageLabel.frame.maxX, y: (height - h)/2, width: timeLabelW, height: h)
         
         // 电池
-        batteryView.frame.origin = CGPointMake(CGRectGetMaxX(timeLabel.frame) + HJSpaceThree, (height - HJBatterySize.height)/2)
+        batteryView.frame.origin = CGPoint(x: timeLabel.frame.maxX + HJSpaceThree, y: (height - HJBatterySize.height)/2)
         
     }
     
@@ -85,9 +85,9 @@ class HJReadBottomStatusView: UIView {
         
         if timer == nil {
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(HJReadBottomStatusView.didChangeTime), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(HJReadBottomStatusView.didChangeTime), userInfo: nil, repeats: true)
             
-            NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+            RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
         }
     }
     
@@ -104,7 +104,7 @@ class HJReadBottomStatusView: UIView {
     /// 时间变化
     func didChangeTime() {
         
-        batteryView.batteryLevel = UIDevice.currentDevice().batteryLevel
+        batteryView.batteryLevel = UIDevice.current.batteryLevel
         
         timeLabel.text = GetCurrentTimerString("HH:mm")
     }

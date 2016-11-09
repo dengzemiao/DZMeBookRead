@@ -15,7 +15,7 @@ class HJViewController: UIViewController {
         
         didSet{
             
-            navigationController?.interactivePopGestureRecognizer?.enabled = openInteractivePopGestureRecognizer
+            navigationController?.interactivePopGestureRecognizer?.isEnabled = openInteractivePopGestureRecognizer
         }
     }
     
@@ -23,7 +23,7 @@ class HJViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         // 控件想要从00开始需要设置这两个属性
         // 显示状态栏 加上这句可以全部从00开始 设置隐藏显示导航栏全部控件不会移动  不加上 全部视图控件则会根据是否有导航栏自己上下调整位置
@@ -54,10 +54,10 @@ class HJViewController: UIViewController {
     /// 点击返回方法
     func clickBack() {
         
-        navigationController?.popViewControllerAnimated(true)
+       let _ = navigationController?.popViewController(animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // 记录当前显示的控制器
@@ -74,7 +74,7 @@ class HJViewController: UIViewController {
             
             for child:UIView in self.tabBarController!.tabBar.subviews {
                 
-                if child.isKindOfClass(UIControl){
+                if child.isKind(of: UIControl.self){
                     
                     child.removeFromSuperview()
                 }

@@ -13,7 +13,7 @@ import UIKit
     /**
      阅读背景颜色发生变化的时候调用
      */
-    optional func readSettingColorView(readSettingColorView:HJReadSettingColorView,changeReadColor readColor:UIColor)
+    @objc optional func readSettingColorView(_ readSettingColorView:HJReadSettingColorView,changeReadColor readColor:UIColor)
 }
 
 class HJReadSettingColorView: UIScrollView {
@@ -22,15 +22,15 @@ class HJReadSettingColorView: UIScrollView {
     weak var aDelegate:HJReadSettingColorViewDelegate?
     
     /// 分割线
-    private var spaceLine:UIView!
+    fileprivate var spaceLine:UIView!
     
     /// 当前选中的按钮
-    private var selectButton:UIButton?
+    fileprivate var selectButton:UIButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         addSubviews()
     }
@@ -43,16 +43,16 @@ class HJReadSettingColorView: UIScrollView {
         for i in 0..<count {
             
             let backgroundColor = HJReadColors[i]
-            let button = UIButton(type:UIButtonType.Custom)
+            let button = UIButton(type:UIButtonType.custom)
             button.tag = i
-            button.layer.borderColor = HJColor_4.CGColor
+            button.layer.borderColor = HJColor_4.cgColor
             button.layer.borderWidth = backgroundColor == HJColor_13 ? 1 : 0
             button.backgroundColor = backgroundColor
             addSubview(button)
-            button.addTarget(self, action: #selector(HJReadSettingColorView.clickButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(HJReadSettingColorView.clickButton(_:)), for: UIControlEvents.touchUpInside)
             
             // 当前选中的颜色
-            if i == HJReadConfigureManger.shareManager.readColorInex {
+            if i == HJReadConfigureManger.shareManager.readColorInex.intValue {
                 
                 clickButton(button)
             }
@@ -62,7 +62,7 @@ class HJReadSettingColorView: UIScrollView {
         spaceLine = SpaceLineSetup(self, color: HJColor_6)
     }
     
-    func clickButton(button:UIButton) {
+    func clickButton(_ button:UIButton) {
 
         if selectButton == button {return}
         
@@ -74,7 +74,7 @@ class HJReadSettingColorView: UIScrollView {
         
         let readColor = HJReadColors[button.tag]
         
-        HJReadConfigureManger.shareManager.readColorInex = button.tag
+        HJReadConfigureManger.shareManager.readColorInex = NSNumber(value: button.tag)
         
         aDelegate?.readSettingColorView?(self, changeReadColor: readColor)
     }
@@ -98,12 +98,12 @@ class HJReadSettingColorView: UIScrollView {
             
             let button = subviews[i]
             
-            button.frame = CGRectMake(spaceW + CGFloat(i) * (buttoonWH + centerSpaceW), buttoonY, buttoonWH, buttoonWH)
+            button.frame = CGRect(x: spaceW + CGFloat(i) * (buttoonWH + centerSpaceW), y: buttoonY, width: buttoonWH, height: buttoonWH)
             
             button.layer.cornerRadius = buttoonWH/2
         }
         
-        spaceLine.frame = CGRectMake(0, height - HJSpaceLineHeight, width, HJSpaceLineHeight)
+        spaceLine.frame = CGRect(x: 0, y: height - HJSpaceLineHeight, width: width, height: HJSpaceLineHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {

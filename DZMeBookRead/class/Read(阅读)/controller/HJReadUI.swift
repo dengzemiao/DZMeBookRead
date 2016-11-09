@@ -17,17 +17,17 @@ import UIKit
 class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     
     /// 阅读控制器
-    private weak var readPageController:HJReadPageController!
+    fileprivate weak var readPageController:HJReadPageController!
     
     /// UI布局
     var bottomView:HJReadBottomView!
-    private var lightCoverView:UIView!
+    fileprivate var lightCoverView:UIView!
     var leftView:HJReadLeftView!
     var lightView:HJReadLightView!
     var settingView:HJReadSettingView!
     
     /// 阅读控制器设置
-    class func readUIWithReadController(readPageController:HJReadPageController) ->HJReadUI {
+    class func readUIWithReadController(_ readPageController:HJReadPageController) ->HJReadUI {
         
         let readUI = HJReadUI()
         
@@ -42,8 +42,8 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     func addSubviews() {
         
         // lightCoverView
-        lightCoverView = SpaceLineSetup(readPageController.view, color: UIColor.blackColor())
-        lightCoverView.userInteractionEnabled = false
+        lightCoverView = SpaceLineSetup(readPageController.view, color: UIColor.black)
+        lightCoverView.isUserInteractionEnabled = false
         setLightCoverView(HJReadConfigureManger.shareManager.lightType)
         
         // bottomView
@@ -74,7 +74,7 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     
     // MARK: -- HJReadLightViewDelegate
     
-    func readLightView(readLightView: HJReadLightView, lightType: HJReadLightType) {
+    func readLightView(_ readLightView: HJReadLightView, lightType: HJReadLightType) {
         
         setLightCoverView(lightType)
     }
@@ -83,25 +83,25 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     // MARK: -- HJReadBottomViewDelegate
     
     /// 上一章
-    func readBottomViewLastChapter(readBottomView: HJReadBottomView) {
+    func readBottomViewLastChapter(_ readBottomView: HJReadBottomView) {
         
         readPageController.readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: "\(readPageController.readModel.readRecord.readChapterListModel.chapterID.integerValue() - 1)", chapterLookPageClear: true, contentOffsetYClear: true)
     }
     
     /// 下一章
-    func readBottomViewNextChapter(readBottomView: HJReadBottomView) {
+    func readBottomViewNextChapter(_ readBottomView: HJReadBottomView) {
         
         readPageController.readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: "\(readPageController.readModel.readRecord.readChapterListModel.chapterID.integerValue() + 1)", chapterLookPageClear: true,contentOffsetYClear: true)
     }
     
     /// 拖动进度
-    func readBottomViewChangeSlider(readBottomView: HJReadBottomView, slider: UISlider) {
+    func readBottomViewChangeSlider(_ readBottomView: HJReadBottomView, slider: UISlider) {
        
         readPageController.readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: "\(Int(slider.value) + 1)",chapterLookPageClear: true, contentOffsetYClear: true)
     }
     
     
-    func readBottomView(readBottomView: HJReadBottomView, clickBarButtonIndex index: NSInteger) {
+    func readBottomView(_ readBottomView: HJReadBottomView, clickBarButtonIndex index: NSInteger) {
         
         if (index == 0) { // 目录
             
@@ -127,26 +127,26 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
             
             MBProgressHUD.showMessage("下载存成章节文件,进入沙河看下文件格式")
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(2.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
                
-                MBProgressHUD.hideHUD()
+                MBProgressHUD.hide()
             }
         }
     }
     
     /// 设置亮度颜色
-    func setLightCoverView(lightType:HJReadLightType) {
+    func setLightCoverView(_ lightType:HJReadLightType) {
         
-        if lightType == HJReadLightType.Day {
+        if lightType == HJReadLightType.day {
             
-            UIView.animateWithDuration(AnimateDuration, animations: {[weak self] ()->() in
+            UIView.animate(withDuration: AnimateDuration, animations: {[weak self] ()->() in
                 
                 self?.lightCoverView.alpha = 0
                 })
             
         }else{
             
-            UIView.animateWithDuration(AnimateDuration, animations: {[weak self] ()->() in
+            UIView.animate(withDuration: AnimateDuration, animations: {[weak self] ()->() in
                 
                 self?.lightCoverView.alpha = 0.6
                 })
@@ -156,38 +156,38 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     // MARK: -- UI 显示
     
     /// topView
-    func topView(hidden:Bool,animated:Bool) {
+    func topView(_ hidden:Bool,animated:Bool) {
         
         // 导航栏操作
         readPageController.navigationController?.setNavigationBarHidden(hidden, animated: animated)
-        UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: UIStatusBarAnimation.Slide)
+        UIApplication.shared.setStatusBarHidden(hidden, with: UIStatusBarAnimation.slide)
     }
     
     
     /// bottomView
-    func bottomView(hidden:Bool,animated:Bool,completion:(() -> Void)?) {
+    func bottomView(_ hidden:Bool,animated:Bool,completion:(() -> Void)?) {
         
         setupView(bottomView, viewHeight: 106, hidden: hidden, animated: animated, completion: completion)
     }
     
     
     /// lightView
-    func lightView(hidden:Bool,animated:Bool,completion:(() -> Void)?) {
+    func lightView(_ hidden:Bool,animated:Bool,completion:(() -> Void)?) {
         
         setupView(lightView, viewHeight: 70, hidden: hidden, animated: animated, completion: completion)
     }
     
     
     /// settingView
-    func settingView(hidden:Bool,animated:Bool,completion:(() -> Void)?) {
+    func settingView(_ hidden:Bool,animated:Bool,completion:(() -> Void)?) {
         
         setupView(settingView, viewHeight: 215, hidden: hidden, animated: animated, completion: completion)
     }
     
     /// setupView frame hidden show 只适用用于底部出现的view 其他不支持 看下代码显示在使用
-    func setupView(view:UIView,viewHeight:CGFloat,hidden:Bool,animated:Bool,completion:(() -> Void)?) {
+    func setupView(_ view:UIView,viewHeight:CGFloat,hidden:Bool,animated:Bool,completion:(() -> Void)?) {
         
-        if view.hidden == hidden {return}
+        if view.isHidden == hidden {return}
         
         let animateDuration = animated ? AnimateDuration : 0
         
@@ -195,13 +195,13 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
         
         if hidden {
             
-            UIView.animateWithDuration(animateDuration, animations: { ()->() in
+            UIView.animate(withDuration: animateDuration, animations: { ()->() in
                 
-                view.frame = CGRectMake(0, ScreenHeight, ScreenWidth, viewH)
+                view.frame = CGRect(x: 0, y: ScreenHeight, width: ScreenWidth, height: viewH)
                 
                 }, completion: { (isOK) in
                     
-                    view.hidden = hidden
+                    view.isHidden = hidden
                     
                     if completion != nil {completion!()}
             })
@@ -209,11 +209,11 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
             
         }else{
             
-            view.hidden = hidden
+            view.isHidden = hidden
             
-            UIView.animateWithDuration(animateDuration, animations: { ()->() in
+            UIView.animate(withDuration: animateDuration, animations: { ()->() in
                 
-                view.frame = CGRectMake(0, ScreenHeight - viewH, ScreenWidth, viewH)
+                view.frame = CGRect(x: 0, y: ScreenHeight - viewH, width: ScreenWidth, height: viewH)
                 
                 }, completion: { (isOK) in
                     
@@ -223,7 +223,7 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     }
     
     /// leftView
-    func leftView(hidden:Bool,animated:Bool) {
+    func leftView(_ hidden:Bool,animated:Bool) {
         
         leftView.leftView(hidden, animated: animated)
     }

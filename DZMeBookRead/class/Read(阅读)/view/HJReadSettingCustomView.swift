@@ -25,7 +25,7 @@ class HJReadSettingCustomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
     
     func addSubviews() {
@@ -33,17 +33,17 @@ class HJReadSettingCustomView: UIView {
         // title
         titleLabel = UILabel()
         titleLabel.font = UIFont.fontOfSize(14)
-        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.textColor = UIColor.black
         addSubview(titleLabel)
         
         // 创建按钮
         for i in 0..<nomalNames.count {
            
-            let button = UIButton(type:UIButtonType.Custom)
+            let button = UIButton(type:UIButtonType.custom)
             button.tag = i
-            button.setTitle(nomalNames[i], forState: UIControlState.Normal)
-            button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            button.setTitleColor(HJColor_4, forState: UIControlState.Selected)
+            button.setTitle(nomalNames[i], for: UIControlState())
+            button.setTitleColor(UIColor.black, for: UIControlState())
+            button.setTitleColor(HJColor_4, for: UIControlState.selected)
             button.titleLabel?.font = UIFont.fontOfSize(14)
             addSubview(button)
             Buttons.append(button)
@@ -60,12 +60,12 @@ class HJReadSettingCustomView: UIView {
         let spaceW:CGFloat = HJReadSettingSpaceW
         
         // 标题
-        titleLabel.frame = CGRectMake(spaceW, 0, 60, height)
+        titleLabel.frame = CGRect(x: spaceW, y: 0, width: 60, height: height)
         
         // 按钮frame
         if !nomalNames.isEmpty {
             
-            let tempX:CGFloat = CGRectGetMaxX(titleLabel.frame)
+            let tempX:CGFloat = titleLabel.frame.maxX
             
             let buttonW = (width - tempX - spaceW) / CGFloat(nomalNames.count)
             
@@ -73,12 +73,12 @@ class HJReadSettingCustomView: UIView {
                 
                 let button = Buttons[i]
                 
-                button.frame = CGRectMake(tempX + CGFloat(i) * buttonW, 0, buttonW, height)
+                button.frame = CGRect(x: tempX + CGFloat(i) * buttonW, y: 0, width: buttonW, height: height)
             }
         }
         
         // 分割线
-        spaceLine.frame = CGRectMake(0, height - HJSpaceLineHeight, width, HJSpaceLineHeight)
+        spaceLine.frame = CGRect(x: 0, y: height - HJSpaceLineHeight, width: width, height: HJSpaceLineHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {

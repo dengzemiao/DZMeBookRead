@@ -27,7 +27,7 @@ class HJReadChapterModel: NSObject,NSCoding {
         pageRangeWithBounds(HJReadParser.GetReadViewFrame())
     }
     
-    private func pageRangeWithBounds(bounds:CGRect) {
+    fileprivate func pageRangeWithBounds(_ bounds:CGRect) {
         
         pageLocationArray.removeAll()
         
@@ -36,7 +36,7 @@ class HJReadChapterModel: NSObject,NSCoding {
         
         let frameSetter = CTFramesetterCreateWithAttributedString(attrString as CFAttributedString)
 
-        let path = CGPathCreateWithRect(bounds, nil)
+        let path = CGPath(rect: bounds, transform: nil)
         
         var currentOffset = 0
         
@@ -97,7 +97,7 @@ class HJReadChapterModel: NSObject,NSCoding {
                 hasMorePages = false
             }
             
-           pageCount = pageLocationArray.count
+            pageCount = NSNumber(value:pageLocationArray.count)
         }
     }
     
@@ -106,13 +106,13 @@ class HJReadChapterModel: NSObject,NSCoding {
      
      - parameter index: 页码索引
      */
-    func stringOfPage(index:Int) ->String {
+    func stringOfPage(_ index:Int) ->String {
         
         let local = pageLocationArray[index]
         
         var length = 0
         
-        if index < pageCount.integerValue - 1 {
+        if index < pageCount.intValue - 1 {
             
             length = pageLocationArray[index + 1] - pageLocationArray[index]
             
@@ -134,40 +134,40 @@ class HJReadChapterModel: NSObject,NSCoding {
         
         super.init()
         
-        chapterID = aDecoder.decodeObjectForKey("chapterID") as! String
+        chapterID = aDecoder.decodeObject(forKey: "chapterID") as! String
         
-        nextChapterId = aDecoder.decodeObjectForKey("nextChapterId") as? String
+        nextChapterId = aDecoder.decodeObject(forKey: "nextChapterId") as? String
         
-        previousChapterId = aDecoder.decodeObjectForKey("previousChapterId") as? String
+        previousChapterId = aDecoder.decodeObject(forKey: "previousChapterId") as? String
         
-        chapterName = aDecoder.decodeObjectForKey("chapterName") as! String
+        chapterName = aDecoder.decodeObject(forKey: "chapterName") as! String
         
-        volumeID = aDecoder.decodeObjectForKey("volumeID") as! String
+        volumeID = aDecoder.decodeObject(forKey: "volumeID") as! String
         
-        pageCount = aDecoder.decodeObjectForKey("pageCount") as! NSNumber
+        pageCount = aDecoder.decodeObject(forKey: "pageCount") as! NSNumber
         
-        pageLocationArray = aDecoder.decodeObjectForKey("pageLocationArray") as! [Int]
+        pageLocationArray = aDecoder.decodeObject(forKey: "pageLocationArray") as! [Int]
         
-        chapterContent = aDecoder.decodeObjectForKey("chapterContent") as! String
+        chapterContent = aDecoder.decodeObject(forKey: "chapterContent") as! String
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(chapterID, forKey: "chapterID")
+        aCoder.encode(chapterID, forKey: "chapterID")
         
-        aCoder.encodeObject(nextChapterId, forKey: "nextChapterId")
+        aCoder.encode(nextChapterId, forKey: "nextChapterId")
         
-        aCoder.encodeObject(previousChapterId, forKey: "previousChapterId")
+        aCoder.encode(previousChapterId, forKey: "previousChapterId")
         
-        aCoder.encodeObject(chapterName, forKey: "chapterName")
+        aCoder.encode(chapterName, forKey: "chapterName")
         
-        aCoder.encodeObject(volumeID, forKey: "volumeID")
+        aCoder.encode(volumeID, forKey: "volumeID")
         
-        aCoder.encodeObject(pageCount, forKey: "pageCount")
+        aCoder.encode(pageCount, forKey: "pageCount")
         
-        aCoder.encodeObject(pageLocationArray, forKey: "pageLocationArray")
+        aCoder.encode(pageLocationArray, forKey: "pageLocationArray")
         
-        aCoder.encodeObject(chapterContent, forKey: "chapterContent")
+        aCoder.encode(chapterContent, forKey: "chapterContent")
     }
 
 }

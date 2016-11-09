@@ -13,7 +13,7 @@ protocol HJReadSettingFontViewDelegate:NSObjectProtocol {
     /**
      字体发生变化的时候调用
      */
-    func readSettingFontView(readSettingFontView:HJReadSettingFontView,changeFont font:HJReadFont)
+    func readSettingFontView(_ readSettingFontView:HJReadSettingFontView,changeFont font:HJReadFont)
 }
 
 class HJReadSettingFontView: HJReadSettingCustomView {
@@ -22,7 +22,7 @@ class HJReadSettingFontView: HJReadSettingCustomView {
     weak var delegate:HJReadSettingFontViewDelegate?
     
     /// 当前选中的按钮
-    private var selectButton:UIButton?
+    fileprivate var selectButton:UIButton?
     
     override init(frame: CGRect) {
         
@@ -36,9 +36,9 @@ class HJReadSettingFontView: HJReadSettingCustomView {
         
         for button in Buttons {
             
-            button.contentHorizontalAlignment = .Center
+            button.contentHorizontalAlignment = .center
             
-            button.addTarget(self, action: #selector(HJReadSettingFontView.clickButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(HJReadSettingFontView.clickButton(_:)), for: UIControlEvents.touchUpInside)
         }
         
         if !Buttons.isEmpty {
@@ -48,13 +48,13 @@ class HJReadSettingFontView: HJReadSettingCustomView {
     }
     
     // 点击按钮
-    func clickButton(button:UIButton) {
+    func clickButton(_ button:UIButton) {
         
         if selectButton == button {return}
         
-        selectButton?.selected = false
+        selectButton?.isSelected = false
         
-        button.selected = true
+        button.isSelected = true
         
         selectButton = button
         

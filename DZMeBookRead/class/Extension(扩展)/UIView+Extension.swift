@@ -15,16 +15,16 @@ extension UIView{
     
     func viewController() ->UIViewController? {
         //通过响应者链，取得此视图所在的视图控制器
-        var next = self.nextResponder()
+        var next = self.next
         
         repeat{
             
             //判断响应者对象是否是视图控制器类型
-            if next!.isKindOfClass(UIViewController.classForCoder()) {
+            if next!.isKind(of: UIViewController.classForCoder()) {
                 return next as? UIViewController
             }
             
-            next = next!.nextResponder()
+            next = next!.next
             
         }while next != nil
         

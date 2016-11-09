@@ -8,27 +8,23 @@
 
 // 不要广告可注销
 let HJAdvertisementButtonH:CGFloat = 70
+let HJAdvertisementBottomSpaceH:CGFloat = 30
 
 import UIKit
 
 class HJReadViewCell: UITableViewCell {
     
-    var readView:HJReadView!
-    
     /// 当前是否为这一章的最后一页
     var isLastPage:Bool = false
     
-    // 章节数据
-    var readChapterModel:HJReadChapterModel?
-    
     // 章节信息
     var readChapterListModel:HJReadChapterListModel?
-    
-    // 只有在上下滚动的时候才用得到
-    var contentH:CGFloat = 0
-    
+
     // 广告按钮
     var advertisementButton:UIButton!
+    
+    // 阅读显示View数组
+    fileprivate var readViews:[HJReadView] = []
     
     var content:String? {
         
@@ -36,17 +32,15 @@ class HJReadViewCell: UITableViewCell {
             
             if content != nil && !content!.isEmpty { // 字符串有值
                 
-                readView.hidden = false
-                
                 let redFrame = HJReadParser.GetReadViewFrame()
                 
-                if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+                if HJReadConfigureManger.shareManager.flipEffect != HJReadFlipEffect.upAndDown { // 非上下滚动
                     
-                    readView.frameRef = HJReadParser.parserRead(content!, configure: HJReadConfigureManger.shareManager, bounds: CGRectMake(0, 0, redFrame.width, contentH))
+                    // 创建阅读view
+                    creatReadViews(1)
                     
-                }else{
-                    
-                    readView.frameRef = HJReadParser.parserRead(content!, configure: HJReadConfigureManger.shareManager, bounds: CGRectMake(0, 0, redFrame.width, redFrame.height))
+                    // 显示
+                    readViews.first!.frameRef = HJReadParser.parserRead(content!, configure: HJReadConfigureManger.shareManager, bounds: CGRect(x: 0, y: 0, width: redFrame.width, height: redFrame.height))
                 }
                 
                 setNeedsLayout()
@@ -55,13 +49,66 @@ class HJReadViewCell: UITableViewCell {
     }
     
     
-    class func cellWithTableView(tableView:UITableView) ->HJReadViewCell {
+    // 章节数据
+    var readChapterModel:HJReadChapterModel? {
+        
+        didSet {
+            
+            if (readChapterModel != nil) {
+                
+                if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
+                    
+                    let redFrame = HJReadParser.GetReadViewFrame()
+                    
+                    // 创建阅读view
+                    creatReadViews(readChapterModel!.pageCount.intValue)
+                    
+                    // 显示
+                    for i in 0..<readViews.count {
+                        
+                        let readView = readViews[i];
+                        
+                        readView.frameRef = HJReadParser.parserRead(readChapterModel!.stringOfPage(i), configure: HJReadConfigureManger.shareManager, bounds: CGRect(x: 0, y: 0, width: redFrame.width, height: redFrame.height))
+                    }
+                    
+                    setNeedsLayout()
+                }
+            }
+        }
+    }
+    
+    // 创建阅读view
+    fileprivate func creatReadViews(_ count:NSInteger) {
+        
+        for i in 0..<count {
+            
+            let readView = HJReadView()
+            readView.tag = i
+            readView.backgroundColor = UIColor.clear
+//            readView.backgroundColor = RGB(CGFloat(arc4random() % 255), g: CGFloat(arc4random() % 255), b: CGFloat(arc4random() % 255))
+            contentView.addSubview(readView)
+            readViews.append(readView)
+        }
+    }
+    
+    // 清理阅读view
+    fileprivate func removeReadViews() {
+        
+        for readView in readViews {
+            
+            readView.removeFromSuperview()
+        }
+        
+        readViews.removeAll()
+    }
+    
+    class func cellWithTableView(_ tableView:UITableView) ->HJReadViewCell {
         
         let ID = "HJReadViewCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(ID) as? HJReadViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: ID) as? HJReadViewCell
         
-        cell?.readView.hidden = true
+        cell?.removeReadViews()
         
         cell?.readChapterModel = nil
         
@@ -69,11 +116,11 @@ class HJReadViewCell: UITableViewCell {
         
         cell?.content = nil
         
-        cell?.advertisementButton.hidden = true
+        cell?.advertisementButton.isHidden = true
         
         if (cell == nil) {
             
-            cell = HJReadViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ID);
+            cell = HJReadViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: ID);
         }
         
         return cell!
@@ -82,26 +129,24 @@ class HJReadViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         
-        selectionStyle = UITableViewCellSelectionStyle.None
+        selectionStyle = UITableViewCellSelectionStyle.none
+        
+        layer.masksToBounds = true
         
         addSubViews()
     }
     
     func addSubViews() {
         
-        readView = HJReadView()
-        readView.backgroundColor = UIColor.clearColor()
-        contentView.addSubview(readView)
-        
         // 不要广告可注销
-        advertisementButton = UIButton(type:UIButtonType.Custom)
-        advertisementButton.setImage(UIImage(named: "advertisementIon")!, forState: .Normal)
-        advertisementButton.hidden = true
-        advertisementButton.backgroundColor = UIColor.redColor()
+        advertisementButton = UIButton(type:UIButtonType.custom)
+        advertisementButton.setImage(UIImage(named: "advertisementIon")!, for: UIControlState())
+        advertisementButton.isHidden = true
+        advertisementButton.backgroundColor = UIColor.clear
         contentView.addSubview(advertisementButton)
-        advertisementButton.addTarget(self, action: #selector(HJReadViewCell.clickAdvertisementButton), forControlEvents: UIControlEvents.TouchUpInside)
+        advertisementButton.addTarget(self, action: #selector(HJReadViewCell.clickAdvertisementButton), for: UIControlEvents.touchUpInside)
     }
     
     /// 点击广告
@@ -113,42 +158,40 @@ class HJReadViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // 不要广告的写法 取掉 AdvertisementButton 相关的  搜索 "不要广告可注销"
-//        if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
-//            
-//            let redFrame = HJReadParser.GetReadViewFrame()
-//            
-//            readView.frame = CGRectMake(redFrame.origin.x, HJReadViewTopSpace, redFrame.size.width, contentH)
-//            
-//        }else{
-//            
-//            readView.frame = HJReadParser.GetReadViewFrame()
-//        }
-        
-        // 不要广告可注销  下面全部代码
-        if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+        // 如果不要广告的写法 取掉 AdvertisementButton 相关的  搜索 "不要广告可注销"
+        if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
             let redFrame = HJReadParser.GetReadViewFrame()
             
-            readView.frame = CGRectMake(redFrame.origin.x, HJReadViewTopSpace, redFrame.size.width, contentH)
+            // 显示
+            var readViewMaxY:CGFloat = 0
             
-            advertisementButton.frame = CGRectMake(HJSpaceTwo, height - HJAdvertisementButtonH, ScreenWidth - 2*HJSpaceTwo, HJAdvertisementButtonH)
+            for i in 0..<readViews.count {
+                
+                let readView = readViews[i];
+                
+                 readView.frame = CGRect(x: 0, y: readViewMaxY, width: width, height: redFrame.size.height)
+                
+                readViewMaxY = readView.frame.maxY + HJSpaceThree
+            }
             
-            advertisementButton.hidden = false
+            advertisementButton.frame = CGRect(x: HJSpaceTwo, y: height - HJAdvertisementButtonH - HJAdvertisementBottomSpaceH, width: ScreenWidth - 2*HJSpaceTwo, height: HJAdvertisementButtonH)
+            
+            advertisementButton.isHidden = false
             
         }else{
             
-            readView.frame = HJReadParser.GetReadViewFrame()
+            readViews.first!.frame = bounds
             
             if isLastPage && content != nil && content!.length < 250 {
                 
-                advertisementButton.frame = CGRectMake(HJSpaceTwo, height - HJAdvertisementButtonH - 30, ScreenWidth - 2*HJSpaceTwo, HJAdvertisementButtonH)
+                advertisementButton.frame = CGRect(x: HJSpaceTwo, y: height - HJAdvertisementButtonH - 30, width: ScreenWidth - 2*HJSpaceTwo, height: HJAdvertisementButtonH)
                 
-                advertisementButton.hidden = false
+                advertisementButton.isHidden = false
                 
             }else{
                 
-                advertisementButton.hidden = true
+                advertisementButton.isHidden = true
             }
         }
     }

@@ -26,7 +26,7 @@ class HJReadModel: NSObject,NSCoding {
 //    var content:String! = ""
     
     /// 本地小说使用 来源地址 路径
-    var resource:NSURL?
+    var resource:URL?
     
     // MARK: -- 构造方法
     
@@ -46,7 +46,7 @@ class HJReadModel: NSObject,NSCoding {
             
             readRecord.chapterIndex = 0
             
-            readRecord.chapterCount = readChapterListModels.count
+            readRecord.chapterCount = NSNumber(value:readChapterListModels.count)
         }
     }
     
@@ -59,7 +59,7 @@ class HJReadModel: NSObject,NSCoding {
     }
     
     /// 初始化本地URL小说地址
-    class func readModelWithLocalBook(url:NSURL) ->HJReadModel {
+    class func readModelWithLocalBook(_ url:URL) ->HJReadModel {
         
         // 本地小说 bookID 也是 bookName
         let bookID = HJReadParser.GetBookName(url)
@@ -69,7 +69,7 @@ class HJReadModel: NSObject,NSCoding {
         // 没有缓存
         if model == nil {
             
-            if url.path!.lastPathComponent().pathExtension() == "txt" {  // text 格式
+            if url.path.lastPathComponent().pathExtension() == "txt" {  // text 格式
                 
                 model = HJReadModel(bookID: bookID,content: HJReadParser.encodeURL(url))
                 model!.resource = url
@@ -88,7 +88,7 @@ class HJReadModel: NSObject,NSCoding {
     }
     
     /// 传入Key 获取对应阅读模型
-    class func readModelWithFileName(booID:String) ->HJReadModel? {
+    class func readModelWithFileName(_ booID:String) ->HJReadModel? {
         
         return ReadKeyedUnarchiver(booID, fileName: booID) as? HJReadModel
         
@@ -96,7 +96,7 @@ class HJReadModel: NSObject,NSCoding {
     
     // MARK: -- 刷新缓存数据
     
-    class func updateReadModel(readModel:HJReadModel) {
+    class func updateReadModel(_ readModel:HJReadModel) {
         
         ReadKeyedArchiver(readModel.bookID, fileName: readModel.bookID, object: readModel)
     }
@@ -107,27 +107,27 @@ class HJReadModel: NSObject,NSCoding {
         
         super.init()
         
-        bookID = aDecoder.decodeObjectForKey("bookID") as! String
+        bookID = aDecoder.decodeObject(forKey: "bookID") as! String
         
-        readChapterListModels = aDecoder.decodeObjectForKey("readChapterListModels") as! [HJReadChapterListModel]
+        readChapterListModels = aDecoder.decodeObject(forKey: "readChapterListModels") as! [HJReadChapterListModel]
         
-        readRecord = aDecoder.decodeObjectForKey("readRecord") as! HJReadRecord
+        readRecord = aDecoder.decodeObject(forKey: "readRecord") as! HJReadRecord
         
-        isLocalBook = aDecoder.decodeObjectForKey("isLocalBook") as! NSNumber
+        isLocalBook = aDecoder.decodeObject(forKey: "isLocalBook") as! NSNumber
         
-        resource = aDecoder.decodeObjectForKey("resource") as? NSURL
+        resource = aDecoder.decodeObject(forKey: "resource") as? URL
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(bookID, forKey: "bookID")
+        aCoder.encode(bookID, forKey: "bookID")
         
-        aCoder.encodeObject(readChapterListModels, forKey: "readChapterListModels")
+        aCoder.encode(readChapterListModels, forKey: "readChapterListModels")
         
-        aCoder.encodeObject(readRecord, forKey: "readRecord")
+        aCoder.encode(readRecord, forKey: "readRecord")
         
-        aCoder.encodeObject(isLocalBook, forKey: "isLocalBook")
+        aCoder.encode(isLocalBook, forKey: "isLocalBook")
         
-        aCoder.encodeObject(resource, forKey: "resource")
+        aCoder.encode(resource, forKey: "resource")
     }
 }

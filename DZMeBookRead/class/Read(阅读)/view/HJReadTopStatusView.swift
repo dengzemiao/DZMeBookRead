@@ -13,12 +13,12 @@ import UIKit
 class HJReadTopStatusView: UIView {
 
     // leftTitle
-    private var leftTitle:UILabel!
+    fileprivate var leftTitle:UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         
         addSubviews()
     }
@@ -29,7 +29,7 @@ class HJReadTopStatusView: UIView {
      
      - parameter title: 标题
      */
-    func setLeftTitle(title:String?) {
+    func setLeftTitle(_ title:String?) {
         
         self.leftTitle.text = title
     }
@@ -41,14 +41,14 @@ class HJReadTopStatusView: UIView {
         leftTitle = UILabel()
         leftTitle.textColor = HJReadTextColor
         leftTitle.font = UIFont.fontOfSize(12)
-        leftTitle.textAlignment = .Left
+        leftTitle.textAlignment = .left
         addSubview(leftTitle)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        leftTitle.frame = CGRectMake(HJSpaceTwo, 0, width - 2*HJSpaceTwo, height)
+        leftTitle.frame = CGRect(x: HJSpaceTwo, y: 0, width: width - 2*HJSpaceTwo, height: height)
     }
     
     required init?(coder aDecoder: NSCoder) {

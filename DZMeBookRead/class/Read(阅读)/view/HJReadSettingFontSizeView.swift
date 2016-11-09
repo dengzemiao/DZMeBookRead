@@ -13,7 +13,7 @@ import UIKit
     /**
      字号发生变化的时候调用
      */
-    optional func readSettingFontSizeView(readSettingFontSizeView:HJReadSettingFontSizeView,changeFontSize fontSize:Int)
+    @objc optional func readSettingFontSizeView(_ readSettingFontSizeView:HJReadSettingFontSizeView,changeFontSize fontSize:Int)
 }
 
 class HJReadSettingFontSizeView: HJReadSettingCustomView {
@@ -22,16 +22,16 @@ class HJReadSettingFontSizeView: HJReadSettingCustomView {
     weak var delegate:HJReadSettingFontSizeViewDelegate?
     
     // 减
-    private var minus:UIButton!
+    fileprivate var minus:UIButton!
     
     // 加
-    private var add:UIButton!
+    fileprivate var add:UIButton!
     
     // 当前size
-    private var currentFontSize:Int = HJReadConfigureManger.shareManager.readFontSize.integerValue
+    fileprivate var currentFontSize:Int = HJReadConfigureManger.shareManager.readFontSize.intValue
     
-    private var minusImage:UIImage = UIImage(named: "icon_read_3")!
-    private var addImage:UIImage = UIImage(named: "icon_read_4")!
+    fileprivate var minusImage:UIImage = UIImage(named: "icon_read_3")!
+    fileprivate var addImage:UIImage = UIImage(named: "icon_read_4")!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,15 +46,15 @@ class HJReadSettingFontSizeView: HJReadSettingCustomView {
         super.addSubviews()
         
         // 减
-        minus = UIButton(type:UIButtonType.Custom)
-        minus.setImage(minusImage, forState: UIControlState.Normal)
-        minus.addTarget(self, action: #selector(HJReadSettingFontSizeView.clickMinus), forControlEvents: UIControlEvents.TouchUpInside)
+        minus = UIButton(type:UIButtonType.custom)
+        minus.setImage(minusImage, for: UIControlState())
+        minus.addTarget(self, action: #selector(HJReadSettingFontSizeView.clickMinus), for: UIControlEvents.touchUpInside)
         addSubview(minus)
         
         // 加
-        add = UIButton(type:UIButtonType.Custom)
-        add.setImage(addImage, forState: UIControlState.Normal)
-        add.addTarget(self, action: #selector(HJReadSettingFontSizeView.clickAdd), forControlEvents: UIControlEvents.TouchUpInside)
+        add = UIButton(type:UIButtonType.custom)
+        add.setImage(addImage, for: UIControlState())
+        add.addTarget(self, action: #selector(HJReadSettingFontSizeView.clickAdd), for: UIControlEvents.touchUpInside)
         addSubview(add)
     }
     
@@ -65,7 +65,7 @@ class HJReadSettingFontSizeView: HJReadSettingCustomView {
             
             currentFontSize -= 1
             
-            HJReadConfigureManger.shareManager.readFontSize = currentFontSize
+            HJReadConfigureManger.shareManager.readFontSize = currentFontSize as NSNumber!
             
             delegate?.readSettingFontSizeView?(self, changeFontSize: currentFontSize)
         }
@@ -78,7 +78,7 @@ class HJReadSettingFontSizeView: HJReadSettingCustomView {
             
             currentFontSize += 1
             
-            HJReadConfigureManger.shareManager.readFontSize = currentFontSize
+            HJReadConfigureManger.shareManager.readFontSize = currentFontSize as NSNumber!
             
             delegate?.readSettingFontSizeView?(self, changeFontSize: currentFontSize)
         }
@@ -91,9 +91,9 @@ class HJReadSettingFontSizeView: HJReadSettingCustomView {
         
         let buttonY:CGFloat = (height - addImage.size.height)/2
         
-        add.frame = CGRectMake(width - spaceW - addImage.size.width, buttonY, addImage.size.width, addImage.size.height)
+        add.frame = CGRect(x: width - spaceW - addImage.size.width, y: buttonY, width: addImage.size.width, height: addImage.size.height)
         
-        minus.frame = CGRectMake(CGRectGetMinX(add.frame) - minusImage.size.width, buttonY, minusImage.size.width, minusImage.size.height)
+        minus.frame = CGRect(x: add.frame.minX - minusImage.size.width, y: buttonY, width: minusImage.size.width, height: minusImage.size.height)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -57,11 +57,11 @@ class HJReadConfigureManger: NSObject,NSCoding {
         
         get{
             
-            return HJReadFlipEffect(rawValue: flipEffectNumber.integerValue) ?? HJReadFlipEffect(rawValue: 1)
+            return HJReadFlipEffect(rawValue: flipEffectNumber.intValue) ?? HJReadFlipEffect(rawValue: 1)
         }
         set{
             
-            flipEffectNumber = newValue.rawValue
+            flipEffectNumber = newValue.rawValue as NSNumber!
         }
     }
     
@@ -69,7 +69,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
     // MARK: -- 字号
     
     /// 阅读字号
-    var readFontSize:NSNumber! = HJReadDefaultFontSize {
+    var readFontSize:NSNumber! = HJReadDefaultFontSize as NSNumber! {
         
         didSet{
             
@@ -99,11 +99,11 @@ class HJReadConfigureManger: NSObject,NSCoding {
         
         get{
             
-            return HJReadFont(rawValue: readFontNumber.integerValue) ?? HJReadFont(rawValue: 0)
+            return HJReadFont(rawValue: readFontNumber.intValue) ?? HJReadFont(rawValue: 0)
         }
         set{
             
-            readFontNumber = newValue.rawValue
+            readFontNumber = newValue.rawValue as NSNumber!
         }
     }
     
@@ -124,11 +124,11 @@ class HJReadConfigureManger: NSObject,NSCoding {
         
         get{
             
-            return HJReadLightType(rawValue: lightTypeNumber.integerValue) ?? HJReadLightType(rawValue: 0)
+            return HJReadLightType(rawValue: lightTypeNumber.intValue) ?? HJReadLightType(rawValue: 0)
         }
         set{
             
-            lightTypeNumber = newValue.rawValue
+            lightTypeNumber = newValue.rawValue as NSNumber!
         }
     }
     
@@ -161,7 +161,7 @@ class HJReadConfigureManger: NSObject,NSCoding {
      
      - returns: 配置对象
      */
-    private class func GetManager() ->HJReadConfigureManger {
+    fileprivate class func GetManager() ->HJReadConfigureManger {
         
         var manager:HJReadConfigureManger? = KeyedUnarchiver(HJReadConfigure) as? HJReadConfigureManger
         
@@ -182,28 +182,28 @@ class HJReadConfigureManger: NSObject,NSCoding {
         
         super.init()
         
-        readColorInex = aDecoder.decodeObjectForKey("readColorInex") as! NSNumber
+        readColorInex = aDecoder.decodeObject(forKey: "readColorInex") as! NSNumber
         
-        flipEffectNumber = aDecoder.decodeObjectForKey("flipEffectNumber") as! NSNumber
+        flipEffectNumber = aDecoder.decodeObject(forKey: "flipEffectNumber") as! NSNumber
         
-        readFontSize = aDecoder.decodeObjectForKey("readFontSize") as! NSNumber
+        readFontSize = aDecoder.decodeObject(forKey: "readFontSize") as! NSNumber
         
-        readFontNumber = aDecoder.decodeObjectForKey("readFontNumber") as! NSNumber
+        readFontNumber = aDecoder.decodeObject(forKey: "readFontNumber") as! NSNumber
         
-        lightTypeNumber = aDecoder.decodeObjectForKey("lightTypeNumber") as! NSNumber
+        lightTypeNumber = aDecoder.decodeObject(forKey: "lightTypeNumber") as! NSNumber
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(readColorInex, forKey: "readColorInex")
+        aCoder.encode(readColorInex, forKey: "readColorInex")
         
-        aCoder.encodeObject(flipEffectNumber, forKey: "flipEffectNumber")
+        aCoder.encode(flipEffectNumber, forKey: "flipEffectNumber")
         
-        aCoder.encodeObject(readFontSize, forKey: "readFontSize")
+        aCoder.encode(readFontSize, forKey: "readFontSize")
         
-        aCoder.encodeObject(readFontNumber, forKey: "readFontNumber")
+        aCoder.encode(readFontNumber, forKey: "readFontNumber")
         
-        aCoder.encodeObject(lightTypeNumber, forKey: "lightTypeNumber")
+        aCoder.encode(lightTypeNumber, forKey: "lightTypeNumber")
         
     }
 }

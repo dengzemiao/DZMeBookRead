@@ -27,12 +27,12 @@ extension NSObject {
             // UnsafeMutablePointer<objc_property_t>是
             // 可变指针，因此properties就是类似数组一样，可以
             // 通过下标获取
-            let property = properties[i]
+            let property = properties![i]
             let name = property_getName(property)
             
             // 这里还得转换成字符串
-            let propertyName = String.fromCString(name)
-            propertyNames.append(propertyName!)
+            let propertyName = String(cString: name!)
+            propertyNames.append(propertyName)
         }
         
         // 释放内存，否则C语言的指针很容易成野指针的
@@ -43,9 +43,9 @@ extension NSObject {
     
     
     /// 获取对象的所有属性名称跟值
-    func allPropertys() ->[String : AnyObject?] {
+    func allPropertys() ->[String : Any?] {
         
-        var dict:[String : AnyObject?] = [String : AnyObject?]()
+        var dict:[String : Any?] = [String : Any?]()
         
         // 这个类型可以使用CUnsignedInt,对应Swift中的UInt32
         var count: UInt32 = 0
@@ -55,16 +55,16 @@ extension NSObject {
         for i in 0 ..< Int(count) {
             
             // 获取属性名称
-            let property = properties[i]
+            let property = properties![i]
             let name = property_getName(property)
-            let propertyName = String.fromCString(name)
+            let propertyName = String(cString: name!)
             
-            if (propertyName != nil && !propertyName!.isEmpty) {
+            if (!propertyName.isEmpty) {
                 
                 // 获取Value数据
-                let propertyValue = self.valueForKey(propertyName!)
+                let propertyValue = self.value(forKey: propertyName)
                 
-                dict[propertyName!] = propertyValue
+                dict[propertyName] = propertyValue
             }
         }
         

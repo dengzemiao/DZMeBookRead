@@ -7,7 +7,7 @@
 //
 
 /// 电池宽推荐使用宽高
-var HJBatterySize:CGSize = CGSizeMake(25, 10)
+var HJBatterySize:CGSize = CGSize(width: 25, height: 10)
 
 /// 电池量宽度 跟图片的比例
 private var HJBatteryLevelViewW:CGFloat = 20
@@ -27,16 +27,16 @@ class HJBatteryView: UIImageView {
     }
     
     /// BatteryLevelView
-    private var batteryLevelView:UIView!
+    fileprivate var batteryLevelView:UIView!
     
     convenience init() {
         
-        self.init(frame: CGRectMake(0, 0, HJBatterySize.width, HJBatterySize.height))
+        self.init(frame: CGRect(x: 0, y: 0, width: HJBatterySize.width, height: HJBatterySize.height))
     }
     
     override init(frame: CGRect) {
         
-        super.init(frame: CGRectMake(0, 0, HJBatterySize.width, HJBatterySize.height))
+        super.init(frame: CGRect(x: 0, y: 0, width: HJBatterySize.width, height: HJBatterySize.height))
         
         addSubviews()
     }
@@ -49,7 +49,7 @@ class HJBatteryView: UIImageView {
         // 进度
         batteryLevelView = UIView()
         batteryLevelView.layer.masksToBounds = true
-        batteryLevelView.backgroundColor = UIColor.blackColor()
+        batteryLevelView.backgroundColor = UIColor.black
         addSubview(batteryLevelView)
     }
     
@@ -78,7 +78,7 @@ class HJBatteryView: UIImageView {
             
         }else{}
         
-        batteryLevelView.frame = CGRectMake(batteryLevelViewX , batteryLevelViewY, CGFloat(tempBatteryLevel * 100) * batteryLevelViewWScale, batteryLevelViewH)
+        batteryLevelView.frame = CGRect(x: batteryLevelViewX , y: batteryLevelViewY, width: CGFloat(tempBatteryLevel * 100) * batteryLevelViewWScale, height: batteryLevelViewH)
         batteryLevelView.layer.cornerRadius = batteryLevelViewH * 0.125
     }
     

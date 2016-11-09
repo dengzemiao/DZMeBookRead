@@ -14,7 +14,7 @@ import UIKit
 class HJReadSettingView: UIView {
 
     /// 分割线
-    private var spaceLine:UIView!
+    fileprivate var spaceLine:UIView!
     
     /// 颜色
     var colorView:HJReadSettingColorView!
@@ -31,7 +31,7 @@ class HJReadSettingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         addSubviews()
     }
@@ -62,17 +62,17 @@ class HJReadSettingView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        colorView.frame = CGRectMake(0, 0, width, 65)
+        colorView.frame = CGRect(x: 0, y: 0, width: width, height: 65)
         
         let tempH:CGFloat = (height - colorView.height) / 3
         
-        flipEffectView.frame = CGRectMake(0, CGRectGetMaxY(colorView.frame), width, tempH)
+        flipEffectView.frame = CGRect(x: 0, y: colorView.frame.maxY, width: width, height: tempH)
         
-        fontView.frame = CGRectMake(0, CGRectGetMaxY(flipEffectView.frame), width, tempH)
+        fontView.frame = CGRect(x: 0, y: flipEffectView.frame.maxY, width: width, height: tempH)
         
-        fontSizeView.frame = CGRectMake(0, CGRectGetMaxY(fontView.frame), width, tempH)
+        fontSizeView.frame = CGRect(x: 0, y: fontView.frame.maxY, width: width, height: tempH)
         
-        spaceLine.frame = CGRectMake(0, 0, width, HJSpaceLineHeight)
+        spaceLine.frame = CGRect(x: 0, y: 0, width: width, height: HJSpaceLineHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {

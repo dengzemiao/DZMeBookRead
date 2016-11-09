@@ -26,7 +26,7 @@ extension UIScrollView {
         }
         
         set{
-            objc_setAssociatedObject(self, &IsRefreshDataID,NSNumber(bool: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &IsRefreshDataID,NSNumber(value: newValue as Bool), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
     
@@ -42,7 +42,7 @@ extension UIScrollView {
         }
         
         set{
-            objc_setAssociatedObject(self, &IsReloadDataID,NSNumber(bool: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &IsReloadDataID,NSNumber(value: newValue as Bool), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
     
@@ -58,7 +58,7 @@ extension UIScrollView {
         }
         
         set{
-            objc_setAssociatedObject(self, &IsHaveDataID,NSNumber(bool: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &IsHaveDataID,NSNumber(value: newValue as Bool), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
     
@@ -71,7 +71,7 @@ extension UIScrollView {
         }
         
         set{
-            objc_setAssociatedObject(self, &IsPreloadingID,NSNumber(bool: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &IsPreloadingID,NSNumber(value: newValue as Bool), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
     
@@ -85,7 +85,7 @@ extension UIScrollView {
      
      - returns: isHaveData
      */
-    func preloadingCheckIsHaveData(totalCount:NSInteger,currentCount:NSInteger) ->Bool {
+    func preloadingCheckIsHaveData(_ totalCount:NSInteger,currentCount:NSInteger) ->Bool {
         
         isHaveData = (totalCount > currentCount)
         
@@ -99,7 +99,7 @@ extension UIScrollView {
      - parameter target: 事件对象
      - parameter action: 事件
      */
-    func preloading(preloadingY:CGFloat,target:AnyObject,action:Selector) {
+    func preloading(_ preloadingY:CGFloat,target:AnyObject,action:Selector) {
         
         if isHaveData && isPreloading { // 有数据允许预加载 同时不再预加载过程中
             
@@ -110,7 +110,7 @@ extension UIScrollView {
                     
                     isPreloading = true
                     
-                    target.performSelector(action)
+                    target.perform(action)
                 }
                 
             }else{
@@ -120,7 +120,7 @@ extension UIScrollView {
                     
                     isPreloading = true
                     
-                    target.performSelector(action)
+                    target.perform(action)
                 }
             }
         }
@@ -135,9 +135,9 @@ extension UIScrollView {
     }
     
     /// 滚动到顶部
-    func scrollTop(animated:Bool) {
+    func scrollTop(_ animated:Bool) {
         
-        setContentOffset(CGPointMake(0, 0), animated: animated)
+        setContentOffset(CGPoint(x: 0, y: 0), animated: animated)
     }
     
     // MARK: -- 显示动画
@@ -147,13 +147,13 @@ extension UIScrollView {
      
      - parameter cell: cell
      */
-    func scrollViewWillDisplayCell(cell:UIView) {
+    func scrollViewWillDisplayCell(_ cell:UIView) {
         
         if !isReloadData {
-            cell.transform = CGAffineTransformScale(cell.transform, 0.8, 0.9)
+            cell.transform = cell.transform.scaledBy(x: 0.8, y: 0.9)
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(AnimateDuration)
-            cell.transform = CGAffineTransformIdentity
+            cell.transform = CGAffineTransform.identity
             UIView.commitAnimations()
         }
     }

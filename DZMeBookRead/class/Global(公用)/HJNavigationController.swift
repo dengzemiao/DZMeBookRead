@@ -30,7 +30,7 @@ class HJNavigationController: UINavigationController {
 //        }
         
         // 设置标题属性
-        let textAttrs:NSDictionary = [NSForegroundColorAttributeName:HJColor_4,NSFontAttributeName:UIFont.systemFontOfSize(18)]
+        let textAttrs:NSDictionary = [NSForegroundColorAttributeName:HJColor_4,NSFontAttributeName:UIFont.systemFont(ofSize: 18)]
         
         navBar.titleTextAttributes = textAttrs as? [String : AnyObject]
     }
@@ -41,13 +41,13 @@ class HJNavigationController: UINavigationController {
         let item = UIBarButtonItem.appearance()
         
         // 设置文字属性
-        let textAttrs = [NSForegroundColorAttributeName:UIColor.blackColor(),NSFontAttributeName:UIFont.systemFontOfSize(18)]
+        let textAttrs = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont.systemFont(ofSize: 18)]
         
-        item.setTitleTextAttributes(textAttrs, forState: UIControlState.Normal)
+        item.setTitleTextAttributes(textAttrs, for: UIControlState())
     }
     
     // MARK: -- 拦截Push
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         
         if viewControllers.count > 0 {
             
@@ -61,7 +61,7 @@ class HJNavigationController: UINavigationController {
     
     /// 点击返回方法
     func clickBack() {
-        popViewControllerAnimated(true)
+        popViewController(animated: true)
     }
     
     override func viewDidLoad() {

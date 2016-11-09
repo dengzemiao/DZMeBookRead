@@ -11,7 +11,7 @@ import UIKit
 protocol HJReadLightViewDelegate:NSObjectProtocol {
     
     /// 切换亮度背景
-    func readLightView(readLightView:HJReadLightView, lightType:HJReadLightType)
+    func readLightView(_ readLightView:HJReadLightView, lightType:HJReadLightType)
 }
 
 class HJReadLightView: UIView {
@@ -20,21 +20,21 @@ class HJReadLightView: UIView {
     weak var delegate:HJReadLightViewDelegate?
     
     // 分割线
-    private var spaceLine:UIView!
+    fileprivate var spaceLine:UIView!
     
     /// 进度条
-    private var slider:UISlider!
+    fileprivate var slider:UISlider!
     
     /// textLabel
-    private var textLabel:UILabel!
+    fileprivate var textLabel:UILabel!
     
     /// 亮度按钮
-    private var lightButton:UIButton!
+    fileprivate var lightButton:UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         addSubviews()
     }
@@ -45,46 +45,46 @@ class HJReadLightView: UIView {
         slider = UISlider()
         slider.minimumValue = 0.0
         slider.maximumValue = 1.0
-        slider.value = Float(UIScreen.mainScreen().brightness)
+        slider.value = Float(UIScreen.main.brightness)
         slider.tintColor = HJColor_4
-        slider.setThumbImage(UIImage(named: "icon_read_0")!, forState: UIControlState.Normal)
-        slider.addTarget(self, action: #selector(HJReadLightView.sliderChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        slider.setThumbImage(UIImage(named: "icon_read_0")!, for: UIControlState())
+        slider.addTarget(self, action: #selector(HJReadLightView.sliderChanged(_:)), for: UIControlEvents.valueChanged)
         addSubview(slider)
         
         // textLabel
         textLabel = UILabel()
         textLabel.text = "亮度"
-        textLabel.textAlignment = .Right
+        textLabel.textAlignment = .right
         textLabel.font = UIFont.fontOfSize(14)
         addSubview(textLabel)
         
         // lightButton
-        lightButton = UIButton(type:UIButtonType.Custom)
-        lightButton.selected = HJReadConfigureManger.shareManager.lightTypeNumber.boolValue
-        lightButton.setImage(UIImage(named: "icon_read_2"), forState: UIControlState.Normal)
-        lightButton.setImage(UIImage(named: "icon_read_1"), forState: UIControlState.Selected)
-        lightButton.contentHorizontalAlignment = .Left
-        lightButton.addTarget(self, action: #selector(HJReadLightView.clickLightButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        lightButton = UIButton(type:UIButtonType.custom)
+        lightButton.isSelected = HJReadConfigureManger.shareManager.lightTypeNumber.boolValue
+        lightButton.setImage(UIImage(named: "icon_read_2"), for: UIControlState())
+        lightButton.setImage(UIImage(named: "icon_read_1"), for: UIControlState.selected)
+        lightButton.contentHorizontalAlignment = .left
+        lightButton.addTarget(self, action: #selector(HJReadLightView.clickLightButton(_:)), for: UIControlEvents.touchUpInside)
         addSubview(lightButton)
         
         // 分割线
         spaceLine = SpaceLineSetup(self, color: HJColor_6)
     }
     
-    func clickLightButton(button:UIButton) {
+    func clickLightButton(_ button:UIButton) {
         
-        button.selected = !button.selected
+        button.isSelected = !button.isSelected
         
-        let lightType = HJReadLightType(rawValue: Int(button.selected))!
+        let lightType = HJReadLightType(rawValue: button.isSelected.hashValue)!
         
         HJReadConfigureManger.shareManager.lightType = lightType
         
         delegate?.readLightView(self, lightType: lightType)
     }
     
-    @objc private func sliderChanged(slider:UISlider) {
+    @objc fileprivate func sliderChanged(_ slider:UISlider) {
         
-        UIScreen.mainScreen().brightness = CGFloat(slider.value)
+        UIScreen.main.brightness = CGFloat(slider.value)
     }
     
     override func layoutSubviews() {
@@ -93,19 +93,19 @@ class HJReadLightView: UIView {
         // 进度条
         let sliderW:CGFloat = 208
         let chapterButtonW:CGFloat = (width - sliderW) / 2
-        slider.frame = CGRectMake(chapterButtonW, 0, sliderW, height)
+        slider.frame = CGRect(x: chapterButtonW, y: 0, width: sliderW, height: height)
         
         // textLabel
-        let textLabelH = CGRectGetMinX(slider.frame) - HJSpaceTwo
-        textLabel.frame = CGRectMake(0, 0, textLabelH, height)
+        let textLabelH = slider.frame.minX - HJSpaceTwo
+        textLabel.frame = CGRect(x: 0, y: 0, width: textLabelH, height: height)
         
         // lightButton
-        let lightButtonX:CGFloat = CGRectGetMaxX(slider.frame) + HJSpaceTwo
+        let lightButtonX:CGFloat = slider.frame.maxX + HJSpaceTwo
         let lightButtonW:CGFloat = width - lightButtonX
-        lightButton.frame = CGRectMake(lightButtonX, 0, lightButtonW, height)
+        lightButton.frame = CGRect(x: lightButtonX, y: 0, width: lightButtonW, height: height)
         
         /// spaceLine
-        spaceLine.frame = CGRectMake(0, 0, width, HJSpaceLineHeight)
+        spaceLine.frame = CGRect(x: 0, y: 0, width: width, height: HJSpaceLineHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {

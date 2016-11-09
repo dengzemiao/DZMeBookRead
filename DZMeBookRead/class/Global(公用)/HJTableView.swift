@@ -11,11 +11,11 @@ import UIKit
 class HJTableView: UITableView {
     
     convenience init() {
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
     }
     
     convenience init(frame: CGRect) {
-        self.init(frame: frame, style: .Plain)
+        self.init(frame: frame, style: .plain)
     }
     
     override init(frame: CGRect, style: UITableViewStyle) {
@@ -36,7 +36,7 @@ class HJTableView: UITableView {
         
         super.reloadData()
         
-        dispatch_async(dispatch_get_main_queue()) { [weak self] ()->() in
+        DispatchQueue.main.async { [weak self] ()->() in
             
             self?.isReloadData = false;
         }
@@ -51,23 +51,23 @@ class HJTableView: UITableView {
      
      - returns: 最小的indexPath
      */
-    func minVisibleIndexPath() ->NSIndexPath? {
+    func minVisibleIndexPath() ->IndexPath? {
         
         if indexPathsForVisibleRows != nil && !indexPathsForVisibleRows!.isEmpty {
             
-            var minIndexPath:NSIndexPath! = indexPathsForVisibleRows!.first
+            var minIndexPath:IndexPath! = indexPathsForVisibleRows!.first
             
             for indexPath in indexPathsForVisibleRows! {
                 
                 let reuslt = minIndexPath.compare(indexPath) // 比较
                 
-                if reuslt == NSComparisonResult.OrderedSame { // 相等
+                if reuslt == ComparisonResult.orderedSame { // 相等
                     
-                }else if reuslt == NSComparisonResult.OrderedDescending { // 左边的操作对象大于右边的对象
+                }else if reuslt == ComparisonResult.orderedDescending { // 左边的操作对象大于右边的对象
                     
                     minIndexPath = indexPath
                     
-                }else if reuslt == NSComparisonResult.OrderedAscending { // 左边的操作对象小于右边的对象
+                }else if reuslt == ComparisonResult.orderedAscending { // 左边的操作对象小于右边的对象
                     
                 }else{}
             }
@@ -83,21 +83,21 @@ class HJTableView: UITableView {
      
      - returns: 最大的indexPath
      */
-    func maxVisibleIndexPath() ->NSIndexPath? {
+    func maxVisibleIndexPath() ->IndexPath? {
         
         if indexPathsForVisibleRows != nil && !indexPathsForVisibleRows!.isEmpty {
             
-            var maxIndexPath:NSIndexPath! = indexPathsForVisibleRows!.first
+            var maxIndexPath:IndexPath! = indexPathsForVisibleRows!.first
             
             for indexPath in indexPathsForVisibleRows! {
                 
                 let reuslt = maxIndexPath.compare(indexPath) // 比较
                 
-                if reuslt == NSComparisonResult.OrderedSame { // 相等
+                if reuslt == ComparisonResult.orderedSame { // 相等
                     
-                }else if reuslt == NSComparisonResult.OrderedDescending { // 左边的操作对象大于右边的对象
+                }else if reuslt == ComparisonResult.orderedDescending { // 左边的操作对象大于右边的对象
                     
-                }else if reuslt == NSComparisonResult.OrderedAscending { // 左边的操作对象小于右边的对象
+                }else if reuslt == ComparisonResult.orderedAscending { // 左边的操作对象小于右边的对象
                     
                     maxIndexPath = indexPath
                     
@@ -124,9 +124,9 @@ class HJTableView: UITableView {
     
     // MARK: -- 拦截手势
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
-        if openIntercept && gestureRecognizer.state != .Possible {
+        if openIntercept && gestureRecognizer.state != .possible {
             
             return true
         }
@@ -136,39 +136,39 @@ class HJTableView: UITableView {
     
     // MARK: -- 响应者拦截
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if openTouch {
             
-            nextResponder()?.touchesBegan(touches, withEvent: event)
+            next?.touchesBegan(touches, with: event)
             
         }else{
             
-            super.touchesBegan(touches, withEvent: event)
+            super.touchesBegan(touches, with: event)
         }
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if openTouch {
             
-            nextResponder()?.touchesMoved(touches, withEvent: event)
+            next?.touchesMoved(touches, with: event)
             
         }else{
             
-            super.touchesMoved(touches, withEvent: event)
+            super.touchesMoved(touches, with: event)
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if openTouch {
             
-            nextResponder()?.touchesEnded(touches, withEvent: event)
+            next?.touchesEnded(touches, with: event)
             
         }else{
             
-            super.touchesEnded(touches, withEvent: event)
+            super.touchesEnded(touches, with: event)
         }
         
     }

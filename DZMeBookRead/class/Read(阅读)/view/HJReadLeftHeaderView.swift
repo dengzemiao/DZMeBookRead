@@ -11,15 +11,15 @@ import UIKit
 class HJReadLeftHeaderView: UIView {
 
     /// title
-    private var textLabel:UILabel!
+    fileprivate var textLabel:UILabel!
     
     /// 分割线
-    private var spaceLine:UIView!
+    fileprivate var spaceLine:UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         addSubviews()
     }
@@ -40,9 +40,9 @@ class HJReadLeftHeaderView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        textLabel.frame = CGRectMake(18, 10, 50, 15)
+        textLabel.frame = CGRect(x: 18, y: 10, width: 50, height: 15)
         
-        spaceLine.frame = CGRectMake(0, height - HJSpaceLineHeight, width, HJSpaceLineHeight)
+        spaceLine.frame = CGRect(x: 0, y: height - HJSpaceLineHeight, width: width, height: HJSpaceLineHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {

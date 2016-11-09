@@ -15,7 +15,7 @@ class HJReadViewController: HJTableViewController {
     weak var readPageController:HJReadPageController!
     
     /// 当前阅读形式
-    private var flipEffect:HJReadFlipEffect!
+    fileprivate var flipEffect:HJReadFlipEffect!
     
     /// 当前是否为这一章的最后一页
     var isLastPage:Bool = false
@@ -30,14 +30,14 @@ class HJReadViewController: HJTableViewController {
     var readChapterModel:HJReadChapterModel!
     
     /// 底部状态栏
-    private var readBottomStatusView:HJReadBottomStatusView!
-    private var readTopStatusView:HJReadTopStatusView!
+    fileprivate var readBottomStatusView:HJReadBottomStatusView!
+    fileprivate var readTopStatusView:HJReadTopStatusView!
     
     /// 当前滚动经过的indexPath   UpAndDown 模式使用
-    private var currentIndexPath:NSIndexPath!
+    fileprivate var currentIndexPath:IndexPath!
     
     /// 当前是往上滚还是往下滚 default: 往上
-    private var isScrollTop:Bool = true
+    fileprivate var isScrollTop:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,54 +52,54 @@ class HJReadViewController: HJTableViewController {
         readTopStatusView.setLeftTitle(readChapterModel.chapterName)
         
         // 设置页码
-        readBottomStatusView.setNumberPage(readRecord.page.integerValue, tatolPage: readChapterModel.pageCount.integerValue)
+        readBottomStatusView.setNumberPage(readRecord.page.intValue, tatolPage: readChapterModel.pageCount.intValue)
         
         // 通知在deinit 中会释放
         // 添加背景颜色改变通知
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HJReadViewController.changeBGColor), name: HJReadChangeBGColorKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HJReadViewController.changeBGColor), name: NSNotification.Name(rawValue: HJReadChangeBGColorKey), object: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func initTableView(style: UITableViewStyle) {
-        super.initTableView(.Plain)
+    override func initTableView(_ style: UITableViewStyle) {
+        super.initTableView(.plain)
         
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.clear
         
-        tableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - HJReadBottomStatusViewH)
+        tableView.frame = HJReadParser.GetReadViewFrame()
     }
     
     override func addSubviews() {
         super.addSubviews()
         
         readTopStatusView = HJReadTopStatusView()
-        readTopStatusView.frame = CGRectMake(0, 0, ScreenWidth, HJReadTopStatusViewH)
+        readTopStatusView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: HJReadTopStatusViewH)
         view.addSubview(readTopStatusView)
         
         readBottomStatusView = HJReadBottomStatusView()
-        readBottomStatusView.frame = CGRectMake(0, ScreenHeight - HJReadBottomStatusViewH, ScreenWidth, HJReadBottomStatusViewH)
+        readBottomStatusView.frame = CGRect(x: 0, y: ScreenHeight - HJReadBottomStatusViewH, width: ScreenWidth, height: HJReadBottomStatusViewH)
         view.addSubview(readBottomStatusView)
     }
     
     // MARK: -- UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         
-        if flipEffect == HJReadFlipEffect.None { // 无效果
+        if flipEffect == HJReadFlipEffect.none { // 无效果
             
             return 1
             
-        }else if flipEffect == HJReadFlipEffect.Translation { // 平滑
+        }else if flipEffect == HJReadFlipEffect.translation { // 平滑
             
             return 1
             
-        }else if flipEffect == HJReadFlipEffect.Simulation { // 仿真
+        }else if flipEffect == HJReadFlipEffect.simulation { // 仿真
             
             return 1
             
-        }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+        }else if flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
             return 1
             
@@ -108,46 +108,46 @@ class HJReadViewController: HJTableViewController {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if flipEffect == HJReadFlipEffect.None { // 无效果
+        if flipEffect == HJReadFlipEffect.none { // 无效果
             
             return 1
             
-        }else if flipEffect == HJReadFlipEffect.Translation { // 平滑
+        }else if flipEffect == HJReadFlipEffect.translation { // 平滑
             
             return 1
             
-        }else if flipEffect == HJReadFlipEffect.Simulation { // 仿真
+        }else if flipEffect == HJReadFlipEffect.simulation { // 仿真
             
             return 1
             
-        }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+        }else if flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
         }else{}
         
         return readPageController.readModel.readChapterListModels.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = HJReadViewCell.cellWithTableView(tableView)
         
         cell.isLastPage = isLastPage
         
-        if flipEffect == HJReadFlipEffect.None { // 无效果
+        if flipEffect == HJReadFlipEffect.none { // 无效果
             
             cell.content = content
             
-        }else if flipEffect == HJReadFlipEffect.Translation { // 平滑
+        }else if flipEffect == HJReadFlipEffect.translation { // 平滑
             
             cell.content = content
             
-        }else if flipEffect == HJReadFlipEffect.Simulation { // 仿真
+        }else if flipEffect == HJReadFlipEffect.simulation { // 仿真
             
             cell.content = content
             
-        }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+        }else if flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
             currentIndexPath = indexPath
             
@@ -158,10 +158,6 @@ class HJReadViewController: HJTableViewController {
             cell.readChapterModel = tempReadChapterModel
             
             cell.readChapterListModel = readChapterListModel
-            
-            cell.contentH = CGFloat(readChapterListModel.chapterHeight.floatValue)
-            
-            cell.content = tempReadChapterModel.chapterContent
             
             readPageController.title = readChapterListModel.chapterName
             
@@ -176,12 +172,12 @@ class HJReadViewController: HJTableViewController {
     
     // MARK: -- UITableViewDelegate
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        readPageController.readModel.readRecord.contentOffsetY = scrollView.contentOffset.y
+        readPageController.readModel.readRecord.contentOffsetY = scrollView.contentOffset.y as NSNumber?
 
         // 判断是滚上还是滚下
-        let translation = scrollView.panGestureRecognizer.translationInView(view)
+        let translation = scrollView.panGestureRecognizer.translation(in: view)
         
         if translation.y > 0 {
             
@@ -193,12 +189,12 @@ class HJReadViewController: HJTableViewController {
         }
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         GetCurrentPage()
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         GetCurrentPage()
     }
@@ -208,7 +204,7 @@ class HJReadViewController: HJTableViewController {
      */
     func GetCurrentPage() {
         
-        if flipEffect == HJReadFlipEffect.UpAndDown { // 滚动模式
+        if flipEffect == HJReadFlipEffect.upAndDown { // 滚动模式
             
             if isScrollTop {
                 
@@ -221,7 +217,7 @@ class HJReadViewController: HJTableViewController {
             
             if  currentIndexPath != nil {
                 
-                let cell = tableView.cellForRowAtIndexPath(currentIndexPath) as? HJReadViewCell
+                let cell = tableView.cellForRow(at: currentIndexPath) as? HJReadViewCell
                 
                 if cell != nil {
                     
@@ -231,7 +227,7 @@ class HJReadViewController: HJTableViewController {
                     
                     let page = spaceH / redFrame.height
                     
-                    readPageController.readModel.readRecord.page = (page + 0.5)
+                    readPageController.readModel.readRecord.page = NSNumber(value:Int((page + 0.5)))
                     
                     readTopStatusView.setLeftTitle("\(cell!.readChapterListModel!.chapterName)")
                     
@@ -241,33 +237,28 @@ class HJReadViewController: HJTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         
-        if flipEffect == HJReadFlipEffect.None { // 无效果
+        if flipEffect == HJReadFlipEffect.none { // 无效果
             
-        }else if flipEffect == HJReadFlipEffect.Translation { // 平滑
+        }else if flipEffect == HJReadFlipEffect.translation { // 平滑
             
-        }else if flipEffect == HJReadFlipEffect.Simulation { // 仿真
+        }else if flipEffect == HJReadFlipEffect.simulation { // 仿真
             
-        }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+        }else if flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
             let readChapterListModel = readPageController.readModel.readChapterListModels[indexPath.row]
             
-            if CGFloat(readChapterListModel.chapterHeight.floatValue) < ScreenHeight {
-                
-                return ScreenHeight
-            }
-            
-            // 不要广告可注销 删除 后面 HJAdvertisementButtonH 广告高度
-            return CGFloat(readChapterListModel.chapterHeight.floatValue) + HJReadViewTopSpace + HJAdvertisementButtonH
+            // 不要广告可注销 删除 后面 HJAdvertisementButtonH 广告高度 以及 广告距离下一章空隙
+            return CGFloat(readChapterListModel.chapterHeight.floatValue) + HJAdvertisementButtonH + HJAdvertisementBottomSpaceH
             
         }else{}
         
-        return ScreenHeight
+        return tableView.height
     }
     
     // MARK: -- 通知
@@ -275,7 +266,7 @@ class HJReadViewController: HJTableViewController {
     /// 修改背景颜色
     func changeBGColor() {
         
-        if HJReadConfigureManger.shareManager.readColorInex.integerValue == HJReadColors.indexOf(HJColor_12) { // 牛皮黄
+        if HJReadConfigureManger.shareManager.readColorInex.intValue == HJReadColors.index(of: HJColor_12) { // 牛皮黄
             
             let color:UIColor = UIColor(patternImage:UIImage(named: "icon_read_bg_0")!)
             
@@ -285,7 +276,7 @@ class HJReadViewController: HJTableViewController {
             
         }else{
             
-            let color = HJReadColors[HJReadConfigureManger.shareManager.readColorInex.integerValue]
+            let color = HJReadColors[HJReadConfigureManger.shareManager.readColorInex.intValue]
             
             readTopStatusView.backgroundColor = color
             
@@ -298,21 +289,21 @@ class HJReadViewController: HJTableViewController {
         
         flipEffect = HJReadConfigureManger.shareManager.flipEffect
         
-        if flipEffect == HJReadFlipEffect.None { // 无效果
+        if flipEffect == HJReadFlipEffect.none { // 无效果
             
-            tableView.scrollEnabled = false
+            tableView.isScrollEnabled = false
             
-        }else if flipEffect == HJReadFlipEffect.Translation { // 平滑
+        }else if flipEffect == HJReadFlipEffect.translation { // 平滑
             
-            tableView.scrollEnabled = false
+            tableView.isScrollEnabled = false
             
-        }else if flipEffect == HJReadFlipEffect.Simulation { // 仿真
+        }else if flipEffect == HJReadFlipEffect.simulation { // 仿真
             
-            tableView.scrollEnabled = false
+            tableView.isScrollEnabled = false
             
-        }else if flipEffect == HJReadFlipEffect.UpAndDown { // 上下滚动
+        }else if flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
-            tableView.scrollEnabled = true
+            tableView.isScrollEnabled = true
             
             // 获取当前章节
             let readChapterListModel = readPageController.readConfigure.GetReadChapterListModel(readRecord.readChapterListModel.chapterID)
@@ -320,23 +311,23 @@ class HJReadViewController: HJTableViewController {
             if (readChapterListModel != nil) { // 有章节
                 
                 // 刷新数据
-                let index = readPageController.readModel.readChapterListModels.indexOf(readChapterListModel!)
+                let index = readPageController.readModel.readChapterListModels.index(of: readChapterListModel!)
                 
-                GetReadChapterModel(readChapterListModel!)
+                let _ = GetReadChapterModel(readChapterListModel!)
                 
                 if readPageController.readModel.readRecord.contentOffsetY != nil {
                     
-                    tableView.setContentOffset(CGPointMake(tableView.contentOffset.x, CGFloat(readPageController.readModel.readRecord.contentOffsetY!.floatValue)), animated: false)
+                    tableView.setContentOffset(CGPoint(x: tableView.contentOffset.x, y: CGFloat(readPageController.readModel.readRecord.contentOffsetY!.floatValue)), animated: false)
                     
                 }else{
                     
                     // 滚到指定章节的cell
-                    tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index!,inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+                    tableView.scrollToRow(at: IndexPath(row: index!,section: 0), at: UITableViewScrollPosition.top, animated: false)
                     
                     // 滚动到指定cell的指定位置
                     let redFrame = HJReadParser.GetReadViewFrame()
                     
-                    tableView.setContentOffset(CGPointMake(tableView.contentOffset.x, tableView.contentOffset.y + CGFloat(readPageController.readModel.readRecord.page.integerValue) * redFrame.height), animated: false)
+                    tableView.setContentOffset(CGPoint(x: tableView.contentOffset.x, y: tableView.contentOffset.y + CGFloat(readPageController.readModel.readRecord.page.intValue) * (redFrame.height + HJSpaceThree)), animated: false)
                 }
                 
                 // 获取准确页面
@@ -349,7 +340,7 @@ class HJReadViewController: HJTableViewController {
     /**
      获取阅读章节模型
      */
-    func GetReadChapterModel(readChapterListModel:HJReadChapterListModel) ->HJReadChapterModel {
+    func GetReadChapterModel(_ readChapterListModel:HJReadChapterListModel) ->HJReadChapterModel {
         
         // 从缓存里面获取文件
         let tempReadChapterModel = ReadKeyedUnarchiver(readPageController.readModel.bookID, fileName: readChapterListModel.chapterID) as! HJReadChapterModel
@@ -358,7 +349,9 @@ class HJReadViewController: HJTableViewController {
         tempReadChapterModel.updateFont()
         
         // 计算高度
-        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(tempReadChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace)
+//        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(tempReadChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace)
+        
+        readChapterListModel.chapterHeight = (CGFloat(tempReadChapterModel.pageCount.floatValue) * tableView.height) as NSNumber!
         
         return tempReadChapterModel
     }
@@ -370,10 +363,10 @@ class HJReadViewController: HJTableViewController {
     
     deinit{
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         readBottomStatusView.removeTimer()

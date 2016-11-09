@@ -12,7 +12,7 @@ import UIKit
 // MARK: -- 该页面只存放与系统全局使用有关的
 
 // 自定义LOG
-func HJLog<T>(message:T) {
+func HJLog<T>(_ message:T) {
     
     #if DEBUG
         
@@ -24,7 +24,7 @@ func HJLog<T>(message:T) {
 // MARK: -- 代码屏幕适配
 
 ///  以iPhone6为比例
-func HJSize(size:CGFloat) ->CGFloat {
+func HJSize(_ size:CGFloat) ->CGFloat {
     
     return size * (ScreenWidth / 375)
 }
@@ -33,24 +33,24 @@ func HJSize(size:CGFloat) ->CGFloat {
 // MARK: -- 颜色 -----------------------
 
 /// RGB
-func RGB(r:CGFloat,g:CGFloat,b:CGFloat) -> UIColor {
+func RGB(_ r:CGFloat,g:CGFloat,b:CGFloat) -> UIColor {
     return RGBA(r, g: g, b: b, a: 1.0)
 }
 
 /// RGBA
-func RGBA(r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat) -> UIColor {
+func RGBA(_ r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat) -> UIColor {
     return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
 }
 
 
 // MARK: -- 高度适配使用 Screen Adaptation
 
-func SA(is45:CGFloat,other:CGFloat) ->CGFloat {
+func SA(_ is45:CGFloat,other:CGFloat) ->CGFloat {
     
     return SA(is45, is6: other, is6P: other)
 }
 
-func SA(is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->CGFloat {
+func SA(_ is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->CGFloat {
     
     if (is4sOr4 || is5sOr5) {
         
@@ -69,15 +69,15 @@ func SA(is45:CGFloat,is6:CGFloat,is6P:CGFloat) ->CGFloat {
 // MARK: -- 计算字符串 -----------------------
 
 /// 计算字符串
-func Size(string:String?,font:UIFont) ->CGSize {
+func Size(_ string:String?,font:UIFont) ->CGSize {
     
-    return Size(string,font: font,constrainedToSize: CGSizeMake(CGFloat.max, CGFloat.max))
+    return Size(string,font: font,constrainedToSize: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
 }
 
 /// 计算字符串
-func Size(string:String?,font:UIFont,constrainedToSize:CGSize) ->CGSize {
+func Size(_ string:String?,font:UIFont,constrainedToSize:CGSize) ->CGSize {
     
-    var TempSize = CGSizeMake(0, 0)
+    var TempSize = CGSize(width: 0, height: 0)
     
     if (string != nil && !string!.isEmpty) {
         
@@ -93,15 +93,15 @@ func Size(string:String?,font:UIFont,constrainedToSize:CGSize) ->CGSize {
 // MARK: -- 计算多态字符串 -----------------------
 
 /// 计算多态字符串
-func Size(string:NSAttributedString?) ->CGSize {
+func Size(_ string:NSAttributedString?) ->CGSize {
     
-    return Size(string, constrainedToSize: CGSizeMake(CGFloat.max, CGFloat.max))
+    return Size(string, constrainedToSize: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
 }
 
 /// 计算多态字符串
-func Size(string:NSAttributedString?,constrainedToSize:CGSize) ->CGSize {
+func Size(_ string:NSAttributedString?,constrainedToSize:CGSize) ->CGSize {
     
-    var TempSize = CGSizeMake(0, 0)
+    var TempSize = CGSize(width: 0, height: 0)
     
     if (string != nil) {
         
@@ -114,13 +114,13 @@ func Size(string:NSAttributedString?,constrainedToSize:CGSize) ->CGSize {
 // MARK: -- 获取时间
 
 /// 获取当前时间传入 时间格式 "YYYY-MM-dd-HH-mm-ss"
-func GetCurrentTimerString(dateFormat:String) ->String {
+func GetCurrentTimerString(_ dateFormat:String) ->String {
     
-    let dateformatter = NSDateFormatter()
+    let dateformatter = DateFormatter()
     
     dateformatter.dateFormat = dateFormat
     
-    return dateformatter.stringFromDate(NSDate())
+    return dateformatter.string(from: Date())
 }
 
 // MARK: -- 归档对象
@@ -131,11 +131,11 @@ func GetCurrentTimerString(dateFormat:String) ->String {
  - parameter fileName:    fileName
  - parameter object: 对象
  */
-func KeyedArchiver(fileName:String,object:AnyObject) {
+func KeyedArchiver(_ fileName:String,object:Any) {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/\(fileName)")
+    let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(fileName)"
     
-    NSKeyedArchiver.archiveRootObject(object, toFile: path!)
+    NSKeyedArchiver.archiveRootObject(object, toFile: path)
 }
 
 /**
@@ -143,12 +143,12 @@ func KeyedArchiver(fileName:String,object:AnyObject) {
  
  - parameter fileName: 文件名称
  */
-func KeyedRemoveArchiver(fileName:String) {
+func KeyedRemoveArchiver(_ fileName:String) {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/\(fileName)")
+    let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(fileName)"
     
     do{
-        try NSFileManager.defaultManager().removeItemAtPath(path!)
+        try FileManager.default.removeItem(atPath: path)
     }catch{}
 }
 
@@ -159,11 +159,11 @@ func KeyedRemoveArchiver(fileName:String) {
  
  - returns: 是否存在
  */
-func KeyedIsExistArchiver(fileName:String) ->Bool {
+func KeyedIsExistArchiver(_ fileName:String) ->Bool {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/\(fileName)")
+    let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(fileName)"
     
-    return NSFileManager.defaultManager().fileExistsAtPath(path!)
+    return FileManager.default.fileExists(atPath: path)
 }
 
 /**
@@ -173,9 +173,9 @@ func KeyedIsExistArchiver(fileName:String) ->Bool {
  
  - returns: 对象
  */
-func KeyedUnarchiver(fileName:String) ->AnyObject? {
+func KeyedUnarchiver(_ fileName:String) ->Any? {
     
-    let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last?.stringByAppendingString("/\(fileName)")
+    let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(fileName)"
     
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(path!)
+    return NSKeyedUnarchiver.unarchiveObject(withFile: path)
 }
