@@ -187,17 +187,21 @@ class HJReadViewController: HJTableViewController {
             
             isScrollTop = false
         }
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
+        // 第一种: 滚动中 更新阅读记录 以及头部名称提示
         GetCurrentPage()
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        GetCurrentPage()
-    }
+    // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        
+//        GetCurrentPage()
+//    }
+//    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        
+//        GetCurrentPage()
+//    }
     
     /**
      获取页码
