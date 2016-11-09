@@ -1,8 +1,8 @@
 # DZMeBookRead
 
-已更新Swift3.0 Xcode版本: Xcode8.1 修改了上下滚动模式阅读布局 代码体验会更好 如果闲章节直接间接有高有低 这个可以自己计算一下Cell高度即可 改Demo仅供参考思路
+已更新Swift3.0 Xcode版本: Xcode8.1 修改了上下滚动模式阅读布局 代码体验会更好 如果闲章节直接间接有高有低 这个可以自己计算一下Cell高度即可 该Demo仅供参考思路
 
-近期会加入ePub 阅读 （蛮多人用到的）
+近期会加入ePub 阅读 以及书签功能(优先加入) （蛮多人用到的）
 
 小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
 
