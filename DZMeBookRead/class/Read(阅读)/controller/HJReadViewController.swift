@@ -20,6 +20,9 @@ class HJReadViewController: HJTableViewController {
     /// 当前是否为这一章的最后一页
     var isLastPage:Bool = false
     
+    /// 是否为手动拖动
+    var isDragging:Bool = false
+    
     /// 单独模式的时候显示的内容
     var content:String!
     
@@ -189,19 +192,30 @@ class HJReadViewController: HJTableViewController {
         }
         
         // 第一种: 滚动中 更新阅读记录 以及头部名称提示
-//        GetCurrentPage()
+        if (isDragging) {GetCurrentPage()}
     }
     
-    // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    // 第一种: 滚动中 更新阅读记录 以及头部名称提示
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        GetCurrentPage()
+        isDragging = true
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        GetCurrentPage()
+        isDragging = false
     }
+    
+//    // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        
+//        GetCurrentPage()
+//    }
+//    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        
+//        GetCurrentPage()
+//    }
     
     /**
      获取页码
