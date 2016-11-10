@@ -189,19 +189,19 @@ class HJReadViewController: HJTableViewController {
         }
         
         // 第一种: 滚动中 更新阅读记录 以及头部名称提示
-        GetCurrentPage()
+//        GetCurrentPage()
     }
     
     // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        
-//        GetCurrentPage()
-//    }
-//    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        
-//        GetCurrentPage()
-//    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        GetCurrentPage()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        GetCurrentPage()
+    }
     
     /**
      获取页码
@@ -333,9 +333,6 @@ class HJReadViewController: HJTableViewController {
                     
                     tableView.setContentOffset(CGPoint(x: tableView.contentOffset.x, y: tableView.contentOffset.y + CGFloat(readPageController.readModel.readRecord.page.intValue) * (redFrame.height + HJSpaceThree)), animated: false)
                 }
-                
-                // 获取准确页面
-                GetCurrentPage()
             }
             
         }else{}

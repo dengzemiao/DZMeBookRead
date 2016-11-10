@@ -110,7 +110,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
                 
                 coverController.gestureRecognizerEnabled = false
             }
-            
         }
     }
     
