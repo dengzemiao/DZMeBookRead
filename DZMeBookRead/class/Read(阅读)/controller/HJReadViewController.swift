@@ -30,7 +30,11 @@ class HJReadViewController: HJTableViewController {
     var readRecord:HJReadRecord!
     
     /// 当前使用的阅读模型
-    var readChapterModel:HJReadChapterModel!
+    var readChapterModel:HJReadChapterModel! {
+        didSet{
+            print("\(readChapterModel)")
+        }
+    }
     
     /// 底部状态栏
     fileprivate var readBottomStatusView:HJReadBottomStatusView!
@@ -247,7 +251,7 @@ class HJReadViewController: HJTableViewController {
                     
                     readPageController.readModel.readRecord.page = NSNumber(value:Int((page + 0.5)))
                     
-                    readTopStatusView.setLeftTitle("\(cell!.readChapterListModel!.chapterName)")
+                    readTopStatusView.setLeftTitle(cell!.readChapterListModel!.chapterName)
                     
                     readPageController.readModel.readRecord.readChapterListModel = cell!.readChapterListModel
                 }
