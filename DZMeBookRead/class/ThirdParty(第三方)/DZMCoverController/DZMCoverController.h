@@ -29,7 +29,7 @@
  *  @param currentController 当前正在显示的控制器
  *  @param isFinish          切换是否成功
  */
-- (void)coverController:(DZMCoverController * __nonnull)coverController currentController:(UIViewController * __nullable)currentController finish:(BOOL)isFinish;
+- (void)coverController:(DZMCoverController * _Nonnull)coverController currentController:(UIViewController * _Nullable)currentController finish:(BOOL)isFinish;
 
 /**
  *  获取上一个控制器
@@ -39,7 +39,7 @@
  *
  *  @return 返回当前显示控制器的上一个控制器
  */
-- (UIViewController * __nullable)coverController:(DZMCoverController * __nonnull)coverController getAboveControllerWithCurrentController:(UIViewController * __nullable)currentController;
+- (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getAboveControllerWithCurrentController:(UIViewController * _Nullable)currentController;
 
 /**
  *  获取下一个控制器
@@ -49,7 +49,7 @@
  *
  *  @return 返回当前显示控制器的下一个控制器
  */
-- (UIViewController * __nullable)coverController:(DZMCoverController * __nonnull)coverController getBelowControllerWithCurrentController:(UIViewController * __nullable)currentController;
+- (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getBelowControllerWithCurrentController:(UIViewController * _Nullable)currentController;
 
 @end
 
@@ -80,7 +80,7 @@
  *
  *  @param controller 设置显示的控制器
  */
-- (void)setController:(UIViewController * __nonnull)controller;
+- (void)setController:(UIViewController * _Nonnull)controller;
 
 /**
  *  手动设置显示控制器
@@ -89,6 +89,6 @@
  *  @param animated   是否需要动画
  *  @param isAbove    动画是否从上面显示 YES   从下面显示 NO
  */
-- (void)setController:(UIViewController * __nonnull)controller animated:(BOOL)animated isAbove:(BOOL)isAbove;
+- (void)setController:(UIViewController * _Nonnull)controller animated:(BOOL)animated isAbove:(BOOL)isAbove;
 
 @end
