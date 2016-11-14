@@ -102,7 +102,7 @@
     
     self.pan.enabled = gestureRecognizerEnabled;
     
-    self.tap.enabled = gestureRecognizerEnabled;
+    self.tap.enabled = NO;
 }
 
 
