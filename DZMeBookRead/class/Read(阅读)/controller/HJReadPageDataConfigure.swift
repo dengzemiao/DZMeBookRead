@@ -209,7 +209,6 @@ class HJReadPageDataConfigure: NSObject {
                     return nil
                 }
                 
-                
             }else{
                 
                 changeLookPage -= 1
