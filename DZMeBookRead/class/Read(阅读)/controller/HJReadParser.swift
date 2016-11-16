@@ -190,7 +190,7 @@ class HJReadParser: NSObject {
         let readChapterListModel = HJReadChapterListModel()
         
         // 计算高度
-        readChapterListModel.chapterHeight = (CGFloat(readChapterModel.pageCount.floatValue) * HJReadParser.GetReadViewFrame().height) as NSNumber!
+        readChapterListModel.chapterHeight = (CGFloat(readChapterModel.pageCount.floatValue) * (HJReadParser.GetReadViewFrame().height + HJSpaceThree)) as NSNumber!
         
 //        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(readChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace) as NSNumber!
         

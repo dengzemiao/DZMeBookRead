@@ -370,7 +370,7 @@ class HJReadViewController: HJTableViewController {
         // 计算高度
 //        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(tempReadChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace)
         
-        readChapterListModel.chapterHeight = (CGFloat(tempReadChapterModel.pageCount.floatValue) * tableView.height) as NSNumber!
+        readChapterListModel.chapterHeight = (CGFloat(tempReadChapterModel.pageCount.floatValue) * (tableView.height + HJSpaceThree)) as NSNumber!
         
         return tempReadChapterModel
     }
