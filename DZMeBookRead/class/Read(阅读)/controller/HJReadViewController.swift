@@ -32,7 +32,6 @@ class HJReadViewController: HJTableViewController {
     /// 当前使用的阅读模型
     var readChapterModel:HJReadChapterModel! {
         didSet{
-            print("\(readChapterModel)")
         }
     }
     
@@ -55,10 +54,10 @@ class HJReadViewController: HJTableViewController {
         // 设置翻页方式
         changeFlipEffect()
         
-        // 设置头部名字
+        // 设置头部名字 设置页码
+        readPageController.readSetup.readUI.bottomView.slider.maximumValue = (readChapterModel.pageCount.floatValue - 1)
+        readPageController.readSetup.readUI.bottomView.slider.value = readRecord.page.floatValue
         readTopStatusView.setLeftTitle(readChapterModel.chapterName)
-        
-        // 设置页码
         readBottomStatusView.setNumberPage(readRecord.page.intValue, tatolPage: readChapterModel.pageCount.intValue)
         
         // 通知在deinit 中会释放
@@ -166,10 +165,8 @@ class HJReadViewController: HJTableViewController {
             
             cell.readChapterListModel = readChapterListModel
             
-            readPageController.title = readChapterListModel.chapterName
-            
-            // 设置页码
-            readBottomStatusView.setNumberPage(indexPath.row, tatolPage: readPageController.readModel.readChapterListModels.count)
+            // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示    ---- 设置页码
+//            readBottomStatusView.setNumberPage(indexPath.row, tatolPage: readPageController.readModel.readChapterListModels.count)
             
         }else{}
         
@@ -210,7 +207,7 @@ class HJReadViewController: HJTableViewController {
         isDragging = false
     }
     
-//    // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示
+//    // 第二种: 在停止拖拽 跟停止滚动 更新阅读记录 以及头部名称提示 还需要打开 (tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell） 中的设置页码
 //    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 //        
 //        GetCurrentPage()
@@ -249,11 +246,55 @@ class HJReadViewController: HJTableViewController {
                     
                     let page = spaceH / redFrame.height
                     
-                    readPageController.readModel.readRecord.page = NSNumber(value:Int((page + 0.5)))
                     
-                    readTopStatusView.setLeftTitle(cell!.readChapterListModel!.chapterName)
+                    if (cell!.readChapterModel != nil) {
+                        
+                        readPageController.title = cell!.readChapterModel!.chapterName
                     
-                    readPageController.readModel.readRecord.readChapterListModel = cell!.readChapterListModel
+                        // 计算当前所在的页码
+                        var tempPage = Int(page + 0.9)
+                        
+                        // 检查是否超过页码长度
+                        if (tempPage >= cell!.readChapterModel!.pageCount.intValue) {
+                            
+                            tempPage = cell!.readChapterModel!.pageCount.intValue - 1
+                        }
+                        
+                        // 获取正确的页码
+                        let currentPage = NSNumber(value:tempPage)
+                        
+                        // 记录阅读页码
+                        readPageController.readModel.readRecord.page = currentPage
+                        
+                        // 设置标题
+                        readTopStatusView.setLeftTitle(cell!.readChapterListModel!.chapterName)
+                        
+                        // 设置阅读模型记录
+                        readPageController.readModel.readRecord.readChapterModel = cell!.readChapterModel
+                        
+                        // 记录阅读章节
+                        readPageController.readModel.readRecord.readChapterListModel = cell!.readChapterListModel
+                        
+                        // 设置页码
+                        readTopStatusView.setLeftTitle(cell!.readChapterModel!.chapterName)
+                        
+                        // 设置显示page
+                        readBottomStatusView.setNumberPage(currentPage.intValue, tatolPage: cell!.readChapterModel!.pageCount.intValue)
+                        
+                        // 设置进度条
+                        readPageController.readSetup.readUI.bottomView.slider.maximumValue = (cell!.readChapterModel!.pageCount.floatValue - 1)
+                        
+                        readPageController.readSetup.readUI.bottomView.slider.value = Float(page)
+                        
+                        // 设置当前章节的索引
+                        readPageController.readModel.readRecord.chapterIndex = NSNumber(value:currentIndexPath.row)
+                        
+                        // 左边章节列表进行滚动
+                        readPageController.readSetup.readUI.leftView.scrollRow = currentIndexPath.row
+                       
+                        // 检查当前页面是否为书签页
+                        readPageController.readConfigure.checkCurrentPageIsReadMark(readChapterModel: cell!.readChapterModel!, currentPage: currentPage.intValue)
+                    }
                 }
             }
         }

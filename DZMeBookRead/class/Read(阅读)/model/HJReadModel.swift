@@ -16,6 +16,9 @@ class HJReadModel: NSObject,NSCoding {
     /// 章节列表数组
     var readChapterListModels:[HJReadChapterListModel]!
     
+    // 书签列表
+    var readBookMarks:[HJReadMarkModel] = []
+    
     /// 阅读记录
     var readRecord:HJReadRecord!
     
@@ -111,6 +114,8 @@ class HJReadModel: NSObject,NSCoding {
         
         readChapterListModels = aDecoder.decodeObject(forKey: "readChapterListModels") as! [HJReadChapterListModel]
         
+        readBookMarks = aDecoder.decodeObject(forKey: "readBookMarks") as! [HJReadMarkModel]
+        
         readRecord = aDecoder.decodeObject(forKey: "readRecord") as! HJReadRecord
         
         isLocalBook = aDecoder.decodeObject(forKey: "isLocalBook") as! NSNumber
@@ -123,6 +128,8 @@ class HJReadModel: NSObject,NSCoding {
         aCoder.encode(bookID, forKey: "bookID")
         
         aCoder.encode(readChapterListModels, forKey: "readChapterListModels")
+        
+        aCoder.encode(readBookMarks, forKey: "readBookMarks")
         
         aCoder.encode(readRecord, forKey: "readRecord")
         

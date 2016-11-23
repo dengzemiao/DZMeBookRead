@@ -104,24 +104,32 @@ class HJReadChapterModel: NSObject,NSCoding {
     /**
      根据index 页码返回对应的字符串
      
-     - parameter index: 页码索引
+     - parameter page: 页码索引
      */
-    func stringOfPage(_ index:Int) ->String {
+    func stringOfPage(_ page:Int) ->String {
         
-        let local = pageLocationArray[index]
+        let range = getRangeWithPage(page)
+        
+        return chapterContent.substringWithRange(range)
+    }
+    
+    // 获取指定索引的range
+    func getRangeWithPage(_ page:Int) ->NSRange {
+        
+        let local = pageLocationArray[page]
         
         var length = 0
         
-        if index < pageCount.intValue - 1 {
+        if page < pageCount.intValue - 1 {
             
-            length = pageLocationArray[index + 1] - pageLocationArray[index]
+            length = pageLocationArray[page + 1] - pageLocationArray[page]
             
         }else{
             
-            length = chapterContent.length - pageLocationArray[index]
+            length = chapterContent.length - pageLocationArray[page]
         }
         
-        return chapterContent.substringWithRange(NSMakeRange(local, length))
+        return NSMakeRange(local, length)
     }
     
     // MARK: -- aDecoder

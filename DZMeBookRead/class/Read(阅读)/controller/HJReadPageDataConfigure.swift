@@ -19,6 +19,9 @@ class HJReadPageDataConfigure: NSObject {
     /// 阅读控制器
     fileprivate weak var readPageController:HJReadPageController!
     
+    // 当前书签模型记录 有值则表示当前显示的 段落中有标签  没有值则表示没有
+    var readMarkModel:HJReadMarkModel?
+    
     /// 临时记录值
     var changeReadChapterModel:HJReadChapterModel!
     var changeReadChapterListModel:HJReadChapterListModel!
@@ -46,7 +49,6 @@ class HJReadPageDataConfigure: NSObject {
     func GetReadViewController(_ readChapterModel:HJReadChapterModel,currentPage:Int) ->HJReadViewController {
         
         let readVC = HJReadViewController()
-
         readVC.readPageController = readPageController
         
         // 正对当前控制器的阅读记录
@@ -167,8 +169,6 @@ class HJReadPageDataConfigure: NSObject {
                 readPageController.readModel.readRecord.chapterIndex = NSNumber(value: index!)
                 
                 readPageController.readSetup.readUI.leftView.scrollRow = index!
-                
-                readPageController.readSetup.readUI.bottomView.slider.value = Float(index!)
                 
                 return readChapterModel
             }
@@ -294,6 +294,9 @@ class HJReadPageDataConfigure: NSObject {
         readPageController.readModel.readRecord.readChapterListModel = changeReadChapterListModel
         
         readPageController.readModel.readRecord.page = NSNumber(value:changeLookPage)
+        
+        // 检查当前页面是否为书签页
+        checkCurrentPageIsReadMark(readChapterModel: changeReadChapterModel, currentPage: changeLookPage)
     }
     
     /// 刷新保存阅读记录
@@ -305,5 +308,112 @@ class HJReadPageDataConfigure: NSObject {
         
         // 同步阅读记录
         HJReadModel.updateReadModel(readPageController.readModel)
+    }
+    
+    // MARK: -- 书签
+    
+    // 添加书签
+    func addBookMark() {
+        
+        // 书签模型
+        let readMarkModel = HJReadMarkModel()
+        readMarkModel.bookID = readPageController.readModel.bookID
+        readMarkModel.chapterID = readPageController.readModel.readRecord.readChapterListModel.chapterID
+        readMarkModel.volumeID = readPageController.readModel.readRecord.readChapterListModel.volumeID
+        readMarkModel.chapterName = readPageController.readModel.readRecord.readChapterListModel.chapterName
+        readMarkModel.time = Date()
+        let page = readPageController.readModel.readRecord.page.intValue
+        readMarkModel.location = NSNumber(value:readPageController.readModel.readRecord.readChapterModel!.pageLocationArray[page])
+        readMarkModel.content = readPageController.readModel.readRecord.readChapterModel!.stringOfPage(page)
+        
+        // 添加
+        addBookMark(readMarkModel: readMarkModel)
+        
+        // 记录
+        self.readMarkModel = readMarkModel
+    }
+    
+    // 添加书签
+    func addBookMark(readMarkModel:HJReadMarkModel) {
+        
+        // 添加
+        readPageController.readModel.readBookMarks.insert(readMarkModel, at: 0);
+        
+        // 保存
+        HJReadModel.updateReadModel(readPageController.readModel);
+        
+        // 刷新
+        readPageController.readSetup.readUI.leftView.readBookMarksReloaData()
+    }
+    
+    // 删除书签
+    func removeBookMark() {
+      
+        // 删除
+        removeBookMark(readMarkModel: readMarkModel)
+        
+        // 清空
+        readMarkModel = nil
+        
+        // 保存
+        HJReadModel.updateReadModel(readPageController.readModel);
+        
+        // 删除之后需要再次 检查当前页面是否为书签页
+        checkCurrentPageIsReadMark(readChapterModel: changeReadChapterModel, currentPage: changeLookPage)
+    }
+    
+    // 删除书签
+    func removeBookMark(readMarkModel:HJReadMarkModel?) {
+        
+        if (readMarkModel != nil) {
+            
+            // 移除
+            readPageController.readModel.readBookMarks.remove(at: readPageController.readModel.readBookMarks.index(of: readMarkModel!)!)
+            
+            // 刷新
+            readPageController.readSetup.readUI.leftView.readBookMarksReloaData()
+        }
+    }
+    
+    // 变更字体 删除书签 之后更新指定章节的书签
+    func checkCurrentPageIsReadMark() {
+        
+        checkCurrentPageIsReadMark(readChapterModel: readPageController.readModel.readRecord.readChapterModel!, currentPage: readPageController.readModel.readRecord.page.intValue)
+    }
+    
+    func checkCurrentPageIsReadMark(readChapterModel:HJReadChapterModel,currentPage:Int) {
+        
+        let pre = NSPredicate(format: "chapterID == %@",readChapterModel.chapterID)
+        
+        let results = (readPageController.readModel.readBookMarks as NSArray).filtered(using: pre)
+        
+        if !results.isEmpty { // 有数据
+            
+            // 获取当前页码的range
+            let currentRange = readChapterModel.getRangeWithPage(currentPage)
+            
+            for i in 0..<results.count { // 进行便利
+                
+                // 取出书签模型
+                let readBookMark = results[i] as! HJReadMarkModel;
+                
+                // 大于等于 当前页码的location   小于等于当前页面的loction + length
+                if (readBookMark.location.intValue >= currentRange.location && readBookMark.location.intValue <= (currentRange.location + currentRange.length)) {
+                    
+                    readPageController.readSetup.rightItem.isSelected = true
+                    readMarkModel = readBookMark;
+                    return
+                    
+                }else{
+                    
+                    readPageController.readSetup.rightItem.isSelected = false
+                    readMarkModel = nil;
+                }
+            }
+        }else{
+            
+            readPageController.readSetup.rightItem.isSelected = false
+            readMarkModel = nil;
+        }
     }
 }

@@ -22,6 +22,9 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
     /// 阅读控制器
     fileprivate weak var readPageController:HJReadPageController!
     
+    // rightItem 书签按钮
+    var rightItem:UIButton!
+    
     /// UI 设置
     var readUI:HJReadUI!
     
@@ -48,6 +51,15 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
     
     /// 初始化子控件相关
     func setupSubviews() {
+        
+        // rightItem
+        rightItem = UIButton(type:UIButtonType.custom)
+        rightItem.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        rightItem.setImage(UIImage(named:"book_mark_nomal")!, for: UIControlState.normal)
+        rightItem.setImage(UIImage(named:"book_mark_select")!, for: UIControlState.selected)
+        rightItem.contentHorizontalAlignment = .right
+        rightItem.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
+        readPageController.navigationItem.rightBarButtonItem = UIBarButtonItem.itemButton(rightItem, target: self, action: #selector(HJReadSetup.clickBookMark))
         
         // 添加手势
         singleTap = UITapGestureRecognizer(target: self, action:#selector(HJReadSetup.singleTap(_:)))
@@ -239,5 +251,30 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
             
             readPageController.coverController.setController(previousPageVC, animated: false, isAbove: true)
         }
+    }
+    
+    // MARK: -- 书签按钮
+    
+    func clickBookMark() {
+        
+        if (!rightItem.isSelected) { // 添加书签
+            
+            rightItem.isSelected = true
+            
+            readPageController.readConfigure.addBookMark()
+            
+            MBProgressHUD.showSuccess("添加书签成功")
+            
+        }else{ // 取消书签
+            
+            rightItem.isSelected = false;
+            
+            readPageController.readConfigure.removeBookMark()
+            
+            MBProgressHUD.showSuccess("删除书签成功")
+        }
+        
+        // 隐藏
+        RFHidden(true)
     }
 }

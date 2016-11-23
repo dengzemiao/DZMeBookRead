@@ -123,6 +123,15 @@ func GetCurrentTimerString(_ dateFormat:String) ->String {
     return dateformatter.string(from: Date())
 }
 
+func GetTimerString(_ dateFormat:String,date:Date) ->String {
+    
+    let dateformatter = DateFormatter()
+    
+    dateformatter.dateFormat = dateFormat
+    
+    return dateformatter.string(from: date)
+}
+
 // MARK: -- 归档对象
 
 /**

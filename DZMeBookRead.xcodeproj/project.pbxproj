@@ -42,6 +42,9 @@
 		AF6964D21D76CA9F005FF098 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964D11D76CA9F005FF098 /* DZMeBookReadUITests.swift */; };
 		AF69654F1D76CF1C005FF098 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF69654D1D76CF1C005FF098 /* 求魔.txt */; };
 		AF6965501D76CF1C005FF098 /* mdjyml.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF69654E1D76CF1C005FF098 /* mdjyml.txt */; };
+		AF8129B41DE2F56900C68516 /* 工作相关.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF8129B31DE2F56900C68516 /* 工作相关.txt */; };
+		AF8E56261DE584910079029F /* HJReadLeftBookMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E56251DE584910079029F /* HJReadLeftBookMarkCell.swift */; };
+		AF9CB6631DE29C1200E9C469 /* HJReadMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9CB6621DE29C1200E9C469 /* HJReadMarkModel.swift */; };
 		AFA682EC1D76D31800870EBF /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA682B31D76D31800870EBF /* NSObject+Extension.swift */; };
 		AFA682ED1D76D31800870EBF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA682B41D76D31800870EBF /* String+Extension.swift */; };
 		AFA682EE1D76D31800870EBF /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA682B51D76D31800870EBF /* UIBarButtonItem+Extension.swift */; };
@@ -127,6 +130,9 @@
 		AF6964D31D76CA9F005FF098 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF69654D1D76CF1C005FF098 /* 求魔.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "求魔.txt"; sourceTree = "<group>"; };
 		AF69654E1D76CF1C005FF098 /* mdjyml.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mdjyml.txt; sourceTree = "<group>"; };
+		AF8129B31DE2F56900C68516 /* 工作相关.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "工作相关.txt"; sourceTree = "<group>"; };
+		AF8E56251DE584910079029F /* HJReadLeftBookMarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadLeftBookMarkCell.swift; sourceTree = "<group>"; };
+		AF9CB6621DE29C1200E9C469 /* HJReadMarkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadMarkModel.swift; sourceTree = "<group>"; };
 		AFA682B31D76D31800870EBF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		AFA682B41D76D31800870EBF /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		AFA682B51D76D31800870EBF /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 		AF29591A1D7BB33700C880E7 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AF9CB6621DE29C1200E9C469 /* HJReadMarkModel.swift */,
 				AF29591C1D7BB33700C880E7 /* HJReadChapterListModel.swift */,
 				AF29591D1D7BB33700C880E7 /* HJReadChapterModel.swift */,
 				AF29591E1D7BB33700C880E7 /* HJReadModel.swift */,
@@ -214,6 +221,7 @@
 				AF2959221D7BB33700C880E7 /* HJReadLeftHeaderView.swift */,
 				AF2959231D7BB33700C880E7 /* HJReadLeftView.swift */,
 				AF2959241D7BB33700C880E7 /* HJReadLeftViewCell.swift */,
+				AF8E56251DE584910079029F /* HJReadLeftBookMarkCell.swift */,
 				AF2959251D7BB33700C880E7 /* HJReadLightView.swift */,
 				AF2959261D7BB33700C880E7 /* HJReadSettingColorView.swift */,
 				AF2959271D7BB33700C880E7 /* HJReadSettingCustomView.swift */,
@@ -289,6 +297,7 @@
 		AFA682B11D76D31800870EBF /* class */ = {
 			isa = PBXGroup;
 			children = (
+				AF8129B31DE2F56900C68516 /* 工作相关.txt */,
 				AFA683201D76D33500870EBF /* HJMainViewController.swift */,
 				AFA682B21D76D31800870EBF /* Extension(扩展) */,
 				AFA682BA1D76D31800870EBF /* Global(公用) */,
@@ -503,6 +512,7 @@
 				AFA683261D76D33500870EBF /* Info.plist in Resources */,
 				AFA683231D76D33500870EBF /* Assets.xcassets in Resources */,
 				AFA683241D76D33500870EBF /* LaunchScreen.storyboard in Resources */,
+				AF8129B41DE2F56900C68516 /* 工作相关.txt in Resources */,
 				AFA683181D76D31800870EBF /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8E56261DE584910079029F /* HJReadLeftBookMarkCell.swift in Sources */,
 				AF2959421D7BB33700C880E7 /* HJReadSettingCustomView.swift in Sources */,
 				AF3742AE1DB7122E00E448DC /* HJReadTopStatusView.swift in Sources */,
 				AF29592E1D7BB33700C880E7 /* HJReadConfigureManger.swift in Sources */,
@@ -542,6 +553,7 @@
 				AF2959431D7BB33700C880E7 /* HJReadSettingFlipEffectView.swift in Sources */,
 				AF29594C1D7BB4CF00C880E7 /* HJTableView.swift in Sources */,
 				AF2959401D7BB33700C880E7 /* HJReadLightView.swift in Sources */,
+				AF9CB6631DE29C1200E9C469 /* HJReadMarkModel.swift in Sources */,
 				AF29594E1D7BB50700C880E7 /* HJNavigationController.swift in Sources */,
 				AF29593F1D7BB33700C880E7 /* HJReadLeftViewCell.swift in Sources */,
 				AFA682F31D76D31800870EBF /* HJAttrOne.swift in Sources */,

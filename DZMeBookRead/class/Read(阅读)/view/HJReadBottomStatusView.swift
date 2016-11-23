@@ -33,7 +33,9 @@ class HJReadBottomStatusView: UIView {
     /// 设置页码
     func setNumberPage(_ page:Int,tatolPage:Int) {
         
-        numberPageLabel.text = "\(page + 1)/\(tatolPage)"
+        let tempPage = (page + 1) > tatolPage ? tatolPage : (page + 1)
+        
+        numberPageLabel.text = "\(tempPage)/\(tatolPage)"
     }
     
     func addSubviews() {

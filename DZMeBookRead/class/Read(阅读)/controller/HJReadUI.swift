@@ -50,9 +50,11 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
         bottomView = HJReadBottomView()
         bottomView.delegate = self
         readPageController.view.addSubview(bottomView)
+        bottomView.slider.maximumValue = Float(readPageController.readModel.readChapterListModels.count - 1) // 设置页码
         
         // leftView
         leftView = HJReadLeftView()
+        leftView.readPageController = readPageController
         
         // lightView
         lightView = HJReadLightView()
@@ -96,8 +98,10 @@ class HJReadUI: NSObject,HJReadBottomViewDelegate,HJReadLightViewDelegate {
     
     /// 拖动进度
     func readBottomViewChangeSlider(_ readBottomView: HJReadBottomView, slider: UISlider) {
+        
+        readPageController.readModel.readRecord.page = NSNumber(value:Int(slider.value))
        
-        readPageController.readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: "\(Int(slider.value) + 1)",chapterLookPageClear: true, contentOffsetYClear: true)
+        readPageController.readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: readPageController.readModel.readRecord.readChapterModel!.chapterID,chapterLookPageClear: false, contentOffsetYClear: true)
     }
     
     

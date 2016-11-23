@@ -28,10 +28,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         readConfigure = HJReadPageDataConfigure.setupWithReadController(self)
         readSetup = HJReadSetup.setupWithReadController(self)
         
-        // 刷新章节列表
-        readSetup.readUI.leftView.dataArray = readModel.readChapterListModels
-        readSetup.readUI.bottomView.slider.maximumValue = Float(readModel.readChapterListModels.count - 1)
-        
         // 初始化翻页效果
         readSetup.setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterLookPageClear: false)
     }
