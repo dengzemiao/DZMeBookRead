@@ -180,9 +180,9 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
     
     // MARK: -- HJReadLeftViewDelegate
     
-    func readLeftView(_ readLeftView: HJReadLeftView, clickReadChapterModel model: HJReadChapterListModel) {
+    func readLeftView(_ readLeftView: HJReadLeftView, clickReadChapterModel model: HJReadChapterListModel, chapterLookPageClear: Bool) {
         
-        setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: model.chapterID,chapterLookPageClear: true,contentOffsetYClear: true)
+        setFlipEffect(HJReadConfigureManger.shareManager.flipEffect,chapterID: model.chapterID,chapterLookPageClear: chapterLookPageClear,contentOffsetYClear: true)
         
         RFHidden(!isRFHidden)
     }

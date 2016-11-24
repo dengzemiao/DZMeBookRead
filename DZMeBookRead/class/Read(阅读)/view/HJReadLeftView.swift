@@ -13,7 +13,7 @@ import UIKit
 @objc protocol HJReadLeftViewDelegate:NSObjectProtocol {
     
     /// 点击章节模型
-    @objc optional func readLeftView(_ readLeftView:HJReadLeftView,clickReadChapterModel model:HJReadChapterListModel)
+    @objc optional func readLeftView(_ readLeftView:HJReadLeftView,clickReadChapterModel model:HJReadChapterListModel, chapterLookPageClear:Bool)
 }
 
 class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource,HJReadLeftHeaderViewDelegate {
@@ -219,15 +219,16 @@ class HJReadLeftView: NSObject,UITableViewDelegate,UITableViewDataSource,HJReadL
             
             let model = dataArray[indexPath.row] as! HJReadChapterListModel
             
-            delegate?.readLeftView?(self, clickReadChapterModel: model)
+            delegate?.readLeftView?(self, clickReadChapterModel: model, chapterLookPageClear:true)
             
         }else{ // 书签
             
             let model = dataArray[indexPath.row] as! HJReadMarkModel
             let page = model.GetCurrentPage()
+            
             readPageController.readModel.readRecord.page = NSNumber(value:page)
             
-            readPageController.readConfigure.GoToReadChapter(model.chapterID, chapterLookPageClear: false, result: nil)
+            readPageController.readSetup.readLeftView(self, clickReadChapterModel: readPageController.readConfigure.GetReadChapterListModel(model.chapterID)!, chapterLookPageClear:false)
             
             readPageController.readSetup.RFHidden(true)
         }
