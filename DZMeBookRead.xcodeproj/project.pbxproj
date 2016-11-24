@@ -42,7 +42,6 @@
 		AF6964D21D76CA9F005FF098 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6964D11D76CA9F005FF098 /* DZMeBookReadUITests.swift */; };
 		AF69654F1D76CF1C005FF098 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF69654D1D76CF1C005FF098 /* 求魔.txt */; };
 		AF6965501D76CF1C005FF098 /* mdjyml.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF69654E1D76CF1C005FF098 /* mdjyml.txt */; };
-		AF8129B41DE2F56900C68516 /* 工作相关.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF8129B31DE2F56900C68516 /* 工作相关.txt */; };
 		AF8E56261DE584910079029F /* HJReadLeftBookMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E56251DE584910079029F /* HJReadLeftBookMarkCell.swift */; };
 		AF9CB6631DE29C1200E9C469 /* HJReadMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9CB6621DE29C1200E9C469 /* HJReadMarkModel.swift */; };
 		AFA682EC1D76D31800870EBF /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA682B31D76D31800870EBF /* NSObject+Extension.swift */; };
@@ -130,7 +129,6 @@
 		AF6964D31D76CA9F005FF098 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF69654D1D76CF1C005FF098 /* 求魔.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "求魔.txt"; sourceTree = "<group>"; };
 		AF69654E1D76CF1C005FF098 /* mdjyml.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mdjyml.txt; sourceTree = "<group>"; };
-		AF8129B31DE2F56900C68516 /* 工作相关.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "工作相关.txt"; sourceTree = "<group>"; };
 		AF8E56251DE584910079029F /* HJReadLeftBookMarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadLeftBookMarkCell.swift; sourceTree = "<group>"; };
 		AF9CB6621DE29C1200E9C469 /* HJReadMarkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadMarkModel.swift; sourceTree = "<group>"; };
 		AFA682B31D76D31800870EBF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 		AFA682B11D76D31800870EBF /* class */ = {
 			isa = PBXGroup;
 			children = (
-				AF8129B31DE2F56900C68516 /* 工作相关.txt */,
 				AFA683201D76D33500870EBF /* HJMainViewController.swift */,
 				AFA682B21D76D31800870EBF /* Extension(扩展) */,
 				AFA682BA1D76D31800870EBF /* Global(公用) */,
@@ -512,7 +509,6 @@
 				AFA683261D76D33500870EBF /* Info.plist in Resources */,
 				AFA683231D76D33500870EBF /* Assets.xcassets in Resources */,
 				AFA683241D76D33500870EBF /* LaunchScreen.storyboard in Resources */,
-				AF8129B41DE2F56900C68516 /* 工作相关.txt in Resources */,
 				AFA683181D76D31800870EBF /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
