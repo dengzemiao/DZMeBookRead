@@ -50,6 +50,7 @@ class HJReadPageDataConfigure: NSObject {
         
         let readVC = HJReadViewController()
         readVC.readPageController = readPageController
+        readVC.isLastPage = (currentPage == (readChapterModel.pageCount.intValue - 1))
         
         // 正对当前控制器的阅读记录
         let readRecord = HJReadRecord()
