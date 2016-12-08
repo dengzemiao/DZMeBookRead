@@ -1,0 +1,722 @@
+//
+//  HTTPTool.m
+//
+//  Created by 邓泽淼 on 16/5/11.
+//  Copyright © 2016年 DZM. All rights reserved.
+//
+
+#import "HTTPTool.h"
+
+@implementation HTTPTool
+
+/**
+ *  获取请求对象
+ */
++ (AFHTTPRequestOperationManager *)ToolManager
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager.requestSerializer setValue:@"2.0" forHTTPHeaderField:@"X-protocol-ver"];
+    
+    return manager;
+}
+
+#pragma mark - POST
+
+/**
+ *  POST 请求    常用回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD success:(Success)success failure:(Failure)failure
+{
+    [HTTPTool POST:url parameters:parameters type:type showHUD:showHUD operationSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (success) {success(responseObject);}
+        
+    } operationFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (failure) {failure(error);}
+    }];
+    
+}
+
+/**
+ *  POST 请求    附带 NSURLSessionDataTask 回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool POST:url parameters:parameters type:type showHUD:showHUD noNetwork:nil operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  POST 请求    附带 NSURLSessionDataTask  无网络 回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool POST:url parameters:parameters type:type showHUD:showHUD showNoNetwork:YES noNetwork:noNetwork operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  POST 请求    附带 NSURLSessionDataTask  无网络 回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool POST:url manager:[HTTPTool ToolManager] parameters:parameters type:type showHUD:showHUD showNoNetwork:showNoNetwork noNetwork:noNetwork operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  POST 请求    附带 NSURLSessionDataTask  无网络 回调
+ *
+ *  @param url        URL
+ *  @param manager    请求manager
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url manager:(AFHTTPRequestOperationManager *)manager parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    // 检查网络
+    if (![HTTPTool isReachable] && showNoNetwork){
+        
+        [HTTPExtension hideHUD];            // 隐藏转圈圈
+        
+        [HTTPExtension showNetworkError];   // 提示无网络错误
+        
+        if (noNetwork){noNetwork();}        // 回调无网络
+        
+        return;
+    }
+    
+    if (showHUD){[HTTPExtension showHUD];}
+    
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        [HTTPTool httpResultType:type operation:operation operationSuccess:success operationFailure:failure];
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        if (failure) {failure(operation,error);}
+    }];
+}
+
+#pragma mark - GET
+
+/**
+ *  GET 请求    常用回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)GET:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD success:(Success)success failure:(Failure)failure
+{
+    [HTTPTool GET:url parameters:parameters type:type showHUD:showHUD operationSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (success) {success(responseObject);}
+        
+    } operationFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (failure) {failure(error);}
+    }];
+}
+
+/**
+ *  GET 请求    附带 NSURLSessionDataTask 回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)GET:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool GET:url parameters:parameters type:type showHUD:showHUD noNetwork:nil operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  GET 请求    附带 NSURLSessionDataTask 无网络 回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)GET:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool GET:url parameters:parameters type:type showHUD:showHUD showNoNetwork:YES noNetwork:noNetwork operationSuccess:success operationFailure:failure];;
+}
+
+/**
+ *  GET 请求    附带 NSURLSessionDataTask 无网络 回调
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)GET:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool GET:url manager:[HTTPTool ToolManager] parameters:parameters type:type showHUD:showHUD showNoNetwork:showNoNetwork noNetwork:noNetwork operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  GET 请求    附带 NSURLSessionDataTask 无网络 回调
+ *
+ *  @param url        URL
+ *  @param manager    请求manager
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)GET:(NSString *)url manager:(AFHTTPRequestOperationManager *)manager parameters:(id)parameters type:(HTTPResultType)type showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    // 检查网络
+    if (![HTTPTool isReachable] && showNoNetwork){
+        
+        [HTTPExtension hideHUD];            // 隐藏转圈圈
+        
+        [HTTPExtension showNetworkError];   // 提示无网络错误
+        
+        if (noNetwork){noNetwork();}        // 回调无网络
+        
+        return;
+    }
+    
+    if (showHUD){[HTTPExtension showHUD];}
+    
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        [HTTPTool httpResultType:type operation:operation operationSuccess:success operationFailure:failure];
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        if (failure) {failure(operation,error);}
+        
+    }];
+}
+
+#pragma mark - POST 上传文件
+
+/**
+ *  POST 上传文件    常用回调  多文件上传和单文件上传区别在于文件名称
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param formDataArray 通过 FormData 模型 创建上传文件模型 以数组参数传入 单个文件:[formData] 多个文件:[formData1,formData2,....]
+ *  @param showHUD    是否显示遮挡
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type formDataArray:(NSArray *)formDataArray showHUD:(BOOL)showHUD  success:(Success)success failure:(Failure)failure
+{
+    [HTTPTool POST:url parameters:parameters type:type formDataArray:formDataArray showHUD:showHUD operationSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (success) {success(responseObject);}
+        
+    } operationFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (failure) {failure(error);}
+    }];
+}
+
+/**
+ *  POST 上传文件    附带 NSURLSessionDataTask 回调  多文件上传和单文件上传区别在于文件名称
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param formDataArray 通过 FormData 模型 创建上传文件模型 以数组参数传入 单个文件:[formData] 多个文件:[formData1,formData2,....]
+ *  @param showHUD    是否显示遮挡
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type formDataArray:(NSArray *)formDataArray showHUD:(BOOL)showHUD operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool POST:url parameters:parameters type:type formDataArray:formDataArray showHUD:showHUD noNetwork:nil operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  POST 上传文件    附带 NSURLSessionDataTask 无网络 回调  多文件上传和单文件上传区别在于文件名称
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param formDataArray 通过 FormData 模型 创建上传文件模型 以数组参数传入 单个文件:[formData] 多个文件:[formData1,formData2,....]
+ *  @param showHUD    是否显示遮挡
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type formDataArray:(NSArray *)formDataArray showHUD:(BOOL)showHUD noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool POST:url parameters:parameters type:type formDataArray:formDataArray showHUD:showHUD showNoNetwork:YES noNetwork:noNetwork operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  POST 上传文件    附带 NSURLSessionDataTask 无网络 回调  多文件上传和单文件上传区别在于文件名称
+ *
+ *  @param url        URL
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param formDataArray 通过 FormData 模型 创建上传文件模型 以数组参数传入 单个文件:[formData] 多个文件:[formData1,formData2,....]
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url parameters:(id)parameters type:(HTTPResultType)type formDataArray:(NSArray *)formDataArray showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    [HTTPTool POST:url manager:[HTTPTool ToolManager] parameters:parameters type:type formDataArray:formDataArray showHUD:showHUD showNoNetwork:showNoNetwork noNetwork:noNetwork operationSuccess:success operationFailure:failure];
+}
+
+/**
+ *  POST 上传文件    附带 NSURLSessionDataTask 无网络 回调  多文件上传和单文件上传区别在于文件名称
+ *
+ *  @param url        URL
+ *  @param manager    请求manager
+ *  @param parameters 参数
+ *  @param type       需要获取的结果类型
+ *  @param formDataArray 通过 FormData 模型 创建上传文件模型 以数组参数传入 单个文件:[formData] 多个文件:[formData1,formData2,....]
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POST:(NSString *)url manager:(AFHTTPRequestOperationManager *)manager parameters:(id)parameters type:(HTTPResultType)type formDataArray:(NSArray *)formDataArray showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork noNetwork:(NoNetwork)noNetwork operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    // 检查网络
+    if (![HTTPTool isReachable] && showNoNetwork){
+        
+        [HTTPExtension hideHUD];            // 隐藏转圈圈
+        
+        [HTTPExtension showNetworkError];   // 提示无网络错误
+        
+        if (noNetwork){noNetwork();}        // 回调无网络
+        
+        return;
+    }
+    
+    if (showHUD){[HTTPExtension showHUD];}
+    
+    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        for (FormData *data in formDataArray) {
+            
+            if (data.data) {
+                
+                [formData appendPartWithFileData:data.data name:data.name fileName:data.filename mimeType:data.mimeType];
+                
+            }else{
+                
+                [formData appendPartWithFileURL:[NSURL fileURLWithPath:data.filePath] name:data.name fileName:data.filename mimeType:data.mimeType error:nil];
+            }
+        }
+        
+    } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        [HTTPTool httpResultType:type operation:operation operationSuccess:success operationFailure:failure];
+        
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        if (failure) {failure(operation,error);}
+        
+    }];
+}
+
+#pragma mark - POST 下载文件
+
+/**
+ *  下载文件
+ *  NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+ *  @param url        URL
+ *  @param filePath   下载路径
+ *  @param showHUD    是否显示遮挡
+ *  @param progress   进度
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (AFHTTPSessionManager *)DownLoad:(NSString *)url filePath:(NSString *)filePath showHUD:(BOOL)showHUD progress:(Progress)progress success:(DownLoadSuccess)success failure:(DownLoadFailure)failure
+{
+    return [HTTPTool DownLoad:url filePath:filePath showHUD:showHUD showNoNetwork:NO progress:progress noNetwork:nil success:success failure:failure];
+}
+
+/**
+ *  下载文件
+ *  NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+ *  @param url        URL
+ *  @param filePath   下载路径 (如果不传 则会下载带默认下载地址) 建议自带 并拼接文件名称
+ *  @param progress   进度
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (AFHTTPSessionManager *)DownLoad:(NSString *)url filePath:(NSString *)filePath showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork progress:(Progress)progress noNetwork:(NoNetwork)noNetwork  success:(DownLoadSuccess)success failure:(DownLoadFailure)failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [HTTPTool DownLoad:url manager:manager filePath:filePath showHUD:showHUD showNoNetwork:showNoNetwork progress:progress noNetwork:noNetwork success:success failure:failure];
+    
+    return manager;
+}
+
+/**
+ *  下载文件
+ *  NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+ *  @param url        URL
+ *  @param manager    请求manager
+ *  @param filePath   下载路径 (如果不传 则会下载带默认下载地址) 建议自带 并拼接文件名称
+ *  @param progress   进度
+ *  @param showHUD    是否显示遮挡
+ *  @param showNoNetwork 是否在没有网络的情况下显示无网络提示
+ *  @param noNetwork  无网络回调
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)DownLoad:(NSString *)url manager:(AFHTTPSessionManager *)manager filePath:(NSString *)filePath showHUD:(BOOL)showHUD showNoNetwork:(BOOL)showNoNetwork progress:(Progress)progress noNetwork:(NoNetwork)noNetwork  success:(DownLoadSuccess)success failure:(DownLoadFailure)failure
+{
+    
+    // 检查网络
+    if (![HTTPTool isReachable] && showNoNetwork){
+        
+        [HTTPExtension hideHUD];            // 隐藏转圈圈
+        
+        [HTTPExtension showNetworkError];   // 提示无网络错误
+        
+        if (noNetwork){noNetwork();}        // 回调无网络
+        
+        return;
+    }
+    
+    if (showHUD){[HTTPExtension showHUD];}
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    // 下载任务
+    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        
+        // 下载地址   targetPath 为默认下载地址
+        
+        if (!filePath){return targetPath;}
+        
+        return [NSURL fileURLWithPath:filePath];
+        
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+        if (showHUD){[HTTPExtension hideHUD];}
+        
+        // 下载完成调用的方法
+        if (error) {
+            
+            if (progress) {progress([HTTPTool ProgressWithSuccess:NO]);}
+            if (failure) {failure(response,error);}
+            
+        }else{
+            
+            if (progress) {progress([HTTPTool ProgressWithSuccess:YES]);}
+            if (success) {success(response,filePath);}
+        }
+    }];
+    
+    //    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    //
+    //    // 下载任务
+    //    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+    //
+    //        // 下载地址   targetPath 为默认下载地址
+    //
+    //        if (!filePath){return targetPath;}
+    //
+    //        return [NSURL fileURLWithPath:filePath];
+    //
+    //
+    //    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+    //
+    //        if (showHUD){[HTTPExtension hideHUD];}
+    //
+    //        // 下载完成调用的方法
+    //        if (error) {
+    //            if (progress) {progress([HTTPTool ProgressWithSuccess:NO]);}
+    //            if (failure) {failure(response,error);}
+    //        }else{
+    //            if (progress) {progress([HTTPTool ProgressWithSuccess:YES]);}
+    //            if (success) {success(response,filePath);}
+    //        }
+    //    }];
+    
+    //        NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull)progress {
+    //
+    //            // 打印下下载进度
+    //    //        NSLog(@"进度:%lf  完成进度：%lld  总进度：%lld",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount,downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
+    //
+    //            if (progress) {progress(downloadProgress);}
+    //
+    //        } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+    //
+    //            // 下载地址   targetPath 为默认下载地址
+    //
+    //            if (!filePath){return targetPath;}
+    //
+    //            return [NSURL fileURLWithPath:filePath];
+    //
+    //        } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+    //
+    //            // 下载完成调用的方法
+    //            if (error) {
+    //                if (failure) {failure(response,error);}
+    //            }else{
+    //                if (success) {success(response,filePath);}
+    //            }
+    //
+    //        }];
+    
+    //开始启动任务
+    [task resume];
+}
+
+/**
+ *  获取 progress
+ *
+ *  @return progress
+ */
++ (NSProgress *)ProgressWithSuccess:(BOOL)isSuccess
+{
+    NSProgress *progress = [[NSProgress alloc] init];
+    
+    if (isSuccess) {
+        progress.completedUnitCount = 1;
+    }else{
+        progress.completedUnitCount = 0;
+    }
+    
+    progress.totalUnitCount = 1;
+    
+    return progress;
+}
+
+
+#pragma mark - 网络检查监听
+
+/**
+ *  网络是否可用
+ */
++ (BOOL)isReachable
+{
+    // 创建网络监测者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    
+    [manager startMonitoring];
+    
+    /*枚举里面四个状态  分别对应 未知 无网络 数据 WiFi
+     typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+     AFNetworkReachabilityStatusUnknown          = -1,      未知
+     AFNetworkReachabilityStatusNotReachable     = 0,       无网络
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,       蜂窝数据网络
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,       WiFi
+     };
+     */
+    
+    BOOL isR = NO;
+    
+    switch (manager.networkReachabilityStatus) {
+        case AFNetworkReachabilityStatusUnknown:
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            isR = YES;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return isR;
+}
+
+/**
+ *  当前是否为制定的网络状态
+ */
++ (BOOL)isEqualReachableStatus:(AFNetworkReachabilityStatus)status
+{
+    // 创建网络监测者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    
+    [manager startMonitoring];
+    
+    /*枚举里面四个状态  分别对应 未知 无网络 数据 WiFi
+     typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+     AFNetworkReachabilityStatusUnknown          = -1,      未知
+     AFNetworkReachabilityStatusNotReachable     = 0,       无网络
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,       蜂窝数据网络
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,       WiFi
+     };
+     */
+    
+    return (manager.networkReachabilityStatus == status);
+}
+
+
+
+/**
+ *  获取当前网络状态
+ */
++ (AFNetworkReachabilityStatus)reachableStatus
+{
+    // 创建网络监测者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    
+    [manager startMonitoring];
+    
+    /*枚举里面四个状态  分别对应 未知 无网络 数据 WiFi
+     typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+     AFNetworkReachabilityStatusUnknown          = -1,      未知
+     AFNetworkReachabilityStatusNotReachable     = 0,       无网络
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,       蜂窝数据网络
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,       WiFi
+     };
+     */
+    
+    return manager.networkReachabilityStatus;
+}
+
+/**
+ *  返回网络状态
+ */
+- (void)reachabilityStatus:(void (^)(AFNetworkReachabilityStatus status))block
+{
+    /**
+     AFNetworkReachabilityStatusUnknown          = -1,  // 未知
+     AFNetworkReachabilityStatusNotReachable     = 0,   // 无连接
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,   // 3G 花钱
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,   // 局域网络,不花钱
+     */
+    
+    // 检测网络连接的单例,网络变化时的回调方法
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:block];
+    
+    // 如果要检测网络状态的变化,必须用检测管理器的单例的startMonitoring
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+}
+
+#pragma mark - 解析数据 （根据APP 自定义添加）
+
+/**
+ *  根据结果返回数据
+ *
+ *  @param type      结果类型
+ *  @param operation AFHTTPRequestOperation
+ */
++ (void)httpResultType:(HTTPResultType)type operation:(AFHTTPRequestOperation *)operation success:(Success)success failure:(Failure)failure
+{
+    [HTTPTool httpResultType:type operation:operation operationSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (success) {success(responseObject);}
+        
+    } operationFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (failure) {failure(error);}
+    }];
+}
+
+/**
+ *  根据结果返回数据
+ *
+ *  @param type      结果类型
+ *  @param operation AFHTTPRequestOperation
+ */
++ (void)httpResultType:(HTTPResultType)type operation:(AFHTTPRequestOperation *)operation operationSuccess:(OperationSuccess)success operationFailure:(OperationFailure)failure
+{
+    if (type == HTTPResultTypeNone) { // 原数据
+        
+        if (success) {success(operation,operation.responseObject);}
+        
+    }else{}
+}
+
+/**
+ *  创建一个提示错误
+ *
+ *  @return NSError
+ */
++ (NSError *)creatErrorWithErrorHit:(NSString *)ErrorHit errorCode:(NSInteger)code
+{
+    //    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:ErrorHit forKey:NSLocalizedDescriptionKey];
+    NSError *error = [NSError errorWithDomain:ErrorHit code:code userInfo:nil];
+    
+    return error;
+}
+
+@end

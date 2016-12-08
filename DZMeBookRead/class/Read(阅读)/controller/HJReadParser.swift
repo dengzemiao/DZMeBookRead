@@ -132,6 +132,8 @@ class HJReadParser: NSObject {
                     readChapterModel.chapterContent = repairsContent(content.substringWithRange(NSMakeRange(lastRange.location, location - lastRange.location)))
                 }
                 
+                readChapterModel.updateFont()
+                
                 // 阅读章节list模型
                 let readChapterListModel = GetReadChapterListModelTransformation(readChapterModel)
                 
@@ -154,6 +156,8 @@ class HJReadParser: NSObject {
             readChapterModel.chapterName = "开始"
             
             readChapterModel.chapterContent = repairsContent(content)
+            
+            readChapterModel.updateFont()
             
             // 阅读章节list模型
             let readChapterListModel = GetReadChapterListModelTransformation(readChapterModel)
@@ -191,7 +195,7 @@ class HJReadParser: NSObject {
         
         // 计算高度
         readChapterListModel.chapterHeight = (CGFloat(readChapterModel.pageCount.floatValue) * (HJReadParser.GetReadViewFrame().height + HJSpaceThree)) as NSNumber!
-        
+    
 //        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(readChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace) as NSNumber!
         
         readChapterListModel.chapterID = readChapterModel.chapterID

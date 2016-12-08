@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1DDAF11DF9588B00FB48A0 /* 1111.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF1DDAF01DF9588B00FB48A0 /* 1111.txt */; };
 		AF29592E1D7BB33700C880E7 /* HJReadConfigureManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959111D7BB33700C880E7 /* HJReadConfigureManger.swift */; };
 		AF29592F1D7BB33700C880E7 /* HJReadPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959121D7BB33700C880E7 /* HJReadPageController.swift */; };
 		AF2959301D7BB33700C880E7 /* HJReadPageDataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2959131D7BB33700C880E7 /* HJReadPageDataConfigure.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF1DDAF01DF9588B00FB48A0 /* 1111.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1111.txt; sourceTree = "<group>"; };
 		AF2959111D7BB33700C880E7 /* HJReadConfigureManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadConfigureManger.swift; sourceTree = "<group>"; };
 		AF2959121D7BB33700C880E7 /* HJReadPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadPageController.swift; sourceTree = "<group>"; };
 		AF2959131D7BB33700C880E7 /* HJReadPageDataConfigure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJReadPageDataConfigure.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				AFA682B11D76D31800870EBF /* class */,
 				AF69654D1D76CF1C005FF098 /* 求魔.txt */,
 				AF69654E1D76CF1C005FF098 /* mdjyml.txt */,
+				AF1DDAF01DF9588B00FB48A0 /* 1111.txt */,
 			);
 			path = DZMeBookRead;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				AF69654F1D76CF1C005FF098 /* 求魔.txt in Resources */,
 				AFA683261D76D33500870EBF /* Info.plist in Resources */,
 				AFA683231D76D33500870EBF /* Assets.xcassets in Resources */,
+				AF1DDAF11DF9588B00FB48A0 /* 1111.txt in Resources */,
 				AFA683241D76D33500870EBF /* LaunchScreen.storyboard in Resources */,
 				AFA683181D76D31800870EBF /* MBProgressHUD.bundle in Resources */,
 			);
