@@ -238,7 +238,10 @@ class HJReadSetup: NSObject,UIGestureRecognizerDelegate,HJReadSettingColorViewDe
     func updateFont() {
         
         // 刷新字体
-        readPageController.readConfigure.updateReadRecordFont()
+        readPageController.readConfigure.updateCurrentShowReadRecordFont(readChapterModel: readPageController.readModel.readRecord.readChapterModel!)
+        
+        // 防止上下滚动模式通过 contentOffsetY 定位
+        readPageController.readModel.readRecord.contentOffsetY = nil
         
         // 重新展示
         let previousPageVC = readPageController.readConfigure.GetReadViewController(readPageController.readModel.readRecord.readChapterModel!, currentPage: readPageController.readModel.readRecord.page.intValue)

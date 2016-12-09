@@ -44,6 +44,8 @@ class HJReadViewController: HJTableViewController {
     
     /// 当前是往上滚还是往下滚 default: 往上
     fileprivate var isScrollTop:Bool = true
+    /// 用于计算返回cell高度使用
+    fileprivate var isTempScrollTop:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,9 +189,13 @@ class HJReadViewController: HJTableViewController {
             
             isScrollTop = true
             
+            isTempScrollTop = true
+            
         }else if translation.y < 0 {
             
             isScrollTop = false
+            
+            isTempScrollTop = false
         }
         
         // 第一种: 滚动中 更新阅读记录 以及头部名称提示
@@ -234,7 +240,7 @@ class HJReadViewController: HJTableViewController {
                 currentIndexPath = tableView.maxVisibleIndexPath()
             }
             
-            if  currentIndexPath != nil {
+            if currentIndexPath != nil {
                 
                 let cell = tableView.cellForRow(at: currentIndexPath) as? HJReadViewCell
                 
@@ -315,6 +321,18 @@ class HJReadViewController: HJTableViewController {
         }else if flipEffect == HJReadFlipEffect.upAndDown { // 上下滚动
             
             let readChapterListModel = readPageController.readModel.readChapterListModels[indexPath.row]
+           
+            // 用于计算切换字体之后 往上滚动 上面的cell 会出现高度变化 会进行下推或者上拉的 问题
+            if (isTempScrollTop && readChapterListModel.changeChapterHeight.boolValue) {
+                
+                tableView.contentOffset = CGPoint(x:tableView.contentOffset.x, y:tableView.contentOffset.y + CGFloat(readChapterListModel.changeChapterHeight.floatValue))
+                
+                readChapterListModel.changeChapterHeight = 0
+                
+            }else{
+                
+                readChapterListModel.changeChapterHeight = 0
+            }
             
             // 不要广告可注销 删除 后面 HJAdvertisementButtonH 广告高度 以及 广告距离下一章空隙
             return CGFloat(readChapterListModel.chapterHeight.floatValue) + HJAdvertisementButtonH + HJAdvertisementBottomSpaceH
@@ -394,6 +412,9 @@ class HJReadViewController: HJTableViewController {
                 }
             }
             
+            // 初始化显示页码
+            GetCurrentPage()
+            
         }else{}
     }
     
@@ -411,7 +432,7 @@ class HJReadViewController: HJTableViewController {
         // 计算高度
 //        readChapterListModel.chapterHeight = HJReadParser.parserReadContentHeight(tempReadChapterModel.chapterContent, configure: HJReadConfigureManger.shareManager, width: ScreenWidth - HJReadViewLeftSpace - HJReadViewRightSpace)
         
-        readChapterListModel.chapterHeight = (CGFloat(tempReadChapterModel.pageCount.floatValue) * (tableView.height + HJSpaceThree)) as NSNumber!
+        readChapterListModel.chapterHeight = (CGFloat(tempReadChapterModel.pageCount.floatValue) * (tableView.height + HJSpaceThree)) as NSNumber
         
         return tempReadChapterModel
     }
