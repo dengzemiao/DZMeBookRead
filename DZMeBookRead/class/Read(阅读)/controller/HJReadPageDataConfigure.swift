@@ -54,7 +54,7 @@ class HJReadPageDataConfigure: NSObject {
         
         // 正对当前控制器的阅读记录
         let readRecord = HJReadRecord()
-        readRecord.readChapterListModel = changeReadChapterListModel
+        readRecord.readChapterListModel = GetReadChapterListModel(readChapterModel.chapterID)
         readRecord.page = NSNumber(value: currentPage)
         readRecord.chapterIndex = readPageController.readModel.readRecord.chapterIndex
         readVC.readChapterModel = readChapterModel
@@ -142,16 +142,12 @@ class HJReadPageDataConfigure: NSObject {
     // 通过章节ID获取章节模型 需要滚动到的 获取到阅读章节
     func GetReadChapterModel(_ chapterID:String) ->HJReadChapterModel? {
         
-        let pre = NSPredicate(format: "chapterID == %@",chapterID)
+        let readChapterListModel = GetReadChapterListModel(chapterID)
         
-        let results = (readPageController.readModel.readChapterListModels as NSArray).filtered(using: pre)
-        
-        if !results.isEmpty { // 获取当前数组位置
-            
-            let readChapterListModel = results.first as! HJReadChapterListModel
+        if readChapterListModel != nil { // 获取当前数组位置
             
             // 获取阅读章节文件
-            let readChapterModel = ReadKeyedUnarchiver(readPageController.readModel.bookID, fileName: readChapterListModel.chapterID) as? HJReadChapterModel
+            let readChapterModel = ReadKeyedUnarchiver(readPageController.readModel.bookID, fileName: readChapterListModel!.chapterID) as? HJReadChapterModel
             
             if readChapterModel != nil {
                 
@@ -160,12 +156,14 @@ class HJReadPageDataConfigure: NSObject {
                 changeReadChapterModel = readChapterModel
                 
                 // 刷新字体
-                readPageController.readConfigure.updateReadRecordFont()
+                readPageController.readConfigure.updateCurrentShowReadRecordFont(readChapterModel: changeReadChapterModel)
                 
-                readPageController.title = readChapterListModel.chapterName
+                readChapterListModel!.chapterHeight = (CGFloat(changeReadChapterModel.pageCount.floatValue) * (HJReadParser.GetReadViewFrame().size.height + HJSpaceThree)) as NSNumber!
+                
+                readPageController.title = readChapterListModel!.chapterName
                 
                 // 章节list 进行滚动
-                let index = readPageController.readModel.readChapterListModels.index(of: readChapterListModel)
+                let index = readPageController.readModel.readChapterListModels.index(of: readChapterListModel!)
                 
                 readPageController.readModel.readRecord.chapterIndex = NSNumber(value: index!)
                 
@@ -270,16 +268,16 @@ class HJReadPageDataConfigure: NSObject {
     
     // MARK: -- 刷新字体
     
-    func updateReadRecordFont() {
+    func updateCurrentShowReadRecordFont(readChapterModel:HJReadChapterModel) {
         
         // 刷新字体
-        changeReadChapterModel.updateFont()
+        readChapterModel.updateFont()
         
         // 重新展示
         
         let oldPage:Int = readPageController.readModel.readRecord.page.intValue
         
-        let newPage = changeReadChapterModel.pageCount.intValue
+        let newPage = readChapterModel.pageCount.intValue
         
         readPageController.readModel.readRecord.page = NSNumber(value: (oldPage > (newPage - 1) ? (newPage - 1) : oldPage))
         
@@ -303,7 +301,7 @@ class HJReadPageDataConfigure: NSObject {
     /// 刷新保存阅读记录
     
     /**
-     保存记录 默认是更具条件是否属于书架进行保存b
+     保存记录 
      */
     func updateReadRecord() {
         

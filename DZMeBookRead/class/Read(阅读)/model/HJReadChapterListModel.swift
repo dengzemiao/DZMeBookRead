@@ -10,7 +10,17 @@ import UIKit
 
 class HJReadChapterListModel: NSObject {
     
-    var chapterHeight:NSNumber! = ScreenHeight as NSNumber!    // 上下滚动使用
+    var changeChapterHeight:NSNumber! = 0
+    var chapterHeight:NSNumber! = 0 {  // 上下滚动使用
+        
+        didSet{
+            
+            if oldValue.intValue != 0 {
+                
+                changeChapterHeight = NSNumber(value:chapterHeight.floatValue - oldValue.floatValue)
+            }
+        }
+    }
 
     var chapterID: String!                 // 章节ID
     var chapterName: String!               // 章节名称
@@ -32,6 +42,8 @@ class HJReadChapterListModel: NSObject {
         
         super.init()
         
+        changeChapterHeight = aDecoder.decodeObject(forKey: "changeChapterHeight") as! NSNumber
+        
         chapterHeight = aDecoder.decodeObject(forKey: "chapterHeight") as! NSNumber
         
         chapterID = aDecoder.decodeObject(forKey: "chapterID") as! String
@@ -52,6 +64,8 @@ class HJReadChapterListModel: NSObject {
     }
     
     func encodeWithCoder(_ aCoder: NSCoder) {
+        
+        aCoder.encode(changeChapterHeight, forKey: "changeChapterHeight")
         
         aCoder.encode(chapterHeight, forKey: "chapterHeight")
         
