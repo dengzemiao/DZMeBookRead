@@ -30,10 +30,7 @@ class HJReadViewController: HJTableViewController {
     var readRecord:HJReadRecord!
     
     /// 当前使用的阅读模型
-    var readChapterModel:HJReadChapterModel! {
-        didSet{
-        }
-    }
+    var readChapterModel:HJReadChapterModel!
     
     /// 底部状态栏
     fileprivate var readBottomStatusView:HJReadBottomStatusView!
