@@ -102,21 +102,27 @@ class HJReadViewCell: UITableViewCell {
         readViews.removeAll()
     }
     
+    /// 清理
+    func clearCell() {
+        
+        removeReadViews()
+        
+        readChapterModel = nil
+        
+        readChapterListModel = nil
+        
+        content = nil
+        
+        advertisementButton.isHidden = true
+    }
+    
     class func cellWithTableView(_ tableView:UITableView) ->HJReadViewCell {
         
         let ID = "HJReadViewCell"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: ID) as? HJReadViewCell
         
-        cell?.removeReadViews()
-        
-        cell?.readChapterModel = nil
-        
-        cell?.readChapterListModel = nil
-        
-        cell?.content = nil
-        
-        cell?.advertisementButton.isHidden = true
+        cell?.clearCell()
         
         if (cell == nil) {
             

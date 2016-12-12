@@ -220,6 +220,22 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         
         // 保存记录
         readConfigure.updateReadRecord()
+        
+        // 退出了 进行清理工作
+        (UIApplication.shared.delegate as! AppDelegate).delegate = nil
+        readSetup = nil
+        readConfigure = nil
+        if (pageViewController != nil) {
+            pageViewController.removeFromParentViewController()
+            pageViewController = nil
+        }
+        if (coverController != nil) {
+            coverController.removeFromParentViewController()
+            coverController = nil
+        }
+        for subView in view.subviews {
+            subView.removeFromSuperview()
+        }
     }
     
     override func didReceiveMemoryWarning() {

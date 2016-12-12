@@ -175,6 +175,18 @@ class HJReadViewController: HJTableViewController {
     
     // MARK: -- UITableViewDelegate
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as? HJReadViewCell
+        
+        cell?.clearCell()
+    }
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         readPageController.readModel.readRecord.contentOffsetY = scrollView.contentOffset.y as NSNumber?
@@ -301,10 +313,6 @@ class HJReadViewController: HJTableViewController {
                 }
             }
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {

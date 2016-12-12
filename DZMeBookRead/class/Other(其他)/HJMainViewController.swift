@@ -17,7 +17,6 @@ class HJMainViewController: UIViewController {
 
         view.backgroundColor = UIColor.white
         
-        
         let button = UIButton(type:UIButtonType.custom)
         button.setTitle("点击阅读", for: UIControlState())
         button.backgroundColor = UIColor.green
@@ -28,6 +27,8 @@ class HJMainViewController: UIViewController {
     }
     
     func read() {
+        
+        // 发现除了 HJReadPageController 控制器还没找到什么原因  可能引用太多 造成没有释放 但是别的子控件什么都进行了释放 打印测试过 相当于就HJReadPageController 需要第二次点击进入才会释放 HJReadPageController 内部子控件会释放成功 这点不影响代码运行 跟内存问题 内存问题也进行了优化 每一章节都会进行清理看不见的
         
         // 方法一
         
