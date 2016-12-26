@@ -190,6 +190,10 @@
                     
                     // 手势结束
                     [self GestureSuccess:isSuccess animated:YES];
+                    
+                }else{
+                    
+                    self.isAnimateChange = NO;
                 }
                 
             }else{ // 无动画
