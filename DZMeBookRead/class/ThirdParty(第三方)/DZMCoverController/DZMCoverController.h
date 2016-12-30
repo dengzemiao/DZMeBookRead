@@ -69,6 +69,11 @@
  *  当前手势操作是否带动画效果 default: YES
  */
 @property (nonatomic,assign) BOOL openAnimate;
+    
+/**
+ *  正在动画 default:NO
+ */
+@property (nonatomic,assign) BOOL isAnimateChange;
 
 /**
  *  当前控制器

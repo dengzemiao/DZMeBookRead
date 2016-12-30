@@ -39,11 +39,6 @@
 @property (nonatomic,assign) BOOL isLeft;
 
 /**
- *  正在动画 default:NO
- */
-@property (nonatomic,assign) BOOL isAnimateChange;
-
-/**
  *  判断执行pan手势
  */
 @property (nonatomic,assign) BOOL isPan;
