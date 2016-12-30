@@ -9,6 +9,12 @@
 /// 电池宽推荐使用宽高
 var HJBatterySize:CGSize = CGSize(width: 25, height: 10)
 
+// 电池样式
+enum HJBatteryType:Int {
+    case Black
+    case White
+}
+
 /// 电池量宽度 跟图片的比例
 private var HJBatteryLevelViewW:CGFloat = 20
 private var HJBatteryLevelViewScale = HJBatteryLevelViewW / HJBatterySize.width
@@ -17,6 +23,24 @@ import UIKit
 
 class HJBatteryView: UIImageView {
    
+    // 电池样式
+    var batteryType:HJBatteryType! {
+        
+        didSet{
+            
+            if batteryType == .Black {
+                
+                image = UIImage(named: "Battery_Black")
+                batteryLevelView.backgroundColor = UIColor.black
+                
+            }else{
+                
+                image = UIImage(named: "Battery_White")
+                batteryLevelView.backgroundColor = UIColor.white
+            }
+        }
+    }
+    
     /// BatteryLevel
     var batteryLevel:Float = 0 {
         
@@ -43,14 +67,13 @@ class HJBatteryView: UIImageView {
     
     func addSubviews() {
         
-        // 图片
-        image = UIImage(named: "Battery")
-        
         // 进度
         batteryLevelView = UIView()
         batteryLevelView.layer.masksToBounds = true
-        batteryLevelView.backgroundColor = UIColor.black
         addSubview(batteryLevelView)
+        
+        // 设置样式
+        batteryType = .Black
     }
     
     override func layoutSubviews() {
