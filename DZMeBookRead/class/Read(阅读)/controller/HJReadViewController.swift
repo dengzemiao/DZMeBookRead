@@ -338,7 +338,7 @@ class HJReadViewController: HJTableViewController {
                 
                 readChapterListModel.changeChapterHeight = 0
             }
-            print(readChapterListModel.chapterHeight)
+            
             // 不要广告可注销 删除 后面 HJAdvertisementButtonH 广告高度 以及 广告距离下一章空隙
             return CGFloat(readChapterListModel.chapterHeight.floatValue) + HJAdvertisementButtonH + HJAdvertisementBottomSpaceH
             
