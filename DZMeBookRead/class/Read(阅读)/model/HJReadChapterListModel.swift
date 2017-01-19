@@ -11,7 +11,7 @@ import UIKit
 class HJReadChapterListModel: NSObject {
     
     var changeChapterHeight:NSNumber! = 0
-    var chapterHeight:NSNumber! = 0 {  // 上下滚动使用
+    var chapterHeight:NSNumber! = NSNumber(value:Float(HJReadParser.GetReadViewFrame().height)) {  // 上下滚动使用
         
         didSet{
             
