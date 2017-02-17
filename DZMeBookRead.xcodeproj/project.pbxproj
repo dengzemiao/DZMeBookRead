@@ -465,7 +465,9 @@
 				TargetAttributes = {
 					AF6964AD1D76CA9F005FF098 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 2PPP498VY6;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					AF6964C11D76CA9F005FF098 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -721,13 +723,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
+				DEVELOPMENT_TEAM = 2PPP498VY6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DZMeBookRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookRead;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9a9397d5-4405-4eee-98b8-426d1ae0d95e";
+				PROVISIONING_PROFILE_SPECIFIER = HJ_APPTest_Dev_P;
 				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/class/Other(其他)/DZMeBookRead-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -739,13 +746,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
+				DEVELOPMENT_TEAM = 2PPP498VY6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DZMeBookRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookRead;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9a9397d5-4405-4eee-98b8-426d1ae0d95e";
+				PROVISIONING_PROFILE_SPECIFIER = HJ_APPTest_Dev_P;
 				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/class/Other(其他)/DZMeBookRead-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

@@ -21,6 +21,9 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     var readSetup:HJReadSetup!
     var readConfigure:HJReadPageDataConfigure!
     
+    /// 判断当前的仿真动画是否完成
+    var isSimulationAnimationComplete:Bool = true;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +72,8 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         }
         
         if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.simulation {
+            
+            isSimulationAnimationComplete = true;
             
             let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(value: UIPageViewControllerSpineLocation.min.rawValue as Int)]
             
@@ -145,6 +150,8 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
+        isSimulationAnimationComplete = true
+        
         if !completed {
             
             // 重置阅读记录
@@ -169,13 +176,31 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     /// 获取上一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        return readConfigure.GetReadPreviousPage()
+        if isSimulationAnimationComplete {
+            
+            isSimulationAnimationComplete = false
+            
+            return readConfigure.GetReadPreviousPage()
+            
+        }else{
+            
+            return nil
+        }
     }
     
     /// 获取下一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        return readConfigure.GetReadNextPage()
+        if isSimulationAnimationComplete {
+            
+            isSimulationAnimationComplete = false
+            
+            return readConfigure.GetReadNextPage()
+            
+        }else{
+            
+            return nil
+        }
     }
     
     /// 同步PageViewController 当前显示的控制器的内容
