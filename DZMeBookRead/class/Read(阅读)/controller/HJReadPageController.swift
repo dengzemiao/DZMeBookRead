@@ -21,9 +21,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     var readSetup:HJReadSetup!
     var readConfigure:HJReadPageDataConfigure!
     
-    /// 判断当前的仿真动画是否完成
-    var isSimulationAnimationComplete:Bool = true;
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,8 +69,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         }
         
         if HJReadConfigureManger.shareManager.flipEffect == HJReadFlipEffect.simulation {
-            
-            isSimulationAnimationComplete = true;
             
             let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(value: UIPageViewControllerSpineLocation.min.rawValue as Int)]
             
@@ -150,8 +145,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        isSimulationAnimationComplete = true
-        
         if !completed {
             
             // 重置阅读记录
@@ -162,12 +155,14 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         }else{
             
             // 刷新阅读记录
-            readConfigure.synchronizationChangeData()
+            synchronizationPageViewControllerData(pageViewController.viewControllers?.first)
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
+        // 刷新阅读记录
+        synchronizationPageViewControllerData(pageViewController.viewControllers?.first)
     }
     
     
@@ -175,46 +170,31 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     
     /// 获取上一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        
-        if isSimulationAnimationComplete {
-            
-            isSimulationAnimationComplete = false
-            
-            return readConfigure.GetReadPreviousPage()
-            
-        }else{
-            
-            return nil
-        }
+    
+        return readConfigure.GetReadPreviousPage()
     }
     
     /// 获取下一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        if isSimulationAnimationComplete {
-            
-            isSimulationAnimationComplete = false
-            
-            return readConfigure.GetReadNextPage()
-            
-        }else{
-            
-            return nil
-        }
+        return readConfigure.GetReadNextPage()
     }
     
     /// 同步PageViewController 当前显示的控制器的内容
-    func synchronizationPageViewControllerData(_ viewController: UIViewController){
+    func synchronizationPageViewControllerData(_ viewController: UIViewController?){
         
-        let vc  = viewController as! HJReadViewController
-        readConfigure.changeReadChapterListModel = vc.readRecord.readChapterListModel
-        readConfigure.changeReadChapterModel = vc.readChapterModel
-        readConfigure.changeLookPage = vc.readRecord.page.intValue
-        readModel.readRecord.chapterIndex = vc.readRecord.chapterIndex
-        title = vc.readChapterModel.chapterName
-        
-        // 刷新阅读记录
-        readConfigure.synchronizationChangeData()
+        if (viewController != nil) {
+            
+            let vc  = viewController as! HJReadViewController
+            readConfigure.changeReadChapterListModel = vc.readRecord.readChapterListModel
+            readConfigure.changeReadChapterModel = vc.readChapterModel
+            readConfigure.changeLookPage = vc.readRecord.page.intValue
+            readModel.readRecord.chapterIndex = vc.readRecord.chapterIndex
+            title = vc.readChapterModel.chapterName
+            
+            // 刷新阅读记录
+            readConfigure.synchronizationChangeData()
+        }
     }
     
     // MARK: -- 返回以及同步数据
