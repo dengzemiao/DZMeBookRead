@@ -116,13 +116,7 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         if !isFinish {
             
             // 重置阅读记录
-            
-            if currentController != nil {
-                
-                let vc  = currentController as! HJReadViewController
-                
-                synchronizationPageViewControllerData(vc)
-            }
+            synchronizationPageViewControllerData(currentController)
             
         }else{
             
@@ -148,9 +142,7 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
         if !completed {
             
             // 重置阅读记录
-            let vc  = previousViewControllers.first as! HJReadViewController
-            
-            synchronizationPageViewControllerData(vc)
+            synchronizationPageViewControllerData(previousViewControllers.first)
             
         }else{
             
