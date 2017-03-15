@@ -32,15 +32,15 @@ Txt格式解析（由于存放字体文件会导致文件太大 我这里面的�
 
                                                                             ---------------- 技术QQ群:52181885
 
-#Demo效果GIF：
+# Demo效果GIF：
 
 ![CarouselView in action](Untitled.gif)
 
-#书签使用效果GIF：
+# 书签使用效果GIF：
 
 ![CarouselView in action](bookMark.gif)
 
-#项目思路：
+# 项目思路：
 
 通过一个txt文件解析成 无数个章节模型(也可以理解成无数个 章节.txt文件) 这些章节模型文件使用归档进行存储起来 (可以运行项目之后进入沙河路径看看我的文件夹结构就明白了) 
 
