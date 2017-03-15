@@ -1,19 +1,21 @@
 # DZMeBookRead
 
+![Swift Version](https://img.shields.io/badge/Swift-3.x-orange.svg) 
+![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg) 
+![Author](https://img.shields.io/badge/Author-DZM-blue.svg) 
+
 Epub的同学请看这里: 用WebView来做 那需要JS功底而且效果还没那么好, 那么可以参考这个大神的思路把它解析成跟Txt一样的章节文件进行阅读:https://github.com/GGGHub/Reader, 可以只看他的Epub解析代码即可,获得章节字符串之后跟我的Demo一样都转成章节模型存起来 就都是一样了, 封面图片什么都是可以进行图文混排的。 你要是JS好的话可以忽略这句话, 我只提供思路不做SDK
 
 
 本次更新 : 
 
-已更新Swift3.0 Xcode版本: Xcode8.2.1 该Demo仅供参考思路（重点思路: 翻页效果 以及 翻页效果的数据处理 思路）
+该Demo仅供参考思路（重点思路: 翻页效果 以及 翻页效果的数据处理 思路）
 
 1.上下滚动的内存问题 现在只要看不见的章节都会进行清理内存 不会占用内存
 
 2.修改了一个BUG  上下滚动模式中 左侧滑栏切换章节之后 往上滚会快速切换章节问题 已修复
 
-重要BUG: 上下滚动之后 切换字体 往上滚动 由于字体变化 那么cell的高度也会变化 这个时候滚动上去显示新的章节 会造成tableview 上移或者下推问题 这个也是上下滚动模式最麻烦的BUG 已修复
-
-原作者DZM 最完整小说阅读器Demo 
+重要BUG: 上下滚动之后 切换字体 往上滚动 由于字体变化 那么cell的高度也会变化 这个时候滚动上去显示新的章节 会造成tableview 上移或者下推问题 这个也是上下滚动模式最麻烦的BUG 已修复 
 
 翻页效果(无效果,覆盖,仿真,上下滚动) 
 

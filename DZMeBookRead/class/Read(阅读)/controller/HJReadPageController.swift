@@ -50,7 +50,6 @@ class HJReadPageController: HJViewController,UIPageViewControllerDelegate,UIPage
     }
     
     // MARK: -- PageController
-    // MARK: -- PageController
     
     func creatPageController(_ displayController:UIViewController) {
         
