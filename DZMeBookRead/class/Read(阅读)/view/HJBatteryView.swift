@@ -11,8 +11,8 @@ var HJBatterySize:CGSize = CGSize(width: 25, height: 10)
 
 // 电池样式
 enum HJBatteryType:Int {
-    case Black
-    case White
+    case black
+    case white
 }
 
 /// 电池量宽度 跟图片的比例
@@ -28,7 +28,7 @@ class HJBatteryView: UIImageView {
         
         didSet{
             
-            if batteryType == .Black {
+            if batteryType == .black {
                 
                 image = UIImage(named: "Battery_Black")
                 batteryLevelView.backgroundColor = UIColor.black
@@ -73,7 +73,7 @@ class HJBatteryView: UIImageView {
         addSubview(batteryLevelView)
         
         // 设置样式
-        batteryType = .Black
+        batteryType = .black
     }
     
     override func layoutSubviews() {
