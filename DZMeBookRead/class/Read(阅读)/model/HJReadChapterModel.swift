@@ -24,81 +24,9 @@ class HJReadChapterModel: NSObject,NSCoding {
     /// 刷新字体
     func updateFont() {
         
-        pageRangeWithBounds(HJReadParser.GetReadViewFrame())
-    }
-    
-    fileprivate func pageRangeWithBounds(_ bounds:CGRect) {
+        pageLocationArray = HJReadParser.pageRange(string: chapterContent, rect: HJReadParser.GetReadViewFrame(), attrs: HJReadParser.parserAttribute(HJReadConfigureManger.shareManager))
         
-        pageLocationArray.removeAll()
-        
-        // 拼接字符串
-        let attrString = NSMutableAttributedString(string: chapterContent,attributes: HJReadParser.parserAttribute(HJReadConfigureManger.shareManager))
-        
-        let frameSetter = CTFramesetterCreateWithAttributedString(attrString as CFAttributedString)
-
-        let path = CGPath(rect: bounds, transform: nil)
-        
-        var currentOffset = 0
-        
-        var currentInnerOffset = 0
-        
-        var hasMorePages:Bool = true
-        
-        // 防止死循环，如果在同一个位置获取CTFrame超过2次，则跳出循环
-        let preventDeadLoopSign = currentOffset
-        
-        var samePlaceRepeatCount = 0
-        
-        while hasMorePages {
-            
-            if preventDeadLoopSign == currentOffset {
-                
-                samePlaceRepeatCount += 1
-                
-            }else{
-                
-                samePlaceRepeatCount = 0
-            }
-            
-            if samePlaceRepeatCount > 1 {
-                
-                if pageLocationArray.count == 0 {
-                    
-                    pageLocationArray.append(currentOffset)
-                    
-                }else{
-                    
-                    let lastOffset = pageLocationArray.last
-                    
-                    if lastOffset != currentOffset {
-                        
-                        pageLocationArray.append(currentOffset)
-                    }
-                }
-                
-                break
-            }
-            
-            pageLocationArray.append(currentOffset)
-            
-            let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(currentInnerOffset, 0), path, nil)
-            let range = CTFrameGetVisibleStringRange(frame)
-            
-            if (range.location + range.length) != attrString.length {
-                
-                currentOffset += range.length
-                
-                currentInnerOffset += range.length
-                
-            }else{
-                
-                // 已经分完，提示跳出循环
-                
-                hasMorePages = false
-            }
-            
-            pageCount = NSNumber(value:pageLocationArray.count)
-        }
+        pageCount = NSNumber(value:pageLocationArray.count)
     }
     
     /**

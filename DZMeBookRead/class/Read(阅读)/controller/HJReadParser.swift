@@ -332,6 +332,87 @@ class HJReadParser: NSObject {
         return frameRef
     }
     
+    
+    /// 计算Range
+    ///
+    /// - Parameters:
+    ///   - rect: 显示View Rect
+    ///   - attrs: 文字属性
+    class func pageRange(string: String,rect:CGRect, attrs: [String : Any]?) ->[Int] {
+        
+        // 记录
+        var pageLocationArray:[Int] = []
+        
+        // 拼接字符串
+        let attrString = NSMutableAttributedString(string: string, attributes: attrs)
+        
+        let frameSetter = CTFramesetterCreateWithAttributedString(attrString as CFAttributedString)
+        
+        let path = CGPath(rect: rect, transform: nil)
+        
+        var currentOffset = 0
+        
+        var currentInnerOffset = 0
+        
+        var hasMorePages:Bool = true
+        
+        // 防止死循环，如果在同一个位置获取CTFrame超过2次，则跳出循环
+        let preventDeadLoopSign = currentOffset
+        
+        var samePlaceRepeatCount = 0
+        
+        while hasMorePages {
+            
+            if preventDeadLoopSign == currentOffset {
+                
+                samePlaceRepeatCount += 1
+                
+            }else{
+                
+                samePlaceRepeatCount = 0
+            }
+            
+            if samePlaceRepeatCount > 1 {
+                
+                if pageLocationArray.count == 0 {
+                    
+                    pageLocationArray.append(currentOffset)
+                    
+                }else{
+                    
+                    let lastOffset = pageLocationArray.last
+                    
+                    if lastOffset != currentOffset {
+                        
+                        pageLocationArray.append(currentOffset)
+                    }
+                }
+                
+                break
+            }
+            
+            pageLocationArray.append(currentOffset)
+            
+            let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(currentInnerOffset, 0), path, nil)
+            let range = CTFrameGetVisibleStringRange(frame)
+            
+            if (range.location + range.length) != attrString.length {
+                
+                currentOffset += range.length
+                
+                currentInnerOffset += range.length
+                
+            }else{
+                
+                // 已经分完，提示跳出循环
+                
+                hasMorePages = false
+            }
+        }
+        
+        return pageLocationArray
+    }
+    
     /**
      计算字符串的高度
      
