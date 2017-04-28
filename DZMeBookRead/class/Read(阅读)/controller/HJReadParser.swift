@@ -332,55 +332,55 @@ class HJReadParser: NSObject {
         return frameRef
     }
     
-//    /**
-//     计算字符串的高度
-//     
-//     - parameter content:   字符串内容
-//     - parameter configure: 配置
-//     - parameter width:     最大内容显示宽度
-//     
-//     - returns: 计算获得的内容高度
-//     */
-//    class func parserReadContentHeight(_ content:String,configure:HJReadConfigureManger,width:CGFloat) ->CGFloat {
-//     
-//        let attributedString = NSMutableAttributedString(string: content,attributes: parserAttribute(configure))
-//        
-//        let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-//        
-//        // 高要设置足够大
-//        
-//        let height:CGFloat = 100000
-//        
-//        let drawingRect = CGRect(x: 0, y: 0, width: width, height: height)
-//        
-//        let path = CGMutablePath()
-//        
-//        CGPathAddRect(path, nil, drawingRect)
-//        
-//        let frameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, nil)
-//        
-//        let linesArray = CTFrameGetLines(frameRef) as NSArray
-//        
-//        var originsArray = [CGPoint](repeating: CGPoint.zero, count: linesArray.count)
-//        
-//        CTFrameGetLineOrigins(frameRef, CFRangeMake(0, 0), &originsArray)
-//        
-//        // 最后一行line的原点y坐标
-//        let line_y = originsArray[linesArray.count - 1].y
-//        
-//        var ascent:CGFloat = 0
-//        var descent:CGFloat = 0
-//        var leading:CGFloat = 0
-//        
-//        let line = linesArray.object(at: linesArray.count - 1) as! CTLine
-//        
-//        CTLineGetTypographicBounds(line, &ascent, &descent, &leading)
-//        
-//        // +1为了纠正descent转换成int小数点后舍去的值
-//        let total_height = height - line_y + descent + 1
-//        
-//        return total_height
-//    }
+    /**
+     计算字符串的高度
+     
+     - parameter content:   字符串内容
+     - parameter configure: 配置
+     - parameter width:     最大内容显示宽度
+     
+     - returns: 计算获得的内容高度
+     */
+    class func parserReadContentHeight(_ content:String,configure:HJReadConfigureManger,width:CGFloat) ->CGFloat {
+     
+        let attributedString = NSMutableAttributedString(string: content,attributes: parserAttribute(configure))
+        
+        let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
+        
+        // 高要设置足够大
+        
+        let height:CGFloat = 10000
+        
+        let drawingRect = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        let path = CGMutablePath()
+        
+        path.addRect(drawingRect)
+        
+        let frameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, nil)
+        
+        let linesArray = CTFrameGetLines(frameRef) as NSArray
+        
+        var originsArray = [CGPoint](repeating: CGPoint.zero, count: linesArray.count)
+        
+        CTFrameGetLineOrigins(frameRef, CFRangeMake(0, 0), &originsArray)
+        
+        // 最后一行line的原点y坐标
+        let line_y = originsArray[linesArray.count - 1].y
+        
+        var ascent:CGFloat = 0
+        var descent:CGFloat = 0
+        var leading:CGFloat = 0
+        
+        let line = linesArray.object(at: linesArray.count - 1) as! CTLine
+        
+        CTLineGetTypographicBounds(line, &ascent, &descent, &leading)
+        
+        // +1为了纠正descent转换成int小数点后舍去的值
+        let total_height = height - line_y + descent + 1
+        
+        return total_height
+    }
     
     /**
      获取字符串属性
