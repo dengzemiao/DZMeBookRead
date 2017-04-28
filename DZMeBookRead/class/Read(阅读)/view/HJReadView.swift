@@ -31,7 +31,7 @@ class HJReadView: UIView {
         
         let ctx = UIGraphicsGetCurrentContext()
         ctx?.textMatrix = CGAffineTransform.identity
-        ctx?.translateBy(x: 0, y: self.bounds.size.height);
+        ctx?.translateBy(x: 0, y: bounds.size.height);
         ctx?.scaleBy(x: 1.0, y: -1.0);
         CTFrameDraw(frameRef!, ctx!);
     }
