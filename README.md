@@ -30,4 +30,4 @@ Epub的同学请看这里: 用WebView来做 那需要JS功底而且效果还没�
 
 # 文件介绍:
 
-![CarouselView in action](icon_0.gif)
+![CarouselView in action](icon_0.png)
