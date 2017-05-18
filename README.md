@@ -31,3 +31,11 @@ Epub的同学请看这里: 用WebView来做 那需要JS功底而且效果还没�
 # 文件介绍:
 
 ![CarouselView in action](icon_0.png)
+
+# 部分代码浏览
+
+![CarouselView in action](code_0.png)
+
+![CarouselView in action](code_1.png)
+
+![CarouselView in action](code_2.png)
