@@ -4,7 +4,9 @@
 ![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg) 
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg) 
 
-改项目推到重做 代码简洁注释多 方法封装可拷贝 该项目支持直接拖入项目使用
+(不好意思 为了展示更多 下载包可能有点大 因为放了下面的展示图片)
+
+改项目推到重做 代码简洁注释多 方法封装可拷贝 该项目支持直接拖入项目使用 
 
 翻页效果: 无效果,覆盖,仿真,上下滚动
 
