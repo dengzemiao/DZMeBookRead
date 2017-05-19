@@ -18,6 +18,8 @@
 
 小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
 
+UIPageViewController 翻页背景颜色修改 : http://www.jianshu.com/p/3e75fa22ada8
+
 Epub的同学请看这里: 用WebView来做 那需要JS功底而且效果还没那么好, 那么可以参考这个大神的思路把它解析成跟Txt一样的章节文件进行阅读:https://github.com/GGGHub/Reader, 可以只看他的Epub解析代码即可,获得章节字符串之后跟我的Demo一样都转成章节模型存起来 就都是一样了, 封面图片什么都是可以进行图文混排的。 你要是JS好的话可以忽略这句话
 
 
