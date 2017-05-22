@@ -92,6 +92,9 @@ class DZMReadOperation: NSObject {
             
         }else{ // 网络小说
             
+            // 这里进行网络数据请求以及一些判断 当请求成功之后 使用(确保请求之后修改阅读记录模型)
+            // vc.creatPageController(GetCurrentReadViewController())
+            
             readRecordModel = nil
         }
         
@@ -136,6 +139,9 @@ class DZMReadOperation: NSObject {
             }
             
         }else{ // 网络小说
+            
+            // 这里进行网络数据请求以及一些判断 当请求成功之后 使用(确保请求之后修改阅读记录模型)
+            // vc.creatPageController(GetCurrentReadViewController())
             
             readRecordModel = nil
         }

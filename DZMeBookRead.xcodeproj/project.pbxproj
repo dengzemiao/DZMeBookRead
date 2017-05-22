@@ -56,6 +56,7 @@
 		AF6322AD1EC9B78F001B92D4 /* DZMRMLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */; };
 		AF6322AF1EC9C21B001B92D4 /* DZMSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */; };
 		AF698BFC1ECC03F000A98EE6 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */; };
+		AF7F68681ED2808300875E53 /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */; };
 		AFCAF4D01ECAB98700746F7F /* DZMReadViewUDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCAF4CF1ECAB98700746F7F /* DZMReadViewUDCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,7 @@
 		AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMLeftView.swift; sourceTree = "<group>"; };
 		AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMSegmentedControl.swift; sourceTree = "<group>"; };
 		AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		AFCAF4CF1ECAB98700746F7F /* DZMReadViewUDCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewUDCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -392,6 +394,7 @@
 				AF378D651EC455FE00E7D441 /* UIView+Extension.swift */,
 				AF378DA41EC46B9100E7D441 /* NSObject+Extension.swift */,
 				AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */,
+				AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				AF378DA31EC46B3700E7D441 /* DZMUserDefaults.swift in Sources */,
 				AF378D7B1EC45DEE00E7D441 /* DZMGlobalProperty.swift in Sources */,
 				AF378DA51EC46B9100E7D441 /* NSObject+Extension.swift in Sources */,
+				AF7F68681ED2808300875E53 /* UIScrollView+Extension.swift in Sources */,
 				AF378D9E1EC46A0200E7D441 /* ASValuePopUpView.m in Sources */,
 				AF378D6F1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				AF378D9F1EC46A0200E7D441 /* ASValueTrackingSlider.m in Sources */,

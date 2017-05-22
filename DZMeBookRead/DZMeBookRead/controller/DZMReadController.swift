@@ -207,6 +207,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             
             pageViewController!.dataSource = self
             
+            // 为了翻页背面的颜色使用
+            pageViewController!.isDoubleSided = true
+            
             view.insertSubview(pageViewController!.view, at: 0)
             
             addChildViewController(pageViewController!)
@@ -312,16 +315,45 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     
     // MARK: -- UIPageViewControllerDataSource
     
+    /// 用于区分正反面的值(固定)
+    private var TempNumber:NSInteger = 1
+    
     /// 获取上一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        return readOperation.GetAboveReadViewController()
+        TempNumber -= 1
+        
+        if abs(TempNumber) % 2 == 0 { // 背面
+            
+            let vc = UIViewController()
+            
+            vc.view.backgroundColor =  DZMReadConfigure.shared().readColor().withAlphaComponent(0.95)
+            
+            return vc
+            
+        }else{ // 内容
+            
+            return readOperation.GetAboveReadViewController()
+        }
     }
     
     /// 获取下一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        return readOperation.GetBelowReadViewController()
+        TempNumber += 1
+        
+        if abs(TempNumber) % 2 == 0 { // 背面
+            
+            let vc = UIViewController()
+            
+            vc.view.backgroundColor =  DZMReadConfigure.shared().readColor().withAlphaComponent(0.95)
+            
+            return vc
+            
+        }else{ // 内容
+            
+            return readOperation.GetBelowReadViewController()
+        }
     }
     
     override func didReceiveMemoryWarning() {

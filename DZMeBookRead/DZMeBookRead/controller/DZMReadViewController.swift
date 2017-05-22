@@ -85,14 +85,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     /// 配置背景颜色
     func configureBGColor() {
         
-        if DZMReadConfigure.shared().colorIndex == DZMReadBGColors.index(of: DZMReadBGColor_4) { // 牛皮黄
-            
-            view.backgroundColor = UIColor(patternImage:UIImage(named: "read_bg_0")!)
-            
-        }else{
-            
-            view.backgroundColor = DZMReadBGColors[DZMReadConfigure.shared().colorIndex]
-        }
+        view.backgroundColor = DZMReadConfigure.shared().readColor()
     }
     
     // MARK: -- 阅读模式
@@ -153,7 +146,17 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let readChapterListModel = readController.readModel.readChapterListModels[indexPath.row]
             
             // 章节内容模型
-            cell.readChapterModel = readChapterListModel.readChapterModel(readRecordModel: readRecordModel)
+            if DZMReadChapterModel.IsExistReadChapterModel(bookID: readChapterListModel.bookID, chapterID: readChapterListModel.id) { // 存在
+                
+                cell.readChapterModel = readChapterListModel.readChapterModel(readRecordModel: readRecordModel)
+                
+            }else{ // 不存在(一般是网络小说才会不存在)
+                
+                // 停止滚动
+                tableView.stopScroll()
+                
+                // 添加阻挡获取网络小说数据 请求成功之后进行刷新当前Cell
+            }
             
             return cell
         }

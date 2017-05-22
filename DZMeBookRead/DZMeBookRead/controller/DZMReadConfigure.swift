@@ -119,6 +119,19 @@ class DZMReadConfigure: NSObject {
         return [NSForegroundColorAttributeName:textColor,NSFontAttributeName:readFont(),NSParagraphStyleAttributeName:paragraphStyle]
     }
     
+    /// 获得颜色
+    func readColor() ->UIColor {
+        
+        if colorIndex == DZMReadBGColors.index(of: DZMReadBGColor_4) { // 牛皮黄
+            
+            return UIColor(patternImage:UIImage(named: "read_bg_0")!)
+            
+        }else{
+            
+            return DZMReadBGColors[colorIndex]
+        }
+    }
+    
     /// 获得文字Font
     func readFont() ->UIFont {
         
