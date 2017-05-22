@@ -22,6 +22,10 @@ import UIKit
  阅读设置选中颜色动画 DZMRMColorView
  如不需要动画 可注销动画代码
  
+ 3.获取章节的地方又获取网络小说章节的流程提示
+ 
+ 4.仿真背景颜色会跟着阅读颜色设置 不会是默认的UIPageViewController背景颜色(白色)
+ 
  */
 
 class DZMMainController: DZMViewController {
