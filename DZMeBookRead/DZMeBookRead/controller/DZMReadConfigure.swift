@@ -17,6 +17,9 @@ private var instance:DZMReadConfigure? = DZMReadConfigure.readInfo()
 /// 背景颜色数组
 let DZMReadBGColors:[UIColor] = [UIColor.white,DZMReadBGColor_1,DZMReadBGColor_2,DZMReadBGColor_3,DZMReadBGColor_4,DZMReadBGColor_5]
 
+/// 根据背景颜色 对应的文字颜色 数组(数量必须与 DZMReadBGColors 相同)
+// let DZMReadTextColors:[UIColor] = [DZMColor_5,DZMColor_5,DZMColor_5,DZMColor_5,DZMColor_5,DZMColor_5]
+
 /// 阅读最小阅读字体大小
 let DZMReadMinFontSize:NSInteger = 12
 
@@ -44,11 +47,16 @@ class DZMReadConfigure: NSObject {
     /// 翻页效果
     var effectType:NSInteger = DZMRMEffectType.simulation.rawValue {didSet{save()}}
     
-    /// 阅读文字颜色
+    /// 阅读文字颜色(更加需求自己选)
     var textColor:UIColor {
         
         // 固定颜色使用
         get{return DZMColor_5}
+        
+        
+        // 根据背影颜色选择字体颜色(假如想要根据背景颜色切换字体颜色 需要在 configureBGColor() 方法里面调用 tableView.reloadData())
+//        get{return DZMReadTextColors[colorIndex]}
+        
         
         // 日夜间区分颜色使用
 //        get{
