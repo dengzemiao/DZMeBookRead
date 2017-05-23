@@ -58,7 +58,7 @@ class DZMReadConfigure: NSObject {
 //        get{return DZMReadTextColors[colorIndex]}
         
         
-        // 日夜间区分颜色使用
+        // 日夜间区分颜色使用 (假如想要根据日夜间切换字体颜色 需要调用 tableView.reloadData() 或者取巧 使用上面的方式)
 //        get{
 //            
 //            if DZMUserDefaults.integerForKey(DZMKey_IsDayOrNight) == DZMRMLightButtonType.day.rawValue {
