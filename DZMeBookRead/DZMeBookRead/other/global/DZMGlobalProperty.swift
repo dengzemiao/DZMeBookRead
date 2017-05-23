@@ -72,5 +72,5 @@ let DZMSpace_6:CGFloat = 5
 
 
 // MARK: -- Key
-/// 是夜间还是日间模式   true:日间 false:夜间
-let DZMKey_IsDayOrNight:String = "isDayOrNight"
+/// 是夜间还是日间模式   true:夜间 false:日间
+let DZMKey_IsNighOrtDay:String = "isNightOrDay"
