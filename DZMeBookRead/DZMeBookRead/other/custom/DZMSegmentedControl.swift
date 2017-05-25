@@ -70,6 +70,9 @@ class DZMSegmentedControl: UIView {
     /// 开启点击只允许存在一个按钮选中
     var openClickOnlySelected:Bool = true
     
+    /// 开启初始化选中
+    var openInitClickSelected:Bool = true
+    
     /// 当前选中的按钮 当 openClickOnlySelected = false 时则只会记录最后一次点击的索引
     var selectIndex:NSInteger = 0 {
         
@@ -211,7 +214,7 @@ class DZMSegmentedControl: UIView {
         }
         
         // 选中按钮
-        if !buttons.isEmpty {clickButton(button: buttons[selectIndex])}
+        if !buttons.isEmpty && openInitClickSelected {clickButton(button: buttons[selectIndex])}
         
         // 布局
         setNeedsLayout()
