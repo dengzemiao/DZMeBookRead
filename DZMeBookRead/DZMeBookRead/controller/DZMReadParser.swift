@@ -250,7 +250,7 @@ class DZMReadParser: NSObject {
      
      - returns: 每一页的起始位置数组
      */
-    class func ParserPageRange(string:String,rect:CGRect, attrs:[String : Any]?) ->[NSRange] {
+    class func ParserPageRange(string:String, rect:CGRect, attrs:[String : Any]?) ->[NSRange] {
 
         // 记录
         var rangeArray:[NSRange] = []
