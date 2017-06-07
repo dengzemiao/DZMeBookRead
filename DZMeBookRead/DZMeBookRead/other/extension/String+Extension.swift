@@ -145,13 +145,7 @@ extension String {
     }
     
     /// 计算字符串大小
-    func size(_ font:UIFont) ->CGSize {
-        
-        return size(font, constrainedToSize:CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
-    }
-    
-    /// 计算字符串大小
-    func size(_ font:UIFont,constrainedToSize:CGSize) ->CGSize {
+    func size(font:UIFont,constrainedToSize:CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ->CGSize {
         
         let string:NSString = self as NSString
         
@@ -174,13 +168,9 @@ extension String {
 extension NSAttributedString{
     
     /// 计算多态字符串的size
-    func size(_ constrainedToSize:CGSize?) ->CGSize{
+    func size(constrainedToSize:CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ->CGSize{
         
-        var tempConstrainedToSize = constrainedToSize
-        
-        if constrainedToSize == nil {tempConstrainedToSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)}
-        
-        return self.boundingRect(with: tempConstrainedToSize!, options: [NSStringDrawingOptions.usesLineFragmentOrigin,NSStringDrawingOptions.usesFontLeading], context: nil).size
+        return self.boundingRect(with: constrainedToSize, options: [NSStringDrawingOptions.usesLineFragmentOrigin,NSStringDrawingOptions.usesFontLeading], context: nil).size
     }
     
     
