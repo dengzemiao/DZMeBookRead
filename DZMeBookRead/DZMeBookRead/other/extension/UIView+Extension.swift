@@ -12,7 +12,6 @@ import UIKit
 extension UIView{
     
     // MARK: -- 扩展方法
-    
     func viewController() ->UIViewController? {
         
         //通过响应者链，取得此视图所在的视图控制器
@@ -138,6 +137,4 @@ extension UIView{
             self.frame = r
         }
     }
-    
-
 }

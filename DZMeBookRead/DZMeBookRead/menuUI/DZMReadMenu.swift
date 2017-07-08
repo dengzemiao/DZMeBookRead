@@ -215,7 +215,7 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
     // MARK: -- UIGestureRecognizerDelegate
     
     /// 点击这些控件不需要执行手势
-    private let ClassString:[String] = ["ASValueTrackingSlider","UITableViewCellContentView","UISlider","DZMeBookRead.DZMRMLeftView","DZMeBookRead.DZMRMTopView","DZMeBookRead.DZMRMBottomView","DZMeBookRead.DZMHaloButton","DZMeBookRead.DZMRMLightView","DZMeBookRead.DZMRMColorView","DZMeBookRead.DZMRMFuncView","DZMeBookRead.DZMSettingView"]
+    private let ClassString:[String] = ["ASValueTrackingSlider","UITableViewCellContentView","UISlider","DZMeBookRead.DZMRMLeftView","DZMeBookRead.DZMRMTopView","DZMeBookRead.DZMRMBottomView","DZMeBookRead.DZMHaloButton","DZMeBookRead.DZMRMLightView","DZMeBookRead.DZMRMColorView","DZMeBookRead.DZMRMFuncView","DZMeBookRead.DZMSettingView","UIButton"]
     
     /// 手势拦截
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
