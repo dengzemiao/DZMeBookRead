@@ -178,7 +178,7 @@ func ReadKeyedRemoveArchiver(folderName:String,fileName:String? = nil) {
     
     var path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(ReadFolderName)/\(folderName)")
     
-    if fileName != nil { path +=  "/\(fileName)" }
+    if fileName != nil { path +=  "/\(fileName!)" }
     
     do{
         try FileManager.default.removeItem(atPath: path)
@@ -190,7 +190,7 @@ func ReadKeyedIsExistArchiver(folderName:String,fileName:String? = nil) ->Bool {
     
     var path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(ReadFolderName)/\(folderName)")
     
-    if fileName != nil { path +=  "/\(fileName)" }
+    if fileName != nil { path +=  "/\(fileName!)" }
     
     return FileManager.default.fileExists(atPath: path)
 }
