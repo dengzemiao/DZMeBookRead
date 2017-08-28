@@ -58,8 +58,8 @@ class DZMReadParser: NSObject {
             // 获得章节列表
             readModel.readChapterListModels = ParserContent(bookID: bookID, content: content)
             
-            // 设置阅读记录 第一个章节 为 "1"
-            readModel.modifyReadRecordModel(chapterID: "1")
+            // 设置阅读记录 第一个章节 为 首个章节ID
+            readModel.modifyReadRecordModel(chapterID: readModel.readChapterListModels.first!.id)
             
             // 保存
             readModel.save()
