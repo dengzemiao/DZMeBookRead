@@ -26,6 +26,7 @@ import UIKit
  
  4.仿真背景颜色会跟着阅读颜色设置 不会是默认的UIPageViewController背景颜色(白色)
  
+ 特殊需求-定位建议: 如果阅读记录使用page觉得不好或者公司项目需求可以修改为location定位 通过location获得page更加精准 如果不是很懂可进群咨询群主
  */
 
 class DZMMainController: DZMViewController {
