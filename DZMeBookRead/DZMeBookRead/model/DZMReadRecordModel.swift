@@ -22,7 +22,7 @@ class DZMReadRecordModel: NSObject,NSCoding {
     /// 当前阅读到的章节模型
     var readChapterModel:DZMReadChapterModel?
     
-    /// 当前章节阅读到的页码
+    /// 当前章节阅读到的页码(如果想要更加准确 可以记录location 通过location获得页码进行使用)
     var page:NSNumber = NSNumber(value: 0)
     
     // MARK: -- init
