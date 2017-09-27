@@ -109,7 +109,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func configureReadRecordModel() {
         
         if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 上下滚动
-            
+           
             tableView.contentOffset = CGPoint(x: tableView.contentOffset.x, y: CGFloat(readRecordModel.readChapterModel!.priority.intValue + readRecordModel.page.intValue) * GetReadTableViewFrame().height)
         }
     }
@@ -252,13 +252,13 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 // 显示章节Cell
                 let cell = tableView.cellForRow(at: indexPath) as! DZMReadViewUDCell
                 
+                // 显示章节内容 Frame
+                rect = CGRect(x: tableView.contentOffset.x, y: tableView.contentOffset.y - rect.origin.y, width: rect.width, height: rect.height)
+                
+                // 显示章节内容 IndexPath
+                indexPath =  cell.tableView.indexPathsForRows(in: rect)!.first!
+                
                 DispatchQueue.global().async { [weak self] ()->Void in
-                    
-                    // 显示章节内容 Frame
-                    rect = CGRect(x: self!.tableView.contentOffset.x, y: self!.tableView.contentOffset.y - rect.origin.y, width: rect.width, height: rect.height)
-                    
-                    // 显示章节内容 IndexPath
-                    indexPath =  cell.tableView.indexPathsForRows(in: rect)!.first!
                     
                     // 记录
                     toPage = indexPath.row
