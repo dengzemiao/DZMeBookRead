@@ -70,6 +70,9 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
         tableView.frame = GetReadTableViewFrame()
         view.addSubview(tableView)
         
