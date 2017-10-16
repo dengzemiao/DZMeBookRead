@@ -5,12 +5,8 @@
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ```diff
-+ 鸟宿池边树，僧敲月下门
-- 鸟宿池边树，僧推月下门
-```
-
-```diff
-推荐下自己写的无限滚动：通常的都是传入URL数组进行无限滚动，而这个则是传入自定义的(Views)视图数组进行无限滚动，也支持控制器无限滚动，有兴趣的可以试试：https://github.com/dengzemiao/DZMCycleScrollView
+鸟宿池边树，僧敲月下门
+鸟宿池边树，僧推月下门
 ```
 
 ***
