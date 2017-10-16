@@ -71,22 +71,22 @@
 ## 有BUG请联系我 技术QQ群:52181885 （入群需要回答问题：常用的网络请求框架? 有的QQ版本不显示问题 已经出现过这样的情况 所以入群自己填上答案就行 防止广告之类的人进入）
 
 ***
-#### Demo效果GIF：
+#### Demo效果：
 
-![CarouselView in action](gif_0.gif)
+![Demo效果](gif_0.gif)
 
 ***
 #### 文件介绍:
 
-![CarouselView in action](icon_0.png)
+![文件介绍1](icon_0.png)
 
-![CarouselView in action](icon_1.png)
+![文件介绍2](icon_1.png)
 
 ***
 #### 部分代码浏览:
 
-![CarouselView in action](code_0.png)
+![代码浏览1](code_0.png)
 
-![CarouselView in action](code_1.png)
+![代码浏览2](code_1.png)
 
-![CarouselView in action](code_2.png)
+![代码浏览3](code_2.png)
