@@ -2,8 +2,10 @@
 
 ![Swift Version](https://img.shields.io/badge/Swift-3.x-orange.svg) 
 ![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg) 
-![Author](https://img.shields.io/badge/Author-DZM-blue.svg) 
+![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
+```diff 推荐下自己写的无限滚动：通常的都是传入URL数组进行无限滚动，而这个则是传入自定义的(Views)视图数组进行无限滚动，也支持控制器无限滚动，有兴趣的可以试试：https://github.com/dengzemiao/DZMCycleScrollView
+```
 iOS11适配完成- 有时间我会把下划线,笔记...这些常用功能加进去
 
 (不好意思 为了展示更多 下载包可能有点大 因为放了下面的展示图片)
