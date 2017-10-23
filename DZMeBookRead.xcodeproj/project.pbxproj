@@ -192,8 +192,8 @@
 		AF378D751EC45C2100E7D441 /* menuUI */ = {
 			isa = PBXGroup;
 			children = (
-				AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */,
 				AF3914851EC56C7000768478 /* DZMReadMenu.swift */,
+				AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */,
 				AF3914861EC56C7000768478 /* DZMRMBaseView.swift */,
 				AF3914871EC56C7000768478 /* DZMRMBottomView.swift */,
 				AF3914881EC56C7000768478 /* DZMRMLightView.swift */,

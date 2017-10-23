@@ -172,8 +172,4 @@ extension NSAttributedString{
         
         return self.boundingRect(with: constrainedToSize, options: [NSStringDrawingOptions.usesLineFragmentOrigin,NSStringDrawingOptions.usesFontLeading], context: nil).size
     }
-    
-    
-    
-    
 }
