@@ -4,6 +4,13 @@
 ![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg) 
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
+***
+#### Demo效果：
+
+![Demo效果](gif_0.gif)
+
+***
+
 ```diff
 - 推荐下自己写的无限滚动：
 - 通常的都是传入URL数组进行无限滚动，而这个则是传入自定义的(Views)视图数组进行无限滚动，也支持控制器无限滚动
@@ -71,11 +78,6 @@
 
 ***
 ## 有BUG请联系我 技术QQ群:52181885 （入群需要回答问题：常用的网络请求框架? 有的QQ版本不显示问题 已经出现过这样的情况 所以入群自己填上答案就行 防止广告之类的人进入）
-
-***
-#### Demo效果：
-
-![Demo效果](gif_0.gif)
 
 ***
 #### 文件介绍:
