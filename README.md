@@ -1,7 +1,7 @@
 # DZMeBookRead
 
 ![Swift Version](https://img.shields.io/badge/Swift-3.x-orange.svg) 
-![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg) 
+![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg)
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ***
@@ -39,25 +39,27 @@
     导入项目流程 -> 请看下面的 文件介绍
     
 ***
-#### 小说相关库：
-
-    小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
-
-    UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
-
-***
 #### Epub:
     方案一:
-    用WebView来做,效果的话就因人而异了
+    用WebView,这个我没有做过,但是效果的话就因人而异了
     
     方案二:
+    将Epub解析出来使用正常的阅读模式进行阅读
     可以参考这个Demo的解析思路: https://github.com/GGGHub/Reader
     解析出来之后可以转成我Demo里面的模型,在进行显示
     
     方案三:
+    将Epub解析出来使用正常的阅读模式进行阅读
     使用JS直接解析Epub每一章,然后进行图文混排
     图文混排可直接使用CoreText
     网上找的图文混排Demo: http://www.code4app.com/thread-8116-1-1.html
+
+***
+#### 小说相关库：
+
+小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
+
+UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
 
 ***
 #### 唯一遗憾:
