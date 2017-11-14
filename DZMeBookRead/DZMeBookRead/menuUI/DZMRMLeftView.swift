@@ -22,9 +22,6 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
     /// 类型 0: 章节 1: 书签
     private var type:NSInteger = 0
     
-    /// 当前阅读章节ID 用于判断重复选中
-    private var tempChapterID:String = ""
-    
     override func addSubviews() {
         
         super.addSubviews()
@@ -65,11 +62,9 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
                
                 let readChapterModel = self?.readMenu.vc.readModel.readRecordModel.readChapterModel
                 
-                self?.tempChapterID = readChapterModel!.id
-                
                 let readChapterListModels = (self?.readMenu.vc.readModel.readChapterListModels ?? []) as NSArray
                 
-                let models = readChapterListModels.filtered(using: NSPredicate(format: "id == %@", self?.tempChapterID ?? ""))
+                let models = readChapterListModels.filtered(using: NSPredicate(format: "id == %@", readChapterModel!.id))
                 
                 if !models.isEmpty {
                     

@@ -433,7 +433,12 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
         
         if leftView.isHidden == !isShow {return}
         
-        if isShow {leftView.isHidden = false}
+        if isShow {
+            
+            leftView.isHidden = false
+            
+            leftView.scrollReadRecord()
+        }
         
         let rect = leftView.contentView.frame
         
