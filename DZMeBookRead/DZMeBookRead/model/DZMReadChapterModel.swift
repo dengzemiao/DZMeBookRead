@@ -16,6 +16,12 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 章节ID
     var id:String!
     
+    /// 上一章 章节ID
+    var lastChapterId:String?
+    
+    /// 下一章：章节ID
+    var nextChapterId:String?
+    
     /// 章节名称
     var name:String!
     
@@ -138,6 +144,10 @@ class DZMReadChapterModel: NSObject,NSCoding {
         
         id = aDecoder.decodeObject(forKey: "id") as! String
         
+        lastChapterId = aDecoder.decodeObject(forKey: "lastChapterId") as? String
+        
+        nextChapterId = aDecoder.decodeObject(forKey: "nextChapterId") as? String
+        
         name = aDecoder.decodeObject(forKey: "name") as! String
         
         priority = aDecoder.decodeObject(forKey: "priority") as! NSNumber
@@ -156,6 +166,10 @@ class DZMReadChapterModel: NSObject,NSCoding {
         aCoder.encode(bookID, forKey: "bookID")
         
         aCoder.encode(id, forKey: "id")
+        
+        aCoder.encode(lastChapterId, forKey: "lastChapterId")
+        
+        aCoder.encode(nextChapterId, forKey: "nextChapterId")
         
         aCoder.encode(name, forKey: "name")
         

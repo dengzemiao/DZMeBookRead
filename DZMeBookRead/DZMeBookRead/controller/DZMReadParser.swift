@@ -115,6 +115,9 @@ class DZMReadParser: NSObject {
             // 数量
             let count = results.count
             
+            // 记录 上一章 模型
+            var lastReadChapterModel:DZMReadChapterModel?
+            
             // 便利
             for i in 0..<count {
                 
@@ -175,11 +178,17 @@ class DZMReadParser: NSObject {
                 // 添加章节列表模型
                 readChapterListModels.append(GetReadChapterListModel(readChapterModel: readChapterModel))
                 
+                // 设置上下章ID
+                readChapterModel.lastChapterId = lastReadChapterModel?.id
+                lastReadChapterModel?.nextChapterId = readChapterModel.id
+                
                 // 保存
                 readChapterModel.save()
+                lastReadChapterModel?.save()
                 
                 // 记录
                 lastRange = range
+                lastReadChapterModel = readChapterModel
             }
             
         }else{

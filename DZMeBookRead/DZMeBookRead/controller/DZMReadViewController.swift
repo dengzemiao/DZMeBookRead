@@ -25,8 +25,8 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     /// TableView
     private(set) var tableView:UITableView!
     
-    /// 往上滚(true)还是往下滚(false)
-    private var isScrollTop:Bool = true
+    /// 阅读列表
+    private var dataArray:[String] = []
     
     override func viewDidLoad() {
         
@@ -76,10 +76,10 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.frame = GetReadTableViewFrame()
         view.addSubview(tableView)
         
-        // 清理
-        for readChapterListModel in readController.readModel.readChapterListModels {
+        // 设置数据源
+        if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue && readRecordModel.readChapterModel != nil {
             
-            readChapterListModel.clearPageCount(readRecordModel: readRecordModel)
+            dataArray.append(readRecordModel.readChapterModel!.id)
         }
     }
     
@@ -113,11 +113,23 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 上下滚动
            
-            tableView.contentOffset = CGPoint(x: tableView.contentOffset.x, y: CGFloat(readRecordModel.readChapterModel!.priority.intValue + readRecordModel.page.intValue) * GetReadTableViewFrame().height)
+            tableView.contentOffset = CGPoint(x: tableView.contentOffset.x, y: CGFloat(readRecordModel.page.intValue) * GetReadTableViewFrame().height)
         }
     }
     
     // MARK: -- UITableViewDelegate,UITableViewDataSource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        if DZMReadConfigure.shared().effectType != DZMRMEffectType.upAndDown.rawValue { // 非上下滚动
+            
+            return 1
+            
+        }else{ // 上下滚动
+            
+            return dataArray.count
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -127,7 +139,9 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         }else{ // 上下滚动
             
-            return readController.readModel.readChapterListModels.count
+            let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readRecordModel.bookID, chapterID: dataArray[section], isUpdateFont: true)
+            
+            return readChapterModel.pageCount.intValue
         }
     }
     
@@ -143,59 +157,87 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         }else{ // 上下滚动
             
-            let cell = DZMReadViewUDCell.cellWithTableView(tableView)
+            let cell = DZMReadViewCell.cellWithTableView(tableView)
             
-            // 章节列表模型
-            let readChapterListModel = readController.readModel.readChapterListModels[indexPath.row]
+            let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readRecordModel.bookID, chapterID: dataArray[indexPath.section], isUpdateFont: true)
             
-            // 章节内容模型
-            if DZMReadChapterModel.IsExistReadChapterModel(bookID: readChapterListModel.bookID, chapterID: readChapterListModel.id) { // 存在
-                
-                cell.readChapterModel = readChapterListModel.readChapterModel(readRecordModel: readRecordModel)
-                
-            }else{ // 不存在(一般是网络小说才会不存在)
-                
-                // 停止滚动
-                tableView.stopScroll()
-                
-                // 添加阻挡获取网络小说数据 请求成功之后进行刷新当前Cell
-            }
+            cell.content = readChapterModel.string(page: indexPath.row)
             
             return cell
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return UIView()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if DZMReadConfigure.shared().effectType != DZMRMEffectType.upAndDown.rawValue { // 非上下滚动
+        return GetReadTableViewFrame().height
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 非上下滚动
             
-            return GetReadTableViewFrame().height
+            // 获得当前模型
+            let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readRecordModel.bookID, chapterID: dataArray[section], isUpdateFont: true)
             
-        }else{ // 上下滚动
-            
-            let readChapterListModel = readController.readModel.readChapterListModels[indexPath.row]
-            
-            let height = CGFloat(readChapterListModel.pageCount.intValue) * GetReadTableViewFrame().height
-            
-            if isScrollTop && readChapterListModel.changePageCount.intValue != 0 {
-                
-                tableView.contentOffset = CGPoint(x:tableView.contentOffset.x, y:tableView.contentOffset.y + CGFloat(readChapterListModel.changePageCount.intValue) * GetReadTableViewFrame().height)
-                
-                readChapterListModel.changePageCount = NSNumber(value: 0)
-            }
-            
-            return height
+            // 预加载数据
+            reloadDataArray(readChapterModel: readChapterModel)
         }
     }
     
-    /// Cell消失则清空数据
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    // MARK: -- 预处理数据源
+    
+    /// 动态添加数据源
+    func reloadDataArray(readChapterModel:DZMReadChapterModel) {
         
-        if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 上下滚动
+        // 上一章ID
+        let lastChapterId = readChapterModel.lastChapterId
+        
+        // 下一章ID
+        let nextChapterId = readChapterModel.nextChapterId
+        
+        // 异步处理
+        DispatchQueue.global().async { [weak self] () in
             
-            let cell = tableView.cellForRow(at: indexPath) as? DZMReadViewUDCell
+            // 是否存在上一章ID
+            if lastChapterId != nil && !self!.dataArray.contains(lastChapterId!) {
+                
+                // 获取上一章模型
+                let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readChapterModel.bookID, chapterID: lastChapterId!, isUpdateFont: true)
+                
+                // 回到主线程更新UI
+                DispatchQueue.main.async {
+                    
+                    self?.dataArray.insert(readChapterModel.id, at: 0)
+                    
+                    self?.tableView.reloadData()
+                    
+                    self?.tableView.contentOffset = CGPoint(x: 0,y: self!.tableView.contentOffset.y + CGFloat(readChapterModel.pageCount.intValue) * GetReadTableViewFrame().height)
+                }
+            }
             
-            cell?.readChapterModel = nil
+            if nextChapterId != nil && !self!.dataArray.contains(nextChapterId!) {
+                
+                // 获取上一章模型
+                let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readChapterModel.bookID, chapterID: nextChapterId!, isUpdateFont: true)
+                
+                // 回到主线程更新UI
+                DispatchQueue.main.async {
+                    
+                    self?.dataArray.append(readChapterModel.id)
+                    
+                    self?.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -211,18 +253,6 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     /// 滚动中
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        // 判断是滚上还是滚下
-        let translation = scrollView.panGestureRecognizer.translation(in: view)
-        
-        if translation.y > 0 {
-            
-            isScrollTop = true
-            
-        }else if translation.y < 0 {
-            
-            isScrollTop = false
-        }
-        
         // 刷新记录
         if isDragging {updateReadRecordModel()}
     }
@@ -234,37 +264,19 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             if tableView.indexPathsForVisibleRows != nil && !tableView.indexPathsForVisibleRows!.isEmpty { // 有Cell
                 
-                // 章节ID
-                var chapterID:String!
-                
-                // 页码
-                var toPage:NSInteger!
-                
                 // 范围
-                var rect = GetReadTableViewFrame()
+                let rect = GetReadTableViewFrame()
                 
                 // 显示章节Cell IndexPath
                 var indexPath = tableView.indexPathsForRows(in: CGRect(x: 0, y: tableView.contentOffset.y, width: rect.width, height: rect.height))!.first!
                 
-                // 记录
-                chapterID = "\(indexPath.row + 1)"
+                // 章节ID
+                let chapterID:String = "\(dataArray[indexPath.section])"
                 
-                // 显示章节Cell Frame
-                rect = tableView.rectForRow(at: indexPath)
-                
-                // 显示章节Cell
-                let cell = tableView.cellForRow(at: indexPath) as! DZMReadViewUDCell
-                
-                // 显示章节内容 Frame
-                rect = CGRect(x: tableView.contentOffset.x, y: tableView.contentOffset.y - rect.origin.y, width: rect.width, height: rect.height)
-                
-                // 显示章节内容 IndexPath
-                indexPath =  cell.tableView.indexPathsForRows(in: rect)!.first!
+                // 页码
+                let toPage:NSInteger = indexPath.row
                 
                 DispatchQueue.global().async { [weak self] ()->Void in
-                    
-                    // 记录
-                    toPage = indexPath.row
                     
                     if self!.readRecordModel.readChapterModel!.id == chapterID {
                         
@@ -291,60 +303,6 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     }
                 }
             }
-            
-            /// 主线程更新 滚动会有点卡顿
-//            if tableView.indexPathsForVisibleRows != nil && !tableView.indexPathsForVisibleRows!.isEmpty { // 有Cell
-//
-//                // 章节ID
-//                var chapterID:String!
-//
-//                // 页码
-//                var toPage:NSInteger!
-//
-//                // 范围
-//                var rect = GetReadTableViewFrame()
-//
-//                // 显示章节Cell IndexPath
-//                var indexPath = tableView.indexPathsForRows(in: CGRect(x: tableView.contentOffset.x, y: tableView.contentOffset.y, width: rect.width, height: rect.height))!.first!
-//
-//                // 记录
-//                chapterID = "\(indexPath.row + 1)"
-//
-//                // 显示章节Cell Frame
-//                rect = tableView.rectForRow(at: indexPath)
-//
-//                // 显示章节Cell
-//                let cell = tableView.cellForRow(at: indexPath) as! DZMReadViewUDCell
-//
-//                // 显示章节内容 Frame
-//                rect = CGRect(x: tableView.contentOffset.x, y: tableView.contentOffset.y - rect.origin.y, width: rect.width, height: rect.height)
-//
-//                // 显示章节内容 IndexPath
-//                indexPath =  cell.tableView.indexPathsForRows(in: rect)!.first!
-//
-//                // 记录
-//                toPage = indexPath.row
-//
-//                if readRecordModel.readChapterModel!.id == chapterID {
-//
-//                    // 修改页码
-//                    readRecordModel.page = NSNumber(value: toPage)
-//
-//                }else{
-//
-//                    // 修改章节
-//                    readRecordModel.modify(chapterID: chapterID, toPage: toPage)
-//                }
-//
-//                // 修改顶部显示
-//                topStatusView.text = readRecordModel.readChapterModel!.name
-//
-//                // 修改底部显示
-//                bottomStatusView.titleLabel.text = "\(readRecordModel.page.intValue + 1)/\(readRecordModel.readChapterModel!.pageCount.intValue)"
-//                
-//                // 保存
-//                readController.readOperation.readRecordUpdate(readRecordModel: readRecordModel)
-//            }
         }
     }
     

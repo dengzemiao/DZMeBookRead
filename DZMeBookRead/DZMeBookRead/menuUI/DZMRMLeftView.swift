@@ -22,6 +22,9 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
     /// 类型 0: 章节 1: 书签
     private var type:NSInteger = 0
     
+    /// 当前阅读章节ID 用于判断重复选中
+    private var tempChapterID:String = ""
+    
     override func addSubviews() {
         
         super.addSubviews()
@@ -53,12 +56,44 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
         contentView.addSubview(topView)
     }
     
+    // MARK: -- 定位到阅读记录
+    func scrollReadRecord() {
+        
+        if type == 0 { // 章节
+            
+            DispatchQueue.global().async { [weak self] ()->Void in
+               
+                let readChapterModel = self?.readMenu.vc.readModel.readRecordModel.readChapterModel
+                
+                self?.tempChapterID = readChapterModel!.id
+                
+                let readChapterListModels = (self?.readMenu.vc.readModel.readChapterListModels ?? []) as NSArray
+                
+                let models = readChapterListModels.filtered(using: NSPredicate(format: "id == %@", self?.tempChapterID ?? ""))
+                
+                if !models.isEmpty {
+                    
+                    let row = readChapterListModels.index(of: models.first!)
+                    
+                    // 更新UI
+                    DispatchQueue.main.async { [weak self] ()->Void in
+                        
+                        self?.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+                    }
+                }
+            }
+        }
+    }
+    
+    
     // MARK: -- DZMSegmentedControlDelegate
     func segmentedControl(segmentedControl: DZMSegmentedControl, clickButton button: UIButton, index: NSInteger) {
         
         type = index
         
         tableView.reloadData()
+        
+        scrollReadRecord()
     }
     
     /// 布局

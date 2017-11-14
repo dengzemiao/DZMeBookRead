@@ -92,7 +92,7 @@ class DZMReadRecordModel: NSObject,NSCoding {
         
         if readChapterModel != nil {
             
-            let location = readChapterModel!.rangeArray[page.intValue].location
+            let location = readChapterModel!.location(page: page.intValue)
             
             readChapterModel!.updateFont()
             

@@ -57,7 +57,6 @@
 		AF6322AF1EC9C21B001B92D4 /* DZMSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */; };
 		AF698BFC1ECC03F000A98EE6 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */; };
 		AF7F68681ED2808300875E53 /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */; };
-		AFCAF4D01ECAB98700746F7F /* DZMReadViewUDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCAF4CF1ECAB98700746F7F /* DZMReadViewUDCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,7 +142,6 @@
 		AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMSegmentedControl.swift; sourceTree = "<group>"; };
 		AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
-		AFCAF4CF1ECAB98700746F7F /* DZMReadViewUDCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewUDCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +335,6 @@
 			children = (
 				AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */,
 				AF6322941EC95AC5001B92D4 /* DZMReadView.swift */,
-				AFCAF4CF1ECAB98700746F7F /* DZMReadViewUDCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -584,7 +581,6 @@
 				AF403E991E8CF722004C0612 /* DZMMainController.swift in Sources */,
 				AF3914921EC56C7000768478 /* DZMRMLightView.swift in Sources */,
 				AF3914AB1EC5767200768478 /* DZMReadModel.swift in Sources */,
-				AFCAF4D01ECAB98700746F7F /* DZMReadViewUDCell.swift in Sources */,
 				AF6322A71EC960E9001B92D4 /* MBProgressHUD+DZM.m in Sources */,
 				AF6322AB1EC99043001B92D4 /* DZMReadOperation.swift in Sources */,
 				AF3914AD1EC576A000768478 /* DZMReadMarkModel.swift in Sources */,

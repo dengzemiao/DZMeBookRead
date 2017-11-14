@@ -186,6 +186,9 @@ class DZMReadOperation: NSObject {
             
             vc.readModel.readRecordModel = readRecordModel
             
+            // 章节列表定位
+            vc.readMenu.leftView.scrollReadRecord()
+            
             if isSave {
                 
                 // 保存
