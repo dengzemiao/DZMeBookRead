@@ -54,7 +54,6 @@ class DZMMainController: DZMViewController {
         
         let url = Bundle.main.url(forResource: "求魔", withExtension: "txt")
         
-        
         DZMReadParser.ParserLocalURL(url: url!) {[weak self] (readModel) in
             
             MBProgressHUD.hide()

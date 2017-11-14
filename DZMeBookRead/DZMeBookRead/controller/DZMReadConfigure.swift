@@ -106,7 +106,7 @@ class DZMReadConfigure: NSObject {
     }
     
     /// 获得文字属性字典
-    func readAttribute() ->[String:NSObject] {
+    func readAttribute(isPaging:Bool = false) ->[String:NSObject] {
         
         // 段落配置
         let paragraphStyle = NSMutableParagraphStyle()
@@ -124,7 +124,15 @@ class DZMReadConfigure: NSObject {
         paragraphStyle.alignment = NSTextAlignment.justified
         
         // 返回
-        return [NSForegroundColorAttributeName:textColor,NSFontAttributeName:readFont(),NSParagraphStyleAttributeName:paragraphStyle]
+        if isPaging {
+            
+            // 只需要传回跟分页有关的属性即可
+            return [NSFontAttributeName:readFont(),NSParagraphStyleAttributeName:paragraphStyle]
+            
+        }else{
+            
+            return [NSForegroundColorAttributeName:textColor,NSFontAttributeName:readFont(),NSParagraphStyleAttributeName:paragraphStyle]
+        }
     }
     
     /// 获得颜色

@@ -40,7 +40,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 更新字体
     func updateFont(isSave:Bool = false) {
         
-        let readAttribute = DZMReadConfigure.shared().readAttribute()
+        let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true)
         
         if self.readAttribute != readAttribute {
             
