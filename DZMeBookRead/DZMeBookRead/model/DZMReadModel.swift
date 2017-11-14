@@ -109,7 +109,7 @@ class DZMReadModel: NSObject,NSCoding {
         
         readMarkModel.name = readRecordModel.readChapterModel!.name
         
-        readMarkModel.location = NSNumber(value: readRecordModel.readChapterModel!.rangeArray[readRecordModel.page.intValue].location)
+        readMarkModel.location = NSNumber(value: readRecordModel.readChapterModel!.location(page: readRecordModel.page.intValue))
         
         readMarkModel.content = readRecordModel.readChapterModel!.string(page: readRecordModel.page.intValue)
         

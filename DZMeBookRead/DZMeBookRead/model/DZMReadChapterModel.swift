@@ -92,6 +92,12 @@ class DZMReadChapterModel: NSObject,NSCoding {
         return content.substring(rangeArray[page])
     }
     
+    /// 通过 Page 获得 Location
+    func location(page:NSInteger) ->NSInteger {
+        
+        return rangeArray[page].location
+    }
+    
     /// 通过 Location 获得 Page
     func page(location:NSInteger) ->NSInteger {
         
