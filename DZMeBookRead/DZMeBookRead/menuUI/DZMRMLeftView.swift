@@ -37,7 +37,6 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.frame = GetReadTableViewFrame()
         contentView.addSubview(tableView)
         
         // topView
@@ -101,11 +100,13 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
         contentView.frame = CGRect(x: -contentViewW, y: 0, width: contentViewW, height: height)
         
         // topView
+        let topViewY:CGFloat = isX ? TopLiuHeight : 0
         let topViewH:CGFloat = 33
-        topView.frame = CGRect(x: 0, y: 0, width: contentViewW, height: topViewH)
+        topView.frame = CGRect(x: 0, y: topViewY, width: contentViewW, height: topViewH)
         
         // tableView
-        tableView.frame = CGRect(x: 0, y: topViewH, width: contentView.width, height: height - topViewH)
+        let tableViewY = topView.frame.maxY
+        tableView.frame = CGRect(x: 0, y: tableViewY, width: contentView.width, height: height - tableViewY)
     }
     
     // MARK: -- UITableViewDelegate,UITableViewDataSource

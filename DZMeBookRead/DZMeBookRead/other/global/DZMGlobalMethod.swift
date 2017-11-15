@@ -84,10 +84,22 @@ func GetCurrentTimeIntervalSince1970String() -> String {
 /// 阅读TableView的位置
 func GetReadTableViewFrame() ->CGRect {
     
-    // Y = 屏幕高 - 状态View高 - 间距
-    let y = ScreenHeight - DZMSpace_2 - DZMSpace_6
-    
-    return CGRect(x: DZMSpace_1, y: y, width: ScreenWidth - 2 * DZMSpace_1, height: ScreenHeight - 2 * y)
+    if isX {
+        
+        // Y = 刘海高度 + 状态View高 + 间距
+        let y =  TopLiuHeight + DZMSpace_2 + DZMSpace_6
+        
+        let bottomHeight = TopLiuHeight
+        
+        return CGRect(x: DZMSpace_1, y: y, width: ScreenWidth - 2 * DZMSpace_1, height: ScreenHeight - y - bottomHeight)
+        
+    }else{
+        
+        // Y =  状态View高 + 间距
+        let y =  DZMSpace_2 + DZMSpace_6
+        
+        return CGRect(x: DZMSpace_1, y: y, width: ScreenWidth - 2 * DZMSpace_1, height: ScreenHeight - 2 * y)
+    }
 }
 
 /* 阅读View的位置

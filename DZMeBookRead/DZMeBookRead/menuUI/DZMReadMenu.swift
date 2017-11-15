@@ -109,16 +109,16 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
     private var novelsSettingView:DZMRMSettingView!
     
     /// BottomView 高
-    private let BottomViewH:CGFloat = 112
+    private let BottomViewH:CGFloat = isX ? 150 : 112
     
     /// LightView 高
-    private let LightViewH:CGFloat = 64
+    private let LightViewH:CGFloat = isX ? 80 : 64
     
     /// LightButton 宽高
     private let lightButtonWH:CGFloat = 84
     
     /// NovelsSettingView 高
-    private let NovelsSettingViewH:CGFloat = 218
+    private let NovelsSettingViewH:CGFloat = isX ? 250 : 218
     
     /// 初始化
     class func readMenu(vc:DZMReadController,delegate:DZMReadMenuDelegate) ->DZMReadMenu {

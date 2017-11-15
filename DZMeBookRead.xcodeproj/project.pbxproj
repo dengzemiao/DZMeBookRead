@@ -731,6 +731,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
 				DEVELOPMENT_TEAM = 2PPP498VY6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DZMeBookRead/Info.plist;
@@ -738,7 +740,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b6aab570-09d2-4d44-91c5-6a0c762c988c";
+				PROVISIONING_PROFILE = "2c2e7033-68a7-444c-9a1b-3a375875faa3";
 				PROVISIONING_PROFILE_SPECIFIER = HJ_APPTest_Dev_P;
 				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/DZMeBookRead-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -751,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Miao Sun (KGSP58J4RG)";
 				DEVELOPMENT_TEAM = 2PPP498VY6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DZMeBookRead/Info.plist;
@@ -758,7 +761,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b6aab570-09d2-4d44-91c5-6a0c762c988c";
+				PROVISIONING_PROFILE = "2c2e7033-68a7-444c-9a1b-3a375875faa3";
 				PROVISIONING_PROFILE_SPECIFIER = HJ_APPTest_Dev_P;
 				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/DZMeBookRead-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

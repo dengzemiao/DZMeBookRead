@@ -54,7 +54,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         topStatusView.lineBreakMode = .byTruncatingMiddle
         topStatusView.textColor = DZMColor_4
         topStatusView.font = DZMFont_12
-        topStatusView.frame = CGRect(x: DZMSpace_1, y: 0, width: view.width - 2 * DZMSpace_1, height: DZMSpace_2)
+        topStatusView.frame = CGRect(x: DZMSpace_1, y: (isX ? TopLiuHeight : 0), width: view.width - 2 * DZMSpace_1, height: DZMSpace_2)
         view.addSubview(topStatusView)
         
         // BottomStatusView
@@ -70,6 +70,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.bounces = false
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0

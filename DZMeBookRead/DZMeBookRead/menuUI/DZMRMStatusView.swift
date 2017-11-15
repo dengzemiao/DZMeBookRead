@@ -58,15 +58,18 @@ class DZMRMStatusView: DZMRMBaseView {
         
         super.layoutSubviews()
         
+        // 适配间距
+        let space = isX ? DZMSpace_1 : 0
+        
         // 电池
-        batteryView.origin = CGPoint(x: width - DZMBatterySize.width, y: (height - DZMBatterySize.height)/2)
+        batteryView.origin = CGPoint(x: width - DZMBatterySize.width - space, y: (height - DZMBatterySize.height)/2)
         
         // 时间
         let timeLabelW:CGFloat = DZMSizeW(50)
         timeLabel.frame = CGRect(x: batteryView.frame.minX - timeLabelW, y: 0, width: timeLabelW, height: height)
         
         // 标题
-        titleLabel.frame = CGRect(x: 0, y: 0, width: timeLabel.frame.minX, height: height)
+        titleLabel.frame = CGRect(x: space, y: 0, width: timeLabel.frame.minX - space, height: height)
     }
 
     // MARK: -- 时间相关

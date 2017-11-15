@@ -9,20 +9,27 @@
 import UIKit
 
 // MARK: -- 屏幕属性
+
 /// 屏幕宽度
 let ScreenWidth:CGFloat = UIScreen.main.bounds.size.width
 
 /// 屏幕高度
 let ScreenHeight:CGFloat = UIScreen.main.bounds.size.height
 
+/// iPhone X
+let isX:Bool = (ScreenHeight == CGFloat(812) && ScreenWidth == CGFloat(375))
+
 /// 导航栏高度
-let NavgationBarHeight:CGFloat = 64
+let NavgationBarHeight:CGFloat = isX ? 88 : 64
 
 /// TabBar高度
 let TabBarHeight:CGFloat = 49
 
+/// iPhone X 顶部刘海高度
+let TopLiuHeight:CGFloat = 30
+
 /// StatusBar高度
-let StatusBarHeight:CGFloat = 20
+let StatusBarHeight:CGFloat = isX ? 44 : 20
 
 
 // MARK: -- 颜色支持
