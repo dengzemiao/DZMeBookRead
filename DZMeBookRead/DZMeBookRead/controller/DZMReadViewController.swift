@@ -269,7 +269,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 let rect = GetReadTableViewFrame()
                 
                 // 显示章节Cell IndexPath
-                var indexPath = tableView.indexPathsForRows(in: CGRect(x: 0, y: tableView.contentOffset.y, width: rect.width, height: rect.height))!.first!
+                var indexPath = tableView.indexPathsForRows(in: CGRect(x: 0, y: tableView.contentOffset.y + DZMSpace_1, width: rect.width, height: rect.height - DZMSpace_1))!.first!
                 
                 // 章节ID
                 let chapterID:String = "\(dataArray[indexPath.section])"
