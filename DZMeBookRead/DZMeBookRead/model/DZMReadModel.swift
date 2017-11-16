@@ -16,7 +16,7 @@ class DZMReadModel: NSObject,NSCoding {
     /// 是否为本地小说
     var isLocalBook:NSNumber = NSNumber(value: 1)
 
-    /// 章节列表数组
+    /// 章节列表数组（章节列表不包含章节内容, 它唯一的用处就是在阅读页面给用户查看章节列表）
     var readChapterListModels:[DZMReadChapterListModel] = [DZMReadChapterListModel]()
     
     /// 阅读记录
