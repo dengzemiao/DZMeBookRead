@@ -64,6 +64,12 @@ class DZMReadRecordModel: NSObject,NSCoding {
     /// 修改阅读记录为指定章节ID 指定页码 (toPage: -1 为最后一页 也可以使用 DZMReadLastPageValue)
     func modify(chapterID:String, toPage:NSInteger = 0, isUpdateFont:Bool = false, isSave:Bool = false) {
         
+        /*
+         网络小说操作提示:
+         
+         在修改阅读记录之前记得保证本地有该章节内容的缓存文件
+         */
+        
         if DZMReadChapterModel.IsExistReadChapterModel(bookID: bookID, chapterID: chapterID) {
             
             readChapterModel = DZMReadChapterModel.readChapterModel(bookID: bookID, chapterID: chapterID, isUpdateFont: isUpdateFont)
@@ -77,6 +83,11 @@ class DZMReadRecordModel: NSObject,NSCoding {
     /// 修改阅读记录为指定书签记录
     func modify(readMarkModel:DZMReadMarkModel, isUpdateFont:Bool = false, isSave:Bool = false) {
         
+        /*
+         网络小说操作提示:
+         
+         在使用书签模型修改阅读记录之前记得保证本地有该章节内容的缓存文件
+         */
         if DZMReadChapterModel.IsExistReadChapterModel(bookID: readMarkModel.bookID, chapterID: readMarkModel.id) {
             
             readChapterModel = DZMReadChapterModel.readChapterModel(bookID: bookID, chapterID: readMarkModel.id, isUpdateFont: isUpdateFont)

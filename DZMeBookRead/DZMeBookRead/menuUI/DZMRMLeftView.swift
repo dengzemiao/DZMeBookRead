@@ -173,7 +173,7 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+       
         if type == 0 { // 章节
             
             readMenu.delegate?.readMenuClickChapterList?(readMenu: readMenu, readChapterListModel: readMenu.vc.readModel.readChapterListModels[indexPath.row])

@@ -28,6 +28,9 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     /// 阅读列表
     private var dataArray:[String] = []
     
+    /// 记录当前已经加载或正在加载的章节列表 以免重复操作
+    private var willLoadDataArray:[String] = []
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -81,6 +84,8 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue && readRecordModel.readChapterModel != nil {
             
             dataArray.append(readRecordModel.readChapterModel!.id)
+            
+            willLoadDataArray.append(readRecordModel.readChapterModel!.id)
         }
     }
     
@@ -113,7 +118,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func configureReadRecordModel() {
         
         if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 上下滚动
-           
+            
             tableView.contentOffset = CGPoint(x: tableView.contentOffset.x, y: CGFloat(readRecordModel.page.intValue) * GetReadTableViewFrame().height)
         }
     }
@@ -200,43 +205,68 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     /// 动态添加数据源
     func reloadDataArray(readChapterModel:DZMReadChapterModel) {
         
+        /*
+         网络小说操作提示:
+         
+         再下面判断中 检查是否章节存在 不存在则请求回来之后再加入到列表
+         
+         提示: 这里都是预加载数据 所以网络请求可以不使用 HUD 阻挡
+         */
+        
         // 上一章ID
         let lastChapterId = readChapterModel.lastChapterId
         
         // 下一章ID
         let nextChapterId = readChapterModel.nextChapterId
         
-        // 异步处理
-        DispatchQueue.global().async { [weak self] () in
+        // 加载上一章
+        if lastChapterId != nil && !willLoadDataArray.contains(lastChapterId!) {
             
-            // 是否存在上一章ID
-            if lastChapterId != nil && !self!.dataArray.contains(lastChapterId!) {
+            willLoadDataArray.append(lastChapterId!)
+            
+            // 异步处理
+            DispatchQueue.global().async { [weak self] () in
                 
-                // 获取上一章模型
-                let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readChapterModel.bookID, chapterID: lastChapterId!, isUpdateFont: true)
-                
-                // 回到主线程更新UI
-                DispatchQueue.main.async {
+                // 是否存在上一章ID
+                if !self!.dataArray.contains(lastChapterId!) {
                     
-                    self?.dataArray.insert(readChapterModel.id, at: 0)
+                    // 获取上一章模型
+                    let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readChapterModel.bookID, chapterID: lastChapterId!, isUpdateFont: true)
                     
-                    self?.tableView.reloadData()
-                    
-                    self?.tableView.contentOffset = CGPoint(x: 0,y: self!.tableView.contentOffset.y + CGFloat(readChapterModel.pageCount.intValue) * GetReadTableViewFrame().height)
+                    // 回到主线程更新UI
+                    DispatchQueue.main.async {
+                        
+                        self?.dataArray.insert(readChapterModel.id, at: 0)
+                        
+                        self?.tableView.reloadData()
+                        
+                        self?.tableView.contentOffset = CGPoint(x: 0,y: self!.tableView.contentOffset.y + CGFloat(readChapterModel.pageCount.intValue) * GetReadTableViewFrame().height)
+                    }
                 }
             }
+        }
+        
+        // 加载下一章
+        if nextChapterId != nil && !willLoadDataArray.contains(nextChapterId!) {
             
-            if nextChapterId != nil && !self!.dataArray.contains(nextChapterId!) {
+            willLoadDataArray.append(nextChapterId!)
+            
+            // 异步处理
+            DispatchQueue.global().async { [weak self] () in
                 
-                // 获取上一章模型
-                let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readChapterModel.bookID, chapterID: nextChapterId!, isUpdateFont: true)
-                
-                // 回到主线程更新UI
-                DispatchQueue.main.async {
+                // 是否存在上一章ID
+                if !self!.dataArray.contains(nextChapterId!) {
                     
-                    self?.dataArray.append(readChapterModel.id)
+                    // 获取上一章模型
+                    let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readChapterModel.bookID, chapterID: nextChapterId!, isUpdateFont: true)
                     
-                    self?.tableView.reloadData()
+                    // 回到主线程更新UI
+                    DispatchQueue.main.async {
+                        
+                        self?.dataArray.append(readChapterModel.id)
+                        
+                        self?.tableView.reloadData()
+                    }
                 }
             }
         }

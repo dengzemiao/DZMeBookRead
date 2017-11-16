@@ -82,6 +82,14 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     /// 点击书签列表
     func readMenuClickMarkList(readMenu: DZMReadMenu, readMarkModel: DZMReadMarkModel) {
         
+        /*
+         网络小说操作提示:
+         
+         1. 判断书签指定章节 是否存在本地缓存文件
+         
+         2. 存在则继续展示 不存在则请求回来再展示
+         */
+        
         readModel.modifyReadRecordModel(readMarkModel: readMarkModel, isUpdateFont: true, isSave: false)
         
         creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: false, isSave: true))
@@ -214,7 +222,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             
             addChildViewController(pageViewController!)
             
-            pageViewController!.setViewControllers((displayController != nil ? [displayController!] : nil), direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+            pageViewController!.setViewControllers((displayController != nil ? [displayController!] : nil), direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
             
         }else{ // 无效果 覆盖 上下
             

@@ -92,8 +92,23 @@ class DZMReadOperation: NSObject {
             
         }else{ // 网络小说
             
-            // 这里进行网络数据请求以及一些判断 当请求成功之后 使用(确保请求之后修改阅读记录模型)
-            // vc.creatPageController(GetCurrentReadViewController())
+            /*
+             网络小说操作提示:
+             
+             1. 获得阅读记录
+             
+             2. 获得当前章节ID
+             
+             3. 获得当前阅读章节 读到的页码
+             
+             4. 判断是否为这一章最后一页
+             
+             5. 1). 判断不是第一页则 page - 1 继续翻页
+                2). 如果是第一页则判断上一章的章节ID是否有值,没值就是当前没有跟多章节（连载中）或者 全书完, 有值则判断是否存在缓存文件.
+                    有缓存文件则拿出使用更新阅读记录, 没值则请求服务器获取，请求回来之后可动画展示出来
+             
+             提示：如果是请求回来之后并更新了阅读记录 可使用 GetCurrentReadViewController() 获得当前阅读记录的控制器 进行展示
+             */
             
             readRecordModel = nil
         }
@@ -140,8 +155,23 @@ class DZMReadOperation: NSObject {
             
         }else{ // 网络小说
             
-            // 这里进行网络数据请求以及一些判断 当请求成功之后 使用(确保请求之后修改阅读记录模型)
-            // vc.creatPageController(GetCurrentReadViewController())
+            /*
+             网络小说操作提示:
+             
+             1. 获得阅读记录
+             
+             2. 获得当前章节ID
+             
+             3. 获得当前阅读章节 读到的页码
+             
+             4. 判断是否为这一章最后一页
+             
+             5. 1). 判断不是最后一页则 page + 1 继续翻页
+                2). 如果是最后一页则判断下一章的章节ID是否有值,没值就是当前没有跟多章节（连载中）或者 全书完, 有值则判断是否存在缓存文件.
+                    有缓存文件则拿出使用更新阅读记录, 没值则请求服务器获取，请求回来之后可动画展示出来
+             
+             提示：如果是请求回来之后并更新了阅读记录 可使用 GetCurrentReadViewController() 获得当前阅读记录的控制器 进行展示
+             */
             
             readRecordModel = nil
         }
@@ -163,6 +193,14 @@ class DZMReadOperation: NSObject {
                 return true
                 
             }else{ // 不存在
+
+                /*
+                 网络小说操作提示:
+                 
+                 1. 请求章节内容 并缓存
+                 
+                 2. 修改阅读记录 并展示
+                 */
                 
                 return false
             }
