@@ -47,7 +47,7 @@ class DZMReadConfigure: NSObject {
     /// 翻页效果
     var effectType:NSInteger = DZMRMEffectType.simulation.rawValue {didSet{save()}}
     
-    /// 阅读文字颜色(更加需求自己选)
+    /// 阅读文字颜色(根据需求自己选)
     var textColor:UIColor {
         
         // 固定颜色使用
