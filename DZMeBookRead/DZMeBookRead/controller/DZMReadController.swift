@@ -252,7 +252,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         currentReadViewController = displayController as? DZMReadViewController
     }
     
-    /// 翻页操作使用
+    /// 翻页操作使用 isAbove: true 上一页; false 下一页;
     func setViewController(displayController:UIViewController?, isAbove: Bool, animated: Bool) {
         
         if displayController != nil {
