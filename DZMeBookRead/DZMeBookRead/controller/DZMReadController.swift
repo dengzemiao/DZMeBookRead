@@ -252,6 +252,32 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         currentReadViewController = displayController as? DZMReadViewController
     }
     
+    /// 翻页操作使用
+    func setViewController(displayController:UIViewController?, isAbove: Bool, animated: Bool) {
+        
+        if displayController != nil {
+            
+            if pageViewController != nil {
+                
+                let direction = isAbove ? UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward
+                
+                pageViewController?.setViewControllers([displayController!], direction: direction, animated: animated, completion: nil)
+                
+                return
+            }
+            
+            if coverController != nil {
+                
+                coverController?.setController(displayController!, animated: animated, isAbove: isAbove)
+                
+                return
+            }
+            
+            // 都没有则初始化
+            creatPageController(displayController!)
+        }
+    }
+    
     // MARK: -- DZMCoverControllerDelegate
     
     /// 切换结果
