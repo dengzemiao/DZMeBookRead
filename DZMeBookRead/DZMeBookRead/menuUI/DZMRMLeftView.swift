@@ -57,22 +57,25 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
         
         if type == 0 { // 章节
             
-            DispatchQueue.global().async { [weak self] ()->Void in
+            let readChapterModel = readMenu.vc.readModel.readRecordModel.readChapterModel
+            
+            let readChapterListModels = readMenu.vc.readModel.readChapterListModels as NSArray
+            
+            if readChapterModel != nil {
                
-                let readChapterModel = self?.readMenu.vc.readModel.readRecordModel.readChapterModel
-                
-                let readChapterListModels = (self?.readMenu.vc.readModel.readChapterListModels ?? []) as NSArray
-                
-                let models = readChapterListModels.filtered(using: NSPredicate(format: "id == %@", readChapterModel!.id))
-                
-                if !models.isEmpty {
+                DispatchQueue.global().async { [weak self] ()->Void in
                     
-                    let row = readChapterListModels.index(of: models.first!)
+                    let models = readChapterListModels.filtered(using: NSPredicate(format: "id == %@", readChapterModel!.id))
                     
-                    // 更新UI
-                    DispatchQueue.main.async { [weak self] ()->Void in
+                    if !models.isEmpty {
                         
-                        self?.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+                        let row = readChapterListModels.index(of: models.first!)
+                        
+                        // 更新UI
+                        DispatchQueue.main.async { [weak self] ()->Void in
+                            
+                            self?.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+                        }
                     }
                 }
             }
