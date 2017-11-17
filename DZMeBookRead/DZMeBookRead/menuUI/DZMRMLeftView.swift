@@ -61,7 +61,7 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
             
             let readChapterListModels = readMenu.vc.readModel.readChapterListModels as NSArray
             
-            if readChapterModel != nil {
+            if readChapterModel != nil && readChapterListModels.count != 0 {
                
                 DispatchQueue.global().async { [weak self] ()->Void in
                     
