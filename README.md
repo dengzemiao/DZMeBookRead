@@ -58,7 +58,9 @@
 ***
 #### 小说相关库：
 
-小说《覆盖效果》DZMCoverAnimation: https://github.com/dengzemiao/DZMCoverAnimation
+放大镜: https://github.com/dengzemiao/DZMMagnifierView
+
+小说《覆盖效果》: https://github.com/dengzemiao/DZMCoverAnimation
 
 UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
 
