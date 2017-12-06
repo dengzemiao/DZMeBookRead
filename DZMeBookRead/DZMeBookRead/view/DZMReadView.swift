@@ -43,10 +43,10 @@ class DZMReadView: UIView {
         
         ctx?.textMatrix = CGAffineTransform.identity
         
-        ctx?.translateBy(x: 0, y: bounds.size.height);
+        ctx?.translateBy(x: 0, y: bounds.size.height)
         
-        ctx?.scaleBy(x: 1.0, y: -1.0);
+        ctx?.scaleBy(x: 1.0, y: -1.0)
         
-        CTFrameDraw(frameRef!, ctx!);
+        CTFrameDraw(frameRef!, ctx!)
     }
 }
