@@ -300,7 +300,7 @@ class DZMReadParser: NSObject {
         var content = content.replacingOccurrences(of: "\r", with: "")
         
         // 替换换行 以及 多个换行 为 换行加空格
-        content = content.replacingCharacters(pattern: "\\s*\\n+\\s*", template: "\n　　")
+        content = content.replacing(pattern: "\\s*\\n+\\s*", template: "\n　　")
         
         // 返回
         return content

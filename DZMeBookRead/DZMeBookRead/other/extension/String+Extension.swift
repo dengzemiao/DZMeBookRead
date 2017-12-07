@@ -153,7 +153,9 @@ extension String {
     }
     
     /// 正则替换字符
-    func replacingCharacters(pattern:String, template:String) ->String {
+    func replacing(pattern:String, template:String) ->String {
+        
+        if isEmpty {return self}
         
         do {
             let regularExpression = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
@@ -161,6 +163,19 @@ extension String {
             return regularExpression.stringByReplacingMatches(in: self, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, length), withTemplate: template)
             
         } catch {return self}
+    }
+    
+    /// 正则搜索相关字符位置
+    func matches(pattern:String) ->[NSTextCheckingResult] {
+        
+        if isEmpty {return []}
+        
+        do {
+            let regularExpression = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
+            
+            return regularExpression.matches(in: self, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, length))
+            
+        } catch {return []}
     }
     
 }
