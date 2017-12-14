@@ -13,6 +13,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     /// 阅读模型(必传)
     var readModel:DZMReadModel!
     
+    /// 开启长按菜单
+    var openLongMenu:Bool = true
+    
     /// 阅读菜单UI
     private(set) var readMenu:DZMReadMenu!
     
@@ -43,6 +46,33 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         // 初始化控制器
         creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: true, isSave: true))
+        
+        // 注册 DZMReadView 手势通知
+        DZMReadView.RegisterNotification(observer: self, selector: #selector(readViewNotification(notification:)))
+    }
+    
+    // MARK: DZMReadView 手势通知
+    
+    /// 收到通知
+    func readViewNotification(notification:Notification) {
+        
+        // 获得状态
+        let info = notification.userInfo
+        
+        // 隐藏菜单
+        readMenu.menuSH(isShow: false)
+        
+        // 解析状态
+        if info != nil && info!.keys.contains(DZMKey_ReadView_Ges_isOpen) {
+            
+            let isOpen = info![DZMKey_ReadView_Ges_isOpen] as! NSNumber
+            
+            coverController?.gestureRecognizerEnabled = isOpen.boolValue
+            
+            pageViewController?.gestureRecognizerEnabled = isOpen.boolValue
+            
+            readMenu.singleTap.isEnabled = isOpen.boolValue
+        }
     }
     
     // MARK: -- DZMReadMenuDelegate
@@ -396,6 +426,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     }
     
     deinit {
+        
+        // 移除通知
+        DZMReadView.RemoveNotification(observer: self)
         
         // 清理模型
         readModel = nil

@@ -178,6 +178,14 @@ extension String {
         } catch {return []}
     }
     
+    /// 是否存在正则匹配到的内容
+    func isExist(pattern:String) ->Bool {
+        
+        let result:[NSTextCheckingResult] = matches(pattern: pattern)
+        
+        return !result.isEmpty
+    }
+    
 }
 
 extension NSAttributedString{

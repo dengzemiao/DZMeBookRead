@@ -31,6 +31,9 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     /// 记录当前已经加载或正在加载的章节列表 以免重复操作
     private var willLoadDataArray:[String] = []
     
+    /// 当前阅读View(上下滚动不能使用)
+    private weak var readView:DZMReadView?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -74,6 +77,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
+        tableView.openTouch = true
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
@@ -106,9 +110,13 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             tableView.isScrollEnabled = false
             
+            tableView.clipsToBounds = false
+            
         }else{ // 上下滚动
             
             tableView.isScrollEnabled = true
+            
+            tableView.clipsToBounds = true
         }
     }
     
@@ -158,6 +166,10 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let cell = DZMReadViewCell.cellWithTableView(tableView)
             
             cell.content = readRecordModel.readChapterModel!.string(page: readRecordModel.page.intValue)
+            
+            readView = cell.readView
+            
+            readView?.openLongMenu = readController.openLongMenu
             
             return cell
             
@@ -333,6 +345,46 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         self!.bottomStatusView.titleLabel.text = "\(self!.readRecordModel.page.intValue + 1)/\(self!.readRecordModel.readChapterModel!.pageCount.intValue)"
                     }
                 }
+            }
+        }
+    }
+    
+    // MARK: 光标拖拽手势
+    
+    /// 触摸开始
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        drag(touches: touches, status: .begin)
+    }
+    
+    /// 触摸移动
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        drag(touches: touches, status: .changed)
+    }
+    
+    /// 触摸结束
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        drag(touches: touches, status: .end)
+    }
+    
+    /// 触摸取消
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        drag(touches: touches, status: .end)
+    }
+    
+    /// 解析触摸事件
+    private func drag(touches: Set<UITouch>, status: DZMPanStatus) {
+        
+        if readView?.isOpenDrag ?? false {
+            
+            let point = ((touches as NSSet).anyObject() as? UITouch)?.location(in: view)
+            
+            if point != nil {
+                
+                readView?.drag(status: status, point: view.convert(point!, to: readView), windowPoint: point!)
             }
         }
     }

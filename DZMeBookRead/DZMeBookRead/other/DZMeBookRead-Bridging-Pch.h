@@ -24,4 +24,7 @@
 // MD5
 #import <CommonCrypto/CommonDigest.h>
 
+// 放大镜
+#import "DZMMagnifierView.h"
+
 #endif /* DZMeBookRead_Bridging_Pch_h */

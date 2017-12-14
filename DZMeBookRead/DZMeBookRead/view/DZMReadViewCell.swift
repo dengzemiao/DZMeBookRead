@@ -11,7 +11,7 @@ import UIKit
 class DZMReadViewCell: UITableViewCell {
     
     /// 阅读View 显示使用
-    private var readView:DZMReadView!
+    private(set) var readView:DZMReadView!
     
     /// 当前的显示的内容
     var content:String! {
@@ -48,12 +48,18 @@ class DZMReadViewCell: UITableViewCell {
         backgroundColor = UIColor.clear
         
         addSubViews()
+        
+        openTouch = true
+        
+        contentView.openTouch = true
     }
     
     func addSubViews() {
         
         // 阅读View
         readView = DZMReadView()
+        
+        readView.openTouch = true
         
         readView.backgroundColor = UIColor.clear
         

@@ -62,6 +62,9 @@ class DZMMainController: DZMViewController {
             
             readController.readModel = readModel
             
+            /// 是否开启长按内容显示菜单 默认: true
+            // readController.openLongMenu = false
+            
             self?.navigationController?.pushViewController(readController, animated: true)
         }
     }

@@ -19,16 +19,14 @@ extension UIPageViewController {
         
         get{
             
-            let obj = objc_getAssociatedObject(self, &IsGestureRecognizerEnabled) as? NSNumber
-            
-            return  obj == nil ? true : obj!.boolValue
+            return (objc_getAssociatedObject(self, &IsGestureRecognizerEnabled) as? Bool) ?? true
         }
         
         set{
             
-            for ges in gestureRecognizers { ges.isEnabled = newValue}
+            for ges in gestureRecognizers { ges.isEnabled = newValue }
             
-            objc_setAssociatedObject(self, &IsGestureRecognizerEnabled,NSNumber(value: newValue as Bool), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &IsGestureRecognizerEnabled, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
     
@@ -37,9 +35,7 @@ extension UIPageViewController {
         
         get{
             
-            let obj = objc_getAssociatedObject(self, &TapIsGestureRecognizerEnabled) as? NSNumber
-            
-            return  obj == nil ? true : obj!.boolValue
+            return (objc_getAssociatedObject(self, &TapIsGestureRecognizerEnabled) as? Bool) ?? true
         }
         
         set{
@@ -52,7 +48,7 @@ extension UIPageViewController {
                 }
             }
             
-            objc_setAssociatedObject(self, &TapIsGestureRecognizerEnabled,NSNumber(value: newValue as Bool), objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &TapIsGestureRecognizerEnabled, newValue , objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
 }

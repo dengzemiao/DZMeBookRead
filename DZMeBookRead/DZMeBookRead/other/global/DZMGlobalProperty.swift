@@ -77,7 +77,19 @@ let DZMSpace_4:CGFloat = 10
 let DZMSpace_5:CGFloat = 20
 let DZMSpace_6:CGFloat = 5
 
+// MARK: 拖拽触发光标范围
+let DZMCursorOffset:CGFloat = -20
+
 
 // MARK: -- Key
+
 /// 是夜间还是日间模式   true:夜间 false:日间
 let DZMKey_IsNighOrtDay:String = "isNightOrDay"
+
+/// ReadView 手势开启状态
+let DZMKey_ReadView_Ges_isOpen:String = "isOpen"
+
+// MARK: 通知名称
+
+/// ReadView 手势通知
+let DZMNotificationName_ReadView_Ges = "ReadView_Ges"

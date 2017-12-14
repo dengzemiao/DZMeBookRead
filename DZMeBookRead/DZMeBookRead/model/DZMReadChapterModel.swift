@@ -104,6 +104,14 @@ class DZMReadChapterModel: NSObject,NSCoding {
         return rangeArray[page].location
     }
     
+    /// 通过 Page 获得 CenterLocation
+    func centerLocation(page:NSInteger) ->NSInteger {
+        
+        let range = rangeArray[page]
+        
+        return range.location + (range.location + range.length) / 2
+    }
+    
     /// 通过 Location 获得 Page
     func page(location:NSInteger) ->NSInteger {
         

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF00E6DC1FDE8E2B00FC298B /* DZMReadAuxiliary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */; };
+		AF00E6DE1FDE8E3D00FC298B /* DZMCursorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */; };
+		AF24C1471FDF7476000D82F1 /* DZMMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */; };
 		AF378D661EC455FE00E7D441 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D651EC455FE00E7D441 /* UIView+Extension.swift */; };
 		AF378D681EC4560F00E7D441 /* UIPageViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */; };
 		AF378D6F1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378D6E1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m */; };
@@ -77,6 +80,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadAuxiliary.swift; sourceTree = "<group>"; };
+		AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMCursorView.swift; sourceTree = "<group>"; };
+		AF24C1451FDF7476000D82F1 /* DZMMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMMagnifierView.h; sourceTree = "<group>"; };
+		AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMMagnifierView.m; sourceTree = "<group>"; };
 		AF378D651EC455FE00E7D441 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+Extension.swift"; sourceTree = "<group>"; };
 		AF378D6D1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -169,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF24C1441FDF7476000D82F1 /* DZMMagnifierView */ = {
+			isa = PBXGroup;
+			children = (
+				AF24C1451FDF7476000D82F1 /* DZMMagnifierView.h */,
+				AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */,
+			);
+			path = DZMMagnifierView;
+			sourceTree = "<group>";
+		};
 		AF378D6C1EC457C400E7D441 /* FDFullscreenPopGesture */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +330,7 @@
 				AF378DA01EC46A9200E7D441 /* DZMReadConfigure.swift */,
 				AF6322AA1EC99043001B92D4 /* DZMReadOperation.swift */,
 				AF3914A21EC572AB00768478 /* DZMReadParser.swift */,
+				AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -335,6 +352,7 @@
 			children = (
 				AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */,
 				AF6322941EC95AC5001B92D4 /* DZMReadView.swift */,
+				AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -355,6 +373,7 @@
 		AF403ECE1E8CFC47004C0612 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				AF24C1441FDF7476000D82F1 /* DZMMagnifierView */,
 				AF378DA81EC4779300E7D441 /* YGPulseView */,
 				AF378D991EC46A0200E7D441 /* ASValueTrackingSlider */,
 				AF378D701EC4580300E7D441 /* DZMCoverController */,
@@ -555,10 +574,12 @@
 				AF378D9F1EC46A0200E7D441 /* ASValueTrackingSlider.m in Sources */,
 				AF3914A31EC572AB00768478 /* DZMReadParser.swift in Sources */,
 				AF3914AF1EC577C900768478 /* String+Extension.swift in Sources */,
+				AF00E6DE1FDE8E3D00FC298B /* DZMCursorView.swift in Sources */,
 				AF39149D1EC56E3700768478 /* DZMRMFuncView.swift in Sources */,
 				AF3914A11EC5711700768478 /* DZMReadViewController.swift in Sources */,
 				AF698BFC1ECC03F000A98EE6 /* UITableView+Extension.swift in Sources */,
 				AF6322AD1EC9B78F001B92D4 /* DZMRMLeftView.swift in Sources */,
+				AF24C1471FDF7476000D82F1 /* DZMMagnifierView.m in Sources */,
 				AF3914A91EC5765900768478 /* DZMReadRecordModel.swift in Sources */,
 				AF3914971EC56C7000768478 /* DZMRMTopView.swift in Sources */,
 				AF378DAB1EC4779300E7D441 /* UIView+YGPulseView.m in Sources */,
@@ -582,6 +603,7 @@
 				AF3914921EC56C7000768478 /* DZMRMLightView.swift in Sources */,
 				AF3914AB1EC5767200768478 /* DZMReadModel.swift in Sources */,
 				AF6322A71EC960E9001B92D4 /* MBProgressHUD+DZM.m in Sources */,
+				AF00E6DC1FDE8E2B00FC298B /* DZMReadAuxiliary.swift in Sources */,
 				AF6322AB1EC99043001B92D4 /* DZMReadOperation.swift in Sources */,
 				AF3914AD1EC576A000768478 /* DZMReadMarkModel.swift in Sources */,
 				AF3914961EC56C7000768478 /* DZMRMStatusView.swift in Sources */,

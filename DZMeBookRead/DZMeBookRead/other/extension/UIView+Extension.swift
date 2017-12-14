@@ -6,31 +6,13 @@
 //  Copyright © 2016年 DZM. All rights reserved.
 //
 
+private var IsOpenTouch = "isOpenTouch"
+
 import Foundation
 import UIKit
 
 extension UIView{
     
-    // MARK: -- 扩展方法
-    func viewController() ->UIViewController? {
-        
-        //通过响应者链，取得此视图所在的视图控制器
-        var next = self.next
-        
-        repeat{
-            
-            //判断响应者对象是否是视图控制器类型
-            if next!.isKind(of: UIViewController.classForCoder()) {
-                
-                return next as? UIViewController
-            }
-            
-            next = next!.next
-            
-        }while next != nil
-        
-        return nil
-    }
     
     // MARK: -- 扩展属性使用
     
@@ -136,5 +118,97 @@ extension UIView{
             r.origin.y = newValue - frame.size.height
             self.frame = r
         }
+    }
+    
+    // MARK: -- 响应者拦截
+    
+    /// 开启允许父视图监听Touch事件
+    var openTouch:Bool {
+        
+        get{
+            
+            return (objc_getAssociatedObject(self, &IsOpenTouch) as? Bool) ?? false
+        }
+        
+        set{
+            
+            objc_setAssociatedObject(self, &IsOpenTouch, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+        }
+    }
+    
+    /// 开始触摸
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if openTouch {
+            
+            next?.touchesBegan(touches, with: event)
+            
+        }else{
+            
+            super.touchesBegan(touches, with: event)
+        }
+    }
+    
+    /// 触摸移动
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if openTouch {
+            
+            next?.touchesMoved(touches, with: event)
+            
+        }else{
+            
+            super.touchesMoved(touches, with: event)
+        }
+    }
+    
+    /// 触摸结束
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if openTouch {
+            
+            next?.touchesEnded(touches, with: event)
+            
+        }else{
+            
+            super.touchesEnded(touches, with: event)
+        }
+    }
+    
+    /// 触摸取消
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if openTouch {
+            
+            next?.touchesCancelled(touches, with: event)
+            
+        }else{
+            
+            super.touchesCancelled(touches, with: event)
+        }
+    }
+    
+    
+    // MARK: -- 扩展方法
+    
+    /// 获得视图控制器
+    func viewController() ->UIViewController? {
+        
+        // 通过响应者链，取得此视图所在的视图控制器
+        var next = self.next
+        
+        repeat{
+            
+            // 判断响应者对象是否是视图控制器类型
+            if next!.isKind(of: UIViewController.classForCoder()) {
+                
+                return next as? UIViewController
+            }
+            
+            next = next!.next
+            
+        }while next != nil
+        
+        return nil
     }
 }
