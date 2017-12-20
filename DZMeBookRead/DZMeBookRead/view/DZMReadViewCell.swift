@@ -48,18 +48,12 @@ class DZMReadViewCell: UITableViewCell {
         backgroundColor = UIColor.clear
         
         addSubViews()
-        
-        openTouch = true
-        
-        contentView.openTouch = true
     }
     
     func addSubViews() {
         
         // 阅读View
         readView = DZMReadView()
-        
-        readView.openTouch = true
         
         readView.backgroundColor = UIColor.clear
         
