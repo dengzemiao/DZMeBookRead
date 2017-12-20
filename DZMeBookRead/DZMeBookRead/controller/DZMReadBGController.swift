@@ -10,7 +10,7 @@ import UIKit
 
 class DZMReadBGController: DZMViewController {
 
-    /// 目标视图
+    /// 目标视图(无值则跟阅读背景颜色保持一致)
     weak var targetView:UIView?
     
     /// imageView
