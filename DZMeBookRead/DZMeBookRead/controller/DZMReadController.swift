@@ -362,6 +362,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             // 记录
             currentReadViewController = previousViewControllers.first as? DZMReadViewController
             
+            // 记录
+            willReadViewController = currentReadViewController
+            
             // 更新阅读记录
             readOperation.readRecordUpdate(readViewController: currentReadViewController)
             
@@ -369,6 +372,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             
             // 记录
             currentReadViewController = pageViewController.viewControllers?.first as? DZMReadViewController
+            
+            // 记录
+            willReadViewController = currentReadViewController
             
             // 更新阅读记录
             readOperation.readRecordUpdate(readViewController: currentReadViewController)
