@@ -10,6 +10,7 @@
 		AF00E6DC1FDE8E2B00FC298B /* DZMReadAuxiliary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */; };
 		AF00E6DE1FDE8E3D00FC298B /* DZMCursorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */; };
 		AF24C1471FDF7476000D82F1 /* DZMMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */; };
+		AF2FE9521FEA463E0061EFAD /* DZMReadBGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FE9511FEA463E0061EFAD /* DZMReadBGController.swift */; };
 		AF378D661EC455FE00E7D441 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D651EC455FE00E7D441 /* UIView+Extension.swift */; };
 		AF378D681EC4560F00E7D441 /* UIPageViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */; };
 		AF378D6F1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378D6E1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m */; };
@@ -84,6 +85,7 @@
 		AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMCursorView.swift; sourceTree = "<group>"; };
 		AF24C1451FDF7476000D82F1 /* DZMMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMMagnifierView.h; sourceTree = "<group>"; };
 		AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMMagnifierView.m; sourceTree = "<group>"; };
+		AF2FE9511FEA463E0061EFAD /* DZMReadBGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadBGController.swift; sourceTree = "<group>"; };
 		AF378D651EC455FE00E7D441 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+Extension.swift"; sourceTree = "<group>"; };
 		AF378D6D1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				AF6322AA1EC99043001B92D4 /* DZMReadOperation.swift */,
 				AF3914A21EC572AB00768478 /* DZMReadParser.swift */,
 				AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */,
+				AF2FE9511FEA463E0061EFAD /* DZMReadBGController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				AF378D9E1EC46A0200E7D441 /* ASValuePopUpView.m in Sources */,
 				AF378D6F1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				AF378D9F1EC46A0200E7D441 /* ASValueTrackingSlider.m in Sources */,
+				AF2FE9521FEA463E0061EFAD /* DZMReadBGController.swift in Sources */,
 				AF3914A31EC572AB00768478 /* DZMReadParser.swift in Sources */,
 				AF3914AF1EC577C900768478 /* String+Extension.swift in Sources */,
 				AF00E6DE1FDE8E3D00FC298B /* DZMCursorView.swift in Sources */,

@@ -29,16 +29,27 @@ func DZMSizeH(_ size:CGFloat) ->CGFloat{
     return size * (ScreenHeight / 667)
 }
 
-// MARK: -- 创建分割线
+// MARK: 截屏
+/// 获得截屏视图（无值获取当前Window）
+func ScreenCapture(_ view:UIView? = nil, _ isSave:Bool = false) ->UIImage {
+    
+    let captureView = (view ?? (UIApplication.shared.keyWindow ?? UIApplication.shared.windows.first))!
+    
+    UIGraphicsBeginImageContextWithOptions(captureView.frame.size, false, 0.0)
+    
+    captureView.layer.render(in: UIGraphicsGetCurrentContext()!)
+    
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    
+    UIGraphicsEndImageContext()
+    
+    if isSave { UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil) }
+    
+    return image!
+}
 
-/**
- 给一个视图 创建添加 一条分割线 高度 : HJSpaceLineHeight
- 
- - parameter view:  需要添加的视图
- - parameter color: 颜色 可选
- 
- - returns: 分割线view
- */
+// MARK: -- 创建分割线
+/// 给一个视图创建添加一条分割线 高度 : HJSpaceLineHeight
 func SpaceLineSetup(view:UIView, color:UIColor? = nil) ->UIView {
     
     let spaceLine = UIView()
@@ -51,7 +62,6 @@ func SpaceLineSetup(view:UIView, color:UIColor? = nil) ->UIView {
 }
 
 // MARK: -- 获取时间
-
 /// 获取当前时间传入 时间格式 "YYYY-MM-dd-HH-mm-ss"
 func GetCurrentTimerString(dateFormat:String) ->String {
     
@@ -80,7 +90,6 @@ func GetCurrentTimeIntervalSince1970String() -> String {
 
 
 // MARK: -- 阅读ViewFrame
-
 /// 阅读TableView的位置
 func GetReadTableViewFrame() ->CGRect {
     
@@ -102,7 +111,8 @@ func GetReadTableViewFrame() ->CGRect {
     }
 }
 
-/* 阅读View的位置
+// MARK: 阅读视图位置
+/* 阅读视图位置
  
  需要做横竖屏的可以在这里修改阅读View的大小
  
@@ -114,16 +124,8 @@ func GetReadViewFrame() ->CGRect {
     return CGRect(x: 0, y: 0, width: GetReadTableViewFrame().width, height: GetReadTableViewFrame().height)
 }
 
-// MARK: -- 文件操作
 // MARK: -- 创建文件夹
-
-/**
- 创建文件夹 如果存在则不创建
- 
- - parameter filePath: 文件路径
- 
- return 是否有文件夹存在
- */
+/// 创建文件夹 如果存在则不创建
 func CreatFilePath(_ filePath:String) ->Bool {
     
     let fileManager = FileManager.default
