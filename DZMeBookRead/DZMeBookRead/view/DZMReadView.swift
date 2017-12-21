@@ -168,9 +168,6 @@ class DZMReadView: UIView {
         
         // 重置页面数据
         reset()
-        
-        // 发送通知
-        DZMReadView.PostNotification(userInfo: [DZMKey_ReadView_Ges_isOpen: NSNumber(value: true)])
     }
     
     /// 触摸开始
@@ -438,6 +435,9 @@ class DZMReadView: UIView {
     
     /// 重置页面数据
     private func reset() {
+        
+        // 发送通知
+        DZMReadView.PostNotification(userInfo: [DZMKey_ReadView_Ges_isOpen: NSNumber(value: true)])
         
         // 手势状态
         tapGes?.isEnabled = false
