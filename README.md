@@ -27,7 +27,7 @@
 
     2017-12-21 更新:
 
-        支持 PageViewController 翻页背面内容效果
+        支持 PageViewController (仿真模式)翻页背面内容效果
 
     2017-12-14 更新:
     
