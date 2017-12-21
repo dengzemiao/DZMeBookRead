@@ -16,6 +16,12 @@
 
 ***
 
+### 阅读打开书籍效果(已封装,使用简单,下载地址在下面):
+
+![阅读打开书籍效果:](gif_2.gif)
+
+***
+
 ```diff
 - 推荐下自己写的:
 
@@ -81,6 +87,8 @@
 #### 小说相关库：
 
 放大镜: https://github.com/dengzemiao/DZMMagnifierView
+
+阅读打开书籍效果: https://github.com/dengzemiao/DZMAnimatedTransitioning
 
 小说《覆盖效果》: https://github.com/dengzemiao/DZMCoverAnimation
 
