@@ -17,9 +17,15 @@
 ***
 
 ```diff
-- 推荐下自己写的无限滚动：
+- 推荐下自己写的:
+
+- -> 无限滚动:
 - 通常的都是传入URL数组进行无限滚动，而这个则是传入自定义的(Views)视图数组进行无限滚动，也支持控制器无限滚动
 - 有兴趣的可以试试: https://github.com/dengzemiao/DZMCycleScrollView
+
+- -> 图片展示器:
+- 支持横竖屏,屏幕旋转,使用简单,注释多可扩展程度高,兼容Swift混编使用
+- 有兴趣的可以试试: https://github.com/dengzemiao/DZMPhotoBrowser
 ```
 
 ***
