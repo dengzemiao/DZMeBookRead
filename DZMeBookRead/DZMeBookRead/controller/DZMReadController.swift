@@ -31,9 +31,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     /// 当前显示的阅读控制器
     private(set) var currentReadViewController:DZMReadViewController?
     
-    /// 将要显示的阅读控制器（当前只有在仿真模式作为背面使用）
-    private(set) var willViewController:UIViewController?
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -240,8 +237,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         // 创建
         if DZMReadConfigure.shared().effectType == DZMRMEffectType.simulation.rawValue { // 仿真
             
-            willViewController = displayController
-            
             let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(value: UIPageViewControllerSpineLocation.min.rawValue as Int)]
             
             pageViewController = UIPageViewController(transitionStyle:UIPageViewControllerTransitionStyle.pageCurl,navigationOrientation:UIPageViewControllerNavigationOrientation.horizontal,options: options)
@@ -260,8 +255,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             pageViewController!.setViewControllers((displayController != nil ? [displayController!] : nil), direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
             
         }else{ // 无效果 覆盖 上下
-            
-            willViewController = nil
             
             coverController = DZMCoverController()
             
@@ -296,8 +289,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             
             if pageViewController != nil {
                 
-                willViewController = displayController
-                
                 let direction = isAbove ? UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward
                 
                 pageViewController?.setViewControllers([displayController!], direction: direction, animated: animated, completion: nil)
@@ -306,8 +297,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             }
             
             if coverController != nil {
-                
-                willViewController = nil
                 
                 coverController?.setController(displayController!, animated: animated, isAbove: isAbove)
                 
@@ -365,9 +354,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             // 更新阅读记录
             readOperation.readRecordUpdate(readViewController: currentReadViewController)
             
-            // 记录
-            willViewController = currentReadViewController
-            
         }else{
             
             // 记录
@@ -403,17 +389,15 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         if abs(TempNumber) % 2 == 0 { // 背面
             
-            willViewController = readOperation.GetAboveReadViewController()
-            
             let vc = DZMReadBGController()
             
-            vc.targetView = willViewController?.view
+            vc.targetView = readOperation.GetAboveReadViewController()?.view
             
             return vc
             
         }else{ // 内容
             
-            return willViewController
+            return readOperation.GetAboveReadViewController()
         }
     }
     
@@ -426,15 +410,13 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
             
             let vc = DZMReadBGController()
             
-            vc.targetView = willViewController?.view
+            vc.targetView = readOperation.GetCurrentReadViewController()?.view
             
             return vc
             
         }else{ // 内容
             
-            willViewController = readOperation.GetBelowReadViewController()
-            
-            return willViewController
+            return readOperation.GetBelowReadViewController()
         }
     }
     
@@ -451,6 +433,5 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         // 清理
         readModel = nil
         currentReadViewController = nil
-        willViewController = nil
     }
 }
