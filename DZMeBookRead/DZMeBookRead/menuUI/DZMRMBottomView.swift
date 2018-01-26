@@ -32,7 +32,7 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
             let button = UIButton(type:UIButtonType.custom)
             button.setImage(UIImage(named: funcIcons[i]), for: UIControlState())
             button.tag = i
-            button.addTarget(self, action: #selector(DZMRMBottomView.clickButton(_:)), for: UIControlEvents.touchUpInside)
+            button.addTarget(self, action: #selector(clickButton(_:)), for: UIControlEvents.touchUpInside)
             addSubview(button)
         }
         
@@ -42,7 +42,7 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
         previousChapter.contentHorizontalAlignment = .right
         previousChapter.setTitle("上一章", for: .normal)
         previousChapter.setTitleColor(UIColor.white, for: .normal)
-        previousChapter.addTarget(self, action: #selector(DZMRMBottomView.clickPreviousChapter), for: .touchUpInside)
+        previousChapter.addTarget(self, action: #selector(clickPreviousChapter), for: .touchUpInside)
         addSubview(previousChapter)
         
         // 下一章
@@ -51,7 +51,7 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
         nextChapter.contentHorizontalAlignment = .left
         nextChapter.setTitle("下一章", for: .normal)
         nextChapter.setTitleColor(UIColor.white, for: .normal)
-        nextChapter.addTarget(self, action: #selector(DZMRMBottomView.clickNextChapter), for: .touchUpInside)
+        nextChapter.addTarget(self, action: #selector(clickNextChapter), for: .touchUpInside)
         addSubview(nextChapter)
         
         // 进度条
@@ -80,7 +80,7 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
     }
     
     /// 点击按钮
-    func clickButton(_ button:UIButton) {
+    @objc func clickButton(_ button:UIButton) {
         
         let index = button.tag
         
@@ -103,13 +103,13 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
     }
     
     /// 上一章
-    func clickPreviousChapter() {
+    @objc func clickPreviousChapter() {
         
         readMenu.delegate?.readMenuClickPreviousChapter?(readMenu: readMenu)
     }
     
     /// 下一章
-    func clickNextChapter() {
+    @objc func clickNextChapter() {
         
         readMenu.delegate?.readMenuClickNextChapter?(readMenu: readMenu)
     }

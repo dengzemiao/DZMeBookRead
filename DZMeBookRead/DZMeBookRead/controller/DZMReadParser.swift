@@ -259,7 +259,7 @@ class DZMReadParser: NSObject {
      
      - returns: 每一页的起始位置数组
      */
-    class func ParserPageRange(string:String, rect:CGRect, attrs:[String : Any]?) ->[NSRange] {
+    class func ParserPageRange(string:String, rect:CGRect, attrs:[NSAttributedStringKey:Any]?) ->[NSRange] {
 
         // 记录
         var rangeArray:[NSRange] = []
@@ -356,7 +356,7 @@ class DZMReadParser: NSObject {
     // MARK: -- 获得 FrameRef CTFrame
     
     /// 获得 CTFrame
-    class func GetReadFrameRef(content:String, attrs:[String : Any]?, rect:CGRect) ->CTFrame {
+    class func GetReadFrameRef(content:String, attrs:[NSAttributedStringKey:Any]?, rect:CGRect) ->CTFrame {
         
         let attributedString = NSMutableAttributedString(string: content,attributes: attrs)
         

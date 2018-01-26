@@ -79,7 +79,7 @@ class DZMRMStatusView: DZMRMBaseView {
         
         if timer == nil {
             
-            timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(DZMRMStatusView.didChangeTime), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(didChangeTime), userInfo: nil, repeats: true)
             
             RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
         }
@@ -97,7 +97,7 @@ class DZMRMStatusView: DZMRMBaseView {
     }
     
     /// 时间变化
-    func didChangeTime() {
+    @objc func didChangeTime() {
         
         timeLabel.text = GetCurrentTimerString(dateFormat: "HH:mm")
         

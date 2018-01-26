@@ -1,7 +1,7 @@
 # DZMeBookRead
 
-![Swift Version](https://img.shields.io/badge/Swift-3.x-orange.svg) 
-![Xcode Version](https://img.shields.io/badge/Xcode-8.2.1-orange.svg)
+![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Xcode Version](https://img.shields.io/badge/Xcode-9.2-orange.svg)
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ***
@@ -36,6 +36,10 @@
 
 ***
 #### 简介:
+
+    2018-1-26 更新:
+
+        更新 Swift4.0 - Xcode9.2
 
     2017-12-21 更新:
 

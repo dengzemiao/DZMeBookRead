@@ -41,14 +41,14 @@ class DZMReadChapterModel: NSObject,NSCoding {
     // MARK: -- 更新字体
     
     /// 记录该章使用的字体属性
-    private var readAttribute:[String:NSObject] = [:]
+    private var readAttribute:[NSAttributedStringKey:Any] = [:]
     
     /// 更新字体
     func updateFont(isSave:Bool = false) {
         
         let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true)
         
-        if self.readAttribute != readAttribute {
+        if !NSDictionary(dictionary: self.readAttribute).isEqual(to: readAttribute) {
             
             self.readAttribute = readAttribute
             
@@ -166,7 +166,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
         
         rangeArray = aDecoder.decodeObject(forKey: "rangeArray") as! [NSRange]
         
-        readAttribute = aDecoder.decodeObject(forKey: "readAttribute") as! [String:NSObject]
+        readAttribute = aDecoder.decodeObject(forKey: "readAttribute") as! [NSAttributedStringKey:Any]
     }
     
     func encode(with aCoder: NSCoder) {

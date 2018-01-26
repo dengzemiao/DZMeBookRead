@@ -59,22 +59,25 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
             
             let readChapterModel = readMenu.vc.readModel.readRecordModel.readChapterModel
             
-            let readChapterListModels = readMenu.vc.readModel.readChapterListModels as NSArray
+            let readChapterListModels = readMenu.vc.readModel.readChapterListModels
             
             if readChapterModel != nil && readChapterListModels.count != 0 {
                
                 DispatchQueue.global().async { [weak self] ()->Void in
                     
-                    let models = readChapterListModels.filtered(using: NSPredicate(format: "id == %@", readChapterModel!.id))
-                    
-                    if !models.isEmpty {
+                    for i in 0..<readChapterListModels.count {
                         
-                        let row = readChapterListModels.index(of: models.first!)
+                        let model = readChapterListModels[i]
                         
-                        // 更新UI
-                        DispatchQueue.main.async { [weak self] ()->Void in
+                        if model.id == readChapterModel!.id {
                             
-                            self?.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+                            // 更新UI
+                            DispatchQueue.main.async { [weak self] ()->Void in
+                                
+                                self?.tableView.scrollToRow(at: IndexPath(row: i, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+                            }
+
+                            return
                         }
                     }
                 }

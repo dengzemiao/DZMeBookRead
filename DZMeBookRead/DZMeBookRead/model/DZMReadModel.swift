@@ -91,7 +91,15 @@ class DZMReadModel: NSObject,NSCoding {
     /// 通过ID获得章节列表模型
     func GetReadChapterListModel(chapterID:String) ->DZMReadChapterListModel? {
         
-        return (readChapterListModels as NSArray).filtered(using: NSPredicate(format: "id == %@",chapterID)).first as? DZMReadChapterListModel
+        for model in readChapterListModels {
+            
+            if model.id == chapterID {
+                
+                return model
+            }
+        }
+        
+        return nil
     }
     
     // MARK: -- 操作 - 书签
@@ -153,17 +161,25 @@ class DZMReadModel: NSObject,NSCoding {
         
         let readRecordModel = (readRecordModel != nil ? readRecordModel : self.readRecordModel)!
         
-        let pre = NSPredicate(format: "id == %@",readRecordModel.readChapterModel!.id)
+        let chapterID = readRecordModel.readChapterModel!.id
         
-        let result = (readMarkModels as NSArray).filtered(using: pre) as! [DZMReadMarkModel]
+        var results:[DZMReadMarkModel] = []
         
-        if !result.isEmpty {
+        for model in readMarkModels {
+            
+            if model.id == chapterID {
+                
+                results.append(model)
+            }
+        }
+        
+        if !results.isEmpty {
             
             // 当前显示页面的Range
             let range = readRecordModel.readChapterModel!.rangeArray[readRecordModel.page.intValue]
             
             // 便利
-            for readMarkModel in readMarkModels {
+            for readMarkModel in results {
                 
                 let location = readMarkModel.location.intValue
                 

@@ -149,7 +149,7 @@ extension String {
         
         let string:NSString = self as NSString
         
-        return string.boundingRect(with: constrainedToSize, options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSFontAttributeName:font], context: nil).size
+        return string.boundingRect(with: constrainedToSize, options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSAttributedStringKey.font:font], context: nil).size
     }
     
     /// 正则替换字符

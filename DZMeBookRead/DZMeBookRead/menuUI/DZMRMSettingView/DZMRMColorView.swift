@@ -116,7 +116,7 @@ class DZMRMColorView: DZMRMBaseView {
             
             addSubview(publicButton)
             
-            publicButton.addTarget(self, action: #selector(DZMRMColorView.clickButton(button:)), for: .touchUpInside)
+            publicButton.addTarget(self, action: #selector(clickButton(button:)), for: .touchUpInside)
             
             if selectIndex == i {
                 
@@ -127,7 +127,7 @@ class DZMRMColorView: DZMRMBaseView {
     }
     
     /// 点击按钮
-    func clickButton(button:DZMHaloButton) {
+    @objc func clickButton(button:DZMHaloButton) {
         
         selectButton(button: button)
         

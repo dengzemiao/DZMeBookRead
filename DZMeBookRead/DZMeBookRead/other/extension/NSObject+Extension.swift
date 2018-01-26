@@ -30,7 +30,7 @@ extension NSObject {
             let name = property_getName(property)
             
             // 这里还得转换成字符串
-            let propertyName = String(cString: name!)
+            let propertyName = String(cString: name)
             propertyNames.append(propertyName)
         }
         
@@ -55,7 +55,7 @@ extension NSObject {
             // 获取属性名称
             let property = properties![i]
             let name = property_getName(property)
-            let propertyName = String(cString: name!)
+            let propertyName = String(cString: name)
             
             if (!propertyName.isEmpty) {
                 

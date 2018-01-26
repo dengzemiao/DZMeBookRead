@@ -102,7 +102,7 @@ class DZMRMFuncView: DZMRMBaseView {
                 
                 button.frame = CGRect(x: tempX + CGFloat(i) * buttonW, y: 0, width: buttonW, height: height)
                 
-                button.addTarget(self, action: #selector(DZMRMFuncView.clickButton(button:)), for: .touchUpInside)
+                button.addTarget(self, action: #selector(clickButton(button:)), for: .touchUpInside)
                 
                 addSubview(button)
                 
@@ -123,7 +123,7 @@ class DZMRMFuncView: DZMRMBaseView {
             leftButton.contentHorizontalAlignment = .right
             leftButton.setImage(UIImage(named:"RM_15"), for: .normal)
             leftButton.frame = CGRect(x: tempX, y: 0, width: buttonW, height: height)
-            leftButton.addTarget(self, action: #selector(DZMRMFuncView.clickFontSize(button:)), for: .touchUpInside)
+            leftButton.addTarget(self, action: #selector(clickFontSize(button:)), for: .touchUpInside)
             addSubview(leftButton)
             
             // right
@@ -132,13 +132,13 @@ class DZMRMFuncView: DZMRMBaseView {
             rightButton.contentHorizontalAlignment = .left
             rightButton.setImage(UIImage(named:"RM_16"), for: .normal)
             rightButton.frame = CGRect(x: leftButton.frame.maxX - buttonSpaceW, y: 0, width: buttonW, height: height)
-            rightButton.addTarget(self, action: #selector(DZMRMFuncView.clickFontSize(button:)), for: .touchUpInside)
+            rightButton.addTarget(self, action: #selector(clickFontSize(button:)), for: .touchUpInside)
             addSubview(rightButton)
         }
     }
     
     /// .fontSize
-    func clickFontSize(button:UIButton) {
+    @objc func clickFontSize(button:UIButton) {
         
         if button.tag == 0 { // left
             
@@ -163,7 +163,7 @@ class DZMRMFuncView: DZMRMBaseView {
     }
     
     /// .font .effect
-    func clickButton(button:UIButton) {
+    @objc func clickButton(button:UIButton) {
         
         if button.isSelected {return}
         

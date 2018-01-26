@@ -318,7 +318,7 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
     }
     
     /// 点击按钮
-    func clickLightButton(button:UIButton) {
+    @objc func clickLightButton(button:UIButton) {
         
         button.isSelected = !button.isSelected
         
@@ -359,7 +359,7 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
     }
     
     /// 返回
-    func clickBack() {
+    @objc func clickBack() {
         
         let _ = vc.navigationController?.popViewController(animated: true)
     }

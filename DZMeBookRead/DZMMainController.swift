@@ -42,13 +42,13 @@ class DZMMainController: DZMViewController {
         let button = UIButton(type: .custom)
         button.setTitle("点击阅读", for: .normal)
         button.backgroundColor = UIColor.green
-        button.addTarget(self, action: #selector(DZMMainController.read), for: .touchDown)
+        button.addTarget(self, action: #selector(read), for: .touchDown)
         view.addSubview(button)
         button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
     }
     
     // 跳转
-    func read() {
+    @objc func read() {
         
         MBProgressHUD.showMessage("本地文件第一次解析慢,以后就会秒进了")
         

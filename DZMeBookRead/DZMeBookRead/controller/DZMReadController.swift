@@ -54,7 +54,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     // MARK: DZMReadView 手势通知
     
     /// 收到通知
-    func readViewNotification(notification:Notification) {
+    @objc func readViewNotification(notification:Notification) {
         
         // 获得状态
         let info = notification.userInfo
