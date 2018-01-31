@@ -45,9 +45,24 @@
 @property (nonatomic,assign) BOOL isPanBegin;
 
 /**
+ *  动画状态
+ */
+@property (nonatomic,assign) BOOL isAnimateChange;
+
+/**
  *  临时控制器 通过代理获取回来的控制器 还没有完全展示出来的控制器
  */
 @property (nonatomic,strong,nullable) UIViewController *pendingController;
+
+/**
+ *  移动中的触摸位置
+ */
+@property (nonatomic,assign) CGPoint moveTouchPoint;
+
+/**
+ *  移动中的差值
+ */
+@property (nonatomic,assign) CGFloat moveSpaceX;
 
 @end
 
@@ -76,7 +91,6 @@
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchTap:)];
     [self.view addGestureRecognizer:self.pan];
     [self.view addGestureRecognizer:self.tap];
-    self.pan.delegate = self;
     self.tap.delegate = self;
     
     // 启用手势
@@ -105,7 +119,6 @@
     self.tap.enabled = tapGestureRecognizerEnabled;
 }
 
-
 #pragma mark - 手势处理
 
 - (void)touchPan:(UIPanGestureRecognizer *)pan
@@ -115,6 +128,15 @@
     
     // 用于计算位置
     CGPoint touchPoint = [pan locationInView:self.view];
+    
+    // 比较获取差值
+    if (!CGPointEqualToPoint(self.moveTouchPoint, CGPointZero) && (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged)) {
+        
+        self.moveSpaceX = touchPoint.x - self.moveTouchPoint.x;
+    }
+    
+    // 记录位置
+    self.moveTouchPoint = touchPoint;
     
     if (pan.state == UIGestureRecognizerStateBegan) { // 手势开始
         
@@ -174,7 +196,7 @@
             self.isPan = NO;
             
             if (self.openAnimate) { // 动画
-          
+                
                 if (self.pendingController) {
                     
                     BOOL isSuccess = YES;
@@ -184,6 +206,13 @@
                         if (self.pendingController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
                             
                             isSuccess = NO;
+                            
+                        }else{
+                            
+                            if (self.moveSpaceX < 0) {
+                                
+                                isSuccess = NO;
+                            }
                         }
                         
                     }else{
@@ -208,6 +237,10 @@
                 [self GestureSuccess:YES animated:self.openAnimate];
             }
         }
+        
+        // 清空记录
+        self.moveTouchPoint = CGPointZero;
+        self.moveSpaceX = 0;
     }
 }
 
@@ -403,7 +436,7 @@
 - (UIViewController * _Nullable)GetPanControllerWithTouchPoint:(CGPoint)touchPoint
 {
     UIViewController *vc = nil;
-   
+    
     if (touchPoint.x > 0) { // 左边
         
         self.isLeft = YES;
