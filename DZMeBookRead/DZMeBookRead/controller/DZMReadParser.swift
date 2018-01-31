@@ -97,9 +97,9 @@ class DZMReadParser: NSObject {
         var results:[NSTextCheckingResult] = []
         
         do{
-            let regularExpression:NSRegularExpression = try NSRegularExpression(pattern: parten, options: NSRegularExpression.Options.caseInsensitive)
+            let regularExpression:NSRegularExpression = try NSRegularExpression(pattern: parten, options: .caseInsensitive)
             
-            results = regularExpression.matches(in: content, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: content.length))
+            results = regularExpression.matches(in: content, options: .reportCompletion, range: NSRange(location: 0, length: content.length))
             
         }catch{
             
@@ -108,7 +108,7 @@ class DZMReadParser: NSObject {
         
         // 解析搜索结果
         if !results.isEmpty {
-           
+            
             // 记录最后一个Range
             var lastRange = NSMakeRange(0, 0)
             
@@ -119,15 +119,24 @@ class DZMReadParser: NSObject {
             var lastReadChapterModel:DZMReadChapterModel?
             
             // 便利
-            for i in 0..<count {
+            for i in 0...count {
                 
-                // 打印解析进度
-                print("总章节数:\(count)  当前解析到:\(i + 1)")
+                // 章节数量分析:
+                // count + 1  = 为搜索到的章节数量 + 最后一个章节,
+                // 1 + count + 1  = 第一章前面的前言内容 + 为搜索到的章节数量 + 最后一个章节
+                print("总章节数:\(count + 1)  当前解析到:\(i + 1)")
                 
                 // range
-                let range = results[i].range
+                var range = NSMakeRange(0, 0)
                 
-                let location = range.location
+                var location = 0
+                
+                if i < count {
+                    
+                    range = results[i].range
+                    
+                    location = range.location
+                }
                 
                 // 创建章节内容模型
                 let readChapterModel = DZMReadChapterModel()
@@ -161,8 +170,8 @@ class DZMReadParser: NSObject {
                     readChapterModel.name = content.substring(lastRange)
                     
                     // 内容
-                    readChapterModel.content = ContentTypesetting(content: content.substring(NSMakeRange(lastRange.location, content.length - location)))
-        
+                    readChapterModel.content = ContentTypesetting(content: content.substring(NSMakeRange(lastRange.location, content.length - lastRange.location)))
+                    
                 }else { // 中间章节
                     
                     // 章节名
