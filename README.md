@@ -42,6 +42,8 @@ Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
 ***
 #### 简介:
 
+    提示: 如需导入项目请看下面的的 - 导入项目流程
+
     2018-1-26 更新:
 
         更新 Swift4.0 - Xcode9.2
@@ -73,8 +75,6 @@ Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
         定位: 阅读记录,书签,定位精确
 
         内存: 只要看不见的章节都会进行清理内存,不会占用内存
-    
-        导入项目流程 -> 请看下面的 文件介绍
         
 ***
 #### 小说相关库：
@@ -108,7 +108,7 @@ UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22
 ## 有BUG请联系我 技术QQ群:52181885 （入群需要回答问题：常用的网络请求框架? 有的QQ版本不显示问题 已经出现过这样的情况 所以入群自己填上答案就行 防止广告之类的人进入）
 
 ***
-#### 文件介绍:
+#### 导入项目流程:
 
 ![文件介绍1](icon_0.png)
 
