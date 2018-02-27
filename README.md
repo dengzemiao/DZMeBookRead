@@ -112,8 +112,6 @@ UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22
 
 ![文件介绍1](icon_0.png)
 
-![文件介绍2](icon_1.png)
-
 ***
 #### 部分代码浏览:
 
