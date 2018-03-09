@@ -296,7 +296,6 @@ class DZMReadParser: NSObject {
             
         }while(range.location + range.length < attrString.length)
         
-        
         return rangeArray
     }
     
