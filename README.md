@@ -1,6 +1,6 @@
 # DZMeBookRead
 
-![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift Version](https://img.shields.io/badge/Swift-4.1-orange.svg)
 ![Xcode Version](https://img.shields.io/badge/Xcode-9.2-orange.svg)
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
