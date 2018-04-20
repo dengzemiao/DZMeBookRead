@@ -11,10 +11,10 @@ import UIKit
 class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControllerDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource {
     
     /// 阅读模型(必传)
-    var readModel:DZMReadModel!
+    @objc var readModel:DZMReadModel!
     
     /// 开启长按菜单
-    var openLongMenu:Bool = true
+    @objc var openLongMenu:Bool = true
     
     /// 阅读菜单UI
     private(set) var readMenu:DZMReadMenu!

@@ -36,19 +36,19 @@ class DZMReadConfigure: NSObject {
     // MARK: -- 属性
     
     /// 当前阅读的背景颜色
-    var colorIndex:NSInteger = 0 {didSet{save()}}
+    @objc var colorIndex:NSInteger = 0 {didSet{save()}}
     
     /// 字体类型
-    var fontType:NSInteger = DZMRMFontType.system.rawValue {didSet{save()}}
+    @objc var fontType:NSInteger = DZMRMFontType.system.rawValue {didSet{save()}}
     
     /// 字体大小
-    var fontSize:NSInteger = DZMReadDefaultFontSize {didSet{save()}}
+    @objc var fontSize:NSInteger = DZMReadDefaultFontSize {didSet{save()}}
     
     /// 翻页效果
-    var effectType:NSInteger = DZMRMEffectType.simulation.rawValue {didSet{save()}}
+    @objc var effectType:NSInteger = DZMRMEffectType.simulation.rawValue {didSet{save()}}
     
     /// 阅读文字颜色(根据需求自己选)
-    var textColor:UIColor {
+    @objc var textColor:UIColor {
         
         // 固定颜色使用
         get{return DZMColor_5}
@@ -75,7 +75,7 @@ class DZMReadConfigure: NSObject {
     // MARK: -- 操作
     
     /// 单例
-    class func shared() ->DZMReadConfigure {
+    @objc class func shared() ->DZMReadConfigure {
         
         if instance == nil {
             
@@ -86,11 +86,9 @@ class DZMReadConfigure: NSObject {
     }
     
     /// 保存
-    func save() {
+    @objc func save() {
         
         var dict = allPropertys()
-        
-        dict.removeValue(forKey: "lineSpacing")
         
         dict.removeValue(forKey: "textColor")
         
@@ -106,7 +104,7 @@ class DZMReadConfigure: NSObject {
     }
     
     /// 获得文字属性字典 (isPaging: 为YES的时候只需要返回跟分页相关的属性即可 注意: 包含 UIColor , 小数点相关的...不可返回,因为无法进行比较)
-    func readAttribute(isPaging:Bool = false) ->[NSAttributedStringKey:Any] {
+    @objc func readAttribute(isPaging:Bool = false) ->[NSAttributedStringKey:Any] {
         
         // 段落配置
         let paragraphStyle = NSMutableParagraphStyle()
@@ -136,7 +134,7 @@ class DZMReadConfigure: NSObject {
     }
     
     /// 获得颜色
-    func readColor() ->UIColor {
+    @objc func readColor() ->UIColor {
         
         if colorIndex == DZMReadBGColors.index(of: DZMReadBGColor_4) { // 牛皮黄
             
@@ -149,7 +147,7 @@ class DZMReadConfigure: NSObject {
     }
     
     /// 获得文字Font
-    func readFont() ->UIFont {
+    @objc func readFont() ->UIFont {
         
         if fontType == DZMRMFontType.one.rawValue { // 黑体
             
@@ -172,7 +170,7 @@ class DZMReadConfigure: NSObject {
     // MARK: -- 构造初始化
     
     /// 创建获取内存中的用户信息
-    class func readInfo() ->DZMReadConfigure {
+    @objc class func readInfo() ->DZMReadConfigure {
         
         let info = DZMUserDefaults.objectForKey(DZMReadConfigureKey)
         

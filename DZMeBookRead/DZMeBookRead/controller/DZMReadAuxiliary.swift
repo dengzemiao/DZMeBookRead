@@ -16,7 +16,7 @@ class DZMReadAuxiliary: NSObject {
     ///   - point: 触摸位置
     ///   - frameRef: CTFrame
     /// - Returns: 触摸位置的Index
-    class func GetTouchLocation(point:CGPoint, frameRef:CTFrame?) ->CFIndex {
+    @objc class func GetTouchLocation(point:CGPoint, frameRef:CTFrame?) ->CFIndex {
         
         var location:CFIndex = -1
         
@@ -37,7 +37,7 @@ class DZMReadAuxiliary: NSObject {
     ///   - point: 触摸位置
     ///   - frameRef: CTFrame
     /// - Returns: CTLine
-    class func GetTouchLineRange(point:CGPoint, frameRef:CTFrame?) ->NSRange {
+    @objc class func GetTouchLineRange(point:CGPoint, frameRef:CTFrame?) ->NSRange {
         
         var range:NSRange = NSMakeRange(NSNotFound, 0)
         
@@ -59,7 +59,7 @@ class DZMReadAuxiliary: NSObject {
     ///   - point: 触摸位置
     ///   - frameRef: CTFrame
     /// - Returns: CTLine
-    class func GetTouchLine(point:CGPoint, frameRef:CTFrame?) ->CTLine? {
+    @objc class func GetTouchLine(point:CGPoint, frameRef:CTFrame?) ->CTLine? {
         
         var line:CTLine? = nil
         
@@ -122,7 +122,7 @@ class DZMReadAuxiliary: NSObject {
     /// - Parameter frameRef: CTFrame
     /// - Parameter content: 内容字符串(有值则可以去除选中每一行区域内的 开头空格 - 尾部换行符 - 所占用的区域,不传默认返回每一行实际占用区域)
     /// - Returns: 覆盖位置
-    class func GetRangeRects(range:NSRange, frameRef:CTFrame?, content:String? = nil) -> [CGRect] {
+    @objc class func GetRangeRects(range:NSRange, frameRef:CTFrame?, content:String? = nil) -> [CGRect] {
         
         var rects:[CGRect] = []
         
@@ -222,7 +222,7 @@ class DZMReadAuxiliary: NSObject {
     /// - Parameter viewFrame: 目标ViewFrame
     /// - Parameter content: 内容字符串
     /// - Returns: MenuRect
-    class func GetMenuRect(range:NSRange, frameRef:CTFrame?, viewFrame:CGRect, content:String? = nil) ->CGRect {
+    @objc class func GetMenuRect(range:NSRange, frameRef:CTFrame?, viewFrame:CGRect, content:String? = nil) ->CGRect {
         
         let rects = GetRangeRects(range: range, frameRef: frameRef, content: content)
         
@@ -234,7 +234,7 @@ class DZMReadAuxiliary: NSObject {
     /// - Parameter rects: [CGRect]
     /// - Parameter viewFrame: 目标ViewFrame
     /// - Returns: MenuRect
-    class func GetMenuRect(rects:[CGRect], viewFrame:CGRect) ->CGRect {
+    @objc class func GetMenuRect(rects:[CGRect], viewFrame:CGRect) ->CGRect {
         
         var menuRect:CGRect = CGRect.zero
         
@@ -281,7 +281,7 @@ class DZMReadAuxiliary: NSObject {
     ///
     /// - Parameter line: CTLine
     /// - Returns: 行高
-    class func GetLineHeight(frameRef:CTFrame?) ->CGFloat {
+    @objc class func GetLineHeight(frameRef:CTFrame?) ->CGFloat {
         
         if frameRef == nil { return 0 }
         
@@ -298,7 +298,7 @@ class DZMReadAuxiliary: NSObject {
     ///
     /// - Parameter line: CTLine
     /// - Returns: 行高
-    class func GetLineHeight(line:CTLine?) ->CGFloat {
+    @objc class func GetLineHeight(line:CTLine?) ->CGFloat {
         
         if line == nil { return 0 }
         

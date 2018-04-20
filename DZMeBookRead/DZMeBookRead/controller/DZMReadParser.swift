@@ -22,7 +22,7 @@ class DZMReadParser: NSObject {
      
      - returns: ReadModel
      */
-    class func ParserLocalURL(url:URL,complete:((_ readModel:DZMReadModel) ->Void)?) {
+    @objc class func ParserLocalURL(url:URL,complete:((_ readModel:DZMReadModel) ->Void)?) {
        
         DispatchQueue.global().async {
             
@@ -43,7 +43,7 @@ class DZMReadParser: NSObject {
      
      - returns: ReadModel
      */
-    class func ParserLocalURL(url:URL) ->DZMReadModel {
+    @objc class func ParserLocalURL(url:URL) ->DZMReadModel {
         
         let bookID = GetFileName(url)
         
@@ -268,7 +268,7 @@ class DZMReadParser: NSObject {
      
      - returns: 每一页的起始位置数组
      */
-    class func ParserPageRange(string:String, rect:CGRect, attrs:[NSAttributedStringKey:Any]?) ->[NSRange] {
+    @objc class func ParserPageRange(string:String, rect:CGRect, attrs:[NSAttributedStringKey:Any]?) ->[NSRange] {
 
         // 记录
         var rangeArray:[NSRange] = []
@@ -302,7 +302,7 @@ class DZMReadParser: NSObject {
     // MARK: -- 对内容进行整理排版 比如去掉多余的空格或者段头留2格等等
     
     /// 内容排版整理
-    class func ContentTypesetting(content:String) ->String {
+    @objc class func ContentTypesetting(content:String) ->String {
 
         // 替换单换行
         var content = content.replacingOccurrences(of: "\r", with: "")
@@ -318,7 +318,7 @@ class DZMReadParser: NSObject {
     // MARK: -- 解码URL
     
     /// 解码URL
-    class func EncodeURL(_ url:URL) ->String {
+    @objc class func EncodeURL(_ url:URL) ->String {
         
         var content = ""
         
@@ -364,7 +364,7 @@ class DZMReadParser: NSObject {
     // MARK: -- 获得 FrameRef CTFrame
     
     /// 获得 CTFrame
-    class func GetReadFrameRef(content:String, attrs:[NSAttributedStringKey:Any]?, rect:CGRect) ->CTFrame {
+    @objc class func GetReadFrameRef(content:String, attrs:[NSAttributedStringKey:Any]?, rect:CGRect) ->CTFrame {
         
         let attributedString = NSMutableAttributedString(string: content,attributes: attrs)
         
