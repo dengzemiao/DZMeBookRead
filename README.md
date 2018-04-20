@@ -82,6 +82,11 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
         内存: 只要看不见的章节都会进行清理内存,不会占用内存
         
 ***
+#### epub提示
+
+    DTCoreText是个开源的iOS富文本组件,它可以解析HTML与CSS最终用CoreText绘制出来
+    
+***
 #### 小说相关库：
 
 放大镜: https://github.com/dengzemiao/DZMMagnifierView
