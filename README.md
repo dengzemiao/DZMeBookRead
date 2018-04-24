@@ -84,8 +84,9 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
 ***
 #### epub提示
 
-    DTCoreText是个开源的iOS富文本组件,它可以解析HTML与CSS最终用CoreText绘制出来
+    DTCoreText主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
     
+    Github地址：https://github.com/Cocoanetics/DTCoreText
 ***
 #### 小说相关库：
 
