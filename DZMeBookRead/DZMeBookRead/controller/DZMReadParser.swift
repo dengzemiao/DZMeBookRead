@@ -118,6 +118,9 @@ class DZMReadParser: NSObject {
             // 记录 上一章 模型
             var lastReadChapterModel:DZMReadChapterModel?
             
+            // 有前言
+            var isPreface:Bool = true
+            
             // 便利
             for i in 0...count {
                 
@@ -145,10 +148,10 @@ class DZMReadParser: NSObject {
                 readChapterModel.bookID = bookID
                 
                 // 章节ID
-                readChapterModel.id = "\(i + 1)"
+                readChapterModel.id = "\(i + NSNumber(value: isPreface).intValue)"
                 
                 // 优先级
-                readChapterModel.priority = NSNumber(value: i)
+                readChapterModel.priority = NSNumber(value: (i - NSNumber(value: !isPreface).intValue))
                 
                 if i == 0 { // 开始
                     
@@ -162,7 +165,12 @@ class DZMReadParser: NSObject {
                     lastRange = range
                     
                     // 说不定没有内容 则不需要添加到列表
-                    if readChapterModel.content.isEmpty {continue}
+                    if readChapterModel.content.isEmpty {
+                        
+                        isPreface = false
+                        
+                        continue
+                    }
                     
                 }else if i == count { // 结尾
                     
