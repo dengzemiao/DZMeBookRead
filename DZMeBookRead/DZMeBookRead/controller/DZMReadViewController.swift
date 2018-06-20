@@ -201,7 +201,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
-        if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 非上下滚动
+        if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue { // 上下滚动
             
             // 获得当前模型
             let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readRecordModel.bookID, chapterID: dataArray[section], isUpdateFont: true)
