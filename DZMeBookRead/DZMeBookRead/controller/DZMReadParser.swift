@@ -93,6 +93,9 @@ class DZMReadParser: NSObject {
         // 正则
         let parten = "第[0-9一二三四五六七八九十百千]*[章回].*"
         
+        // 排版
+        let content = ContentTypesetting(content: content)
+        
         // 搜索
         var results:[NSTextCheckingResult] = []
         
@@ -159,7 +162,7 @@ class DZMReadParser: NSObject {
                     readChapterModel.name = "开始"
                     
                     // 内容
-                    readChapterModel.content = ContentTypesetting(content: content.substring(NSMakeRange(0, location)))
+                    readChapterModel.content = content.substring(NSMakeRange(0, location))
                     
                     // 记录
                     lastRange = range
@@ -178,7 +181,7 @@ class DZMReadParser: NSObject {
                     readChapterModel.name = content.substring(lastRange)
                     
                     // 内容
-                    readChapterModel.content = ContentTypesetting(content: content.substring(NSMakeRange(lastRange.location, content.length - lastRange.location)))
+                    readChapterModel.content = content.substring(NSMakeRange(lastRange.location, content.length - lastRange.location))
                     
                 }else { // 中间章节
                     
@@ -186,7 +189,7 @@ class DZMReadParser: NSObject {
                     readChapterModel.name = content.substring(lastRange)
                     
                     // 内容
-                    readChapterModel.content = ContentTypesetting(content: content.substring(NSMakeRange(lastRange.location, location - lastRange.location)))
+                    readChapterModel.content = content.substring(NSMakeRange(lastRange.location, location - lastRange.location))
                 }
                 
                 // 分页
@@ -226,7 +229,7 @@ class DZMReadParser: NSObject {
             readChapterModel.priority = NSNumber(value: 0)
             
             // 内容
-            readChapterModel.content = ContentTypesetting(content: content)
+            readChapterModel.content = content
             
             // 分页
             readChapterModel.updateFont()
