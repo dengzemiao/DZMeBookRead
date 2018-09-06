@@ -110,16 +110,16 @@ class DZMReadConfigure: NSObject {
         let paragraphStyle = NSMutableParagraphStyle()
         
         // 行间距
-        paragraphStyle.lineSpacing = 10
+        paragraphStyle.lineSpacing = DZMSpace_10
         
         // 段间距
-        paragraphStyle.paragraphSpacing = 10
+        paragraphStyle.paragraphSpacing = DZMSpace_5
         
         // 当前行间距(lineSpacing)的倍数(可根据字体大小变化修改倍数)
         paragraphStyle.lineHeightMultiple = 1.0
         
         // 对其
-        paragraphStyle.alignment = .natural
+        paragraphStyle.alignment = .justified
         
         // 返回
         if isPaging {
