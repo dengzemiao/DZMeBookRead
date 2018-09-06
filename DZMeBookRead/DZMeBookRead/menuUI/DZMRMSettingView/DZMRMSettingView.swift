@@ -32,7 +32,7 @@ class DZMRMSettingView: DZMRMBaseView {
         addSubview(colorView)
     
         // funcViewH
-        let funcViewH:CGFloat = (height - (isX ? DZMSpace_1 : 0) - colorView.height) / 3
+        let funcViewH:CGFloat = (height - (isX ? DZMSpace_15 : 0) - colorView.height) / 3
         
         // 翻页效果 labels 排放顺序参照 DZMRMNovelEffectType
         effectView = DZMRMFuncView(frame:CGRect(x: 0, y: colorView.frame.maxY, width: ScreenWidth, height: funcViewH), readMenu:readMenu, funcType: .effect, title:"翻书动画", labels:["无效果","平移","仿真","上下"], selectIndex:DZMReadConfigure.shared().effectType)

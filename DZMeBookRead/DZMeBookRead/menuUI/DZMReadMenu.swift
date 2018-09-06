@@ -304,7 +304,7 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
     /// 初始化LightButton
     private func initLightButton() {
         
-        lightButton = DZMHaloButton(CGRect(x: ScreenWidth - lightButtonWH - DZMSpace_1, y: ScreenHeight, width: lightButtonWH, height: lightButtonWH), haloColor:UIColor.black.withAlphaComponent(0.75))
+        lightButton = DZMHaloButton(CGRect(x: ScreenWidth - lightButtonWH - DZMSpace_15, y: ScreenHeight, width: lightButtonWH, height: lightButtonWH), haloColor:UIColor.black.withAlphaComponent(0.75))
         
         lightButton.nomalImage = UIImage(named:"RM_14")
         
@@ -526,11 +526,11 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
             
             if isShow {lightButton.isHidden = false}
             
-            lightButton.frame = CGRect(x: ScreenWidth - lightButtonWH - DZMSpace_1, y: ScreenHeight, width: lightButtonWH, height: lightButtonWH)
+            lightButton.frame = CGRect(x: ScreenWidth - lightButtonWH - DZMSpace_15, y: ScreenHeight, width: lightButtonWH, height: lightButtonWH)
             
             UIView.animate(withDuration: animateDuration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: { [weak self] ()->Void in
                 
-                self?.lightButton.frame = CGRect(x: ScreenWidth - self!.lightButtonWH - DZMSpace_1, y: ScreenHeight - self!.BottomViewH - self!.lightButtonWH - DZMSpace_1, width: self!.lightButtonWH, height: self!.lightButtonWH)
+                self?.lightButton.frame = CGRect(x: ScreenWidth - self!.lightButtonWH - DZMSpace_15, y: ScreenHeight - self!.BottomViewH - self!.lightButtonWH - DZMSpace_15, width: self!.lightButtonWH, height: self!.lightButtonWH)
                 
                 }, completion: { (isOK) in
                     
@@ -557,7 +557,7 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
         
         UIView.animate(withDuration: animateDuration) { [weak self] ()->Void in
             
-            self?.lightButton.frame = CGRect(x: self!.lightButton.x, y: ScreenHeight - view.height - self!.lightButtonWH - DZMSpace_1, width: self!.lightButtonWH, height: self!.lightButtonWH)
+            self?.lightButton.frame = CGRect(x: self!.lightButton.x, y: ScreenHeight - view.height - self!.lightButtonWH - DZMSpace_15, width: self!.lightButtonWH, height: self!.lightButtonWH)
         }
     }
     

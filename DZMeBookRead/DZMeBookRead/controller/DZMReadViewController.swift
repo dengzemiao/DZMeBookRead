@@ -60,11 +60,11 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         topStatusView.lineBreakMode = .byTruncatingMiddle
         topStatusView.textColor = DZMColor_4
         topStatusView.font = DZMFont_12
-        topStatusView.frame = CGRect(x: DZMSpace_1, y: (isX ? TopLiuHeight : 0), width: view.width - 2 * DZMSpace_1, height: DZMSpace_2)
+        topStatusView.frame = CGRect(x: DZMSpace_15, y: (isX ? TopLiuHeight : 0), width: view.width - 2 * DZMSpace_15, height: DZMSpace_25)
         view.addSubview(topStatusView)
         
         // BottomStatusView
-        bottomStatusView = DZMRMStatusView(frame:CGRect(x: DZMSpace_1, y: view.frame.height - DZMSpace_2, width: view.width - 2 * DZMSpace_1, height: DZMSpace_2))
+        bottomStatusView = DZMRMStatusView(frame:CGRect(x: DZMSpace_15, y: view.frame.height - DZMSpace_25, width: view.width - 2 * DZMSpace_15, height: DZMSpace_25))
         bottomStatusView.backgroundColor = UIColor.clear
         bottomStatusView.titleLabel.text = "\(readRecordModel.page.intValue + 1)/\(readRecordModel.readChapterModel!.pageCount.intValue)"
         view.addSubview(bottomStatusView)
@@ -310,7 +310,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 let rect = GetReadTableViewFrame()
                 
                 // 显示章节Cell IndexPath
-                var indexPath = tableView.indexPathsForRows(in: CGRect(x: 0, y: tableView.contentOffset.y + DZMSpace_1, width: rect.width, height: rect.height - DZMSpace_1))!.first!
+                var indexPath = tableView.indexPathsForRows(in: CGRect(x: 0, y: tableView.contentOffset.y + DZMSpace_15, width: rect.width, height: rect.height - DZMSpace_15))!.first!
                 
                 // 章节ID
                 let chapterID:String = "\(dataArray[indexPath.section])"

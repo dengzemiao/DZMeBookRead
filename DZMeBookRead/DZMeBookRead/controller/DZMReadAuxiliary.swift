@@ -101,7 +101,7 @@ class DZMReadAuxiliary: NSObject {
            
             var lineFrame = CGRect(x: origin.x, y: bounds.height - origin.y - lineAscent, width: lineWidth, height: lineheight)
 
-            lineFrame = lineFrame.insetBy(dx: -DZMSpace_1, dy: -DZMSpace_6)
+            lineFrame = lineFrame.insetBy(dx: -DZMSpace_15, dy: -DZMSpace_5)
             
             if lineFrame.contains(point) {
 

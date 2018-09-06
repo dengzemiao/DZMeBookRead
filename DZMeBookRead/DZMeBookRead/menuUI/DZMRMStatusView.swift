@@ -59,7 +59,7 @@ class DZMRMStatusView: DZMRMBaseView {
         super.layoutSubviews()
         
         // 适配间距
-        let space = isX ? DZMSpace_1 : 0
+        let space = isX ? DZMSpace_15 : 0
         
         // 电池
         batteryView.origin = CGPoint(x: width - DZMBatterySize.width - space, y: (height - DZMBatterySize.height)/2)

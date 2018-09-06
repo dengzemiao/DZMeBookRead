@@ -64,7 +64,7 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
         slider.popUpViewColor = DZMColor_2
         slider.font = UIFont(name: "Futura-CondensedExtraBold", size: 22)
         slider.textColor = UIColor.white
-        slider.popUpViewArrowLength = DZMSpace_4
+        slider.popUpViewArrowLength = DZMSpace_10
         addSubview(slider)
     }
     
@@ -163,15 +163,15 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
         super.layoutSubviews()
         
         // 上一章
-        previousChapter.frame = CGRect(x: 0, y: DZMSpace_4, width: 55, height: 32)
+        previousChapter.frame = CGRect(x: 0, y: DZMSpace_10, width: 55, height: 32)
         
         // 下一章
-        nextChapter.frame = CGRect(x: width - previousChapter.width, y: DZMSpace_4, width: previousChapter.width, height: previousChapter.height)
+        nextChapter.frame = CGRect(x: width - previousChapter.width, y: DZMSpace_10, width: previousChapter.width, height: previousChapter.height)
         
         // 进度条
-        let sliderX = previousChapter.frame.maxX + DZMSpace_4
+        let sliderX = previousChapter.frame.maxX + DZMSpace_10
         let sliderW:CGFloat = width - 2 * sliderX
-        slider.frame = CGRect(x: sliderX, y: DZMSpace_4, width: sliderW, height: previousChapter.height)
+        slider.frame = CGRect(x: sliderX, y: DZMSpace_10, width: sliderW, height: previousChapter.height)
         
         // 按钮布局
         let count = funcIcons.count

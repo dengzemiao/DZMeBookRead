@@ -70,7 +70,7 @@ class DZMRMFuncView: DZMRMBaseView {
         titleLabel.font = DZMFont_12
         titleLabel.text = title
         addSubview(titleLabel)
-        titleLabel.frame = CGRect(x: DZMSpace_2, y: 0, width: 55, height: height)
+        titleLabel.frame = CGRect(x: DZMSpace_25, y: 0, width: 55, height: height)
         
         // 布局
         let tempX:CGFloat = titleLabel.frame.maxX + DZMSizeW(50)
@@ -114,8 +114,8 @@ class DZMRMFuncView: DZMRMBaseView {
             
         }else{ // 字体大小
             
-            let buttonW:CGFloat = (contentW - DZMSpace_1 + DZMSpace_3) / 2
-            let buttonSpaceW:CGFloat = DZMSpace_3
+            let buttonW:CGFloat = (contentW - DZMSpace_15 + DZMSpace_1) / 2
+            let buttonSpaceW:CGFloat = DZMSpace_1
             
             // left
             leftButton = UIButton(type: .custom)

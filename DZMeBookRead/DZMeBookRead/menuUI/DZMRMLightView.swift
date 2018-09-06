@@ -60,11 +60,11 @@ class DZMRMLightView: DZMRMBaseView {
         // 类型
         let typeLabelW:CGFloat = 32
         let typeLabelH:CGFloat = 16
-        typeLabel.frame = CGRect(x: width - typeLabelW - DZMSpace_1, y: (height - typeLabelH) / 2, width: typeLabelW, height: typeLabelH)
+        typeLabel.frame = CGRect(x: width - typeLabelW - DZMSpace_15, y: (height - typeLabelH) / 2, width: typeLabelW, height: typeLabelH)
         
         // 进度条
-        let sliderX = titleLabel.frame.maxX + DZMSpace_1
-        let sliderW = typeLabel.frame.minX - DZMSpace_1 - sliderX
+        let sliderX = titleLabel.frame.maxX + DZMSpace_15
+        let sliderW = typeLabel.frame.minX - DZMSpace_15 - sliderX
         slider.frame = CGRect(x: sliderX, y: 0, width: sliderW, height: height)
     }
     

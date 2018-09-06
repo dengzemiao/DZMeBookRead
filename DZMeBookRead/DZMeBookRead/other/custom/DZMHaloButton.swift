@@ -64,7 +64,7 @@ class DZMHaloButton: UIControl {
     /// 通过正常的Size返回对应的按钮大小
     class func HaloButtonSize(_ size:CGSize) ->CGSize {
         
-        return CGSize(width: size.width + DZMSpace_5, height: size.height + DZMSpace_5)
+        return CGSize(width: size.width + DZMSpace_20, height: size.height + DZMSpace_20)
     }
     
     /// 开启光晕
@@ -100,10 +100,10 @@ class DZMHaloButton: UIControl {
     private func setFrame() {
         
         // 布局
-        imageView.frame = CGRect(x: DZMSpace_4, y: DZMSpace_4, width: width - DZMSpace_5, height: height - DZMSpace_5)
+        imageView.frame = CGRect(x: DZMSpace_10, y: DZMSpace_10, width: width - DZMSpace_20, height: height - DZMSpace_20)
         
         // 圆角
-        imageView.layer.cornerRadius = (width - DZMSpace_5) / 2
+        imageView.layer.cornerRadius = (width - DZMSpace_20) / 2
     }
     
     override func layoutSubviews() {

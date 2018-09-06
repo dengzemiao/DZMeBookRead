@@ -70,15 +70,15 @@ let DZMFont_18:UIFont = UIFont.systemFont(ofSize: 18)
 
 
 // MARK: -- 间距支持
-let DZMSpace_1:CGFloat = 15
-let DZMSpace_2:CGFloat = 25
-let DZMSpace_3:CGFloat = 1
-let DZMSpace_4:CGFloat = 10
-let DZMSpace_5:CGFloat = 20
-let DZMSpace_6:CGFloat = 5
+let DZMSpace_1:CGFloat = 1
+let DZMSpace_5:CGFloat = 5
+let DZMSpace_10:CGFloat = 10
+let DZMSpace_15:CGFloat = 15
+let DZMSpace_20:CGFloat = 20
+let DZMSpace_25:CGFloat = 25
 
 // MARK: 拖拽触发光标范围
-let DZMCursorOffset:CGFloat = -20
+let DZMCursorOffset:CGFloat = -DZMSpace_20
 
 
 // MARK: -- Key
