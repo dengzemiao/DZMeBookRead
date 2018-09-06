@@ -5,7 +5,7 @@
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ***
-#### Demo语言版本(停止更新)
+#### Demo语言版本( 2018-9-6 停止更新)
 
 Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
 
