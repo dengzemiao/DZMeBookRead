@@ -119,7 +119,7 @@ class DZMReadConfigure: NSObject {
         paragraphStyle.lineHeightMultiple = 1.0
         
         // 对其
-        paragraphStyle.alignment = NSTextAlignment.justified
+        paragraphStyle.alignment = .justified
         
         // 返回
         if isPaging {
