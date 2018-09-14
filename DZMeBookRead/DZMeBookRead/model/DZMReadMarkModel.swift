@@ -11,22 +11,22 @@ import UIKit
 class DZMReadMarkModel: NSObject,NSCoding {
     
     /// 小说ID
-    var bookID:String!
+    @objc var bookID:String!
     
     /// 章节ID
-    var id:String!
+    @objc var id:String!
     
     /// 章节名称
-    var name:String!
+    @objc var name:String!
     
     /// 内容
-    var content:String!
+    @objc var content:String!
     
     /// 时间
-    var time:Date!
+    @objc var time:Date!
     
     /// 位置
-    var location:NSNumber!
+    @objc var location:NSNumber!
     
     // MARK: -- init
     

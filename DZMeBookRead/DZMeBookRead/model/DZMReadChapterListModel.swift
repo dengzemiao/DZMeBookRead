@@ -11,16 +11,16 @@ import UIKit
 class DZMReadChapterListModel: NSObject,NSCoding {
     
     /// 小说ID
-    var bookID:String!
+    @objc var bookID:String!
     
     /// 章节ID
-    var id:String!
+    @objc var id:String!
     
     /// 章节名称
-    var name:String!
+    @objc var name:String!
     
     /// 优先级 (一般章节段落都带有排序的优先级 从 0 开始)
-    var priority:NSNumber!
+    @objc var priority:NSNumber!
     
     // MARK: -- 操作
     func readChapterModel(isUpdateFont:Bool = false) ->DZMReadChapterModel? {
