@@ -91,7 +91,11 @@ class DZMReadModel: NSObject,NSCoding {
     /// 通过ID获得章节列表模型
     func GetReadChapterListModel(chapterID:String) ->DZMReadChapterListModel? {
         
-        return (readChapterListModels as NSArray).filtered(using: NSPredicate(format: "id == %@",chapterID)).first as? DZMReadChapterListModel
+       return readChapterListModels.filter { (model) -> Bool in
+            
+            return model.id == chapterID
+            
+        }.first
     }
     
     // MARK: -- 操作 - 书签
@@ -155,9 +159,13 @@ class DZMReadModel: NSObject,NSCoding {
         
         let readRecordModel = (readRecordModel ?? self.readRecordModel)!
         
-        let pre = NSPredicate(format: "id == %@",readRecordModel.readChapterModel!.id)
+        let chapterID = readRecordModel.readChapterModel!.id
         
-        let results = (readMarkModels as NSArray).filtered(using: pre) as! [DZMReadMarkModel]
+        let results = readMarkModels.filter { (model) -> Bool in
+            
+            return model.id == chapterID
+            
+            }
         
         if !results.isEmpty {
             
