@@ -232,7 +232,7 @@ class DZMReadParser: NSObject {
             readChapterModel.priority = NSNumber(value: 0)
             
             // 内容
-            readChapterModel.content = content
+            readChapterModel.content = DZMParagraphHeaderSpace + content.removeSpaceHeadAndTailPro
             
             // 分页
             readChapterModel.updateFont()

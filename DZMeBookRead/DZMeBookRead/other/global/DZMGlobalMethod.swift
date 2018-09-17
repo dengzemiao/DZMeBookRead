@@ -159,7 +159,7 @@ func GetFileExtension(_ url:URL) ->String {
 /// 文件名称
 func GetFileName(_ url:URL) ->String {
     
-    return url.path.lastPathComponent.pathExtension
+    return url.path.lastPathComponent.deletingPathExtension
 }
 
 
