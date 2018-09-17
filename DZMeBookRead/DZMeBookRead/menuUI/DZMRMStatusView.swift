@@ -99,7 +99,7 @@ class DZMRMStatusView: DZMRMBaseView {
     /// 时间变化
     @objc func didChangeTime() {
         
-        timeLabel.text = GetCurrentTimerString(dateFormat: "HH:mm")
+        timeLabel.text = GetTimerString(dateFormat: "HH:mm")
         
         batteryView.batteryLevel = UIDevice.current.batteryLevel
     }

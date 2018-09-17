@@ -268,24 +268,18 @@ class DZMReadParser: NSObject {
     
     // MARK: -- 内容分页
     
-    /**
-     内容分页
-     
-     - parameter string: 内容
-     
-     - parameter rect: 范围
-     
-     - parameter attrs: 文字属性
-     
-     - returns: 每一页的起始位置数组
-     */
+    /// 内容分页 (内容 + 显示范围 + 内容属性)
     @objc class func ParserPageRange(string:String, rect:CGRect, attrs:[NSAttributedStringKey:Any]?) ->[NSRange] {
 
-        // 记录
-        var rangeArray:[NSRange] = []
-
-        // 拼接字符串
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
+        
+        return ParserPageRange(attrString: attrString, rect: rect)
+    }
+    
+    /// 内容分页 (内容 + 显示范围)
+    @objc class func ParserPageRange(attrString:NSAttributedString, rect:CGRect) ->[NSRange] {
+        
+        var rangeArray:[NSRange] = []
         
         let frameSetter = CTFramesetterCreateWithAttributedString(attrString as CFAttributedString)
         

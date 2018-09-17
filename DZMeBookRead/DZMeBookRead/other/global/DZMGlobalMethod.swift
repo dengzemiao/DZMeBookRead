@@ -62,18 +62,9 @@ func SpaceLineSetup(view:UIView, color:UIColor? = nil) ->UIView {
 }
 
 // MARK: -- 获取时间
-/// 获取当前时间传入 时间格式 "YYYY-MM-dd-HH-mm-ss"
-func GetCurrentTimerString(dateFormat:String) ->String {
-    
-    let dateformatter = DateFormatter()
-    
-    dateformatter.dateFormat = dateFormat
-    
-    return dateformatter.string(from: Date())
-}
 
-/// 将 时间 根据 类型 转成 时间字符串
-func GetTimerString(dateFormat:String, date:Date) ->String {
+/// 传入时间以及格式获得对应时间字符串 "YYYY-MM-dd-HH-mm-ss"
+func GetTimerString(dateFormat:String, date:Date = Date()) ->String {
     
     let dateformatter = DateFormatter()
     
@@ -82,10 +73,10 @@ func GetTimerString(dateFormat:String, date:Date) ->String {
     return dateformatter.string(from: date)
 }
 
-/// 获取当前的 TimeIntervalSince1970 时间字符串
-func GetCurrentTimeIntervalSince1970String() -> String {
+/// 获取时间戳
+func GetTime1970String(date:Date = Date()) -> String {
     
-    return String(format: "%.0f",Date().timeIntervalSince1970)
+    return String(format: "%.0f",date.timeIntervalSince1970)
 }
 
 
