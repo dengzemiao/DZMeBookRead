@@ -18,13 +18,13 @@ import UIKit
 class DZMReadView: UIView {
     
     /// 内容
-    var content:String? {
+    var content:NSMutableAttributedString? {
         
         didSet{
             
-            if content != nil && !content!.isEmpty {
+            if content != nil && (content!.length > 0) {
                 
-                frameRef = DZMReadParser.GetReadFrameRef(content: content!, attrs: DZMReadConfigure.shared().readAttribute(), rect: GetReadViewFrame())
+                frameRef = DZMReadParser.GetReadFrameRef(attrString: content!, rect: GetReadViewFrame())
             }
         }
     }
@@ -128,7 +128,7 @@ class DZMReadView: UIView {
             selectRange = DZMReadAuxiliary.GetTouchLineRange(point: point, frameRef: frameRef)
             
             // 获得选中选中范围
-            rects = DZMReadAuxiliary.GetRangeRects(range: selectRange!, frameRef: frameRef, content: content)
+            rects = DZMReadAuxiliary.GetRangeRects(range: selectRange!, frameRef: frameRef, content: content?.string)
             
             // 显示光标
             cursor(isShow: true)
@@ -264,7 +264,7 @@ class DZMReadView: UIView {
                 updateSelectRange(location: location)
                 
                 // 获得选中选中范围
-                rects = DZMReadAuxiliary.GetRangeRects(range: selectRange!, frameRef: frameRef, content: content)
+                rects = DZMReadAuxiliary.GetRangeRects(range: selectRange!, frameRef: frameRef, content: content?.string)
                 
                 // 更新光标位置
                 updateCursorFrame()
@@ -484,7 +484,7 @@ class DZMReadView: UIView {
             
             let path = CGMutablePath()
             
-            DZMColor_2.withAlphaComponent(0.5).setFill()
+            DZMColor_253_85_103.withAlphaComponent(0.5).setFill()
             
             path.addRects(rects)
             
@@ -561,7 +561,7 @@ class DZMReadView: UIView {
             
             DispatchQueue.global().async {
                 
-                UIPasteboard.general.string = content?.substring(selectRange)
+                UIPasteboard.general.string = content?.string.substring(selectRange)
             }
             
             // 重置页面数据

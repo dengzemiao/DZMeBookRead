@@ -11,22 +11,33 @@ import UIKit
 // MARK: -- 颜色
 /// RGB
 func RGB(_ r:CGFloat,g:CGFloat,b:CGFloat) -> UIColor {
+    
     return RGBA(r, g: g, b: b, a: 1.0)
 }
 
 /// RGBA
 func RGBA(_ r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat) -> UIColor {
+    
     return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
 }
 
 
 // MARK: -- 尺寸计算 以iPhone6为比例
 func DZMSizeW(_ size:CGFloat) ->CGFloat {
+    
     return size * (ScreenWidth / 375)
 }
 
 func DZMSizeH(_ size:CGFloat) ->CGFloat{
+    
     return size * (ScreenHeight / 667)
+}
+
+// MARK: 公用
+/// 章节内容标题
+func DZMContentTitle(_ name:String)->String {
+    
+    return "\n\(name)\n\n"
 }
 
 // MARK: 截屏
@@ -87,7 +98,7 @@ func GetReadTableViewFrame() ->CGRect {
     if isX {
         
         // Y = 刘海高度 + 状态View高 + 间距
-        let y =  TopLiuHeight + DZMSpace_25 + DZMSpace_5
+        let y =  TopLiuHeight + DZMSpace_25 + DZMSpace_10
         
         let bottomHeight = TopLiuHeight
         
@@ -96,7 +107,7 @@ func GetReadTableViewFrame() ->CGRect {
     }else{
         
         // Y =  状态View高 + 间距
-        let y =  DZMSpace_25 + DZMSpace_5
+        let y =  DZMSpace_25 + DZMSpace_10
         
         return CGRect(x: DZMSpace_15, y: y, width: ScreenWidth - 2 * DZMSpace_15, height: ScreenHeight - 2 * y)
     }
@@ -142,13 +153,13 @@ func CreatFilePath(_ filePath:String) ->Bool {
 /// 文件类型
 func GetFileExtension(_ url:URL) ->String {
     
-    return url.path.pathExtension()
+    return url.path.pathExtension
 }
 
 /// 文件名称
 func GetFileName(_ url:URL) ->String {
     
-    return url.path.lastPathComponent().stringByDeletingPathExtension()
+    return url.path.lastPathComponent.pathExtension
 }
 
 

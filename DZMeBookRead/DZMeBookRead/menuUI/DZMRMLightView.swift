@@ -43,7 +43,7 @@ class DZMRMLightView: DZMRMBaseView {
         slider = UISlider()
         slider.minimumValue = 0.0
         slider.maximumValue = 1.0
-        slider.tintColor = DZMColor_2
+        slider.tintColor = DZMColor_253_85_103
         slider.setThumbImage(UIImage(named: "RM_3")!, for: .normal)
         slider.addTarget(self, action: #selector(DZMRMLightView.sliderChanged(_:)), for: UIControlEvents.valueChanged)
         slider.value = Float(UIScreen.main.brightness)

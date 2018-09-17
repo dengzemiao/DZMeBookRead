@@ -14,15 +14,9 @@ class DZMReadViewCell: UITableViewCell {
     private(set) var readView:DZMReadView!
     
     /// 当前的显示的内容
-    var content:String! {
+    var content:NSMutableAttributedString! {
         
-        didSet{
-            
-            if !content.isEmpty { // 有值
-                
-                readView.content = content
-            }
-        }
+        didSet{ readView.content = content }
     }
     
     class func cellWithTableView(_ tableView:UITableView) ->DZMReadViewCell {

@@ -17,7 +17,7 @@ class DZMCursorView: UIView {
     }
     
     /// 光标颜色
-    var color:UIColor = DZMColor_2 {
+    var color:UIColor = DZMColor_253_85_103 {
         
         didSet{ setNeedsDisplay() }
     }

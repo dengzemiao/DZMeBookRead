@@ -80,7 +80,7 @@ class DZMRMColorView: DZMRMBaseView {
 //        selectButton?.layer.borderColor = UIColor.clear.cgColor
 //        selectButton?.layer.borderWidth = 0
 //        
-//        button.layer.borderColor = DZMColor_2.cgColor
+//        button.layer.borderColor = DZMColor_253_85_103.cgColor
 //        button.layer.borderWidth = 2.0
 //        
 //        selectButton = button
@@ -140,7 +140,7 @@ class DZMRMColorView: DZMRMBaseView {
         selectButton?.imageView.layer.borderColor = UIColor.clear.cgColor
         selectButton?.imageView.layer.borderWidth = 0
         
-        button.imageView.layer.borderColor = DZMColor_2.cgColor
+        button.imageView.layer.borderColor = DZMColor_253_85_103.cgColor
         button.imageView.layer.borderWidth = 2.0
         
         selectButton = button

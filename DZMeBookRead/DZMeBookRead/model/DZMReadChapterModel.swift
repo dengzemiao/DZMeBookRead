@@ -25,11 +25,17 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 章节名称
     var name:String!
     
-    /// 优先级 (一般章节段落都带有排序的优先级 从 0 开始)
-    var priority:NSNumber!
+    /// 完整章节名称
+    var fullName:String! { return DZMContentTitle(name) }
     
     /// 内容
     var content:String!
+    
+    /// 完整内容
+    var fullContent:String! { return fullName + content }
+    
+    /// 优先级 (一般章节段落都带有排序的优先级 从 0 开始)
+    var priority:NSNumber!
     
     /// 本章有多少页
     var pageCount:NSNumber = NSNumber(value: 0)
@@ -42,22 +48,43 @@ class DZMReadChapterModel: NSObject,NSCoding {
     
     /// 记录该章使用的字体属性
     private var readAttribute:[NSAttributedStringKey:Any] = [:]
+    private var nameAttribute:[NSAttributedStringKey:Any] = [:]
     
     /// 更新字体
     func updateFont(isSave:Bool = false) {
         
-        let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true)
+        let nameAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: true)
         
-        if !NSDictionary(dictionary: self.readAttribute).isEqual(to: readAttribute) {
+        let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: false)
+        
+        if !NSDictionary(dictionary: self.readAttribute).isEqual(to: readAttribute) || !NSDictionary(dictionary: self.nameAttribute).isEqual(to: nameAttribute) {
+            
+            self.nameAttribute = nameAttribute
             
             self.readAttribute = readAttribute
             
-            rangeArray = DZMReadParser.ParserPageRange(string: content, rect: GetReadViewFrame(), attrs: readAttribute)
+            rangeArray = DZMReadParser.ParserPageRange(attrString: fullContentAttrString(), rect: GetReadViewFrame())
             
             pageCount = NSNumber(value: rangeArray.count)
             
             if isSave {save()}
         }
+    }
+    
+    /// 完整内容排版
+    func fullContentAttrString() ->NSMutableAttributedString {
+        
+        let nameAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: true)
+        
+        let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: false)
+        
+        let nameString = NSMutableAttributedString(string: fullName, attributes: nameAttribute)
+        
+        let attrString = NSMutableAttributedString(string: content, attributes: readAttribute)
+        
+        nameString.append(attrString)
+        
+        return nameString
     }
     
     // MARK: -- init
@@ -93,9 +120,34 @@ class DZMReadChapterModel: NSObject,NSCoding {
     // MARK: -- 操作
     
     /// 通过 Page 获得字符串
+    func stringAttr(page:NSInteger) ->NSMutableAttributedString {
+        
+        var content = fullContent.substring(rangeArray[page])
+        
+        var contentAttr = NSMutableAttributedString()
+        
+        if page == 0 {
+            
+            content = content.replacingOccurrences(of: fullName, with: "")
+            
+            let nameAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: true)
+            
+            let nameString = NSMutableAttributedString(string: fullName, attributes: nameAttribute)
+            
+            contentAttr = nameString
+        }
+        
+        let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: false)
+        
+        contentAttr.append(NSMutableAttributedString(string: content, attributes: readAttribute))
+        
+        return contentAttr
+    }
+    
+    /// 通过 Page 获得字符串
     func string(page:NSInteger) ->String {
         
-        return content.substring(rangeArray[page])
+        return fullContent.substring(rangeArray[page])
     }
     
     /// 通过 Page 获得 Location
@@ -167,6 +219,8 @@ class DZMReadChapterModel: NSObject,NSCoding {
         rangeArray = aDecoder.decodeObject(forKey: "rangeArray") as! [NSRange]
         
         readAttribute = aDecoder.decodeObject(forKey: "readAttribute") as! [NSAttributedStringKey:Any]
+        
+        nameAttribute = aDecoder.decodeObject(forKey: "nameAttribute") as! [NSAttributedStringKey:Any]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -190,5 +244,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
         aCoder.encode(rangeArray, forKey: "rangeArray")
         
         aCoder.encode(readAttribute, forKey: "readAttribute")
+        
+        aCoder.encode(nameAttribute, forKey: "nameAttribute")
     }
 }

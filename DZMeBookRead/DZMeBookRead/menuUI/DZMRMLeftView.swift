@@ -46,8 +46,8 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
         topView.selectTitles = ["章节","书签"]
         topView.horizontalShowTB = false
         topView.backgroundColor = UIColor.clear
-        topView.normalTitleColor = DZMColor_6
-        topView.selectTitleColor = DZMColor_2
+        topView.normalTitleColor = DZMColor_200_200_200
+        topView.selectTitleColor = DZMColor_253_85_103
         topView.setup()
         contentView.addSubview(topView)
     }
@@ -160,7 +160,7 @@ class DZMRMLeftView: DZMRMBaseView,DZMSegmentedControlDelegate,UITableViewDelega
             cell?.textLabel?.font = DZMFont_12
         }
         
-        cell?.textLabel?.textColor = DZMColor_6
+        cell?.textLabel?.textColor = DZMColor_200_200_200
         
         return cell!
     }

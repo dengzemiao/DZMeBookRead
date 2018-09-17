@@ -11,151 +11,130 @@ import UIKit
 
 extension String {
     
+    var length:Int { return (self as NSString).length }
     
-    /**
-     String 的 length
-     
-     - returns: Int
-     */
-    var length:Int {
-        get{return (self as NSString).length}
-    }
+    var bool:Bool { return (self as NSString).boolValue }
     
-    /**
-     String 转换 intValue = int32Value
-     
-     - returns: Int
-     */
-    func int32Value() ->Int32{
-        return NSString(string: self).intValue
-    }
+    var integer:NSInteger { return (self as NSString).integerValue }
     
-    /**
-     String 转换 boolValue
-     
-     - returns: Bool
-     */
-    func boolValue() ->Bool{
-        return NSString(string: self).boolValue
-    }
+    var float:Float { return (self as NSString).floatValue }
     
-    /**
-     String 转换 integerValue
-     
-     - returns: Int
-     */
-    func integerValue() ->Int{
-        return NSString(string: self).integerValue
-    }
+    var cgFloat:CGFloat { return CGFloat(self.float) }
     
-    /**
-     String 转换 floatValue
-     
-     - returns: float
-     */
-    func floatValue() ->Float{
-        return NSString(string: self).floatValue
-    }
+    var double:Double { return (self as NSString).doubleValue }
     
-    /**
-     String 转换 CGFloatValue
-     
-     - returns: CGFloat
-     */
-    func CGFloatValue() ->CGFloat{
-        return CGFloat(self.floatValue())
-    }
+    /// 文件后缀(不带'.')
+    var pathExtension:String { return (self as NSString).pathExtension }
     
-    /**
-     String 转换 doubleValue
-     
-     - returns: double
-     */
-    func doubleValue() ->Double{
-        return NSString(string: self).doubleValue
-    }
+    /// 文件名(带后缀)
+    var lastPathComponent:String { return (self as NSString).lastPathComponent }
     
-    /**
-     截取字符串
-     
-     - returns: String
-     */
-    func substring(_ range:NSRange) ->String {
+    /// 文件名(不带后缀)
+    var deletingPathExtension:String { return (self as NSString).deletingPathExtension }
+    
+    /// 去除首尾空格
+    var removeSpaceHeadAndTail:String { return trimmingCharacters(in: NSCharacterSet.whitespaces) }
+    
+    /// 去除首尾换行
+    var removeEnterHeadAndTail:String { return trimmingCharacters(in: NSCharacterSet.whitespaces) }
+    
+    /// 去除首尾空格和换行
+    var removeSpaceHeadAndTailPro:String { return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) }
+    
+    /// 去掉所有空格
+    var removeSapceAll:String { return replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "　", with: "") }
+    
+    /// 去除所有空格换行
+    var removeSapceEnterAll:String { return removeSapceAll.replacingOccurrences(of: "\n", with: "") }
+    
+    /// 是否为整数
+    var isInt:Bool {
         
-        return NSString(string: self).substring(with: range)
+        let scan: Scanner = Scanner(string: self)
+        
+        var val:Int = 0
+        
+        return scan.scanInt(&val) && scan.isAtEnd
     }
     
-    /**
-     获得文件的后缀名（不带'.'）
-     
-     - returns: String
-     */
-    func pathExtension() ->String {
+    /// 是否为数字或Float
+    var isFloat:Bool {
         
-        return NSString(string: self).pathExtension
+        let scan: Scanner = Scanner(string: self)
+        
+        var val:Float = 0
+        
+        return scan.scanFloat(&val) && scan.isAtEnd
     }
     
-    /**
-     从路径中获得完整的文件名（带后缀）
-     
-     - returns: String
-     */
-    func lastPathComponent() ->String {
+    /// 是否为空格
+    var isSpace:Bool {
         
-        return NSString(string: self).lastPathComponent
+        if (self == " ") || (self == "　") { return true }
+        
+        return false
     }
     
-    /**
-     获得文件名（不带后缀）
-     
-     - returns: String
-     */
-    func stringByDeletingPathExtension() ->String {
+    /// 是否为空格或者回车
+    var isSpaceOrEnter:Bool {
         
-        return NSString(string: self).deletingPathExtension
+        if isSpace || (self == "\n") { return true }
+        
+        return false
     }
     
-    /**
-     字符串MD5加密
-     
-     - returns: MD5加密好的字符串
-     */
-    func md5() ->String!{
+    /// MD5加密
+    var md5:String {
         
-        let str = self.cString(using: String.Encoding.utf8)
+        let string = cString(using: String.Encoding.utf8)
         
-        let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
+        let stringLength = CUnsignedInt(lengthOfBytes(using: String.Encoding.utf8))
         
-        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let digestLength = Int(CC_MD5_DIGEST_LENGTH)
         
-        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLength)
         
-        CC_MD5(str!, strLen, result)
+        CC_MD5(string!, stringLength, result)
         
         let hash = NSMutableString()
         
-        for i in 0 ..< digestLen {
-            
-            hash.appendFormat("%02x", result[i])
-        }
+        for i in 0 ..< digestLength { hash.appendFormat("%02x", result[i]) }
         
         result.deinitialize()
         
         return String(format: hash as String)
     }
     
-    /// 计算字符串大小
-    func size(font:UIFont,constrainedToSize:CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ->CGSize {
+    /// 转JSON
+    var json:Any? {
         
-        let string:NSString = self as NSString
+        let data = self.data(using: String.Encoding.utf8, allowLossyConversion: false)
         
-        return string.boundingRect(with: constrainedToSize, options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSAttributedStringKey.font:font], context: nil).size
+        let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+        
+        return json
+    }
+    
+    /// 是否包含字符串
+    func range(_ string: String) ->NSRange {
+        
+        return (self as NSString).range(of: string)
+    }
+    
+    /// 截取字符串
+    func substring(_ range:NSRange) ->String {
+        
+        return (self as NSString).substring(with: range)
+    }
+    
+    /// 处理带中文的字符串
+    func addingPercentEncoding(_ characters: CharacterSet = .urlQueryAllowed) ->String {
+        
+        return (self as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     }
     
     /// 正则替换字符
-    func replacing(pattern:String, template:String) ->String {
-        
-        if isEmpty {return self}
+    func replacingCharacters(_ pattern:String, _ template:String) ->String {
         
         do {
             let regularExpression = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
@@ -166,7 +145,7 @@ extension String {
     }
     
     /// 正则搜索相关字符位置
-    func matches(pattern:String) ->[NSTextCheckingResult] {
+    func matches(_ pattern:String) ->[NSTextCheckingResult] {
         
         if isEmpty {return []}
         
@@ -178,21 +157,30 @@ extension String {
         } catch {return []}
     }
     
-    /// 是否存在正则匹配到的内容
-    func isExist(pattern:String) ->Bool {
+    /// 计算大小
+    func size(_ font:UIFont, _ size:CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ->CGSize {
         
-        let result:[NSTextCheckingResult] = matches(pattern: pattern)
+        let string:NSString = self as NSString
         
-        return !result.isEmpty
+        return string.boundingRect(with: size, options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [.font:font], context: nil).size
     }
-    
 }
 
-extension NSAttributedString{
+extension NSAttributedString {
     
-    /// 计算多态字符串的size
-    func size(constrainedToSize:CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ->CGSize{
+    /// 计算size
+    func size(_ size:CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ->CGSize{
         
-        return self.boundingRect(with: constrainedToSize, options: [NSStringDrawingOptions.usesLineFragmentOrigin,NSStringDrawingOptions.usesFontLeading], context: nil).size
+        return self.boundingRect(with: size, options: [NSStringDrawingOptions.usesLineFragmentOrigin,NSStringDrawingOptions.usesFontLeading], context: nil).size
+    }
+    
+    /// 扩展拼接
+    func add<T:NSAttributedString>(_ string:T) ->NSAttributedString {
+        
+        let attributedText = NSMutableAttributedString(attributedString: self)
+        
+        attributedText.append(string)
+        
+        return attributedText
     }
 }

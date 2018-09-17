@@ -169,7 +169,7 @@ class DZMReadAuxiliary: NSObject {
 
                     let tempContent:String = content!.substring(contentRange)
 
-                    let spaceRanges:[NSTextCheckingResult] = tempContent.matches(pattern: "\\s\\s")
+                    let spaceRanges:[NSTextCheckingResult] = tempContent.matches("\\s\\s")
                     
                     if !spaceRanges.isEmpty {
 
@@ -178,7 +178,7 @@ class DZMReadAuxiliary: NSObject {
                         contentRange = NSMakeRange(contentRange.location + spaceRange.length, contentRange.length - spaceRange.length)
                     }
 
-                    let enterRanges:[NSTextCheckingResult] = tempContent.matches(pattern: "\\n")
+                    let enterRanges:[NSTextCheckingResult] = tempContent.matches("\\n")
 
                     if !enterRanges.isEmpty {
 

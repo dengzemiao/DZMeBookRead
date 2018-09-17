@@ -192,6 +192,9 @@ class DZMReadParser: NSObject {
                     readChapterModel.content = content.substring(NSMakeRange(lastRange.location, location - lastRange.location))
                 }
                 
+                // 清空章节名,保留纯内容
+                readChapterModel.content = DZMParagraphHeaderSpace + readChapterModel.content.replacingOccurrences(of: readChapterModel.name, with: "").removeSpaceHeadAndTailPro
+                
                 // 分页
                 readChapterModel.updateFont()
                 
@@ -268,14 +271,6 @@ class DZMReadParser: NSObject {
     
     // MARK: -- 内容分页
     
-    /// 内容分页 (内容 + 显示范围 + 内容属性)
-    @objc class func ParserPageRange(string:String, rect:CGRect, attrs:[NSAttributedStringKey:Any]?) ->[NSRange] {
-
-        let attrString = NSMutableAttributedString(string: string, attributes: attrs)
-        
-        return ParserPageRange(attrString: attrString, rect: rect)
-    }
-    
     /// 内容分页 (内容 + 显示范围)
     @objc class func ParserPageRange(attrString:NSAttributedString, rect:CGRect) ->[NSRange] {
         
@@ -304,21 +299,20 @@ class DZMReadParser: NSObject {
         return rangeArray
     }
     
-    // MARK: -- 对内容进行整理排版 比如去掉多余的空格或者段头留2格等等
+    // MARK: -- 对内容进行整理排版
     
-    /// 内容排版整理
+    /// 内容排版整理 - 去除多余回车空格，段头留空。
     @objc class func ContentTypesetting(content:String) ->String {
 
         // 替换单换行
         var content = content.replacingOccurrences(of: "\r", with: "")
         
         // 替换换行 以及 多个换行 为 换行加空格
-        content = content.replacing(pattern: "\\s*\\n+\\s*", template: "\n　　")
+        content = content.replacingCharacters("\\s*\\n+\\s*", "\n" + DZMParagraphHeaderSpace)
         
         // 返回
         return content
     }
-    
     
     // MARK: -- 解码URL
     
@@ -369,11 +363,9 @@ class DZMReadParser: NSObject {
     // MARK: -- 获得 FrameRef CTFrame
     
     /// 获得 CTFrame
-    @objc class func GetReadFrameRef(content:String, attrs:[NSAttributedStringKey:Any]?, rect:CGRect) ->CTFrame {
+    @objc class func GetReadFrameRef(attrString:NSMutableAttributedString, rect:CGRect) ->CTFrame {
         
-        let attributedString = NSMutableAttributedString(string: content,attributes: attrs)
-        
-        let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
+        let framesetter = CTFramesetterCreateWithAttributedString(attrString)
         
         let path = CGPath(rect: rect, transform: nil)
         

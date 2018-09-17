@@ -73,7 +73,7 @@ class DZMReadOperation: NSObject {
             readRecordModel = vc.readModel.readRecordModel.copySelf()
             
             // 章节ID
-            let id = vc.readModel.readRecordModel.readChapterModel!.id.integerValue()
+            let id = vc.readModel.readRecordModel.readChapterModel!.id.integer
             
             // 页码
             let page = vc.readModel.readRecordModel.page.intValue
@@ -133,7 +133,7 @@ class DZMReadOperation: NSObject {
             readRecordModel = vc.readModel.readRecordModel.copySelf()
             
             // 章节ID
-            let id = vc.readModel.readRecordModel.readChapterModel!.id.integerValue()
+            let id = vc.readModel.readRecordModel.readChapterModel!.id.integer
             
             // 页码
             let page = vc.readModel.readRecordModel.page.intValue

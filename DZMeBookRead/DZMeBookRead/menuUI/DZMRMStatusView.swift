@@ -27,24 +27,24 @@ class DZMRMStatusView: DZMRMBaseView {
         super.addSubviews()
         
         // 背景颜色
-        backgroundColor = DZMColor_1.withAlphaComponent(0.4)
+        backgroundColor = DZMColor_51_51_51.withAlphaComponent(0.4)
         
         // 电池
         batteryView = DZMBatteryView()
-        batteryView.tintColor = DZMColor_3
+        batteryView.tintColor = DZMColor_127_136_138
         addSubview(batteryView)
         
         // 时间
         timeLabel = UILabel()
         timeLabel.textAlignment = .center
         timeLabel.font = DZMFont_12
-        timeLabel.textColor = DZMColor_3
+        timeLabel.textColor = DZMColor_127_136_138
         addSubview(timeLabel)
         
         // 标题
         titleLabel = UILabel()
         titleLabel.font = DZMFont_12
-        titleLabel.textColor = DZMColor_3
+        titleLabel.textColor = DZMColor_127_136_138
         addSubview(titleLabel)
         
         // 初始化调用

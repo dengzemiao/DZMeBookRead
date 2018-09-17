@@ -98,7 +98,7 @@ class DZMRMFuncView: DZMRMBaseView {
                 
                 button.setTitleColor(UIColor.white, for: .normal)
                 
-                button.setTitleColor(DZMColor_2, for: .selected)
+                button.setTitleColor(DZMColor_253_85_103, for: .selected)
                 
                 button.frame = CGRect(x: tempX + CGFloat(i) * buttonW, y: 0, width: buttonW, height: height)
                 

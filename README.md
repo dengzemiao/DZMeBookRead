@@ -5,11 +5,6 @@
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ***
-#### Demo语言版本( 2018-9-6 停止更新)
-
-Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
-
-***
 #### OC如何集成改Demo
 
 OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
@@ -20,24 +15,14 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
 ![Demo效果](gif_0.gif)
 
 ***
-#### 长按效果：
-
-![Demo效果](gif_1.gif)
-
-***
-
 #### 阅读打开书籍效果(已封装,使用简单,下载地址在下面):
 
-![阅读打开书籍效果:](gif_2.gif)
+![阅读打开书籍效果:](gif_1.gif)
 
 ***
 
 ```diff
 - 推荐下自己写的:
-
-- -> 无限滚动:
-- 通常的都是传入URL数组进行无限滚动，而这个则是传入自定义的(Views)视图数组进行无限滚动，也支持控制器无限滚动
-- 有兴趣的可以试试: https://github.com/dengzemiao/DZMCycleScrollView
 
 - -> 图片展示器:
 - 支持横竖屏,屏幕旋转,使用简单,注释多可扩展程度高,兼容Swift混编使用
@@ -48,7 +33,11 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
 #### 简介:
 
     提示: 如需导入项目请看下面的的 - 导入项目流程
-
+    
+    2018-9-17 更新:
+    
+        优化代码, 添加标题大字体显示
+    
     2018-4-24 更新:
 
         更新 Swift4.1 - Xcode9.3
@@ -91,6 +80,7 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
     DTCoreText主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
     
     Github地址：https://github.com/Cocoanetics/DTCoreText
+    
 ***
 #### 小说相关库：
 
@@ -104,6 +94,7 @@ UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22
 
 ***
 #### 唯一遗憾:
+
     1.上下滚动模式 飞速滑动时CPU会跟不上导致有些卡顿
     参考解决:
         1.可通过调整 tableView.decelerationRate 来进行控制。
@@ -133,10 +124,7 @@ UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22
 ![文件介绍1](icon_0.png)
 
 ***
-#### 部分代码浏览:
+#### Demo语言版本( 2018-9-6 停止更新)
 
-![代码浏览1](code_0.png)
+Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
 
-![代码浏览2](code_1.png)
-
-![代码浏览3](code_2.png)

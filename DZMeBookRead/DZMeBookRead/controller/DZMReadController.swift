@@ -150,7 +150,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         if readModel != nil && readModel.readRecordModel.isRecord { // 有阅读记录
         
-            let _ = readOperation.GoToChapter(chapterID: "\(readModel.readRecordModel.readChapterModel!.id.integerValue() - 1)")
+            let _ = readOperation.GoToChapter(chapterID: "\(readModel.readRecordModel.readChapterModel!.id.integer - 1)")
         }
     }
     
@@ -159,7 +159,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         if readModel != nil && readModel.readRecordModel.isRecord { // 有阅读记录
             
-            let _ = readOperation.GoToChapter(chapterID: "\(readModel.readRecordModel.readChapterModel!.id.integerValue() + 1)")
+            let _ = readOperation.GoToChapter(chapterID: "\(readModel.readRecordModel.readChapterModel!.id.integer + 1)")
         }
     }
     

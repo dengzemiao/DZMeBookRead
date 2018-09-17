@@ -58,7 +58,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
         topStatusView = UILabel()
         topStatusView.text = readRecordModel.readChapterModel?.name
         topStatusView.lineBreakMode = .byTruncatingMiddle
-        topStatusView.textColor = DZMColor_4
+        topStatusView.textColor = DZMColor_127_136_138
         topStatusView.font = DZMFont_12
         topStatusView.frame = CGRect(x: DZMSpace_15, y: (isX ? TopLiuHeight : 0), width: view.width - 2 * DZMSpace_15, height: DZMSpace_25)
         view.addSubview(topStatusView)
@@ -164,7 +164,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let cell = DZMReadViewCell.cellWithTableView(tableView)
             
-            cell.content = readRecordModel.readChapterModel!.string(page: readRecordModel.page.intValue)
+            cell.content = readRecordModel.readChapterModel!.stringAttr(page: readRecordModel.page.intValue)
             
             readView = cell.readView
             
@@ -178,7 +178,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readRecordModel.bookID, chapterID: dataArray[indexPath.section], isUpdateFont: true)
             
-            cell.content = readChapterModel.string(page: indexPath.row)
+            cell.content = readChapterModel.stringAttr(page: indexPath.row)
             
             return cell
         }

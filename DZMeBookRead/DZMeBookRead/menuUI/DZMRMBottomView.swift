@@ -61,7 +61,7 @@ class DZMRMBottomView: DZMRMBaseView,ASValueTrackingSliderDelegate {
         slider.minimumValue = 1
         slider.maximumValue = 1
         slider.setMaxFractionDigitsDisplayed(0)
-        slider.popUpViewColor = DZMColor_2
+        slider.popUpViewColor = DZMColor_253_85_103
         slider.font = UIFont(name: "Futura-CondensedExtraBold", size: 22)
         slider.textColor = UIColor.white
         slider.popUpViewArrowLength = DZMSpace_10

@@ -31,37 +31,37 @@ let TopLiuHeight:CGFloat = 30
 /// StatusBar高度
 let StatusBarHeight:CGFloat = isX ? 44 : 20
 
+// MARK: -- 全局属性
+
+/// 段落头部双圆角空格
+let DZMParagraphHeaderSpace:String = "　　"
 
 // MARK: -- 颜色支持
 
-/// 灰色
-let DZMColor_1:UIColor = RGB(51, g: 51, b: 51)
+/// 灰色 || 阅读背景颜色支持
+let DZMColor_51_51_51:UIColor = RGB(51, g: 51, b: 51)
 
 /// 粉红色
-let DZMColor_2:UIColor = RGB(253, g: 85, b: 103)
+let DZMColor_253_85_103:UIColor = RGB(253, g: 85, b: 103)
 
-/// 阅读上下状态栏颜色
-let DZMColor_3:UIColor = RGB(127, g: 136, b: 138)
-
-/// 小说阅读上下状态栏字体颜色
-let DZMColor_4:UIColor = RGB(127, g: 136, b: 138)
+/// 阅读上下状态栏颜色 || 小说阅读上下状态栏字体颜色
+let DZMColor_127_136_138:UIColor = RGB(127, g: 136, b: 138)
 
 /// 小说阅读颜色
-let DZMColor_5:UIColor = RGB(145, g: 145, b: 145)
+let DZMColor_145_145_145:UIColor = RGB(145, g: 145, b: 145)
 
 /// LeftView文字颜色
-let DZMColor_6:UIColor = RGB(200, g: 200, b: 200)
-
+let DZMColor_200_200_200:UIColor = RGB(200, g: 200, b: 200)
 
 /// 阅读背景颜色支持
-let DZMReadBGColor_1:UIColor = RGB(238, g: 224, b: 202)
-let DZMReadBGColor_2:UIColor = RGB(205, g: 239, b: 205)
-let DZMReadBGColor_3:UIColor = RGB(206, g: 233, b: 241)
-let DZMReadBGColor_4:UIColor = RGB(251, g: 237, b: 199)  // 牛皮黄
-let DZMReadBGColor_5:UIColor = RGB(51, g: 51, b: 51)
+let DZMColor_238_224_202:UIColor = RGB(238, g: 224, b: 202)
+let DZMColor_205_239_205:UIColor = RGB(205, g: 239, b: 205)
+let DZMColor_206_233_241:UIColor = RGB(206, g: 233, b: 241)
+let DZMColor_251_237_199:UIColor = RGB(251, g: 237, b: 199)  // 牛皮黄
 
 /// 菜单背景颜色
 let DZMMenuUIColor:UIColor = UIColor.black.withAlphaComponent(0.85)
+
 
 // MARK: -- 字体支持
 let DZMFont_10:UIFont = UIFont.systemFont(ofSize: 10)
