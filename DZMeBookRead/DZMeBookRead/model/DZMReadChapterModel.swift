@@ -122,7 +122,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 通过 Page 获得字符串
     func stringAttr(page:NSInteger) ->NSMutableAttributedString {
         
-        var content = fullContent.substring(rangeArray[page])
+        var content = string(page: page)
         
         var contentAttr = NSMutableAttributedString()
         
