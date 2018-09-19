@@ -152,7 +152,7 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
 UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
 
 ***
-#### 唯一遗憾:
+#### 遗憾:
 
     1.上下滚动模式 飞速滑动时CPU会跟不上导致有些卡顿
     
