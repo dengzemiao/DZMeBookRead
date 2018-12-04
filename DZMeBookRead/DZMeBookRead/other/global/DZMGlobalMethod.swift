@@ -165,13 +165,16 @@ func GetFileName(_ url:URL) ->String {
 
 // MARK: -- 阅读页面获取文件方法
 
+/// 沙河路径
+let DocumentDirectory:String = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String)
+
 /// 主文件夹名称
 private let ReadFolderName:String = "DZMeBookRead"
 
 /// 归档阅读文件文件
 func ReadKeyedArchiver(folderName:String,fileName:String,object:AnyObject) {
     
-    var path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!) + "/\(ReadFolderName)/\(folderName)"
+    var path = DocumentDirectory + "/\(ReadFolderName)/\(folderName)"
     
     if (CreatFilePath(path)) { // 创建文件夹成功或者文件夹存在
         
@@ -184,7 +187,7 @@ func ReadKeyedArchiver(folderName:String,fileName:String,object:AnyObject) {
 /// 解档阅读文件文件
 func ReadKeyedUnarchiver(folderName:String,fileName:String) ->AnyObject? {
     
-    let path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(ReadFolderName)/\(folderName)") + "/\(fileName)"
+    let path = DocumentDirectory + "/\(ReadFolderName)/\(folderName)" + "/\(fileName)"
     
     return NSKeyedUnarchiver.unarchiveObject(withFile: path) as AnyObject?
 }
@@ -192,7 +195,7 @@ func ReadKeyedUnarchiver(folderName:String,fileName:String) ->AnyObject? {
 /// 删除阅读归档文件
 func ReadKeyedRemoveArchiver(folderName:String,fileName:String? = nil) {
     
-    var path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(ReadFolderName)/\(folderName)")
+    var path = DocumentDirectory + "/\(ReadFolderName)/\(folderName)"
     
     if fileName != nil { path +=  "/\(fileName!)" }
     
@@ -204,7 +207,7 @@ func ReadKeyedRemoveArchiver(folderName:String,fileName:String? = nil) {
 /// 是否存在了改归档文件
 func ReadKeyedIsExistArchiver(folderName:String,fileName:String? = nil) ->Bool {
     
-    var path = ((NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String) + "/\(ReadFolderName)/\(folderName)")
+    var path = DocumentDirectory + "/\(ReadFolderName)/\(folderName)"
     
     if fileName != nil { path +=  "/\(fileName!)" }
     

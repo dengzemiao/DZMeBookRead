@@ -45,6 +45,8 @@ class DZMMainController: DZMViewController {
         button.addTarget(self, action: #selector(read), for: .touchDown)
         view.addSubview(button)
         button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+        
+        print("缓存章节的沙河路径: \(DocumentDirectory)")
     }
     
     // 跳转
