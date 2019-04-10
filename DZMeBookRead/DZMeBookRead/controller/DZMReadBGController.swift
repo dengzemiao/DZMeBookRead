@@ -24,7 +24,6 @@ class DZMReadBGController: UIViewController {
         imageView = UIImageView()
         imageView.backgroundColor = DZMReadConfigure.shared().readColor()
         imageView.frame = view.bounds
-        imageView.layer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 1, 0)
         view.addSubview(imageView)
         
         // funcOne()
@@ -39,6 +38,8 @@ class DZMReadBGController: UIViewController {
         
         // 展示图片
         if targetView != nil {
+            
+            imageView.layer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 1, 0)
             
             imageView.image = ScreenCapture(targetView)
         }
