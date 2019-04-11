@@ -93,7 +93,9 @@ OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
 ***
 #### epub提示
 
-    DTCoreText主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,
+    DTCoreText同样也可以解析txt，epub...分页相关的功能，很方便。不需要像我这个Demo中一样复杂的解析处理。当然有喜欢研究CoreText可以参考下我的Demo。
+    
+    DTCoreText对于epub来说，主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,
     
     他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
 
