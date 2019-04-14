@@ -31,6 +31,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     /// 当前显示的阅读控制器
     private(set) var currentReadViewController:DZMReadViewController?
     
+    /// 记录上一页控制器
+    private var beforeController:UIViewController?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -318,9 +321,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         // 更新阅读记录
         readOperation.readRecordUpdate(readViewController: currentReadViewController)
-        
-        // 更新进度条
-        readMenu.bottomView.sliderUpdate()
     }
     
     /// 将要显示的控制器
@@ -372,11 +372,13 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         if abs(TempNumber) % 2 == 0 { // 背面
             
-            return readBGController()
+            beforeController = readOperation.GetAboveReadViewController()
+            
+            return readBGController(beforeController?.view)
             
         }else{ // 内容
             
-            return readOperation.GetAboveReadViewController()
+            return beforeController
         }
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class DZMReadBGController: UIViewController {
 
     /// 目标视图(无值则跟阅读背景颜色保持一致)
-    weak var targetView:UIView!
+    var targetView:UIView!
     
     /// 图片
     private var imageView:UIImageView!
@@ -29,6 +29,9 @@ class DZMReadBGController: UIViewController {
         // funcOne()
         
         funcTwo()
+        
+        // 释放对象
+        targetView = nil
     }
     
     // MARK: 方式一
