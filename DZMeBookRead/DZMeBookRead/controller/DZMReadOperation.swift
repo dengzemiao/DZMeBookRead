@@ -113,6 +113,8 @@ class DZMReadOperation: NSObject {
             readRecordModel = nil
         }
         
+        readRecordUpdate(readRecordModel: readRecordModel)
+        
         return GetReadViewController(readRecordModel: readRecordModel)
     }
     
@@ -176,6 +178,8 @@ class DZMReadOperation: NSObject {
             readRecordModel = nil
         }
         
+        readRecordUpdate(readRecordModel: readRecordModel)
+        
         return GetReadViewController(readRecordModel: readRecordModel)
     }
     
@@ -212,29 +216,26 @@ class DZMReadOperation: NSObject {
     // MARK: -- 同步记录 
     
     /// 更新记录
-    func readRecordUpdate(readViewController:DZMReadViewController?, isSave:Bool = true) {
+    func readRecordUpdate(readViewController:DZMReadViewController?) {
        
-        readRecordUpdate(readRecordModel: readViewController?.readRecordModel, isSave: isSave)
+        readRecordUpdate(readRecordModel: readViewController?.readRecordModel)
     }
     
     /// 更新记录
-    func readRecordUpdate(readRecordModel:DZMReadRecordModel?, isSave:Bool = true) {
+    func readRecordUpdate(readRecordModel:DZMReadRecordModel?) {
         
         if readRecordModel != nil {
             
             vc.readModel.readRecordModel = readRecordModel
             
-            if isSave {
+            // 保存
+            vc.readModel.readRecordModel.save()
+            
+            // 更新UI
+            DispatchQueue.main.async { [weak self] ()->Void in
                 
-                // 保存
-                vc.readModel.readRecordModel.save()
-                
-                // 更新UI
-                DispatchQueue.main.async { [weak self] ()->Void in
-                    
-                    // 进度条数据初始化
-                    self?.vc.readMenu.bottomView.sliderUpdate()
-                }
+                // 进度条数据初始化
+                self?.vc.readMenu.bottomView.sliderUpdate()
             }
         }
     }

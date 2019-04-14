@@ -346,34 +346,17 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     /// 切换结果
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        if !completed {
-            
-            // 记录
-            currentReadViewController = previousViewControllers.first as? DZMReadViewController
-            
-            // 更新阅读记录
-            readOperation.readRecordUpdate(readViewController: currentReadViewController)
-            
-        }else{
-            
-            // 记录
-            currentReadViewController = pageViewController.viewControllers?.first as? DZMReadViewController
-            
-            // 更新阅读记录
-            readOperation.readRecordUpdate(readViewController: currentReadViewController)
-            
-            // 更新进度条
-            readMenu.bottomView.sliderUpdate()
-        }
+        // 记录
+        currentReadViewController = pageViewController.viewControllers?.first as? DZMReadViewController
+        
+        // 更新阅读记录
+        readOperation.readRecordUpdate(readViewController: currentReadViewController)
     }
     
     /// 准备切换
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
         readMenu.menuSH(isShow: false)
-        
-        // 更新阅读记录
-        readOperation.readRecordUpdate(readViewController: pageViewController.viewControllers?.first as? DZMReadViewController, isSave: false)
     }
     
     
