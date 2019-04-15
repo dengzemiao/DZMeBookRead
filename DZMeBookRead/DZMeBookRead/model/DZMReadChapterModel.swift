@@ -156,6 +156,14 @@ class DZMReadChapterModel: NSObject,NSCoding {
         return rangeArray[page].location
     }
     
+    /// 获取指定页码的末尾坐标
+    func location_last(page:NSInteger) ->NSInteger {
+        
+        let range = rangeArray[page]
+        
+        return range.location + range.length
+    }
+    
     /// 通过 Page 获得 CenterLocation
     func centerLocation(page:NSInteger) ->NSInteger {
         

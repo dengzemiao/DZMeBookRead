@@ -60,34 +60,48 @@ class DZMReadOperation: NSObject {
     /// 获取上一页控制器
     func GetAboveReadViewController() ->DZMReadViewController? {
         
+        let tempRecordModel = GetAboveReadRecordModel(readRecordModel: vc.readModel.readRecordModel)
+        
+        if tempRecordModel == nil { return nil }
+        
+        return GetReadViewController(readRecordModel: tempRecordModel)
+    }
+    
+    /// 获得下一页控制器
+    func GetBelowReadViewController() ->DZMReadViewController? {
+        
+        let tempRecordModel = GetBelowReadRecordModel(readRecordModel: vc.readModel.readRecordModel)
+        
+        if tempRecordModel == nil { return nil }
+        
+        return GetReadViewController(readRecordModel: tempRecordModel)
+    }
+    
+    /// 获取当前记录上一页阅读记录
+    func GetAboveReadRecordModel(readRecordModel: DZMReadRecordModel!) ->DZMReadRecordModel? {
+        
         // 没有阅读模型
-        if vc.readModel == nil || !vc.readModel.readRecordModel.isRecord {return nil}
+        if readRecordModel == nil || !readRecordModel.isRecord {return nil}
         
         // 阅读记录
-        var readRecordModel:DZMReadRecordModel?
+        var readRecordModel:DZMReadRecordModel! = readRecordModel.copySelf()
         
         // 判断
         if vc.readModel.isLocalBook.boolValue { // 本地小说
             
-            // 获得阅读记录
-            readRecordModel = vc.readModel.readRecordModel.copySelf()
-            
             // 章节ID
-            let id = vc.readModel.readRecordModel.readChapterModel!.id.integer
-            
-            // 页码
-            let page = vc.readModel.readRecordModel.page.intValue
+            let id = readRecordModel.readChapterModel.id.integer
             
             // 到头了
-            if id == 1 && page == 0 {return nil}
+            if id == 1 && readRecordModel.isFirstPage {return nil}
             
-            if page == 0 { // 这一章到头了
+            if readRecordModel.isFirstPage { // 这一章到头了
                 
                 readRecordModel?.modify(chapterID: "\(id - 1)", toPage: DZMReadLastPageValue, isUpdateFont:true, isSave: false)
                 
             }else{ // 没到头
                 
-                readRecordModel?.page = NSNumber(value: (page - 1))
+                readRecordModel?.previous_page()
             }
             
         }else{ // 网络小说
@@ -104,8 +118,8 @@ class DZMReadOperation: NSObject {
              4. 判断是否为这一章最后一页
              
              5. 1). 判断不是第一页则 page - 1 继续翻页
-                2). 如果是第一页则判断上一章的章节ID是否有值,没值就是当前没有跟多章节（连载中）或者 全书完, 有值则判断是否存在缓存文件.
-                    有缓存文件则拿出使用更新阅读记录, 没值则请求服务器获取，请求回来之后可动画展示出来
+             2). 如果是第一页则判断上一章的章节ID是否有值,没值就是当前没有跟多章节（连载中）或者 全书完, 有值则判断是否存在缓存文件.
+             有缓存文件则拿出使用更新阅读记录, 没值则请求服务器获取，请求回来之后可动画展示出来
              
              提示：如果是请求回来之后并更新了阅读记录 可使用 GetCurrentReadViewController() 获得当前阅读记录的控制器 进行展示
              */
@@ -113,46 +127,34 @@ class DZMReadOperation: NSObject {
             readRecordModel = nil
         }
         
-        readRecordUpdate(readRecordModel: readRecordModel)
-        
-        return GetReadViewController(readRecordModel: readRecordModel)
+        return readRecordModel
     }
     
-    
-    /// 获得下一页控制器
-    func GetBelowReadViewController() ->DZMReadViewController? {
+    /// 获取当前记录下一页阅读记录
+    func GetBelowReadRecordModel(readRecordModel: DZMReadRecordModel!) ->DZMReadRecordModel? {
         
         // 没有阅读模型
-        if vc.readModel == nil || !vc.readModel.readRecordModel.isRecord {return nil}
+        if readRecordModel == nil || !readRecordModel.isRecord {return nil}
         
         // 阅读记录
-        var readRecordModel:DZMReadRecordModel?
+        var readRecordModel:DZMReadRecordModel! = readRecordModel.copySelf()
         
         // 判断
         if vc.readModel.isLocalBook.boolValue { // 本地小说
             
-            // 获得阅读记录
-            readRecordModel = vc.readModel.readRecordModel.copySelf()
-            
             // 章节ID
-            let id = vc.readModel.readRecordModel.readChapterModel!.id.integer
-            
-            // 页码
-            let page = vc.readModel.readRecordModel.page.intValue
-            
-            // 最后一页
-            let lastPage = vc.readModel.readRecordModel.readChapterModel!.pageCount.intValue - 1
+            let id = readRecordModel.readChapterModel!.id.integer
             
             // 到头了
-            if id == vc.readModel.readChapterListModels.count && page == lastPage {return nil}
+            if id == vc.readModel.readChapterListModels.count && readRecordModel.isLastPage {return nil}
             
-            if page == lastPage { // 这一章到头了
+            if readRecordModel.isLastPage { // 这一章到头了
                 
                 readRecordModel?.modify(chapterID: "\(id + 1)", isUpdateFont: true)
                 
             }else{ // 没到头
                 
-                readRecordModel?.page = NSNumber(value: (page + 1))
+                readRecordModel?.next_page()
             }
             
         }else{ // 网络小说
@@ -169,8 +171,8 @@ class DZMReadOperation: NSObject {
              4. 判断是否为这一章最后一页
              
              5. 1). 判断不是最后一页则 page + 1 继续翻页
-                2). 如果是最后一页则判断下一章的章节ID是否有值,没值就是当前没有跟多章节（连载中）或者 全书完, 有值则判断是否存在缓存文件.
-                    有缓存文件则拿出使用更新阅读记录, 没值则请求服务器获取，请求回来之后可动画展示出来
+             2). 如果是最后一页则判断下一章的章节ID是否有值,没值就是当前没有跟多章节（连载中）或者 全书完, 有值则判断是否存在缓存文件.
+             有缓存文件则拿出使用更新阅读记录, 没值则请求服务器获取，请求回来之后可动画展示出来
              
              提示：如果是请求回来之后并更新了阅读记录 可使用 GetCurrentReadViewController() 获得当前阅读记录的控制器 进行展示
              */
@@ -178,9 +180,7 @@ class DZMReadOperation: NSObject {
             readRecordModel = nil
         }
         
-        readRecordUpdate(readRecordModel: readRecordModel)
-        
-        return GetReadViewController(readRecordModel: readRecordModel)
+        return readRecordModel
     }
     
     /// 跳转指定章节 指定页码 (toPage: -1 为最后一页 也可以使用 DZMReadLastPageValue)

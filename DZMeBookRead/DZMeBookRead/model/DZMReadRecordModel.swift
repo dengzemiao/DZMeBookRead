@@ -20,10 +20,36 @@ class DZMReadRecordModel: NSObject,NSCoding {
     var bookID:String!
     
     /// 当前阅读到的章节模型
-    var readChapterModel:DZMReadChapterModel?
+    var readChapterModel:DZMReadChapterModel!
     
     /// 当前章节阅读到的页码(如果有云端记录或者多端使用阅读记录需求 可以记录location 通过location转成页码进行使用)
     var page:NSNumber = NSNumber(value: 0)
+    
+    // MARK: 快捷获取
+    
+    /// 页码起始坐标
+    var location:NSInteger! { return readChapterModel.location(page: page.intValue) }
+    
+    /// 页码结束坐标
+    var location_last:NSInteger! { return readChapterModel.location_last(page: page.intValue) }
+    
+    /// 是否为当前章节第一页
+    var isFirstPage:Bool! { return page.intValue == 0 }
+    
+    /// 是否为当前章节最后一页
+    var isLastPage:Bool! { return (page.intValue == (readChapterModel.pageCount.intValue - 1)) }
+    
+    //    /// 是否为第一章
+    //    var isFirstChapter:Bool! { return (readChapterModel.lastChapterId == DZM_READ_CHAPTER_NO_MORE) }
+    //
+    //    /// 是否为最后一章
+    //    var isLastChapter:Bool! { return (readChapterModel.nextChapterId == DZM_READ_CHAPTER_NO_MORE) }
+    
+    /// 下一页
+    func next_page() { page = NSNumber(value: min(page.intValue + 1, readChapterModel.pageCount.intValue - 1)) }
+    
+    /// 上一页
+    func previous_page() { page = NSNumber(value: max(page.intValue - 1, 0)) }
     
     // MARK: -- init
     
@@ -127,7 +153,7 @@ class DZMReadRecordModel: NSObject,NSCoding {
         
         super.init()
         
-        bookID = aDecoder.decodeObject(forKey: "bookID") as! String
+        bookID = aDecoder.decodeObject(forKey: "bookID") as? String
         
         readChapterModel = aDecoder.decodeObject(forKey: "readChapterModel") as? DZMReadChapterModel
         

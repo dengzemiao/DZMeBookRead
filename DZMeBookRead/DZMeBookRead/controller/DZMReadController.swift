@@ -31,9 +31,6 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
     /// 当前显示的阅读控制器
     private(set) var currentReadViewController:DZMReadViewController?
     
-    /// 记录上一页控制器
-    private var beforeController:UIViewController?
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -294,7 +291,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
                 
                 let direction = isAbove ? UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward
                 
-                pageViewController?.setViewControllers([displayController!, readBGController(displayController!.view)], direction: direction, animated: animated, completion: nil)
+                pageViewController?.setViewControllers([displayController!, readBGController((displayController as? DZMReadViewController)?.readRecordModel, displayController!.view)], direction: direction, animated: animated, completion: nil)
                 
                 return
             }
@@ -370,15 +367,22 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         TempNumber -= 1
         
+        var readRecordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.readRecordModel
+        
+        if readRecordModel == nil {
+            
+            readRecordModel = (viewController as? DZMReadBGController)?.readRecordModel
+        }
+        
         if abs(TempNumber) % 2 == 0 { // 背面
             
-            beforeController = readOperation.GetAboveReadViewController()
+            readRecordModel = readOperation.GetAboveReadRecordModel(readRecordModel: readRecordModel)
             
-            return readBGController(beforeController?.view)
+            return readBGController(readRecordModel)
             
         }else{ // 内容
             
-            return beforeController
+            return readOperation.GetReadViewController(readRecordModel: readRecordModel)
         }
     }
     
@@ -387,22 +391,35 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         TempNumber += 1
         
+        var readRecordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.readRecordModel
+        
+        if readRecordModel == nil {
+            
+            readRecordModel = (viewController as? DZMReadBGController)?.readRecordModel
+        }
+        
         if abs(TempNumber) % 2 == 0 { // 背面
             
-            return readBGController()
+            return readBGController(readRecordModel)
             
         }else{ // 内容
             
-            return readOperation.GetBelowReadViewController()
+            readRecordModel = readOperation.GetBelowReadRecordModel(readRecordModel: readRecordModel)
+            
+            return readOperation.GetReadViewController(readRecordModel: readRecordModel)
         }
     }
     
     /// 获取背面(只用于仿真模式背面显示)
-    private func readBGController(_ targetView:UIView? = nil) -> DZMReadBGController {
+    private func readBGController(_ readRecordModel:DZMReadRecordModel!, _ targetView:UIView? = nil) -> DZMReadBGController {
         
         let vc = DZMReadBGController()
         
-        vc.targetView = targetView ?? readOperation.GetCurrentReadViewController()?.view
+        vc.readRecordModel = readRecordModel
+        
+        let targetView = targetView ?? readOperation.GetReadViewController(readRecordModel: readRecordModel)?.view
+        
+        vc.targetView = targetView
         
         return vc
     }
