@@ -16,8 +16,6 @@ class DZMReadPageModel: NSObject, NSCoding {
     
     var page:NSNumber!
     
-    var size:CGSize!
-    
     // MARK: -- NSCoding
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,8 +27,6 @@ class DZMReadPageModel: NSObject, NSCoding {
         range = aDecoder.decodeObject(forKey: "range") as? NSRange
         
         page = aDecoder.decodeObject(forKey: "page") as? NSNumber
-        
-        size = aDecoder.decodeObject(forKey: "size") as? CGSize
     }
     
     func encode(with aCoder: NSCoder) {
@@ -40,8 +36,6 @@ class DZMReadPageModel: NSObject, NSCoding {
         aCoder.encode(range, forKey: "range")
         
         aCoder.encode(page, forKey: "page")
-        
-        aCoder.encode(size, forKey: "size")
     }
     
     init(_ dict:Any? = nil) {

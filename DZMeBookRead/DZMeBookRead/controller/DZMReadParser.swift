@@ -296,8 +296,6 @@ class DZMReadParser: NSObject {
                 
                 pageModel.page = NSNumber(value: i)
                 
-                pageModel.size = content.size(rect.size)
-                
                 pageModels.append(pageModel)
             }
         }
