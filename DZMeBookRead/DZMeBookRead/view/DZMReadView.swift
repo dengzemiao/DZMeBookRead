@@ -18,7 +18,7 @@ import UIKit
 class DZMReadView: UIView {
     
     /// 内容
-    var content:NSMutableAttributedString? {
+    var content:NSAttributedString? {
         
         didSet{
             

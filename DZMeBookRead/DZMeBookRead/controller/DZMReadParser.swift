@@ -272,7 +272,41 @@ class DZMReadParser: NSObject {
     // MARK: -- 内容分页
     
     /// 内容分页 (内容 + 显示范围)
-    @objc class func ParserPageRange(attrString:NSAttributedString, rect:CGRect) ->[NSRange] {
+    @objc class func ParserPageModels(attrString:NSAttributedString, rect:CGRect) ->[DZMReadPageModel] {
+        
+        var pageModels:[DZMReadPageModel] = []
+        
+        let ranges = DZMReadParser.ParserPageRanges(attrString: attrString, rect: rect)
+        
+        if !ranges.isEmpty {
+            
+            let count = ranges.count
+            
+            for i in 0..<count {
+                
+                let range = ranges[i]
+                
+                let pageModel = DZMReadPageModel()
+                
+                let content = attrString.attributedSubstring(from: range)
+                
+                pageModel.content = content
+                
+                pageModel.range = range
+                
+                pageModel.page = NSNumber(value: i)
+                
+                pageModel.size = content.size(rect.size)
+                
+                pageModels.append(pageModel)
+            }
+        }
+        
+        return pageModels
+    }
+    
+    /// 内容分页 (内容 + 显示范围)
+    @objc class func ParserPageRanges(attrString:NSAttributedString, rect:CGRect) ->[NSRange] {
         
         var rangeArray:[NSRange] = []
         
@@ -363,7 +397,7 @@ class DZMReadParser: NSObject {
     // MARK: -- 获得 FrameRef CTFrame
     
     /// 获得 CTFrame
-    @objc class func GetReadFrameRef(attrString:NSMutableAttributedString, rect:CGRect) ->CTFrame {
+    @objc class func GetReadFrameRef(attrString:NSAttributedString, rect:CGRect) ->CTFrame {
         
         let framesetter = CTFramesetterCreateWithAttributedString(attrString)
         

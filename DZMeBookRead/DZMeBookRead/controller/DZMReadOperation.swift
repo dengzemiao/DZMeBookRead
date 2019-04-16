@@ -228,6 +228,9 @@ class DZMReadOperation: NSObject {
             
             vc.readModel.readRecordModel = readRecordModel
             
+            // 记录阅读位置
+            DZMReadRecordLocation = readRecordModel!.location
+            
             // 保存
             vc.readModel.readRecordModel.save()
             

@@ -51,6 +51,7 @@
 		AF403E7B1E8CF598004C0612 /* DZMeBookReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E7A1E8CF598004C0612 /* DZMeBookReadTests.swift */; };
 		AF403E861E8CF598004C0612 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E851E8CF598004C0612 /* DZMeBookReadUITests.swift */; };
 		AF403E991E8CF722004C0612 /* DZMMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E981E8CF722004C0612 /* DZMMainController.swift */; };
+		AF5D0BE922657239002FE7DB /* DZMReadPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D0BE822657239002FE7DB /* DZMReadPageModel.swift */; };
 		AF6322931EC95A78001B92D4 /* DZMReadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */; };
 		AF6322951EC95AC5001B92D4 /* DZMReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322941EC95AC5001B92D4 /* DZMReadView.swift */; };
 		AF6322A71EC960E9001B92D4 /* MBProgressHUD+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6322A31EC960E8001B92D4 /* MBProgressHUD+DZM.m */; };
@@ -139,6 +140,7 @@
 		AF403E871E8CF598004C0612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF403E981E8CF722004C0612 /* DZMMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMMainController.swift; sourceTree = "<group>"; };
 		AF403E9B1E8CF95F004C0612 /* DZMeBookRead-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DZMeBookRead-Bridging-Header.h"; sourceTree = "<group>"; };
+		AF5D0BE822657239002FE7DB /* DZMReadPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadPageModel.swift; sourceTree = "<group>"; };
 		AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewCell.swift; sourceTree = "<group>"; };
 		AF6322941EC95AC5001B92D4 /* DZMReadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadView.swift; sourceTree = "<group>"; };
 		AF6322A21EC960E8001B92D4 /* MBProgressHUD+DZM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DZM.h"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				AF3914AA1EC5767200768478 /* DZMReadModel.swift */,
 				AF3914A41EC575FE00768478 /* DZMReadChapterListModel.swift */,
 				AF3914A61EC5762D00768478 /* DZMReadChapterModel.swift */,
+				AF5D0BE822657239002FE7DB /* DZMReadPageModel.swift */,
 				AF3914A81EC5765900768478 /* DZMReadRecordModel.swift */,
 				AF3914AC1EC576A000768478 /* DZMReadMarkModel.swift */,
 			);
@@ -586,6 +589,7 @@
 				AF24C1471FDF7476000D82F1 /* DZMMagnifierView.m in Sources */,
 				AF3914A91EC5765900768478 /* DZMReadRecordModel.swift in Sources */,
 				AF3914971EC56C7000768478 /* DZMRMTopView.swift in Sources */,
+				AF5D0BE922657239002FE7DB /* DZMReadPageModel.swift in Sources */,
 				AF378DAB1EC4779300E7D441 /* UIView+YGPulseView.m in Sources */,
 				AF378D661EC455FE00E7D441 /* UIView+Extension.swift in Sources */,
 				AF39149E1EC56E3700768478 /* DZMRMSettingView.swift in Sources */,

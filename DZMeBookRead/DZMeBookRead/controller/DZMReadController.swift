@@ -106,7 +106,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControlle
         
         // DZMReadConfigure.shared().fontSize = fontSize 内部已赋值
         
-        creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: true, isSave: true))
+        creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: true, isSave: false))
     }
     
     /// 点击书签列表

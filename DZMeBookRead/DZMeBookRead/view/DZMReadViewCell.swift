@@ -14,9 +14,9 @@ class DZMReadViewCell: UITableViewCell {
     private(set) var readView:DZMReadView!
     
     /// 当前的显示的内容
-    var content:NSMutableAttributedString! {
+    var pageModel:DZMReadPageModel! {
         
-        didSet{ readView.content = content }
+        didSet{ readView.content = pageModel.content }
     }
     
     class func cellWithTableView(_ tableView:UITableView) ->DZMReadViewCell {

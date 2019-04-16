@@ -40,8 +40,8 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 本章有多少页
     var pageCount:NSNumber = NSNumber(value: 0)
     
-    /// 每一页的Range数组
-    var rangeArray:[NSRange] = []
+    /// 分页数据
+    var pageModels:[DZMReadPageModel] = []
     
     
     // MARK: -- 更新字体
@@ -63,9 +63,9 @@ class DZMReadChapterModel: NSObject,NSCoding {
             
             self.readAttribute = readAttribute
             
-            rangeArray = DZMReadParser.ParserPageRange(attrString: fullContentAttrString(), rect: GetReadViewFrame())
+            pageModels = DZMReadParser.ParserPageModels(attrString: fullContentAttrString(), rect: GetReadViewFrame())
             
-            pageCount = NSNumber(value: rangeArray.count)
+            pageCount = NSNumber(value: pageModels.count)
             
             if isSave {save()}
         }
@@ -101,7 +101,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
         
         if DZMReadChapterModel.IsExistReadChapterModel(bookID: bookID, chapterID: chapterID) { // 存在
             
-            readChapterModel = ReadKeyedUnarchiver(folderName: bookID, fileName: chapterID) as! DZMReadChapterModel
+            readChapterModel = ReadKeyedUnarchiver(folderName: bookID, fileName: chapterID) as? DZMReadChapterModel
             
             if isUpdateFont {readChapterModel.updateFont(isSave: true)}
             
@@ -119,47 +119,28 @@ class DZMReadChapterModel: NSObject,NSCoding {
     
     // MARK: -- 操作
     
-    /// 通过 Page 获得字符串
-    func stringAttr(page:NSInteger) ->NSMutableAttributedString {
+    /// 通过 Page 获得当页字符串
+    func contentString(page:NSInteger) ->String {
         
-        var content = string(page: page)
-        
-        var contentAttr = NSMutableAttributedString()
-        
-        if page == 0 {
-            
-            content = content.replacingOccurrences(of: fullName, with: "")
-            
-            let nameAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: true)
-            
-            let nameString = NSMutableAttributedString(string: fullName, attributes: nameAttribute)
-            
-            contentAttr = nameString
-        }
-        
-        let readAttribute = DZMReadConfigure.shared().readAttribute(isPaging: true, isTitle: false)
-        
-        contentAttr.append(NSMutableAttributedString(string: content, attributes: readAttribute))
-        
-        return contentAttr
+        return fullContent.substring(pageModels[page].range)
     }
     
-    /// 通过 Page 获得字符串
-    func string(page:NSInteger) ->String {
+    /// 通过 Page 获得当页字符串
+    func contentAttributedString(page:NSInteger) ->NSAttributedString {
         
-        return fullContent.substring(rangeArray[page])
+        return pageModels[page].content
     }
     
     /// 通过 Page 获得 Location
     func location(page:NSInteger) ->NSInteger {
         
-        return rangeArray[page].location
+        return pageModels[page].range.location
     }
     
     /// 获取指定页码的末尾坐标
     func location_last(page:NSInteger) ->NSInteger {
         
-        let range = rangeArray[page]
+        let range = pageModels[page].range!
         
         return range.location + range.length
     }
@@ -167,7 +148,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 通过 Page 获得 CenterLocation
     func centerLocation(page:NSInteger) ->NSInteger {
         
-        let range = rangeArray[page]
+        let range = pageModels[page].range!
         
         return range.location + (range.location + range.length) / 2
     }
@@ -175,11 +156,11 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 通过 Location 获得 Page
     func page(location:NSInteger) ->NSInteger {
         
-        let count = rangeArray.count
+        let count = pageModels.count
         
         for i in 0..<count {
             
-            let range = rangeArray[i]
+            let range = pageModels[i].range!
             
             if location < (range.location + range.length) {
                 
@@ -208,23 +189,23 @@ class DZMReadChapterModel: NSObject,NSCoding {
         
         super.init()
         
-        bookID = aDecoder.decodeObject(forKey: "bookID") as! String
+        bookID = aDecoder.decodeObject(forKey: "bookID") as? String
         
-        id = aDecoder.decodeObject(forKey: "id") as! String
+        id = aDecoder.decodeObject(forKey: "id") as? String
         
         lastChapterId = aDecoder.decodeObject(forKey: "lastChapterId") as? String
         
         nextChapterId = aDecoder.decodeObject(forKey: "nextChapterId") as? String
         
-        name = aDecoder.decodeObject(forKey: "name") as! String
+        name = aDecoder.decodeObject(forKey: "name") as? String
         
-        priority = aDecoder.decodeObject(forKey: "priority") as! NSNumber
+        priority = aDecoder.decodeObject(forKey: "priority") as? NSNumber
         
-        content = aDecoder.decodeObject(forKey: "content") as! String
+        content = aDecoder.decodeObject(forKey: "content") as? String
         
         pageCount = aDecoder.decodeObject(forKey: "pageCount") as! NSNumber
         
-        rangeArray = aDecoder.decodeObject(forKey: "rangeArray") as! [NSRange]
+        pageModels = aDecoder.decodeObject(forKey: "pageModels") as! [DZMReadPageModel]
         
         readAttribute = aDecoder.decodeObject(forKey: "readAttribute") as! [NSAttributedStringKey:Any]
         
@@ -249,7 +230,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
         
         aCoder.encode(pageCount, forKey: "pageCount")
         
-        aCoder.encode(rangeArray, forKey: "rangeArray")
+        aCoder.encode(pageModels, forKey: "pageModels")
         
         aCoder.encode(readAttribute, forKey: "readAttribute")
         

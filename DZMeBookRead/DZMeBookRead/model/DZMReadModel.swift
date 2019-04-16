@@ -115,7 +115,7 @@ class DZMReadModel: NSObject,NSCoding {
         
         readMarkModel.location = NSNumber(value: readRecordModel.readChapterModel!.location(page: readRecordModel.page.intValue))
         
-        readMarkModel.content = readRecordModel.readChapterModel!.string(page: readRecordModel.page.intValue)
+        readMarkModel.content = readRecordModel.readChapterModel!.contentString(page: readRecordModel.page.intValue)
         
         readMarkModel.time = Date()
         
@@ -170,7 +170,7 @@ class DZMReadModel: NSObject,NSCoding {
         if !results.isEmpty {
             
             // 当前显示页面的Range
-            let range = readRecordModel.readChapterModel!.rangeArray[readRecordModel.page.intValue]
+            let range = readRecordModel.readChapterModel!.pageModels[readRecordModel.page.intValue].range!
             
             // 便利
             for readMarkModel in results {

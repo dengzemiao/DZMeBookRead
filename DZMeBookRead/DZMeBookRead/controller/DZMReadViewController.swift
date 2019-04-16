@@ -164,7 +164,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let cell = DZMReadViewCell.cellWithTableView(tableView)
             
-            cell.content = readRecordModel.readChapterModel!.stringAttr(page: readRecordModel.page.intValue)
+            cell.pageModel = readRecordModel.readChapterModel!.pageModels[readRecordModel.page.intValue]
             
             readView = cell.readView
             
@@ -178,7 +178,7 @@ class DZMReadViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let readChapterModel = DZMReadChapterModel.readChapterModel(bookID: readRecordModel.bookID, chapterID: dataArray[indexPath.section], isUpdateFont: true)
             
-            cell.content = readChapterModel.stringAttr(page: indexPath.row)
+            cell.pageModel = readChapterModel.pageModels[indexPath.row]
             
             return cell
         }

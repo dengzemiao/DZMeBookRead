@@ -361,6 +361,9 @@ class DZMReadMenu: NSObject,UIGestureRecognizerDelegate {
     /// 返回
     @objc func clickBack() {
         
+        // 清空全局坐标
+        DZMReadRecordLocation = 0
+        
         let _ = vc.navigationController?.popViewController(animated: true)
     }
     

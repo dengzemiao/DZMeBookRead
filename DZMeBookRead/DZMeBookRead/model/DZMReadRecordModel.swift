@@ -9,6 +9,9 @@
 /// 最后一页标示
 let DZMReadLastPageValue:NSInteger = -1
 
+/// 当前书籍阅读到的位置
+var DZMReadRecordLocation:NSInteger = 0
+
 import UIKit
 
 class DZMReadRecordModel: NSObject,NSCoding {
@@ -129,13 +132,9 @@ class DZMReadRecordModel: NSObject,NSCoding {
         
         if readChapterModel != nil {
             
-            let location = readChapterModel!.location(page: page.intValue)
+            readChapterModel!.updateFont(isSave: true)
             
-            readChapterModel!.updateFont()
-            
-            page = NSNumber(value: readChapterModel!.page(location: location))
-            
-            readChapterModel!.save()
+            page = NSNumber(value: readChapterModel!.page(location: DZMReadRecordLocation))
             
             if isSave {save()}
         }
