@@ -5,6 +5,10 @@
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ***
+
+## 近期准找时间再次优化下项目，更简洁更容易便于参考。优化各方面方法使用，以及阅读效果优化！
+
+***
 #### OC如何集成改Demo
 
 OC集成Demo - https://github.com/dengzemiao/OCDZMeBookRead
