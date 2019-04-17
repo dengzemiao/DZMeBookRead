@@ -190,9 +190,9 @@ class DZMReadOperation: NSObject {
             
             if DZMReadChapterModel.IsExistReadChapterModel(bookID: vc.readModel.bookID, chapterID: chapterID) { //  存在
                 
-                vc.readModel.modifyReadRecordModel(chapterID: chapterID, page: toPage, isSave: false)
-                
-                vc.creatPageController(GetCurrentReadViewController(isUpdateFont: true, isSave: true))
+                vc.readModel.modifyReadRecordModel(chapterID: chapterID, page: toPage, isSave: true)
+               
+                vc.creatPageController(GetReadViewController(readRecordModel:  vc.readModel.readRecordModel.copySelf()))
                 
                 return true
                 
