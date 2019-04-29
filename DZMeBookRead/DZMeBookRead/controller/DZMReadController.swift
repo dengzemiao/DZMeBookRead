@@ -188,7 +188,13 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
             
             DZMLog("已经是第一章了")
             
-        }else{ GoToChapter(chapterID: readModel.recordModel.chapterModel.previousChapterID) }
+        }else{
+            
+            GoToChapter(chapterID: readModel.recordModel.chapterModel.previousChapterID)
+            
+            // 检查当前内容是否包含书签
+            readMenu.topView.checkForMark()
+        }
     }
     
     /// 点击下一章
@@ -198,7 +204,13 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
             
             DZMLog("已经是最后一章了")
             
-        }else{ GoToChapter(chapterID: readModel.recordModel.chapterModel.nextChapterID) }
+        }else{
+            
+            GoToChapter(chapterID: readModel.recordModel.chapterModel.nextChapterID)
+    
+            // 检查当前内容是否包含书签
+            readMenu.topView.checkForMark()
+        }
     }
     
     /// 拖拽阅读记录
@@ -209,6 +221,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
             readModel.recordModel.page = NSNumber(value: toPage)
             
             creatPageController(displayController: GetCurrentReadViewController())
+            
+            // 检查当前内容是否包含书签
+            readMenu.topView.checkForMark()
         }
     }
     
@@ -219,6 +234,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
         if toChapterID != readModel!.recordModel.chapterModel.id {
             
             GoToChapter(chapterID: toChapterID, toPage: toPage)
+            
+            // 检查当前内容是否包含书签
+            readMenu.topView.checkForMark()
         }
     }
     

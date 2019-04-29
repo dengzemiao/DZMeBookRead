@@ -116,6 +116,7 @@ class DZMRMProgressView: DZMRMBaseView,ASValueTrackingSliderDelegate,ASValueTrac
         
         if DZMReadConfigure.shared().progressType == .total { // 总进度
             
+            // 如果有需求可显示章节名
             return DZM_READ_TOTAL_PROGRESS_STRING(progress: value)
             
         }else{ // 分页进度
