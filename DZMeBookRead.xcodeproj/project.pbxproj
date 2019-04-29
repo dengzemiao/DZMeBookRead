@@ -3,174 +3,195 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF00E6DC1FDE8E2B00FC298B /* DZMReadAuxiliary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */; };
-		AF00E6DE1FDE8E3D00FC298B /* DZMCursorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */; };
-		AF24C1471FDF7476000D82F1 /* DZMMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */; };
-		AF2FE9521FEA463E0061EFAD /* DZMReadBGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FE9511FEA463E0061EFAD /* DZMReadBGController.swift */; };
-		AF378D661EC455FE00E7D441 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D651EC455FE00E7D441 /* UIView+Extension.swift */; };
-		AF378D681EC4560F00E7D441 /* UIPageViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */; };
-		AF378D6F1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378D6E1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m */; };
-		AF378D731EC4580300E7D441 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378D721EC4580300E7D441 /* DZMCoverController.m */; };
-		AF378D771EC45C3C00E7D441 /* DZMReadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D761EC45C3C00E7D441 /* DZMReadController.swift */; };
-		AF378D7B1EC45DEE00E7D441 /* DZMGlobalProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D7A1EC45DEE00E7D441 /* DZMGlobalProperty.swift */; };
-		AF378D7D1EC45EAE00E7D441 /* DZMGlobalMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D7C1EC45EAE00E7D441 /* DZMGlobalMethod.swift */; };
-		AF378D801EC4623C00E7D441 /* DZMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D7F1EC4623C00E7D441 /* DZMViewController.swift */; };
-		AF378D981EC4648A00E7D441 /* DZMBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378D971EC4648A00E7D441 /* DZMBatteryView.swift */; };
-		AF378D9E1EC46A0200E7D441 /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378D9B1EC46A0200E7D441 /* ASValuePopUpView.m */; };
-		AF378D9F1EC46A0200E7D441 /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378D9D1EC46A0200E7D441 /* ASValueTrackingSlider.m */; };
-		AF378DA11EC46A9300E7D441 /* DZMReadConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378DA01EC46A9200E7D441 /* DZMReadConfigure.swift */; };
-		AF378DA31EC46B3700E7D441 /* DZMUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378DA21EC46B3700E7D441 /* DZMUserDefaults.swift */; };
-		AF378DA51EC46B9100E7D441 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378DA41EC46B9100E7D441 /* NSObject+Extension.swift */; };
-		AF378DA71EC4775A00E7D441 /* DZMHaloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF378DA61EC4775A00E7D441 /* DZMHaloButton.swift */; };
-		AF378DAB1EC4779300E7D441 /* UIView+YGPulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF378DAA1EC4779300E7D441 /* UIView+YGPulseView.m */; };
-		AF386B841ECD3F70006A0A68 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF386B831ECD3F70006A0A68 /* 求魔.txt */; };
-		AF39148F1EC56C7000768478 /* DZMReadMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914851EC56C7000768478 /* DZMReadMenu.swift */; };
-		AF3914901EC56C7000768478 /* DZMRMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914861EC56C7000768478 /* DZMRMBaseView.swift */; };
-		AF3914911EC56C7000768478 /* DZMRMBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914871EC56C7000768478 /* DZMRMBottomView.swift */; };
-		AF3914921EC56C7000768478 /* DZMRMLightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914881EC56C7000768478 /* DZMRMLightView.swift */; };
-		AF3914961EC56C7000768478 /* DZMRMStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39148D1EC56C7000768478 /* DZMRMStatusView.swift */; };
-		AF3914971EC56C7000768478 /* DZMRMTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39148E1EC56C7000768478 /* DZMRMTopView.swift */; };
-		AF39149C1EC56E3700768478 /* DZMRMColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914991EC56E3700768478 /* DZMRMColorView.swift */; };
-		AF39149D1EC56E3700768478 /* DZMRMFuncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39149A1EC56E3700768478 /* DZMRMFuncView.swift */; };
-		AF39149E1EC56E3700768478 /* DZMRMSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF39149B1EC56E3700768478 /* DZMRMSettingView.swift */; };
-		AF3914A11EC5711700768478 /* DZMReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914A01EC5711700768478 /* DZMReadViewController.swift */; };
-		AF3914A31EC572AB00768478 /* DZMReadParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914A21EC572AB00768478 /* DZMReadParser.swift */; };
-		AF3914A51EC575FE00768478 /* DZMReadChapterListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914A41EC575FE00768478 /* DZMReadChapterListModel.swift */; };
-		AF3914A71EC5762D00768478 /* DZMReadChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914A61EC5762D00768478 /* DZMReadChapterModel.swift */; };
-		AF3914A91EC5765900768478 /* DZMReadRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914A81EC5765900768478 /* DZMReadRecordModel.swift */; };
-		AF3914AB1EC5767200768478 /* DZMReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914AA1EC5767200768478 /* DZMReadModel.swift */; };
-		AF3914AD1EC576A000768478 /* DZMReadMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914AC1EC576A000768478 /* DZMReadMarkModel.swift */; };
-		AF3914AF1EC577C900768478 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3914AE1EC577C900768478 /* String+Extension.swift */; };
-		AF403E661E8CF598004C0612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E651E8CF598004C0612 /* AppDelegate.swift */; };
-		AF403E6D1E8CF598004C0612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF403E6C1E8CF598004C0612 /* Assets.xcassets */; };
-		AF403E701E8CF598004C0612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF403E6E1E8CF598004C0612 /* LaunchScreen.storyboard */; };
-		AF403E7B1E8CF598004C0612 /* DZMeBookReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E7A1E8CF598004C0612 /* DZMeBookReadTests.swift */; };
-		AF403E861E8CF598004C0612 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E851E8CF598004C0612 /* DZMeBookReadUITests.swift */; };
-		AF403E991E8CF722004C0612 /* DZMMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF403E981E8CF722004C0612 /* DZMMainController.swift */; };
-		AF5D0BE922657239002FE7DB /* DZMReadPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D0BE822657239002FE7DB /* DZMReadPageModel.swift */; };
-		AF6322931EC95A78001B92D4 /* DZMReadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */; };
-		AF6322951EC95AC5001B92D4 /* DZMReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322941EC95AC5001B92D4 /* DZMReadView.swift */; };
-		AF6322A71EC960E9001B92D4 /* MBProgressHUD+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6322A31EC960E8001B92D4 /* MBProgressHUD+DZM.m */; };
-		AF6322A81EC960E9001B92D4 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AF6322A41EC960E8001B92D4 /* MBProgressHUD.bundle */; };
-		AF6322A91EC960E9001B92D4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6322A61EC960E9001B92D4 /* MBProgressHUD.m */; };
-		AF6322AB1EC99043001B92D4 /* DZMReadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322AA1EC99043001B92D4 /* DZMReadOperation.swift */; };
-		AF6322AD1EC9B78F001B92D4 /* DZMRMLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */; };
-		AF6322AF1EC9C21B001B92D4 /* DZMSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */; };
-		AF698BFC1ECC03F000A98EE6 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */; };
-		AF7F68681ED2808300875E53 /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */; };
+		AF46131222704E72005F1DD8 /* DZMReadViewBGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */; };
+		AF46131422706495005F1DD8 /* DZMRMSpacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */; };
+		AF487D7A22715DE7002CFAC9 /* DZMRMEffectTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */; };
+		AF487D822271A0D6002CFAC9 /* DZMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AF487D812271A0D6002CFAC9 /* DZMSegmentedControl.m */; };
+		AF487D852271B0F6002CFAC9 /* DZMReadLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D842271B0F6002CFAC9 /* DZMReadLeftView.swift */; };
+		AF487D8A2271B2D6002CFAC9 /* DZMReadCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D892271B2D6002CFAC9 /* DZMReadCatalogView.swift */; };
+		AF487D8C2271B2EF002CFAC9 /* DZMReadMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D8B2271B2EF002CFAC9 /* DZMReadMarkView.swift */; };
+		AF487D8E2271BB34002CFAC9 /* DZMReadCatalogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D8D2271BB34002CFAC9 /* DZMReadCatalogCell.swift */; };
+		AF487D902271BB41002CFAC9 /* DZMReadMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D8F2271BB41002CFAC9 /* DZMReadMarkCell.swift */; };
+		AF48FA932266D08200850378 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FA922266D08200850378 /* AppDelegate.swift */; };
+		AF48FA9A2266D08400850378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF48FA992266D08400850378 /* Assets.xcassets */; };
+		AF48FA9D2266D08400850378 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF48FA9B2266D08400850378 /* LaunchScreen.storyboard */; };
+		AF48FAA82266D08400850378 /* DZMeBookReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAA72266D08400850378 /* DZMeBookReadTests.swift */; };
+		AF48FAB32266D08400850378 /* DZMeBookReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAB22266D08400850378 /* DZMeBookReadUITests.swift */; };
+		AF48FAC92266D1A600850378 /* MBProgressHUD+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAC72266D1A600850378 /* MBProgressHUD+DZM.m */; };
+		AF48FACA2266D1A600850378 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AF48FAC82266D1A600850378 /* MBProgressHUD.bundle */; };
+		AF48FAD02266D1F800850378 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AF48FACE2266D1F800850378 /* MBProgressHUD.m */; };
+		AF48FAD22266D26A00850378 /* DZMMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAD12266D26A00850378 /* DZMMainController.swift */; };
+		AF48FADF2266D43400850378 /* DZMReadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FADE2266D43400850378 /* DZMReadController.swift */; };
+		AF48FAEB2266F2F400850378 /* DZMReadChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAEA2266F2F400850378 /* DZMReadChapterModel.swift */; };
+		AF48FAED2266F30A00850378 /* DZMReadChapterListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAEC2266F30A00850378 /* DZMReadChapterListModel.swift */; };
+		AF48FAEF2266F35000850378 /* DZMReadPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAEE2266F35000850378 /* DZMReadPageModel.swift */; };
+		AF48FAF12266F36A00850378 /* DZMReadRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAF02266F36A00850378 /* DZMReadRecordModel.swift */; };
+		AF48FAF32266F37B00850378 /* DZMReadMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAF22266F37B00850378 /* DZMReadMarkModel.swift */; };
+		AF48FAF92266F4FC00850378 /* DZMReadController+EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAF82266F4FC00850378 /* DZMReadController+EffectType.swift */; };
+		AF48FAFB2266F51500850378 /* DZMReadController+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAFA2266F51500850378 /* DZMReadController+Operation.swift */; };
+		AF48FAFD2266F53600850378 /* DZMReadConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FAFC2266F53600850378 /* DZMReadConfigure.swift */; };
+		AF48FB372266FA7600850378 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB1C2266FA7500850378 /* String+Extension.swift */; };
+		AF48FB382266FA7600850378 /* DZMPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB1E2266FA7500850378 /* DZMPublic.swift */; };
+		AF48FB392266FA7600850378 /* DZMSpaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB1F2266FA7500850378 /* DZMSpaceList.swift */; };
+		AF48FB3A2266FA7600850378 /* DZMKeyedArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB212266FA7500850378 /* DZMKeyedArchiver.swift */; };
+		AF48FB3B2266FA7600850378 /* DZMCoreText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB222266FA7500850378 /* DZMCoreText.swift */; };
+		AF48FB3C2266FA7600850378 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB262266FA7500850378 /* DZMCoverController.m */; };
+		AF48FB3D2266FA7600850378 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB292266FA7500850378 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		AF48FB3E2266FA7600850378 /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB2D2266FA7500850378 /* ASValuePopUpView.m */; };
+		AF48FB3F2266FA7600850378 /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB2E2266FA7500850378 /* ASValueTrackingSlider.m */; };
+		AF48FB402266FA7600850378 /* DZMBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB2F2266FA7500850378 /* DZMBatteryView.swift */; };
+		AF48FB412266FA7600850378 /* DZMTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB312266FA7500850378 /* DZMTableView.swift */; };
+		AF48FB422266FA7600850378 /* DZMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB322266FA7500850378 /* DZMViewController.swift */; };
+		AF48FB432266FA7600850378 /* DZMReadMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB352266FA7500850378 /* DZMReadMenu.swift */; };
+		AF48FB482266FB0500850378 /* DZMReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB472266FB0500850378 /* DZMReadViewController.swift */; };
+		AF48FB4A2266FBAD00850378 /* DZMReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB492266FBAD00850378 /* DZMReadView.swift */; };
+		AF48FB4C2266FBC200850378 /* DZMReadViewStatusBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB4B2266FBC200850378 /* DZMReadViewStatusBottomView.swift */; };
+		AF48FB4E2266FBD100850378 /* DZMReadViewStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB4D2266FBD100850378 /* DZMReadViewStatusTopView.swift */; };
+		AF48FB502266FBFB00850378 /* DZMReadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB4F2266FBFB00850378 /* DZMReadViewCell.swift */; };
+		AF48FB522266FC5400850378 /* DZMReadViewScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB512266FC5400850378 /* DZMReadViewScrollController.swift */; };
+		AF48FB552267033800850378 /* DZMReadParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB542267033800850378 /* DZMReadParser.swift */; };
+		AF48FB59226706D500850378 /* DZMFontList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB58226706D500850378 /* DZMFontList.swift */; };
+		AF48FB5B226709B200850378 /* DZMColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB5A226709B200850378 /* DZMColorList.swift */; };
+		AF48FB5D22670D8200850378 /* DZMReadTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB5C22670D8200850378 /* DZMReadTextParser.swift */; };
+		AF48FB5F22672F8F00850378 /* DZMReadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB5E22672F8F00850378 /* DZMReadContentView.swift */; };
+		AF48FB632267322C00850378 /* DZMReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB622267322C00850378 /* DZMReadModel.swift */; };
+		AF5306CE226812910094EFB9 /* DZMUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306CD226812910094EFB9 /* DZMUserDefaults.swift */; };
+		AF5306D0226813A30094EFB9 /* DZMEnumList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306CF226813A30094EFB9 /* DZMEnumList.swift */; };
+		AF5306D2226872E10094EFB9 /* DZMRMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306D1226872E10094EFB9 /* DZMRMBaseView.swift */; };
+		AF5306D42268740E0094EFB9 /* DZMRMTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306D32268740E0094EFB9 /* DZMRMTopView.swift */; };
+		AF5306D82268742D0094EFB9 /* DZMRMSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306D72268742D0094EFB9 /* DZMRMSettingView.swift */; };
+		AF5306DA226874970094EFB9 /* DZMRMBGColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306D9226874970094EFB9 /* DZMRMBGColorView.swift */; };
+		AF5306DC226874C60094EFB9 /* DZMRMFontSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306DB226874C60094EFB9 /* DZMRMFontSizeView.swift */; };
+		AF5306DE226874D60094EFB9 /* DZMRMFontTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306DD226874D60094EFB9 /* DZMRMFontTypeView.swift */; };
+		AF5306E222687F1D0094EFB9 /* DZMRMLightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5306E122687F1D0094EFB9 /* DZMRMLightView.swift */; };
+		AF5952F62269751E007DF477 /* DZMRMBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5952F52269751E007DF477 /* DZMRMBottomView.swift */; };
+		AF5952F822697557007DF477 /* DZMRMFuncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5952F722697557007DF477 /* DZMRMFuncView.swift */; };
+		AF5952FA22697599007DF477 /* DZMRMProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5952F922697599007DF477 /* DZMRMProgressView.swift */; };
+		AF5952FC2269B814007DF477 /* DZMReadModel+Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5952FB2269B814007DF477 /* DZMReadModel+Mark.swift */; };
+		AF5952FE2269D57D007DF477 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF5952FD2269D57D007DF477 /* 求魔.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AF403E771E8CF598004C0612 /* PBXContainerItemProxy */ = {
+		AF48FAA42266D08400850378 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF403E5A1E8CF598004C0612 /* Project object */;
+			containerPortal = AF48FA872266D08200850378 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AF403E611E8CF598004C0612;
+			remoteGlobalIDString = AF48FA8E2266D08200850378;
 			remoteInfo = DZMeBookRead;
 		};
-		AF403E821E8CF598004C0612 /* PBXContainerItemProxy */ = {
+		AF48FAAF2266D08400850378 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF403E5A1E8CF598004C0612 /* Project object */;
+			containerPortal = AF48FA872266D08200850378 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AF403E611E8CF598004C0612;
+			remoteGlobalIDString = AF48FA8E2266D08200850378;
 			remoteInfo = DZMeBookRead;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadAuxiliary.swift; sourceTree = "<group>"; };
-		AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMCursorView.swift; sourceTree = "<group>"; };
-		AF24C1451FDF7476000D82F1 /* DZMMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMMagnifierView.h; sourceTree = "<group>"; };
-		AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMMagnifierView.m; sourceTree = "<group>"; };
-		AF2FE9511FEA463E0061EFAD /* DZMReadBGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadBGController.swift; sourceTree = "<group>"; };
-		AF378D651EC455FE00E7D441 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+Extension.swift"; sourceTree = "<group>"; };
-		AF378D6D1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
-		AF378D6E1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
-		AF378D711EC4580300E7D441 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
-		AF378D721EC4580300E7D441 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
-		AF378D761EC45C3C00E7D441 /* DZMReadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadController.swift; sourceTree = "<group>"; };
-		AF378D7A1EC45DEE00E7D441 /* DZMGlobalProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMGlobalProperty.swift; sourceTree = "<group>"; };
-		AF378D7C1EC45EAE00E7D441 /* DZMGlobalMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMGlobalMethod.swift; sourceTree = "<group>"; };
-		AF378D7F1EC4623C00E7D441 /* DZMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMViewController.swift; sourceTree = "<group>"; };
-		AF378D971EC4648A00E7D441 /* DZMBatteryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMBatteryView.swift; sourceTree = "<group>"; };
-		AF378D9A1EC46A0200E7D441 /* ASValuePopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValuePopUpView.h; sourceTree = "<group>"; };
-		AF378D9B1EC46A0200E7D441 /* ASValuePopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValuePopUpView.m; sourceTree = "<group>"; };
-		AF378D9C1EC46A0200E7D441 /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
-		AF378D9D1EC46A0200E7D441 /* ASValueTrackingSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValueTrackingSlider.m; sourceTree = "<group>"; };
-		AF378DA01EC46A9200E7D441 /* DZMReadConfigure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadConfigure.swift; sourceTree = "<group>"; };
-		AF378DA21EC46B3700E7D441 /* DZMUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMUserDefaults.swift; sourceTree = "<group>"; };
-		AF378DA41EC46B9100E7D441 /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
-		AF378DA61EC4775A00E7D441 /* DZMHaloButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMHaloButton.swift; sourceTree = "<group>"; };
-		AF378DA91EC4779300E7D441 /* UIView+YGPulseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YGPulseView.h"; sourceTree = "<group>"; };
-		AF378DAA1EC4779300E7D441 /* UIView+YGPulseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YGPulseView.m"; sourceTree = "<group>"; };
-		AF386B831ECD3F70006A0A68 /* 求魔.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "求魔.txt"; sourceTree = "<group>"; };
-		AF3914851EC56C7000768478 /* DZMReadMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadMenu.swift; sourceTree = "<group>"; };
-		AF3914861EC56C7000768478 /* DZMRMBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMBaseView.swift; sourceTree = "<group>"; };
-		AF3914871EC56C7000768478 /* DZMRMBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMBottomView.swift; sourceTree = "<group>"; };
-		AF3914881EC56C7000768478 /* DZMRMLightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMLightView.swift; sourceTree = "<group>"; };
-		AF39148D1EC56C7000768478 /* DZMRMStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMStatusView.swift; sourceTree = "<group>"; };
-		AF39148E1EC56C7000768478 /* DZMRMTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMTopView.swift; sourceTree = "<group>"; };
-		AF3914991EC56E3700768478 /* DZMRMColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMColorView.swift; sourceTree = "<group>"; };
-		AF39149A1EC56E3700768478 /* DZMRMFuncView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMFuncView.swift; sourceTree = "<group>"; };
-		AF39149B1EC56E3700768478 /* DZMRMSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMSettingView.swift; sourceTree = "<group>"; };
-		AF39149F1EC5703800768478 /* DZMeBookRead-Bridging-Pch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DZMeBookRead-Bridging-Pch.h"; sourceTree = "<group>"; };
-		AF3914A01EC5711700768478 /* DZMReadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewController.swift; sourceTree = "<group>"; };
-		AF3914A21EC572AB00768478 /* DZMReadParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadParser.swift; sourceTree = "<group>"; };
-		AF3914A41EC575FE00768478 /* DZMReadChapterListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadChapterListModel.swift; sourceTree = "<group>"; };
-		AF3914A61EC5762D00768478 /* DZMReadChapterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadChapterModel.swift; sourceTree = "<group>"; };
-		AF3914A81EC5765900768478 /* DZMReadRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadRecordModel.swift; sourceTree = "<group>"; };
-		AF3914AA1EC5767200768478 /* DZMReadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadModel.swift; sourceTree = "<group>"; };
-		AF3914AC1EC576A000768478 /* DZMReadMarkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadMarkModel.swift; sourceTree = "<group>"; };
-		AF3914AE1EC577C900768478 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		AF403E621E8CF598004C0612 /* DZMeBookRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZMeBookRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF403E651E8CF598004C0612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF403E6C1E8CF598004C0612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AF403E6F1E8CF598004C0612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AF403E711E8CF598004C0612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF403E761E8CF598004C0612 /* DZMeBookReadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DZMeBookReadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF403E7A1E8CF598004C0612 /* DZMeBookReadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMeBookReadTests.swift; sourceTree = "<group>"; };
-		AF403E7C1E8CF598004C0612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF403E811E8CF598004C0612 /* DZMeBookReadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DZMeBookReadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF403E851E8CF598004C0612 /* DZMeBookReadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMeBookReadUITests.swift; sourceTree = "<group>"; };
-		AF403E871E8CF598004C0612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF403E981E8CF722004C0612 /* DZMMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMMainController.swift; sourceTree = "<group>"; };
-		AF403E9B1E8CF95F004C0612 /* DZMeBookRead-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DZMeBookRead-Bridging-Header.h"; sourceTree = "<group>"; };
-		AF5D0BE822657239002FE7DB /* DZMReadPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadPageModel.swift; sourceTree = "<group>"; };
-		AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewCell.swift; sourceTree = "<group>"; };
-		AF6322941EC95AC5001B92D4 /* DZMReadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadView.swift; sourceTree = "<group>"; };
-		AF6322A21EC960E8001B92D4 /* MBProgressHUD+DZM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DZM.h"; sourceTree = "<group>"; };
-		AF6322A31EC960E8001B92D4 /* MBProgressHUD+DZM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+DZM.m"; sourceTree = "<group>"; };
-		AF6322A41EC960E8001B92D4 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
-		AF6322A51EC960E8001B92D4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		AF6322A61EC960E9001B92D4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		AF6322AA1EC99043001B92D4 /* DZMReadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadOperation.swift; sourceTree = "<group>"; };
-		AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMLeftView.swift; sourceTree = "<group>"; };
-		AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMSegmentedControl.swift; sourceTree = "<group>"; };
-		AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
-		AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
+		AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewBGController.swift; sourceTree = "<group>"; };
+		AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMSpacingView.swift; sourceTree = "<group>"; };
+		AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMEffectTypeView.swift; sourceTree = "<group>"; };
+		AF487D802271A0D6002CFAC9 /* DZMSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZMSegmentedControl.h; sourceTree = "<group>"; };
+		AF487D812271A0D6002CFAC9 /* DZMSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZMSegmentedControl.m; sourceTree = "<group>"; };
+		AF487D842271B0F6002CFAC9 /* DZMReadLeftView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadLeftView.swift; sourceTree = "<group>"; };
+		AF487D892271B2D6002CFAC9 /* DZMReadCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadCatalogView.swift; sourceTree = "<group>"; };
+		AF487D8B2271B2EF002CFAC9 /* DZMReadMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadMarkView.swift; sourceTree = "<group>"; };
+		AF487D8D2271BB34002CFAC9 /* DZMReadCatalogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadCatalogCell.swift; sourceTree = "<group>"; };
+		AF487D8F2271BB41002CFAC9 /* DZMReadMarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadMarkCell.swift; sourceTree = "<group>"; };
+		AF48FA8F2266D08200850378 /* DZMeBookRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZMeBookRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF48FA922266D08200850378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF48FA992266D08400850378 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF48FA9C2266D08400850378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AF48FA9E2266D08400850378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF48FAA32266D08400850378 /* DZMeBookReadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DZMeBookReadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF48FAA72266D08400850378 /* DZMeBookReadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMeBookReadTests.swift; sourceTree = "<group>"; };
+		AF48FAA92266D08400850378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF48FAAE2266D08400850378 /* DZMeBookReadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DZMeBookReadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF48FAB22266D08400850378 /* DZMeBookReadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMeBookReadUITests.swift; sourceTree = "<group>"; };
+		AF48FAB42266D08400850378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF48FAC12266D15C00850378 /* DZMeBookRead-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DZMeBookRead-Bridging-Header.h"; sourceTree = "<group>"; };
+		AF48FAC62266D1A600850378 /* MBProgressHUD+DZM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DZM.h"; sourceTree = "<group>"; };
+		AF48FAC72266D1A600850378 /* MBProgressHUD+DZM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+DZM.m"; sourceTree = "<group>"; };
+		AF48FAC82266D1A600850378 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		AF48FACE2266D1F800850378 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		AF48FACF2266D1F800850378 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		AF48FAD12266D26A00850378 /* DZMMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMMainController.swift; sourceTree = "<group>"; };
+		AF48FADE2266D43400850378 /* DZMReadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadController.swift; sourceTree = "<group>"; };
+		AF48FAEA2266F2F400850378 /* DZMReadChapterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadChapterModel.swift; sourceTree = "<group>"; };
+		AF48FAEC2266F30A00850378 /* DZMReadChapterListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadChapterListModel.swift; sourceTree = "<group>"; };
+		AF48FAEE2266F35000850378 /* DZMReadPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadPageModel.swift; sourceTree = "<group>"; };
+		AF48FAF02266F36A00850378 /* DZMReadRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadRecordModel.swift; sourceTree = "<group>"; };
+		AF48FAF22266F37B00850378 /* DZMReadMarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadMarkModel.swift; sourceTree = "<group>"; };
+		AF48FAF82266F4FC00850378 /* DZMReadController+EffectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DZMReadController+EffectType.swift"; sourceTree = "<group>"; };
+		AF48FAFA2266F51500850378 /* DZMReadController+Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DZMReadController+Operation.swift"; sourceTree = "<group>"; };
+		AF48FAFC2266F53600850378 /* DZMReadConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadConfigure.swift; sourceTree = "<group>"; };
+		AF48FB1A2266FA7500850378 /* DZMeBookRead-Bridging-Pch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DZMeBookRead-Bridging-Pch.h"; sourceTree = "<group>"; };
+		AF48FB1C2266FA7500850378 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		AF48FB1E2266FA7500850378 /* DZMPublic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMPublic.swift; sourceTree = "<group>"; };
+		AF48FB1F2266FA7500850378 /* DZMSpaceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMSpaceList.swift; sourceTree = "<group>"; };
+		AF48FB212266FA7500850378 /* DZMKeyedArchiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMKeyedArchiver.swift; sourceTree = "<group>"; };
+		AF48FB222266FA7500850378 /* DZMCoreText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMCoreText.swift; sourceTree = "<group>"; };
+		AF48FB252266FA7500850378 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
+		AF48FB262266FA7500850378 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
+		AF48FB282266FA7500850378 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		AF48FB292266FA7500850378 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		AF48FB2B2266FA7500850378 /* ASValuePopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValuePopUpView.h; sourceTree = "<group>"; };
+		AF48FB2C2266FA7500850378 /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
+		AF48FB2D2266FA7500850378 /* ASValuePopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValuePopUpView.m; sourceTree = "<group>"; };
+		AF48FB2E2266FA7500850378 /* ASValueTrackingSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValueTrackingSlider.m; sourceTree = "<group>"; };
+		AF48FB2F2266FA7500850378 /* DZMBatteryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMBatteryView.swift; sourceTree = "<group>"; };
+		AF48FB312266FA7500850378 /* DZMTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMTableView.swift; sourceTree = "<group>"; };
+		AF48FB322266FA7500850378 /* DZMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMViewController.swift; sourceTree = "<group>"; };
+		AF48FB352266FA7500850378 /* DZMReadMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadMenu.swift; sourceTree = "<group>"; };
+		AF48FB472266FB0500850378 /* DZMReadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewController.swift; sourceTree = "<group>"; };
+		AF48FB492266FBAD00850378 /* DZMReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadView.swift; sourceTree = "<group>"; };
+		AF48FB4B2266FBC200850378 /* DZMReadViewStatusBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewStatusBottomView.swift; sourceTree = "<group>"; };
+		AF48FB4D2266FBD100850378 /* DZMReadViewStatusTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewStatusTopView.swift; sourceTree = "<group>"; };
+		AF48FB4F2266FBFB00850378 /* DZMReadViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewCell.swift; sourceTree = "<group>"; };
+		AF48FB512266FC5400850378 /* DZMReadViewScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadViewScrollController.swift; sourceTree = "<group>"; };
+		AF48FB542267033800850378 /* DZMReadParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadParser.swift; sourceTree = "<group>"; };
+		AF48FB58226706D500850378 /* DZMFontList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMFontList.swift; sourceTree = "<group>"; };
+		AF48FB5A226709B200850378 /* DZMColorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMColorList.swift; sourceTree = "<group>"; };
+		AF48FB5C22670D8200850378 /* DZMReadTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadTextParser.swift; sourceTree = "<group>"; };
+		AF48FB5E22672F8F00850378 /* DZMReadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadContentView.swift; sourceTree = "<group>"; };
+		AF48FB622267322C00850378 /* DZMReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadModel.swift; sourceTree = "<group>"; };
+		AF5306CD226812910094EFB9 /* DZMUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMUserDefaults.swift; sourceTree = "<group>"; };
+		AF5306CF226813A30094EFB9 /* DZMEnumList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMEnumList.swift; sourceTree = "<group>"; };
+		AF5306D1226872E10094EFB9 /* DZMRMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMBaseView.swift; sourceTree = "<group>"; };
+		AF5306D32268740E0094EFB9 /* DZMRMTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMTopView.swift; sourceTree = "<group>"; };
+		AF5306D72268742D0094EFB9 /* DZMRMSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMSettingView.swift; sourceTree = "<group>"; };
+		AF5306D9226874970094EFB9 /* DZMRMBGColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMBGColorView.swift; sourceTree = "<group>"; };
+		AF5306DB226874C60094EFB9 /* DZMRMFontSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMFontSizeView.swift; sourceTree = "<group>"; };
+		AF5306DD226874D60094EFB9 /* DZMRMFontTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMFontTypeView.swift; sourceTree = "<group>"; };
+		AF5306E122687F1D0094EFB9 /* DZMRMLightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMLightView.swift; sourceTree = "<group>"; };
+		AF5952F52269751E007DF477 /* DZMRMBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMRMBottomView.swift; sourceTree = "<group>"; };
+		AF5952F722697557007DF477 /* DZMRMFuncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMFuncView.swift; sourceTree = "<group>"; };
+		AF5952F922697599007DF477 /* DZMRMProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMProgressView.swift; sourceTree = "<group>"; };
+		AF5952FB2269B814007DF477 /* DZMReadModel+Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DZMReadModel+Mark.swift"; sourceTree = "<group>"; };
+		AF5952FD2269D57D007DF477 /* 求魔.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "求魔.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AF403E5F1E8CF598004C0612 /* Frameworks */ = {
+		AF48FA8C2266D08200850378 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF403E731E8CF598004C0612 /* Frameworks */ = {
+		AF48FAA02266D08400850378 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF403E7E1E8CF598004C0612 /* Frameworks */ = {
+		AF48FAAB2266D08400850378 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -180,269 +201,319 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AF24C1441FDF7476000D82F1 /* DZMMagnifierView */ = {
+		AF487D7D2271A0B0002CFAC9 /* DZMSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
-				AF24C1451FDF7476000D82F1 /* DZMMagnifierView.h */,
-				AF24C1461FDF7476000D82F1 /* DZMMagnifierView.m */,
+				AF487D802271A0D6002CFAC9 /* DZMSegmentedControl.h */,
+				AF487D812271A0D6002CFAC9 /* DZMSegmentedControl.m */,
 			);
-			path = DZMMagnifierView;
+			path = DZMSegmentedControl;
 			sourceTree = "<group>";
 		};
-		AF378D6C1EC457C400E7D441 /* FDFullscreenPopGesture */ = {
+		AF487D832271B0F6002CFAC9 /* DZMReadLeftView */ = {
 			isa = PBXGroup;
 			children = (
-				AF378D6D1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.h */,
-				AF378D6E1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m */,
+				AF487D842271B0F6002CFAC9 /* DZMReadLeftView.swift */,
+				AF487D892271B2D6002CFAC9 /* DZMReadCatalogView.swift */,
+				AF487D8D2271BB34002CFAC9 /* DZMReadCatalogCell.swift */,
+				AF487D8B2271B2EF002CFAC9 /* DZMReadMarkView.swift */,
+				AF487D8F2271BB41002CFAC9 /* DZMReadMarkCell.swift */,
 			);
-			path = FDFullscreenPopGesture;
+			path = DZMReadLeftView;
 			sourceTree = "<group>";
 		};
-		AF378D701EC4580300E7D441 /* DZMCoverController */ = {
+		AF48FA862266D08200850378 = {
 			isa = PBXGroup;
 			children = (
-				AF378D711EC4580300E7D441 /* DZMCoverController.h */,
-				AF378D721EC4580300E7D441 /* DZMCoverController.m */,
-			);
-			path = DZMCoverController;
-			sourceTree = "<group>";
-		};
-		AF378D751EC45C2100E7D441 /* menuUI */ = {
-			isa = PBXGroup;
-			children = (
-				AF3914851EC56C7000768478 /* DZMReadMenu.swift */,
-				AF6322AC1EC9B78F001B92D4 /* DZMRMLeftView.swift */,
-				AF3914861EC56C7000768478 /* DZMRMBaseView.swift */,
-				AF3914871EC56C7000768478 /* DZMRMBottomView.swift */,
-				AF3914881EC56C7000768478 /* DZMRMLightView.swift */,
-				AF39148D1EC56C7000768478 /* DZMRMStatusView.swift */,
-				AF39148E1EC56C7000768478 /* DZMRMTopView.swift */,
-				AF3914981EC56E3700768478 /* DZMRMSettingView */,
-			);
-			path = menuUI;
-			sourceTree = "<group>";
-		};
-		AF378D7E1EC4623C00E7D441 /* base */ = {
-			isa = PBXGroup;
-			children = (
-				AF378D7F1EC4623C00E7D441 /* DZMViewController.swift */,
-			);
-			path = base;
-			sourceTree = "<group>";
-		};
-		AF378D991EC46A0200E7D441 /* ASValueTrackingSlider */ = {
-			isa = PBXGroup;
-			children = (
-				AF378D9A1EC46A0200E7D441 /* ASValuePopUpView.h */,
-				AF378D9B1EC46A0200E7D441 /* ASValuePopUpView.m */,
-				AF378D9C1EC46A0200E7D441 /* ASValueTrackingSlider.h */,
-				AF378D9D1EC46A0200E7D441 /* ASValueTrackingSlider.m */,
-			);
-			path = ASValueTrackingSlider;
-			sourceTree = "<group>";
-		};
-		AF378DA81EC4779300E7D441 /* YGPulseView */ = {
-			isa = PBXGroup;
-			children = (
-				AF378DA91EC4779300E7D441 /* UIView+YGPulseView.h */,
-				AF378DAA1EC4779300E7D441 /* UIView+YGPulseView.m */,
-			);
-			path = YGPulseView;
-			sourceTree = "<group>";
-		};
-		AF3914981EC56E3700768478 /* DZMRMSettingView */ = {
-			isa = PBXGroup;
-			children = (
-				AF3914991EC56E3700768478 /* DZMRMColorView.swift */,
-				AF39149A1EC56E3700768478 /* DZMRMFuncView.swift */,
-				AF39149B1EC56E3700768478 /* DZMRMSettingView.swift */,
-			);
-			path = DZMRMSettingView;
-			sourceTree = "<group>";
-		};
-		AF403E591E8CF598004C0612 = {
-			isa = PBXGroup;
-			children = (
-				AF403E641E8CF598004C0612 /* DZMeBookRead */,
-				AF403E791E8CF598004C0612 /* DZMeBookReadTests */,
-				AF403E841E8CF598004C0612 /* DZMeBookReadUITests */,
-				AF403E631E8CF598004C0612 /* Products */,
+				AF48FA912266D08200850378 /* DZMeBookRead */,
+				AF48FAA62266D08400850378 /* DZMeBookReadTests */,
+				AF48FAB12266D08400850378 /* DZMeBookReadUITests */,
+				AF48FA902266D08200850378 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AF403E631E8CF598004C0612 /* Products */ = {
+		AF48FA902266D08200850378 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AF403E621E8CF598004C0612 /* DZMeBookRead.app */,
-				AF403E761E8CF598004C0612 /* DZMeBookReadTests.xctest */,
-				AF403E811E8CF598004C0612 /* DZMeBookReadUITests.xctest */,
+				AF48FA8F2266D08200850378 /* DZMeBookRead.app */,
+				AF48FAA32266D08400850378 /* DZMeBookReadTests.xctest */,
+				AF48FAAE2266D08400850378 /* DZMeBookReadUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AF403E641E8CF598004C0612 /* DZMeBookRead */ = {
+		AF48FA912266D08200850378 /* DZMeBookRead */ = {
 			isa = PBXGroup;
 			children = (
-				AF6322A11EC960E8001B92D4 /* MBProgressHUD(这个临时临时使用用于阻挡下) */,
-				AF403E931E8CF64E004C0612 /* DZMeBookRead */,
-				AF403E651E8CF598004C0612 /* AppDelegate.swift */,
-				AF403E981E8CF722004C0612 /* DZMMainController.swift */,
-				AF403E9B1E8CF95F004C0612 /* DZMeBookRead-Bridging-Header.h */,
-				AF403E6C1E8CF598004C0612 /* Assets.xcassets */,
-				AF403E6E1E8CF598004C0612 /* LaunchScreen.storyboard */,
-				AF403E711E8CF598004C0612 /* Info.plist */,
-				AF386B831ECD3F70006A0A68 /* 求魔.txt */,
+				AF48FAC52266D1A600850378 /* MBProgressHUD+DZM */,
+				AF48FAC02266D14700850378 /* DZMeBookRead */,
+				AF48FA922266D08200850378 /* AppDelegate.swift */,
+				AF48FA992266D08400850378 /* Assets.xcassets */,
+				AF48FA9B2266D08400850378 /* LaunchScreen.storyboard */,
+				AF48FA9E2266D08400850378 /* Info.plist */,
+				AF48FAD12266D26A00850378 /* DZMMainController.swift */,
+				AF48FAC12266D15C00850378 /* DZMeBookRead-Bridging-Header.h */,
+				AF5952FD2269D57D007DF477 /* 求魔.txt */,
 			);
 			path = DZMeBookRead;
 			sourceTree = "<group>";
 		};
-		AF403E791E8CF598004C0612 /* DZMeBookReadTests */ = {
+		AF48FAA62266D08400850378 /* DZMeBookReadTests */ = {
 			isa = PBXGroup;
 			children = (
-				AF403E7A1E8CF598004C0612 /* DZMeBookReadTests.swift */,
-				AF403E7C1E8CF598004C0612 /* Info.plist */,
+				AF48FAA72266D08400850378 /* DZMeBookReadTests.swift */,
+				AF48FAA92266D08400850378 /* Info.plist */,
 			);
 			path = DZMeBookReadTests;
 			sourceTree = "<group>";
 		};
-		AF403E841E8CF598004C0612 /* DZMeBookReadUITests */ = {
+		AF48FAB12266D08400850378 /* DZMeBookReadUITests */ = {
 			isa = PBXGroup;
 			children = (
-				AF403E851E8CF598004C0612 /* DZMeBookReadUITests.swift */,
-				AF403E871E8CF598004C0612 /* Info.plist */,
+				AF48FAB22266D08400850378 /* DZMeBookReadUITests.swift */,
+				AF48FAB42266D08400850378 /* Info.plist */,
 			);
 			path = DZMeBookReadUITests;
 			sourceTree = "<group>";
 		};
-		AF403E931E8CF64E004C0612 /* DZMeBookRead */ = {
+		AF48FAC02266D14700850378 /* DZMeBookRead */ = {
 			isa = PBXGroup;
 			children = (
-				AF378D751EC45C2100E7D441 /* menuUI */,
-				AF403E941E8CF64E004C0612 /* controller */,
-				AF403E951E8CF64E004C0612 /* model */,
-				AF403E961E8CF64E004C0612 /* view */,
-				AF403ECD1E8CFC47004C0612 /* other */,
+				AF48FB342266FA7500850378 /* MenuUI */,
+				AF48FB192266FA7500850378 /* Other */,
+				AF48FB332266FA7500850378 /* ReadView */,
+				AF48FB532267030000850378 /* ReadParser */,
+				AF48FAD42266D3CD00850378 /* controller */,
+				AF48FAD32266D3CD00850378 /* model */,
+				AF48FADA2266D3CD00850378 /* view */,
 			);
 			path = DZMeBookRead;
 			sourceTree = "<group>";
 		};
-		AF403E941E8CF64E004C0612 /* controller */ = {
+		AF48FAC52266D1A600850378 /* MBProgressHUD+DZM */ = {
 			isa = PBXGroup;
 			children = (
-				AF378D761EC45C3C00E7D441 /* DZMReadController.swift */,
-				AF3914A01EC5711700768478 /* DZMReadViewController.swift */,
-				AF378DA01EC46A9200E7D441 /* DZMReadConfigure.swift */,
-				AF6322AA1EC99043001B92D4 /* DZMReadOperation.swift */,
-				AF3914A21EC572AB00768478 /* DZMReadParser.swift */,
-				AF00E6DB1FDE8E2B00FC298B /* DZMReadAuxiliary.swift */,
-				AF2FE9511FEA463E0061EFAD /* DZMReadBGController.swift */,
+				AF48FAC62266D1A600850378 /* MBProgressHUD+DZM.h */,
+				AF48FAC72266D1A600850378 /* MBProgressHUD+DZM.m */,
+				AF48FAC82266D1A600850378 /* MBProgressHUD.bundle */,
+				AF48FACF2266D1F800850378 /* MBProgressHUD.h */,
+				AF48FACE2266D1F800850378 /* MBProgressHUD.m */,
 			);
-			path = controller;
+			path = "MBProgressHUD+DZM";
 			sourceTree = "<group>";
 		};
-		AF403E951E8CF64E004C0612 /* model */ = {
+		AF48FAD32266D3CD00850378 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				AF3914AA1EC5767200768478 /* DZMReadModel.swift */,
-				AF3914A41EC575FE00768478 /* DZMReadChapterListModel.swift */,
-				AF3914A61EC5762D00768478 /* DZMReadChapterModel.swift */,
-				AF5D0BE822657239002FE7DB /* DZMReadPageModel.swift */,
-				AF3914A81EC5765900768478 /* DZMReadRecordModel.swift */,
-				AF3914AC1EC576A000768478 /* DZMReadMarkModel.swift */,
+				AF48FB622267322C00850378 /* DZMReadModel.swift */,
+				AF5952FB2269B814007DF477 /* DZMReadModel+Mark.swift */,
+				AF48FAEC2266F30A00850378 /* DZMReadChapterListModel.swift */,
+				AF48FAEA2266F2F400850378 /* DZMReadChapterModel.swift */,
+				AF48FAEE2266F35000850378 /* DZMReadPageModel.swift */,
+				AF48FAF02266F36A00850378 /* DZMReadRecordModel.swift */,
+				AF48FAF22266F37B00850378 /* DZMReadMarkModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
 		};
-		AF403E961E8CF64E004C0612 /* view */ = {
+		AF48FAD42266D3CD00850378 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				AF6322921EC95A78001B92D4 /* DZMReadViewCell.swift */,
-				AF6322941EC95AC5001B92D4 /* DZMReadView.swift */,
-				AF00E6DD1FDE8E3D00FC298B /* DZMCursorView.swift */,
+				AF48FADE2266D43400850378 /* DZMReadController.swift */,
+				AF48FAF82266F4FC00850378 /* DZMReadController+EffectType.swift */,
+				AF48FAFA2266F51500850378 /* DZMReadController+Operation.swift */,
+				AF48FAFC2266F53600850378 /* DZMReadConfigure.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AF48FADA2266D3CD00850378 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				AF487D832271B0F6002CFAC9 /* DZMReadLeftView */,
+				AF48FB5E22672F8F00850378 /* DZMReadContentView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
 		};
-		AF403ECD1E8CFC47004C0612 /* other */ = {
+		AF48FB192266FA7500850378 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				AF378D7E1EC4623C00E7D441 /* base */,
-				AF403EF11E8D0511004C0612 /* extension */,
-				AF403EEC1E8D00CF004C0612 /* custom */,
-				AF403EE71E8CFC8C004C0612 /* global */,
-				AF403ECE1E8CFC47004C0612 /* thirdParty */,
-				AF39149F1EC5703800768478 /* DZMeBookRead-Bridging-Pch.h */,
+				AF48FB1A2266FA7500850378 /* DZMeBookRead-Bridging-Pch.h */,
+				AF48FB1B2266FA7500850378 /* extension */,
+				AF48FB1D2266FA7500850378 /* public */,
+				AF48FB202266FA7500850378 /* custom */,
+				AF48FB232266FA7500850378 /* thirdParty */,
+				AF48FB302266FA7500850378 /* base */,
 			);
-			path = other;
+			path = Other;
 			sourceTree = "<group>";
 		};
-		AF403ECE1E8CFC47004C0612 /* thirdParty */ = {
+		AF48FB1B2266FA7500850378 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				AF24C1441FDF7476000D82F1 /* DZMMagnifierView */,
-				AF378DA81EC4779300E7D441 /* YGPulseView */,
-				AF378D991EC46A0200E7D441 /* ASValueTrackingSlider */,
-				AF378D701EC4580300E7D441 /* DZMCoverController */,
-				AF378D6C1EC457C400E7D441 /* FDFullscreenPopGesture */,
-				AF378D971EC4648A00E7D441 /* DZMBatteryView.swift */,
-			);
-			path = thirdParty;
-			sourceTree = "<group>";
-		};
-		AF403EE71E8CFC8C004C0612 /* global */ = {
-			isa = PBXGroup;
-			children = (
-				AF378D7A1EC45DEE00E7D441 /* DZMGlobalProperty.swift */,
-				AF378D7C1EC45EAE00E7D441 /* DZMGlobalMethod.swift */,
-			);
-			path = global;
-			sourceTree = "<group>";
-		};
-		AF403EEC1E8D00CF004C0612 /* custom */ = {
-			isa = PBXGroup;
-			children = (
-				AF6322AE1EC9C21B001B92D4 /* DZMSegmentedControl.swift */,
-				AF378DA61EC4775A00E7D441 /* DZMHaloButton.swift */,
-				AF378DA21EC46B3700E7D441 /* DZMUserDefaults.swift */,
-			);
-			path = custom;
-			sourceTree = "<group>";
-		};
-		AF403EF11E8D0511004C0612 /* extension */ = {
-			isa = PBXGroup;
-			children = (
-				AF3914AE1EC577C900768478 /* String+Extension.swift */,
-				AF378D671EC4560F00E7D441 /* UIPageViewController+Extension.swift */,
-				AF378D651EC455FE00E7D441 /* UIView+Extension.swift */,
-				AF378DA41EC46B9100E7D441 /* NSObject+Extension.swift */,
-				AF698BFB1ECC03F000A98EE6 /* UITableView+Extension.swift */,
-				AF7F68671ED2808300875E53 /* UIScrollView+Extension.swift */,
+				AF48FB1C2266FA7500850378 /* String+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
 		};
-		AF6322A11EC960E8001B92D4 /* MBProgressHUD(这个临时临时使用用于阻挡下) */ = {
+		AF48FB1D2266FA7500850378 /* public */ = {
 			isa = PBXGroup;
 			children = (
-				AF6322A21EC960E8001B92D4 /* MBProgressHUD+DZM.h */,
-				AF6322A31EC960E8001B92D4 /* MBProgressHUD+DZM.m */,
-				AF6322A41EC960E8001B92D4 /* MBProgressHUD.bundle */,
-				AF6322A51EC960E8001B92D4 /* MBProgressHUD.h */,
-				AF6322A61EC960E9001B92D4 /* MBProgressHUD.m */,
+				AF48FB1E2266FA7500850378 /* DZMPublic.swift */,
+				AF48FB1F2266FA7500850378 /* DZMSpaceList.swift */,
+				AF48FB58226706D500850378 /* DZMFontList.swift */,
+				AF48FB5A226709B200850378 /* DZMColorList.swift */,
+				AF5306CF226813A30094EFB9 /* DZMEnumList.swift */,
 			);
-			path = "MBProgressHUD(这个临时临时使用用于阻挡下)";
+			path = public;
+			sourceTree = "<group>";
+		};
+		AF48FB202266FA7500850378 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB212266FA7500850378 /* DZMKeyedArchiver.swift */,
+				AF48FB222266FA7500850378 /* DZMCoreText.swift */,
+				AF5306CD226812910094EFB9 /* DZMUserDefaults.swift */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		AF48FB232266FA7500850378 /* thirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				AF487D7D2271A0B0002CFAC9 /* DZMSegmentedControl */,
+				AF48FB242266FA7500850378 /* DZMCoverController */,
+				AF48FB272266FA7500850378 /* FDFullscreenPopGesture */,
+				AF48FB2A2266FA7500850378 /* ASValueTrackingSlider */,
+				AF48FB2F2266FA7500850378 /* DZMBatteryView.swift */,
+			);
+			path = thirdParty;
+			sourceTree = "<group>";
+		};
+		AF48FB242266FA7500850378 /* DZMCoverController */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB252266FA7500850378 /* DZMCoverController.h */,
+				AF48FB262266FA7500850378 /* DZMCoverController.m */,
+			);
+			path = DZMCoverController;
+			sourceTree = "<group>";
+		};
+		AF48FB272266FA7500850378 /* FDFullscreenPopGesture */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB282266FA7500850378 /* UINavigationController+FDFullscreenPopGesture.h */,
+				AF48FB292266FA7500850378 /* UINavigationController+FDFullscreenPopGesture.m */,
+			);
+			path = FDFullscreenPopGesture;
+			sourceTree = "<group>";
+		};
+		AF48FB2A2266FA7500850378 /* ASValueTrackingSlider */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB2B2266FA7500850378 /* ASValuePopUpView.h */,
+				AF48FB2C2266FA7500850378 /* ASValueTrackingSlider.h */,
+				AF48FB2D2266FA7500850378 /* ASValuePopUpView.m */,
+				AF48FB2E2266FA7500850378 /* ASValueTrackingSlider.m */,
+			);
+			path = ASValueTrackingSlider;
+			sourceTree = "<group>";
+		};
+		AF48FB302266FA7500850378 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB312266FA7500850378 /* DZMTableView.swift */,
+				AF48FB322266FA7500850378 /* DZMViewController.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		AF48FB332266FA7500850378 /* ReadView */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB462266FB0500850378 /* controller */,
+				AF48FB452266FB0500850378 /* view */,
+			);
+			path = ReadView;
+			sourceTree = "<group>";
+		};
+		AF48FB342266FA7500850378 /* MenuUI */ = {
+			isa = PBXGroup;
+			children = (
+				AF5952F42269751E007DF477 /* DZMRMBottomView */,
+				AF48FB442266FAAC00850378 /* DZMRMSettingView */,
+				AF48FB352266FA7500850378 /* DZMReadMenu.swift */,
+				AF5306D1226872E10094EFB9 /* DZMRMBaseView.swift */,
+				AF5306D32268740E0094EFB9 /* DZMRMTopView.swift */,
+			);
+			path = MenuUI;
+			sourceTree = "<group>";
+		};
+		AF48FB442266FAAC00850378 /* DZMRMSettingView */ = {
+			isa = PBXGroup;
+			children = (
+				AF5306D72268742D0094EFB9 /* DZMRMSettingView.swift */,
+				AF5306D9226874970094EFB9 /* DZMRMBGColorView.swift */,
+				AF5306DB226874C60094EFB9 /* DZMRMFontSizeView.swift */,
+				AF5306DD226874D60094EFB9 /* DZMRMFontTypeView.swift */,
+				AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */,
+				AF5306E122687F1D0094EFB9 /* DZMRMLightView.swift */,
+				AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */,
+			);
+			path = DZMRMSettingView;
+			sourceTree = "<group>";
+		};
+		AF48FB452266FB0500850378 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB4F2266FBFB00850378 /* DZMReadViewCell.swift */,
+				AF48FB492266FBAD00850378 /* DZMReadView.swift */,
+				AF48FB4B2266FBC200850378 /* DZMReadViewStatusBottomView.swift */,
+				AF48FB4D2266FBD100850378 /* DZMReadViewStatusTopView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AF48FB462266FB0500850378 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB512266FC5400850378 /* DZMReadViewScrollController.swift */,
+				AF48FB472266FB0500850378 /* DZMReadViewController.swift */,
+				AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AF48FB532267030000850378 /* ReadParser */ = {
+			isa = PBXGroup;
+			children = (
+				AF48FB542267033800850378 /* DZMReadParser.swift */,
+				AF48FB5C22670D8200850378 /* DZMReadTextParser.swift */,
+			);
+			path = ReadParser;
+			sourceTree = "<group>";
+		};
+		AF5952F42269751E007DF477 /* DZMRMBottomView */ = {
+			isa = PBXGroup;
+			children = (
+				AF5952F52269751E007DF477 /* DZMRMBottomView.swift */,
+				AF5952F722697557007DF477 /* DZMRMFuncView.swift */,
+				AF5952F922697599007DF477 /* DZMRMProgressView.swift */,
+			);
+			path = DZMRMBottomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AF403E611E8CF598004C0612 /* DZMeBookRead */ = {
+		AF48FA8E2266D08200850378 /* DZMeBookRead */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF403E8A1E8CF598004C0612 /* Build configuration list for PBXNativeTarget "DZMeBookRead" */;
+			buildConfigurationList = AF48FAB72266D08400850378 /* Build configuration list for PBXNativeTarget "DZMeBookRead" */;
 			buildPhases = (
-				AF403E5E1E8CF598004C0612 /* Sources */,
-				AF403E5F1E8CF598004C0612 /* Frameworks */,
-				AF403E601E8CF598004C0612 /* Resources */,
+				AF48FA8B2266D08200850378 /* Sources */,
+				AF48FA8C2266D08200850378 /* Frameworks */,
+				AF48FA8D2266D08200850378 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -450,113 +521,109 @@
 			);
 			name = DZMeBookRead;
 			productName = DZMeBookRead;
-			productReference = AF403E621E8CF598004C0612 /* DZMeBookRead.app */;
+			productReference = AF48FA8F2266D08200850378 /* DZMeBookRead.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AF403E751E8CF598004C0612 /* DZMeBookReadTests */ = {
+		AF48FAA22266D08400850378 /* DZMeBookReadTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF403E8D1E8CF598004C0612 /* Build configuration list for PBXNativeTarget "DZMeBookReadTests" */;
+			buildConfigurationList = AF48FABA2266D08400850378 /* Build configuration list for PBXNativeTarget "DZMeBookReadTests" */;
 			buildPhases = (
-				AF403E721E8CF598004C0612 /* Sources */,
-				AF403E731E8CF598004C0612 /* Frameworks */,
-				AF403E741E8CF598004C0612 /* Resources */,
+				AF48FA9F2266D08400850378 /* Sources */,
+				AF48FAA02266D08400850378 /* Frameworks */,
+				AF48FAA12266D08400850378 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AF403E781E8CF598004C0612 /* PBXTargetDependency */,
+				AF48FAA52266D08400850378 /* PBXTargetDependency */,
 			);
 			name = DZMeBookReadTests;
 			productName = DZMeBookReadTests;
-			productReference = AF403E761E8CF598004C0612 /* DZMeBookReadTests.xctest */;
+			productReference = AF48FAA32266D08400850378 /* DZMeBookReadTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AF403E801E8CF598004C0612 /* DZMeBookReadUITests */ = {
+		AF48FAAD2266D08400850378 /* DZMeBookReadUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF403E901E8CF598004C0612 /* Build configuration list for PBXNativeTarget "DZMeBookReadUITests" */;
+			buildConfigurationList = AF48FABD2266D08400850378 /* Build configuration list for PBXNativeTarget "DZMeBookReadUITests" */;
 			buildPhases = (
-				AF403E7D1E8CF598004C0612 /* Sources */,
-				AF403E7E1E8CF598004C0612 /* Frameworks */,
-				AF403E7F1E8CF598004C0612 /* Resources */,
+				AF48FAAA2266D08400850378 /* Sources */,
+				AF48FAAB2266D08400850378 /* Frameworks */,
+				AF48FAAC2266D08400850378 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AF403E831E8CF598004C0612 /* PBXTargetDependency */,
+				AF48FAB02266D08400850378 /* PBXTargetDependency */,
 			);
 			name = DZMeBookReadUITests;
 			productName = DZMeBookReadUITests;
-			productReference = AF403E811E8CF598004C0612 /* DZMeBookReadUITests.xctest */;
+			productReference = AF48FAAE2266D08400850378 /* DZMeBookReadUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AF403E5A1E8CF598004C0612 /* Project object */ = {
+		AF48FA872266D08200850378 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = DZM;
 				TargetAttributes = {
-					AF403E611E8CF598004C0612 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = G2L9GJ54GT;
-						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+					AF48FA8E2266D08200850378 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
-					AF403E751E8CF598004C0612 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = AF403E611E8CF598004C0612;
+					AF48FAA22266D08400850378 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = AF48FA8E2266D08200850378;
 					};
-					AF403E801E8CF598004C0612 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = AF403E611E8CF598004C0612;
+					AF48FAAD2266D08400850378 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = AF48FA8E2266D08200850378;
 					};
 				};
 			};
-			buildConfigurationList = AF403E5D1E8CF598004C0612 /* Build configuration list for PBXProject "DZMeBookRead" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = AF48FA8A2266D08200850378 /* Build configuration list for PBXProject "DZMeBookRead" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = AF403E591E8CF598004C0612;
-			productRefGroup = AF403E631E8CF598004C0612 /* Products */;
+			mainGroup = AF48FA862266D08200850378;
+			productRefGroup = AF48FA902266D08200850378 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AF403E611E8CF598004C0612 /* DZMeBookRead */,
-				AF403E751E8CF598004C0612 /* DZMeBookReadTests */,
-				AF403E801E8CF598004C0612 /* DZMeBookReadUITests */,
+				AF48FA8E2266D08200850378 /* DZMeBookRead */,
+				AF48FAA22266D08400850378 /* DZMeBookReadTests */,
+				AF48FAAD2266D08400850378 /* DZMeBookReadUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AF403E601E8CF598004C0612 /* Resources */ = {
+		AF48FA8D2266D08200850378 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF403E701E8CF598004C0612 /* LaunchScreen.storyboard in Resources */,
-				AF6322A81EC960E9001B92D4 /* MBProgressHUD.bundle in Resources */,
-				AF386B841ECD3F70006A0A68 /* 求魔.txt in Resources */,
-				AF403E6D1E8CF598004C0612 /* Assets.xcassets in Resources */,
+				AF48FA9D2266D08400850378 /* LaunchScreen.storyboard in Resources */,
+				AF48FA9A2266D08400850378 /* Assets.xcassets in Resources */,
+				AF5952FE2269D57D007DF477 /* 求魔.txt in Resources */,
+				AF48FACA2266D1A600850378 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF403E741E8CF598004C0612 /* Resources */ = {
+		AF48FAA12266D08400850378 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF403E7F1E8CF598004C0612 /* Resources */ = {
+		AF48FAAC2266D08400850378 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -566,98 +633,109 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AF403E5E1E8CF598004C0612 /* Sources */ = {
+		AF48FA8B2266D08200850378 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF378DA11EC46A9300E7D441 /* DZMReadConfigure.swift in Sources */,
-				AF378DA31EC46B3700E7D441 /* DZMUserDefaults.swift in Sources */,
-				AF378D7B1EC45DEE00E7D441 /* DZMGlobalProperty.swift in Sources */,
-				AF378DA51EC46B9100E7D441 /* NSObject+Extension.swift in Sources */,
-				AF7F68681ED2808300875E53 /* UIScrollView+Extension.swift in Sources */,
-				AF378D9E1EC46A0200E7D441 /* ASValuePopUpView.m in Sources */,
-				AF378D6F1EC457C400E7D441 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
-				AF378D9F1EC46A0200E7D441 /* ASValueTrackingSlider.m in Sources */,
-				AF2FE9521FEA463E0061EFAD /* DZMReadBGController.swift in Sources */,
-				AF3914A31EC572AB00768478 /* DZMReadParser.swift in Sources */,
-				AF3914AF1EC577C900768478 /* String+Extension.swift in Sources */,
-				AF00E6DE1FDE8E3D00FC298B /* DZMCursorView.swift in Sources */,
-				AF39149D1EC56E3700768478 /* DZMRMFuncView.swift in Sources */,
-				AF3914A11EC5711700768478 /* DZMReadViewController.swift in Sources */,
-				AF698BFC1ECC03F000A98EE6 /* UITableView+Extension.swift in Sources */,
-				AF6322AD1EC9B78F001B92D4 /* DZMRMLeftView.swift in Sources */,
-				AF24C1471FDF7476000D82F1 /* DZMMagnifierView.m in Sources */,
-				AF3914A91EC5765900768478 /* DZMReadRecordModel.swift in Sources */,
-				AF3914971EC56C7000768478 /* DZMRMTopView.swift in Sources */,
-				AF5D0BE922657239002FE7DB /* DZMReadPageModel.swift in Sources */,
-				AF378DAB1EC4779300E7D441 /* UIView+YGPulseView.m in Sources */,
-				AF378D661EC455FE00E7D441 /* UIView+Extension.swift in Sources */,
-				AF39149E1EC56E3700768478 /* DZMRMSettingView.swift in Sources */,
-				AF39148F1EC56C7000768478 /* DZMReadMenu.swift in Sources */,
-				AF378DA71EC4775A00E7D441 /* DZMHaloButton.swift in Sources */,
-				AF6322951EC95AC5001B92D4 /* DZMReadView.swift in Sources */,
-				AF378D981EC4648A00E7D441 /* DZMBatteryView.swift in Sources */,
-				AF3914A71EC5762D00768478 /* DZMReadChapterModel.swift in Sources */,
-				AF3914901EC56C7000768478 /* DZMRMBaseView.swift in Sources */,
-				AF6322A91EC960E9001B92D4 /* MBProgressHUD.m in Sources */,
-				AF378D771EC45C3C00E7D441 /* DZMReadController.swift in Sources */,
-				AF6322931EC95A78001B92D4 /* DZMReadViewCell.swift in Sources */,
-				AF6322AF1EC9C21B001B92D4 /* DZMSegmentedControl.swift in Sources */,
-				AF378D7D1EC45EAE00E7D441 /* DZMGlobalMethod.swift in Sources */,
-				AF378D731EC4580300E7D441 /* DZMCoverController.m in Sources */,
-				AF3914A51EC575FE00768478 /* DZMReadChapterListModel.swift in Sources */,
-				AF378D681EC4560F00E7D441 /* UIPageViewController+Extension.swift in Sources */,
-				AF403E991E8CF722004C0612 /* DZMMainController.swift in Sources */,
-				AF3914921EC56C7000768478 /* DZMRMLightView.swift in Sources */,
-				AF3914AB1EC5767200768478 /* DZMReadModel.swift in Sources */,
-				AF6322A71EC960E9001B92D4 /* MBProgressHUD+DZM.m in Sources */,
-				AF00E6DC1FDE8E2B00FC298B /* DZMReadAuxiliary.swift in Sources */,
-				AF6322AB1EC99043001B92D4 /* DZMReadOperation.swift in Sources */,
-				AF3914AD1EC576A000768478 /* DZMReadMarkModel.swift in Sources */,
-				AF3914961EC56C7000768478 /* DZMRMStatusView.swift in Sources */,
-				AF39149C1EC56E3700768478 /* DZMRMColorView.swift in Sources */,
-				AF403E661E8CF598004C0612 /* AppDelegate.swift in Sources */,
-				AF3914911EC56C7000768478 /* DZMRMBottomView.swift in Sources */,
-				AF378D801EC4623C00E7D441 /* DZMViewController.swift in Sources */,
+				AF48FB392266FA7600850378 /* DZMSpaceList.swift in Sources */,
+				AF46131422706495005F1DD8 /* DZMRMSpacingView.swift in Sources */,
+				AF48FB3E2266FA7600850378 /* ASValuePopUpView.m in Sources */,
+				AF5306D82268742D0094EFB9 /* DZMRMSettingView.swift in Sources */,
+				AF48FB4C2266FBC200850378 /* DZMReadViewStatusBottomView.swift in Sources */,
+				AF48FAEB2266F2F400850378 /* DZMReadChapterModel.swift in Sources */,
+				AF48FA932266D08200850378 /* AppDelegate.swift in Sources */,
+				AF5306D0226813A30094EFB9 /* DZMEnumList.swift in Sources */,
+				AF48FAD02266D1F800850378 /* MBProgressHUD.m in Sources */,
+				AF48FB3A2266FA7600850378 /* DZMKeyedArchiver.swift in Sources */,
+				AF5952F822697557007DF477 /* DZMRMFuncView.swift in Sources */,
+				AF48FAD22266D26A00850378 /* DZMMainController.swift in Sources */,
+				AF487D7A22715DE7002CFAC9 /* DZMRMEffectTypeView.swift in Sources */,
+				AF487D8C2271B2EF002CFAC9 /* DZMReadMarkView.swift in Sources */,
+				AF48FADF2266D43400850378 /* DZMReadController.swift in Sources */,
+				AF5952FC2269B814007DF477 /* DZMReadModel+Mark.swift in Sources */,
+				AF48FAF32266F37B00850378 /* DZMReadMarkModel.swift in Sources */,
+				AF5306CE226812910094EFB9 /* DZMUserDefaults.swift in Sources */,
+				AF48FB502266FBFB00850378 /* DZMReadViewCell.swift in Sources */,
+				AF48FB382266FA7600850378 /* DZMPublic.swift in Sources */,
+				AF48FB432266FA7600850378 /* DZMReadMenu.swift in Sources */,
+				AF5306DE226874D60094EFB9 /* DZMRMFontTypeView.swift in Sources */,
+				AF48FB5F22672F8F00850378 /* DZMReadContentView.swift in Sources */,
+				AF5952F62269751E007DF477 /* DZMRMBottomView.swift in Sources */,
+				AF48FAED2266F30A00850378 /* DZMReadChapterListModel.swift in Sources */,
+				AF487D822271A0D6002CFAC9 /* DZMSegmentedControl.m in Sources */,
+				AF48FB522266FC5400850378 /* DZMReadViewScrollController.swift in Sources */,
+				AF48FAFD2266F53600850378 /* DZMReadConfigure.swift in Sources */,
+				AF48FB482266FB0500850378 /* DZMReadViewController.swift in Sources */,
+				AF48FAF92266F4FC00850378 /* DZMReadController+EffectType.swift in Sources */,
+				AF48FAF12266F36A00850378 /* DZMReadRecordModel.swift in Sources */,
+				AF48FB5D22670D8200850378 /* DZMReadTextParser.swift in Sources */,
+				AF48FAC92266D1A600850378 /* MBProgressHUD+DZM.m in Sources */,
+				AF48FB422266FA7600850378 /* DZMViewController.swift in Sources */,
+				AF487D852271B0F6002CFAC9 /* DZMReadLeftView.swift in Sources */,
+				AF46131222704E72005F1DD8 /* DZMReadViewBGController.swift in Sources */,
+				AF48FB59226706D500850378 /* DZMFontList.swift in Sources */,
+				AF48FB4A2266FBAD00850378 /* DZMReadView.swift in Sources */,
+				AF48FB402266FA7600850378 /* DZMBatteryView.swift in Sources */,
+				AF48FAFB2266F51500850378 /* DZMReadController+Operation.swift in Sources */,
+				AF48FAEF2266F35000850378 /* DZMReadPageModel.swift in Sources */,
+				AF48FB4E2266FBD100850378 /* DZMReadViewStatusTopView.swift in Sources */,
+				AF487D902271BB41002CFAC9 /* DZMReadMarkCell.swift in Sources */,
+				AF48FB552267033800850378 /* DZMReadParser.swift in Sources */,
+				AF5952FA22697599007DF477 /* DZMRMProgressView.swift in Sources */,
+				AF48FB3D2266FA7600850378 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				AF48FB3C2266FA7600850378 /* DZMCoverController.m in Sources */,
+				AF5306D42268740E0094EFB9 /* DZMRMTopView.swift in Sources */,
+				AF48FB412266FA7600850378 /* DZMTableView.swift in Sources */,
+				AF48FB632267322C00850378 /* DZMReadModel.swift in Sources */,
+				AF487D8E2271BB34002CFAC9 /* DZMReadCatalogCell.swift in Sources */,
+				AF48FB372266FA7600850378 /* String+Extension.swift in Sources */,
+				AF487D8A2271B2D6002CFAC9 /* DZMReadCatalogView.swift in Sources */,
+				AF48FB3B2266FA7600850378 /* DZMCoreText.swift in Sources */,
+				AF5306DA226874970094EFB9 /* DZMRMBGColorView.swift in Sources */,
+				AF48FB3F2266FA7600850378 /* ASValueTrackingSlider.m in Sources */,
+				AF5306DC226874C60094EFB9 /* DZMRMFontSizeView.swift in Sources */,
+				AF5306E222687F1D0094EFB9 /* DZMRMLightView.swift in Sources */,
+				AF5306D2226872E10094EFB9 /* DZMRMBaseView.swift in Sources */,
+				AF48FB5B226709B200850378 /* DZMColorList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF403E721E8CF598004C0612 /* Sources */ = {
+		AF48FA9F2266D08400850378 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF403E7B1E8CF598004C0612 /* DZMeBookReadTests.swift in Sources */,
+				AF48FAA82266D08400850378 /* DZMeBookReadTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF403E7D1E8CF598004C0612 /* Sources */ = {
+		AF48FAAA2266D08400850378 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF403E861E8CF598004C0612 /* DZMeBookReadUITests.swift in Sources */,
+				AF48FAB32266D08400850378 /* DZMeBookReadUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AF403E781E8CF598004C0612 /* PBXTargetDependency */ = {
+		AF48FAA52266D08400850378 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AF403E611E8CF598004C0612 /* DZMeBookRead */;
-			targetProxy = AF403E771E8CF598004C0612 /* PBXContainerItemProxy */;
+			target = AF48FA8E2266D08200850378 /* DZMeBookRead */;
+			targetProxy = AF48FAA42266D08400850378 /* PBXContainerItemProxy */;
 		};
-		AF403E831E8CF598004C0612 /* PBXTargetDependency */ = {
+		AF48FAB02266D08400850378 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AF403E611E8CF598004C0612 /* DZMeBookRead */;
-			targetProxy = AF403E821E8CF598004C0612 /* PBXContainerItemProxy */;
+			target = AF48FA8E2266D08200850378 /* DZMeBookRead */;
+			targetProxy = AF48FAAF2266D08400850378 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AF403E6E1E8CF598004C0612 /* LaunchScreen.storyboard */ = {
+		AF48FA9B2266D08400850378 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AF403E6F1E8CF598004C0612 /* Base */,
+				AF48FA9C2266D08400850378 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -665,33 +743,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AF403E881E8CF598004C0612 /* Debug */ = {
+		AF48FAB52266D08400850378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -705,8 +794,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -714,33 +804,44 @@
 			};
 			name = Debug;
 		};
-		AF403E891E8CF598004C0612 /* Release */ = {
+		AF48FAB62266D08400850378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -748,108 +849,133 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		AF403E8B1E8CF598004C0612 /* Debug */ = {
+		AF48FAB82266D08400850378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2L9GJ54GT;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DZMeBookRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netjoy.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2c2e7033-68a7-444c-9a1b-3a375875faa3";
-				PROVISIONING_PROFILE_SPECIFIER = AppTest_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/DZMeBookRead-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		AF403E8C1E8CF598004C0612 /* Release */ = {
+		AF48FAB92266D08400850378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2L9GJ54GT;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DZMeBookRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netjoy.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2c2e7033-68a7-444c-9a1b-3a375875faa3";
-				PROVISIONING_PROFILE_SPECIFIER = AppTest_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "DZMeBookRead/DZMeBookRead-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		AF403E8E1E8CF598004C0612 /* Debug */ = {
+		AF48FABB2266D08400850378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DZMeBookReadTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookReadTests;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DZM.DZMeBookReadTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DZMeBookRead.app/DZMeBookRead";
 			};
 			name = Debug;
 		};
-		AF403E8F1E8CF598004C0612 /* Release */ = {
+		AF48FABC2266D08400850378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DZMeBookReadTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookReadTests;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DZM.DZMeBookReadTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DZMeBookRead.app/DZMeBookRead";
 			};
 			name = Release;
 		};
-		AF403E911E8CF598004C0612 /* Debug */ = {
+		AF48FABE2266D08400850378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DZMeBookReadUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookReadUITests;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DZM.DZMeBookReadUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = DZMeBookRead;
 			};
 			name = Debug;
 		};
-		AF403E921E8CF598004C0612 /* Release */ = {
+		AF48FABF2266D08400850378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DZMeBookReadUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DZM.DZMeBookReadUITests;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DZM.DZMeBookReadUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = DZMeBookRead;
 			};
 			name = Release;
@@ -857,43 +983,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AF403E5D1E8CF598004C0612 /* Build configuration list for PBXProject "DZMeBookRead" */ = {
+		AF48FA8A2266D08200850378 /* Build configuration list for PBXProject "DZMeBookRead" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AF403E881E8CF598004C0612 /* Debug */,
-				AF403E891E8CF598004C0612 /* Release */,
+				AF48FAB52266D08400850378 /* Debug */,
+				AF48FAB62266D08400850378 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF403E8A1E8CF598004C0612 /* Build configuration list for PBXNativeTarget "DZMeBookRead" */ = {
+		AF48FAB72266D08400850378 /* Build configuration list for PBXNativeTarget "DZMeBookRead" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AF403E8B1E8CF598004C0612 /* Debug */,
-				AF403E8C1E8CF598004C0612 /* Release */,
+				AF48FAB82266D08400850378 /* Debug */,
+				AF48FAB92266D08400850378 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF403E8D1E8CF598004C0612 /* Build configuration list for PBXNativeTarget "DZMeBookReadTests" */ = {
+		AF48FABA2266D08400850378 /* Build configuration list for PBXNativeTarget "DZMeBookReadTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AF403E8E1E8CF598004C0612 /* Debug */,
-				AF403E8F1E8CF598004C0612 /* Release */,
+				AF48FABB2266D08400850378 /* Debug */,
+				AF48FABC2266D08400850378 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF403E901E8CF598004C0612 /* Build configuration list for PBXNativeTarget "DZMeBookReadUITests" */ = {
+		AF48FABD2266D08400850378 /* Build configuration list for PBXNativeTarget "DZMeBookReadUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AF403E911E8CF598004C0612 /* Debug */,
-				AF403E921E8CF598004C0612 /* Release */,
+				AF48FABE2266D08400850378 /* Debug */,
+				AF48FABF2266D08400850378 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AF403E5A1E8CF598004C0612 /* Project object */;
+	rootObject = AF48FA872266D08200850378 /* Project object */;
 }

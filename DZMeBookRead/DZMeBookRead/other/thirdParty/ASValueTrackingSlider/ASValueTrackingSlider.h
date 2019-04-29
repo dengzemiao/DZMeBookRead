@@ -75,8 +75,9 @@
 // you need to ensure that the cell it resides in is brought to the front of the view hierarchy
 // to prevent the popUpView from being obscured
 @protocol ASValueTrackingSliderDelegate <NSObject>
-@optional
 - (void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider;
+
+@optional
 - (void)sliderWillHidePopUpView:(ASValueTrackingSlider *)slider;
 - (void)sliderDidHidePopUpView:(ASValueTrackingSlider *)slider;
 @end

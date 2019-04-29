@@ -21,19 +21,13 @@ class DZMBatteryView: UIImageView {
     /// 颜色
     override var tintColor: UIColor! {
         
-        didSet{
-    
-            batteryLevelView.backgroundColor = tintColor
-        }
+        didSet{ batteryLevelView.backgroundColor = tintColor }
     }
     
     /// BatteryLevel
     var batteryLevel:Float = 0 {
         
-        didSet{
-            
-            setNeedsLayout()
-        }
+        didSet{ setNeedsLayout() }
     }
     
     /// BatteryLevelView
@@ -61,7 +55,7 @@ class DZMBatteryView: UIImageView {
         addSubview(batteryLevelView)
         
         // 设置样式
-        image = UIImage(named: "G_Battery_Black")?.withRenderingMode(.alwaysTemplate)
+        image = UIImage(named: "battery_black")?.withRenderingMode(.alwaysTemplate)
         tintColor = UIColor.white
     }
     

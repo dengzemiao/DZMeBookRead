@@ -304,9 +304,7 @@
 
 - (void)_showPopUpViewAnimated:(BOOL)animated
 {
-    if ([self.delegate respondsToSelector:@selector(sliderWillDisplayPopUpView:)]) {
-        [self.delegate sliderWillDisplayPopUpView:self];
-    }
+    if (self.delegate) [self.delegate sliderWillDisplayPopUpView:self];
     [self.popUpView showAnimated:animated];
 }
 

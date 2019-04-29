@@ -2,19 +2,19 @@
 //  DZMReadMarkModel.swift
 //  DZMeBookRead
 //
-//  Created by 邓泽淼 on 2017/5/12.
-//  Copyright © 2017年 DZM. All rights reserved.
+//  Created by dengzemiao on 2019/4/17.
+//  Copyright © 2019年 DZM. All rights reserved.
 //
 
 import UIKit
 
 class DZMReadMarkModel: NSObject,NSCoding {
-    
+
     /// 小说ID
     var bookID:String!
     
     /// 章节ID
-    var id:String!
+    var chapterID:NSNumber!
     
     /// 章节名称
     var name:String!
@@ -22,43 +22,41 @@ class DZMReadMarkModel: NSObject,NSCoding {
     /// 内容
     var content:String!
     
-    /// 时间
-    var time:Date!
+    /// 时间戳
+    var time:NSNumber! = NSNumber(value: 0)
     
     /// 位置
-    var location:NSNumber!
+    var location:NSNumber! = NSNumber(value: 0)
     
-    // MARK: -- init
+    // MARK: -- 构造
     
     override init() {
         
         super.init()
     }
     
-    // MARK: -- NSCoding
-    
     required init?(coder aDecoder: NSCoder) {
         
         super.init()
         
-        bookID = aDecoder.decodeObject(forKey: "bookID") as! String
+        bookID = aDecoder.decodeObject(forKey: "bookID") as? String
         
-        id = aDecoder.decodeObject(forKey: "id") as! String
+        chapterID = aDecoder.decodeObject(forKey: "chapterID") as? NSNumber
         
-        name = aDecoder.decodeObject(forKey: "name") as! String
+        name = aDecoder.decodeObject(forKey: "name") as? String
         
-        content = aDecoder.decodeObject(forKey: "content") as! String
+        content = aDecoder.decodeObject(forKey: "content") as? String
         
-        time = aDecoder.decodeObject(forKey: "time") as! Date
+        time = aDecoder.decodeObject(forKey: "time") as? NSNumber
         
-        location = aDecoder.decodeObject(forKey: "location") as!NSNumber
+        location = aDecoder.decodeObject(forKey: "location") as? NSNumber
     }
     
     func encode(with aCoder: NSCoder) {
         
         aCoder.encode(bookID, forKey: "bookID")
         
-        aCoder.encode(id, forKey: "id")
+        aCoder.encode(chapterID, forKey: "chapterID")
         
         aCoder.encode(name, forKey: "name")
         
@@ -68,4 +66,13 @@ class DZMReadMarkModel: NSObject,NSCoding {
         
         aCoder.encode(location, forKey: "location")
     }
+    
+    init(_ dict:Any? = nil) {
+        
+        super.init()
+        
+        if dict != nil { setValuesForKeys(dict as! [String : Any]) }
+    }
+    
+    override func setValue(_ value: Any?, forUndefinedKey key: String) { }
 }

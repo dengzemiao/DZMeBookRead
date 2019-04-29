@@ -2,19 +2,24 @@
 //  DZMRMTopView.swift
 //  DZMeBookRead
 //
-//  Created by 邓泽淼 on 2017/5/11.
-//  Copyright © 2017年 DZM. All rights reserved.
+//  Created by dengzemiao on 2019/4/18.
+//  Copyright © 2019年 DZM. All rights reserved.
 //
 
 import UIKit
 
-class DZMRMTopView: DZMRMBaseView {
+/// topView 高度
+let DZM_READ_MENU_TOP_VIEW_HEIGHT:CGFloat = NavgationBarHeight
 
-    /// 返回按钮
-    private(set) var back:UIButton!
+class DZMRMTopView: DZMRMBaseView {
+    
+    /// 返回
+    private var back:UIButton!
     
     /// 书签
-    private(set) var mark:UIButton!
+    private var mark:UIButton!
+
+    override init(frame: CGRect) { super.init(frame: frame) }
     
     override func addSubviews() {
         
@@ -22,34 +27,64 @@ class DZMRMTopView: DZMRMBaseView {
         
         // 返回
         back = UIButton(type:.custom)
-        back.setImage(UIImage(named:"G_Back_0"), for: .normal)
+        back.setImage(UIImage(named:"back")!.withRenderingMode(.alwaysTemplate), for: .normal)
+        back.addTarget(self, action: #selector(clickBack), for: .touchUpInside)
+        back.tintColor = DZM_READ_COLOR_MENU_COLOR
         addSubview(back)
         
         // 书签
         mark = UIButton(type:.custom)
         mark.contentMode = .center
-        mark.setImage(UIImage(named:"RM_17"), for: .normal)
-        mark.setImage(UIImage(named:"RM_18"), for: .selected)
-        mark.addTarget(self, action: #selector(DZMRMTopView.clickMark(button:)), for: .touchUpInside)
+        mark.setImage(UIImage(named:"mark")!.withRenderingMode(.alwaysTemplate), for: .normal)
+        mark.addTarget(self, action: #selector(clickMark(_:)), for: .touchUpInside)
+        mark.tintColor = DZM_READ_COLOR_MENU_COLOR
         addSubview(mark)
+        updateMarkButton()
     }
     
-    @objc private func clickMark(button:UIButton) {
+    /// 点击返回
+    @objc private func clickBack() {
         
-        readMenu.delegate?.readMenuClickMarkButton?(readMenu: readMenu, button: button)
+        readMenu?.delegate?.readMenuClickBack?(readMenu: readMenu)
+    }
+    
+    /// 点击书签
+    @objc private func clickMark(_ button:UIButton) {
+        
+        readMenu?.delegate?.readMenuClickMark?(readMenu: readMenu, topView: self, markButton: button)
+    }
+    
+    /// 检查是否存在书签
+    func checkForMark() {
+        
+        mark.isSelected = (readMenu.vc.readModel.isExistMark() != nil)
+        
+        updateMarkButton()
+    }
+    
+    /// 刷新书签按钮显示状态
+    func updateMarkButton() {
+        
+        if mark.isSelected { mark.tintColor = DZM_READ_COLOR_MAIN
+            
+        }else{ mark.tintColor = DZM_READ_COLOR_MENU_COLOR }
     }
     
     override func layoutSubviews() {
         
         super.layoutSubviews()
         
-        // 按钮宽
-        let buttonW:CGFloat = 50
+        let y = StatusBarHeight
         
-        // 返回按钮
-        back.frame = CGRect(x: 0, y: StatusBarHeight, width: buttonW, height: height - StatusBarHeight)
+        let wh = NavgationBarHeight - y
         
-        // 书签按钮
-        mark.frame = CGRect(x: width - buttonW, y: StatusBarHeight, width: buttonW, height: height - StatusBarHeight)
+        back.frame = CGRect(x: 0, y: y, width: wh, height: wh)
+        
+        mark.frame = CGRect(x: frame.size.width - wh, y: y, width: wh, height: wh)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
 }

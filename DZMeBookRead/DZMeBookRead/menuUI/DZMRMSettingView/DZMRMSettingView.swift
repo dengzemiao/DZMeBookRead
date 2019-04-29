@@ -2,49 +2,78 @@
 //  DZMRMSettingView.swift
 //  DZMeBookRead
 //
-//  Created by 邓泽淼 on 2017/5/11.
-//  Copyright © 2017年 DZM. All rights reserved.
+//  Created by dengzemiao on 2019/4/18.
+//  Copyright © 2019年 DZM. All rights reserved.
 //
 
 import UIKit
 
-class DZMRMSettingView: DZMRMBaseView {
+/// 子视图高度
+let DZM_READ_MENU_SETTING_SUB_VIEW_HEIGHT:CGFloat = DZM_SPACE_SA_50
 
-    /// 颜色
-    private(set) var colorView:DZMRMColorView!
+/// settingView 内容高度
+let DZM_READ_MENU_SETTING_VIEW_HEIGHT:CGFloat = DZM_READ_MENU_SETTING_SUB_VIEW_HEIGHT * 6
+
+/// settingView 总高度(内容高度 + iphoneX情况下底部间距)
+let DZM_READ_MENU_SETTING_VIEW_TOTAL_HEIGHT:CGFloat = SA(isX: DZM_READ_MENU_SETTING_VIEW_HEIGHT + DZM_SPACE_SA_20, DZM_READ_MENU_SETTING_VIEW_HEIGHT)
+
+class DZMRMSettingView: DZMRMBaseView {
     
-    /// 翻页效果
-    private(set) var effectView:DZMRMFuncView!
-    
-    /// 字体
-    private(set) var fontView:DZMRMFuncView!
+    /// 亮度
+    private var lightView:DZMRMLightView!
     
     /// 字体大小
-    private(set) var fontSizeView:DZMRMFuncView!
-     
-    /// 添加控件
+    private var fontSizeView:DZMRMFontSizeView!
+    
+    /// 背景
+    private var bgColorView:DZMRMBGColorView!
+    
+    /// 翻页效果
+    private var effectTypeView:DZMRMEffectTypeView!
+    
+    /// 字体
+    private var fontTypeView:DZMRMFontTypeView!
+    
+    /// 间距
+    private var spacingView:DZMRMSpacingView!
+
+    override init(frame: CGRect) { super.init(frame: frame) }
+    
     override func addSubviews() {
         
         super.addSubviews()
         
-        // 颜色
-        colorView = DZMRMColorView(frame:CGRect(x: 0, y: 0, width: ScreenWidth, height: 74),readMenu:readMenu,colors:DZMReadBGColors,selectIndex:DZMReadConfigure.shared().colorIndex)
-        addSubview(colorView)
-    
-        // funcViewH
-        let funcViewH:CGFloat = (height - (isX ? DZMSpace_15 : 0) - colorView.height) / 3
+        let x = DZM_SPACE_SA_15
+        let w = DZM_READ_CONTENT_VIEW_WIDTH - DZM_SPACE_SA_30
+        let h = DZM_READ_MENU_SETTING_SUB_VIEW_HEIGHT
         
-        // 翻页效果 labels 排放顺序参照 DZMRMNovelEffectType
-        effectView = DZMRMFuncView(frame:CGRect(x: 0, y: colorView.frame.maxY, width: ScreenWidth, height: funcViewH), readMenu:readMenu, funcType: .effect, title:"翻书动画", labels:["无效果","平移","仿真","上下"], selectIndex:DZMReadConfigure.shared().effectType)
-        addSubview(effectView)
+        lightView = DZMRMLightView(readMenu: readMenu)
+        addSubview(lightView)
+        lightView.frame = CGRect(x: x, y: 0, width: w, height: h)
         
-        // 字体 labels 排放顺序参照 DZMRMNovelFontType
-        fontView = DZMRMFuncView(frame:CGRect(x: 0, y: effectView.frame.maxY, width: ScreenWidth, height: funcViewH), readMenu:readMenu, funcType: .font, title:"字体", labels:["系统","黑体","楷体","宋体"], selectIndex:DZMReadConfigure.shared().fontType)
-        addSubview(fontView)
-        
-        // 字体大小
-        fontSizeView = DZMRMFuncView(frame:CGRect(x: 0, y: fontView.frame.maxY, width: ScreenWidth, height: funcViewH), readMenu:readMenu, funcType: .fontSize, title:"字号")
+        fontSizeView = DZMRMFontSizeView(readMenu: readMenu)
         addSubview(fontSizeView)
+        fontSizeView.frame = CGRect(x: x, y: lightView.frame.maxY, width: w, height: h)
+        
+        effectTypeView = DZMRMEffectTypeView(readMenu: readMenu)
+        addSubview(effectTypeView)
+        effectTypeView.frame = CGRect(x: x, y: fontSizeView.frame.maxY, width: w, height: h)
+        
+        fontTypeView = DZMRMFontTypeView(readMenu: readMenu)
+        addSubview(fontTypeView)
+        fontTypeView.frame = CGRect(x: x, y: effectTypeView.frame.maxY, width: w, height: h)
+        
+        bgColorView = DZMRMBGColorView(readMenu: readMenu)
+        addSubview(bgColorView)
+        bgColorView.frame = CGRect(x: x, y: fontTypeView.frame.maxY, width: w, height: h)
+        
+        spacingView = DZMRMSpacingView(readMenu: readMenu)
+        addSubview(spacingView)
+        spacingView.frame = CGRect(x: x, y: bgColorView.frame.maxY, width: w, height: h)
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
 }

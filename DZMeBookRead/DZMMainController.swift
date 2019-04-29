@@ -2,32 +2,11 @@
 //  DZMMainController.swift
 //  DZMeBookRead
 //
-//  Created by 邓泽淼 on 2017/3/30.
-//  Copyright © 2017年 DZM. All rights reserved.
+//  Created by dengzemiao on 2019/4/17.
+//  Copyright © 2019年 DZM. All rights reserved.
 //
 
 import UIKit
-
-/*
- 
- 1. 
- 第三方介绍:(均可去掉去掉删除相关代码即可)
- YGPulseView: View添加光晕用的
- ASValueTrackingSlider: 带显示进度的进度条
- DZMCoverController: 翻页效果
- FDFullscreenPopGesture: 导航栏控制
-
- 
- 2.
- 阅读设置选中颜色动画 DZMRMColorView
- 如不需要动画 可注销动画代码
- 
- 3.获取章节的地方又获取网络小说章节的流程提示
- 
- 4.仿真背景颜色会跟着阅读颜色设置 不会是默认的UIPageViewController背景颜色(白色)
- 
- 特殊需求-定位建议: 如果阅读记录使用page觉得不好或者公司项目需求可以修改为location定位 通过location获得page更加精准 如果不是很懂可进群咨询群主
- */
 
 class DZMMainController: DZMViewController {
 
@@ -38,42 +17,52 @@ class DZMMainController: DZMViewController {
         // 标题
         title = "DZMeBookRead"
         
+        // 简介
+        let hint = UITextView()
+        hint.text = "网络小说问题:\n全局搜索 搜索网络小说 找到位置进行更换请求接口,滚动模式支持预加载，但是如果预加载失败就需要一个上下拉加载上下章节,这个可以自行加上,也就是上下拉加载而已。\n\n快速进入问题:\n先出整本解析,马上找时间加速补上快速进入代码。急的可参考我GitHub上的快速进入思路,自己补上先用!\n\n调试区域问题:\n可以修改 DZMReadView 的背景颜色为随机颜色查看范围,尤其是滚动模式,查看上下间距\n\n阅读背景图片平铺问题:\n可以要求美工做一份iphoneX的图就不会平铺的情况了。我这边资源有限就随便找个图做阅读背景了。"
+        hint.textColor = DZM_COLOR_124_126_128
+        hint.font = UIFont.systemFont(ofSize: 15)
+        hint.isEditable = false
+        view.addSubview(hint)
+        hint.frame = CGRect.init(x: DZM_SPACE_SA_15, y: NavgationBarHeight + DZM_SPACE_SA_15, width: ScreenWidth - DZM_SPACE_SA_30, height: DZM_SPACE_SA_300)
+        
         // 跳转
         let button = UIButton(type: .custom)
         button.setTitle("点击阅读", for: .normal)
         button.backgroundColor = UIColor.green
         button.addTarget(self, action: #selector(read), for: .touchDown)
         view.addSubview(button)
-        button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        
-        print("缓存章节的沙河路径: \(DocumentDirectory)")
+        button.frame.size = CGSize(width: DZM_SPACE_SA_100, height: DZM_SPACE_SA_100)
+        button.center = CGPoint(x: view.center.x, y: ScreenHeight - DZM_SPACE_SA_150)
     }
     
     // 跳转
-    @objc func read() {
+    @objc private func read() {
         
-        MBProgressHUD.showMessage("本地文件第一次解析慢,以后就会秒进了")
+        MBProgressHUD.showLoading("整本解析速度慢,以后则秒进!", to: view)
         
         let url = Bundle.main.url(forResource: "求魔", withExtension: "txt")
         
-        DZMReadParser.ParserLocalURL(url: url!) {[weak self] (readModel) in
+        print("解析开始时间:",TimerString("YYYY-MM-dd-HH-mm-ss"), Date().timeIntervalSince1970)
+        
+        DZMReadTextParser.parser(url: url) { [weak self] (readModel) in
             
-            MBProgressHUD.hide()
+            print("解析结束时间:",TimerString("YYYY-MM-dd-HH-mm-ss"), Date().timeIntervalSince1970)
             
-            let readController = DZMReadController()
+            MBProgressHUD.hide(self?.view)
             
-            readController.readModel = readModel
+            if readModel == nil {
+                
+                MBProgressHUD.showMessage("解析失败")
+                
+                return
+            }
             
-            /// 是否开启长按内容显示菜单 默认: true
-            // readController.openLongMenu = false
+            let vc  = DZMReadController()
             
-            self?.navigationController?.pushViewController(readController, animated: true)
+            vc.readModel = readModel
+            
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-    }
-
 }

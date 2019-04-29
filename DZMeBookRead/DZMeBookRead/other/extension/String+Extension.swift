@@ -2,11 +2,10 @@
 //  String+Extension.swift
 //  DZMeBookRead
 //
-//  Created by 邓泽淼 on 2017/5/11.
-//  Copyright © 2016年 DZM. All rights reserved.
+//  Created by dengzemiao on 2019/4/17.
+//  Copyright © 2019年 DZM. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension String {
@@ -39,10 +38,13 @@ extension String {
     var removeEnterHeadAndTail:String { return trimmingCharacters(in: NSCharacterSet.whitespaces) }
     
     /// 去除首尾空格和换行
-    var removeSpaceHeadAndTailPro:String { return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) }
+    var removeSEHeadAndTail:String { return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) }
     
     /// 去掉所有空格
     var removeSapceAll:String { return replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "　", with: "") }
+    
+    /// 去除所有换行
+    var removeEnterAll:String { return replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\n", with: "") }
     
     /// 去除所有空格换行
     var removeSapceEnterAll:String { return removeSapceAll.replacingOccurrences(of: "\n", with: "") }
@@ -115,7 +117,7 @@ extension String {
         return json
     }
     
-    /// 是否包含字符串
+    /// 是否包含指定字符串
     func range(_ string: String) ->NSRange {
         
         return (self as NSString).range(of: string)

@@ -490,7 +490,7 @@
 {
     if (controller) { // 有值
         
-        if (animated && self.currentController) { // 需要动画 同时有根控制器了
+        if (animated && self.openAnimate && self.currentController) { // 需要动画 允许手势动画 同时有根控制器了
             
             // 正在动画
             if (self.isAnimateChange) { return; }

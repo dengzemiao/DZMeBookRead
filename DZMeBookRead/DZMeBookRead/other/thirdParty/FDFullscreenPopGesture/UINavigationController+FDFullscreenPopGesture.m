@@ -111,6 +111,11 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
 
 - (void)fd_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    if ([self isKindOfClass:NSClassFromString(@"MFMessageComposeViewController")]) {
+        [self fd_pushViewController:viewController animated:animated];
+        return;
+    }
+    
     if (![self.interactivePopGestureRecognizer.view.gestureRecognizers containsObject:self.fd_fullscreenPopGestureRecognizer]) {
         
         // Add our own gesture recognizer to where the onboard screen edge pan gesture recognizer is attached to.

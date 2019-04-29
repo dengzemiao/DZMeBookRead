@@ -2,440 +2,305 @@
 //  DZMReadController.swift
 //  DZMeBookRead
 //
-//  Created by 邓泽淼 on 2017/5/11.
-//  Copyright © 2017年 DZM. All rights reserved.
+//  Created by dengzemiao on 2019/4/17.
+//  Copyright © 2019年 DZM. All rights reserved.
 //
 
 import UIKit
 
-class DZMReadController: DZMViewController,DZMReadMenuDelegate,DZMCoverControllerDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource {
+class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource,DZMCoverControllerDelegate,DZMReadContentViewDelegate,DZMReadCatalogViewDelegate,DZMReadMarkViewDelegate {
+
+    // MARK: 数据相关
     
-    /// 阅读模型(必传)
-    @objc var readModel:DZMReadModel!
+    /// 阅读对象
+    var readModel:DZMReadModel!
     
-    /// 开启长按菜单
-    @objc var openLongMenu:Bool = true
     
-    /// 阅读菜单UI
-    private(set) var readMenu:DZMReadMenu!
+    // MARK: UI相关
     
-    /// 阅读操作对象
-    private(set) var readOperation:DZMReadOperation!
+    /// 阅读主视图
+    var contentView:DZMReadContentView!
+    
+    /// 章节列表
+    var leftView:DZMReadLeftView!
+    
+    /// 阅读菜单
+    var readMenu:DZMReadMenu!
     
     /// 翻页控制器 (仿真)
-    private(set) var pageViewController:UIPageViewController?
+    var pageViewController:UIPageViewController!
     
-    /// 翻页控制器 (无效果,覆盖,上下)
-    private(set) var coverController:DZMCoverController?
+    /// 翻页控制器 (滚动)
+    var scrollController:DZMReadViewScrollController!
     
-    /// 当前显示的阅读控制器
-    private(set) var currentReadViewController:DZMReadViewController?
+    /// 翻页控制器 (无效果,覆盖)
+    var coverController:DZMCoverController!
+    
+    /// 非滚动模式时,当前显示 DZMReadViewController
+    var currentDisplayController:DZMReadViewController?
+    
+    /// 用于区分正反面的值(勿动)
+    var tempNumber:NSInteger = 1
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // 设置白色状态栏
-        isStatusBarLightContent = true
+        // 初始化书籍阅读记录
+        updateReadRecord(recordModel: readModel.recordModel)
         
-        // 初始化控制器操作对象
-        readOperation = DZMReadOperation(vc: self)
+        // 初始化菜单
+        readMenu = DZMReadMenu(vc: self, delegate: self)
         
-        // 初始化阅读UI控制对象
-        readMenu = DZMReadMenu.readMenu(vc: self, delegate: self)
+        // 背景颜色
+        view.backgroundColor = DZMReadConfigure.shared().bgColor
         
         // 初始化控制器
-        creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: true, isSave: true))
-        
-        // 注册 DZMReadView 手势通知
-        DZMReadView.RegisterNotification(observer: self, selector: #selector(readViewNotification(notification:)))
+        creatPageController(displayController: GetCurrentReadViewController(isUpdateFont: true))
     }
     
-    // MARK: DZMReadView 手势通知
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
+    }
     
-    /// 收到通知
-    @objc func readViewNotification(notification:Notification) {
+    override func viewWillDisappear(_ animated: Bool) {
         
-        // 获得状态
-        let info = notification.userInfo
+        super.viewWillDisappear(animated)
         
-        // 隐藏菜单
-        readMenu.menuSH(isShow: false)
+        UIApplication.shared.setStatusBarStyle(.default, animated: true)
+    }
+
+    override func addSubviews() {
         
-        // 解析状态
-        if info != nil && info!.keys.contains(DZMKey_ReadView_Ges_isOpen) {
+        super.addSubviews()
+        
+        // 目录侧滑栏
+        leftView = DZMReadLeftView()
+        leftView.catalogView.readModel = readModel
+        leftView.catalogView.delegate = self
+        leftView.markView.readModel = readModel
+        leftView.markView.delegate = self
+        leftView.isHidden = true
+        view.addSubview(leftView)
+        leftView.frame = CGRect(x: -DZM_READ_LEFT_VIEW_WIDTH, y: 0, width: DZM_READ_LEFT_VIEW_WIDTH, height: DZM_READ_LEFT_VIEW_HEIGHT)
+        
+        // 阅读视图
+        contentView = DZMReadContentView()
+        contentView.delegate = self
+        view.addSubview(contentView)
+        contentView.frame = CGRect(x: 0, y: 0, width: DZM_READ_CONTENT_VIEW_WIDTH, height: DZM_READ_CONTENT_VIEW_HEIGHT)
+    }
+    
+    
+    // MARK: DZMReadCatalogViewDelegate
+    
+    /// 章节目录选中章节
+    func catalogViewClickChapter(catalogView: DZMReadCatalogView, chapterListModel: DZMReadChapterListModel) {
+        
+        showLeftView(isShow: false)
+        
+        contentView.showCover(isShow: false)
+        
+        if readModel.recordModel.chapterModel.id == chapterListModel.id { return }
+        
+        GoToChapter(chapterID: chapterListModel.id)
+    }
+    
+    // MARK: DZMReadMarkViewDelegate
+    
+    /// 书签列表选中书签
+    func markViewClickMark(markView: DZMReadMarkView, markModel: DZMReadMarkModel) {
+        
+        showLeftView(isShow: false)
+        
+        contentView.showCover(isShow: false)
+        
+        GoToChapter(chapterID: markModel.chapterID, location: markModel.location.intValue)
+    }
+    
+    
+    // MARK: DZMReadContentViewDelegate
+    
+    /// 点击遮罩
+    func contentViewClickCover(contentView: DZMReadContentView) {
+        
+        showLeftView(isShow: false)
+    }
+    
+    
+    // MARK: DZMReadMenuDelegate
+    
+    /// 菜单将要显示
+    func readMenuWillDisplay(readMenu: DZMReadMenu!) {
+        
+        // 检查当前内容是否包含书签
+        readMenu.topView.checkForMark()
+        
+        // 刷新阅读进度
+        readMenu.bottomView.progressView.reloadProgress()
+    }
+    
+    /// 点击返回
+    func readMenuClickBack(readMenu: DZMReadMenu!) {
+        
+        // 清空坐标
+        DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = NSNumber(value: 0)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /// 点击书签
+    func readMenuClickMark(readMenu: DZMReadMenu!, topView: DZMRMTopView!, markButton: UIButton!) {
+        
+        markButton.isSelected = !markButton.isSelected
+        
+        if markButton.isSelected { readModel.insetMark()
             
-            let isOpen = info![DZMKey_ReadView_Ges_isOpen] as! NSNumber
+        }else{ _ = readModel.removeMark() }
+        
+        topView.updateMarkButton()
+    }
+    
+    /// 点击目录
+    func readMenuClickCatalogue(readMenu:DZMReadMenu!) {
+        
+        showLeftView(isShow: true)
+        
+        contentView.showCover(isShow: true)
+        
+        readMenu.showMenu(isShow: false)
+    }
+    
+    /// 点击日夜间
+    func readMenuClickDayAndNight(readMenu:DZMReadMenu!) {
+        
+        // 日夜间可以根据需求判断修改目录背景颜色,文字颜色等等(目前放在showLeftView方法中,leftView将要出现的时候处理)
+        // leftView.updateUI()
+    }
+    
+    /// 点击上一章
+    func readMenuClickPreviousChapter(readMenu: DZMReadMenu!) {
+        
+        if readModel.recordModel.isFirstChapter {
             
-            coverController?.gestureRecognizerEnabled = isOpen.boolValue
+            DZMLog("已经是第一章了")
             
-            pageViewController?.gestureRecognizerEnabled = isOpen.boolValue
+        }else{ GoToChapter(chapterID: readModel.recordModel.chapterModel.previousChapterID) }
+    }
+    
+    /// 点击下一章
+    func readMenuClickNextChapter(readMenu: DZMReadMenu!) {
+        
+        if readModel.recordModel.isLastChapter {
             
-            readMenu.singleTap.isEnabled = isOpen.boolValue
+            DZMLog("已经是最后一章了")
+            
+        }else{ GoToChapter(chapterID: readModel.recordModel.chapterModel.nextChapterID) }
+    }
+    
+    /// 拖拽阅读记录
+    func readMenuDraggingProgress(readMenu: DZMReadMenu!, toPage: NSInteger) {
+        
+        if readModel.recordModel.page.intValue != toPage{
+            
+            readModel.recordModel.page = NSNumber(value: toPage)
+            
+            creatPageController(displayController: GetCurrentReadViewController())
         }
     }
     
-    // MARK: -- DZMReadMenuDelegate
-    
-    /// 背景颜色
-    func readMenuClickSetuptColor(readMenu: DZMReadMenu, index: NSInteger, color: UIColor) {
+    /// 拖拽章节进度(总文章进度,网络文章也可以使用)
+    func readMenuDraggingProgress(readMenu: DZMReadMenu!, toChapterID: NSNumber, toPage: NSInteger) {
         
-        DZMReadConfigure.shared().colorIndex = index
-        
-        currentReadViewController?.configureBGColor()
+        // 不是当前阅读记录章节
+        if toChapterID != readModel!.recordModel.chapterModel.id {
+            
+            GoToChapter(chapterID: toChapterID, toPage: toPage)
+        }
     }
     
-    /// 翻书动画
-    func readMenuClickSetuptEffect(readMenu: DZMReadMenu, index: NSInteger) {
+    /// 切换进度显示(分页 || 总进度)
+    func readMenuClickDisplayProgress(readMenu: DZMReadMenu) {
         
-        DZMReadConfigure.shared().effectType = index
-        
-        creatPageController(readOperation.GetCurrentReadViewController())
+        creatPageController(displayController: GetCurrentReadViewController())
     }
     
-    /// 字体
-    func readMenuClickSetuptFont(readMenu: DZMReadMenu, index: NSInteger) {
+    /// 点击切换背景颜色
+    func readMenuClickBGColor(readMenu: DZMReadMenu) {
         
-        DZMReadConfigure.shared().fontType = index
+        // 切换背景颜色可以根据需求判断修改目录背景颜色,文字颜色等等(目前放在showLeftView方法中,leftView将要出现的时候处理)
+        // leftView.updateUI()
         
-        creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: true, isSave: true))
+        view.backgroundColor = DZMReadConfigure.shared().bgColor
+        
+        creatPageController(displayController: GetCurrentReadViewController())
     }
     
-    /// 字体大小
-    func readMenuClickSetuptFontSize(readMenu: DZMReadMenu, fontSize: CGFloat) {
+    /// 点击切换字体
+    func readMenuClickFont(readMenu: DZMReadMenu) {
         
-        // DZMReadConfigure.shared().fontSize = fontSize 内部已赋值
-        
-        creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: true, isSave: false))
+        creatPageController(displayController: GetCurrentReadViewController(isUpdateFont: true))
     }
     
-    /// 点击书签列表
-    func readMenuClickMarkList(readMenu: DZMReadMenu, readMarkModel: DZMReadMarkModel) {
+    /// 点击切换字体大小
+    func readMenuClickFontSize(readMenu: DZMReadMenu) {
         
-        /*
-         网络小说操作提示:
-         
-         1. 判断书签指定章节 是否存在本地缓存文件
-         
-         2. 存在则继续展示 不存在则请求回来再展示
-         */
-        
-        readModel.modifyReadRecordModel(readMarkModel: readMarkModel, isUpdateFont: true, isSave: false)
-        
-        creatPageController(readOperation.GetCurrentReadViewController(isUpdateFont: false, isSave: true))
+        creatPageController(displayController: GetCurrentReadViewController(isUpdateFont: true))
     }
     
-    /// 下载
-    func readMenuClickDownload(readMenu: DZMReadMenu) {
+    /// 点击切换间距
+    func readMenuClickSpacing(readMenu: DZMReadMenu) {
         
-        print("点击了下载")
+        creatPageController(displayController: GetCurrentReadViewController(isUpdateFont: true))
     }
     
-    /// 拖拽进度条
-    func readMenuSliderEndScroll(readMenu: DZMReadMenu, slider: ASValueTrackingSlider) {
+    /// 点击切换翻页效果
+    func readMenuClickEffect(readMenu: DZMReadMenu) {
         
-        if readModel != nil && readModel.readRecordModel.isRecord { // 有阅读记录
-   
-            let toPage = NSInteger(slider.value)
+        creatPageController(displayController: GetCurrentReadViewController())
+    }
+    
+    
+    // MARK: 展示动画
+    
+    /// 辅视图展示
+    func showLeftView(isShow:Bool, completion:DZMAnimationCompletion? = nil) {
      
-            if (readModel.readRecordModel.page.intValue + 1) != toPage { // 不是同一页
-                
-                let _ = readOperation.GoToChapter(chapterID: readModel.readRecordModel.readChapterModel!.id, toPage: toPage - 1)
-            }
-        }
-    }
-    
-    /// 上一章
-    func readMenuClickPreviousChapter(readMenu: DZMReadMenu) {
-        
-        if readModel != nil && readModel.readRecordModel.isRecord { // 有阅读记录
-        
-            let _ = readOperation.GoToChapter(chapterID: "\(readModel.readRecordModel.readChapterModel!.id.integer - 1)")
-        }
-    }
-    
-    /// 下一章
-    func readMenuClickNextChapter(readMenu: DZMReadMenu) {
-        
-        if readModel != nil && readModel.readRecordModel.isRecord { // 有阅读记录
+        if isShow { // leftView 将要显示
             
-            let _ = readOperation.GoToChapter(chapterID: "\(readModel.readRecordModel.readChapterModel!.id.integer + 1)")
-        }
-    }
-    
-    /// 点击章节列表
-    func readMenuClickChapterList(readMenu: DZMReadMenu, readChapterListModel: DZMReadChapterListModel) {
-        
-        let _ = readOperation.GoToChapter(chapterID: readChapterListModel.id)
-    }
-    
-    /// 切换日夜间模式
-    func readMenuClickLightButton(readMenu: DZMReadMenu, isDay: Bool) {
-        
-        // 日夜间需要切换做调整可以打开重置使用
-        // creatPageController(readOperation.GetCurrentReadViewController())
-    }
-    
-    /// 状态栏 将要 - 隐藏以及显示状态改变
-    func readMenuWillShowOrHidden(readMenu: DZMReadMenu, isShow: Bool) {
-        
-        pageViewController?.tapGestureRecognizerEnabled = !isShow
-        
-        coverController?.tapGestureRecognizerEnabled = !isShow
-        
-        if isShow {
+            // 刷新UI 
+            leftView.updateUI()
             
-            // 选中章节列表
-            readMenu.leftView.topView.selectIndex = 0
+            // 滚动到阅读记录
+            leftView.catalogView.scrollRecord()
             
-            // 检查当前是否存在书签
-            readMenu.topView.mark.isSelected = readModel.checkMark()
-        }
-    }
-    
-    /// 点击书签按钮
-    func readMenuClickMarkButton(readMenu: DZMReadMenu, button: UIButton) {
-        
-        if button.isSelected {
-            
-            let _ = readModel.removeMark()
-            
-            button.isSelected = readModel.checkMark()
-            
-        }else{
-            
-            readModel.addMark()
-            
-            button.isSelected = true
-        }
-    }
-    
-    // MARK: -- 创建 PageController
-    
-    /// 创建效果控制器 传入初始化显示控制器
-    func creatPageController(_ displayController:UIViewController?) {
-        
-        // 清理
-        if pageViewController != nil {
-            
-            pageViewController?.view.removeFromSuperview()
-            
-            pageViewController?.removeFromParentViewController()
-            
-            pageViewController = nil
+            // 允许显示
+            leftView.isHidden = false
         }
         
-        if coverController != nil {
+        UIView.animate(withDuration: DZM_READ_AD_TIME, delay: 0, options: .curveEaseOut, animations: { [weak self] () in
             
-            coverController?.view.removeFromSuperview()
-            
-            coverController?.removeFromParentViewController()
-            
-            coverController = nil
-        }
-        
-        // 创建
-        if DZMReadConfigure.shared().effectType == DZMRMEffectType.simulation.rawValue { // 仿真
-            
-            let options = [UIPageViewControllerOptionSpineLocationKey:NSNumber(value: UIPageViewControllerSpineLocation.min.rawValue as Int)]
-            
-            pageViewController = UIPageViewController(transitionStyle:UIPageViewControllerTransitionStyle.pageCurl,navigationOrientation:UIPageViewControllerNavigationOrientation.horizontal,options: options)
-            
-            pageViewController!.delegate = self
-            
-            pageViewController!.dataSource = self
-            
-            // 为了翻页背面的颜色使用
-            pageViewController!.isDoubleSided = true
-            
-            view.insertSubview(pageViewController!.view, at: 0)
-            
-            addChildViewController(pageViewController!)
-            
-            pageViewController!.setViewControllers((displayController != nil ? [displayController!] : nil), direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
-            
-        }else{ // 无效果 覆盖 上下
-            
-            coverController = DZMCoverController()
-            
-            coverController!.delegate = self
-            
-            view.insertSubview(coverController!.view, at: 0)
-            
-            addChildViewController(coverController!)
-            
-            coverController!.setController(displayController)
-            
-            if DZMReadConfigure.shared().effectType == DZMRMEffectType.none.rawValue {
+            if isShow {
                 
-                coverController!.openAnimate = false
+                self?.leftView.frame.origin = CGPoint.zero
                 
-            }else if DZMReadConfigure.shared().effectType == DZMRMEffectType.upAndDown.rawValue {
+                self?.contentView.frame.origin = CGPoint(x: DZM_READ_LEFT_VIEW_WIDTH, y: 0)
                 
-                coverController!.openAnimate = false
+            }else{
                 
-                coverController!.gestureRecognizerEnabled = false
-            }
-        }
-        
-        // 记录
-        currentReadViewController = displayController as? DZMReadViewController
-    }
-    
-    /// 翻页操作使用 isAbove: true 上一页; false 下一页;
-    func setViewController(displayController:UIViewController?, isAbove: Bool, animated: Bool) {
-        
-        if displayController != nil {
-            
-            if pageViewController != nil {
+                self?.leftView.frame.origin = CGPoint(x: -DZM_READ_LEFT_VIEW_WIDTH, y: 0)
                 
-                let direction = isAbove ? UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward
-                
-                pageViewController?.setViewControllers([displayController!, readBGController((displayController as? DZMReadViewController)?.readRecordModel, displayController!.view)], direction: direction, animated: animated, completion: nil)
-                
-                return
+                self?.contentView.frame.origin = CGPoint.zero
             }
             
-            if coverController != nil {
-                
-                coverController?.setController(displayController!, animated: animated, isAbove: isAbove)
-                
-                return
-            }
+        }) { [weak self] (isOK) in
             
-            // 都没有则初始化
-            creatPageController(displayController!)
+            if !isShow { self?.leftView.isHidden = true }
+            
+            completion?()
         }
-    }
-    
-    // MARK: -- DZMCoverControllerDelegate
-    
-    /// 切换结果
-    func coverController(_ coverController: DZMCoverController, currentController: UIViewController?, finish isFinish: Bool) {
-        
-        // 记录
-        currentReadViewController = currentController as? DZMReadViewController
-        
-        // 更新阅读记录
-        readOperation.readRecordUpdate(readViewController: currentReadViewController)
-    }
-    
-    /// 将要显示的控制器
-    func coverController(_ coverController: DZMCoverController, willTransitionToPendingController pendingController: UIViewController?) {
-        
-        readMenu.menuSH(isShow: false)
-    }
-    
-    /// 获取上一个控制器
-    func coverController(_ coverController: DZMCoverController, getAboveControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
-        
-        return readOperation.GetAboveReadViewController()
-    }
-    
-    /// 获取下一个控制器
-    func coverController(_ coverController: DZMCoverController, getBelowControllerWithCurrentController currentController: UIViewController?) -> UIViewController? {
-        
-        return readOperation.GetBelowReadViewController()
-    }
-    
-    // MARK: -- UIPageViewControllerDelegate
-    
-    /// 切换结果
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
-        // 记录
-        currentReadViewController = pageViewController.viewControllers?.first as? DZMReadViewController
-        
-        // 更新阅读记录
-        readOperation.readRecordUpdate(readViewController: currentReadViewController)
-    }
-    
-    /// 准备切换
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        
-        readMenu.menuSH(isShow: false)
-    }
-    
-    
-    // MARK: -- UIPageViewControllerDataSource
-    
-    /// 用于区分正反面的值(固定)
-    private var TempNumber:NSInteger = 1
-    
-    /// 获取上一页
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        
-        TempNumber -= 1
-        
-        var readRecordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.readRecordModel
-        
-        if readRecordModel == nil {
-            
-            readRecordModel = (viewController as? DZMReadBGController)?.readRecordModel
-        }
-        
-        if abs(TempNumber) % 2 == 0 { // 背面
-            
-            readRecordModel = readOperation.GetAboveReadRecordModel(readRecordModel: readRecordModel)
-            
-            return readBGController(readRecordModel)
-            
-        }else{ // 内容
-            
-            return readOperation.GetReadViewController(readRecordModel: readRecordModel)
-        }
-    }
-    
-    /// 获取下一页
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-        TempNumber += 1
-        
-        var readRecordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.readRecordModel
-        
-        if readRecordModel == nil {
-            
-            readRecordModel = (viewController as? DZMReadBGController)?.readRecordModel
-        }
-        
-        if abs(TempNumber) % 2 == 0 { // 背面
-            
-            return readBGController(readRecordModel)
-            
-        }else{ // 内容
-            
-            readRecordModel = readOperation.GetBelowReadRecordModel(readRecordModel: readRecordModel)
-            
-            return readOperation.GetReadViewController(readRecordModel: readRecordModel)
-        }
-    }
-    
-    /// 获取背面(只用于仿真模式背面显示)
-    private func readBGController(_ readRecordModel:DZMReadRecordModel!, _ targetView:UIView? = nil) -> DZMReadBGController {
-        
-        let vc = DZMReadBGController()
-        
-        vc.readRecordModel = readRecordModel
-        
-        let targetView = targetView ?? readOperation.GetReadViewController(readRecordModel: readRecordModel)?.view
-        
-        vc.targetView = targetView
-        
-        return vc
-    }
-    
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-    }
-    
-    deinit {
-        
-        // 移除通知
-        DZMReadView.RemoveNotification(observer: self)
-        
-        // 清理
-        readModel = nil
-        currentReadViewController = nil
     }
 }
