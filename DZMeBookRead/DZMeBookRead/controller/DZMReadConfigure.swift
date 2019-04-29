@@ -9,22 +9,24 @@
 import UIKit
 
 /// 一切为了好玩 》》》》》
-///// 主题颜色
-//var DZM_READ_COLOR_MAIN:UIColor { return DZM_COLOR_ARC } // DZM_COLOR_253_85_103
-///// 菜单默认颜色
-//var DZM_READ_COLOR_MENU_COLOR:UIColor { return DZM_COLOR_ARC } // DZM_COLOR_235_235_235
-///// 菜单背景颜色
-//var DZM_READ_COLOR_MENU_BG_COLOR:UIColor { return DZM_COLOR_ARC.withAlphaComponent(0.95) } // UIColor.black.withAlphaComponent(0.95)
-/// 一切为了好玩 》》》》》
-
 /// 主题颜色
-var DZM_READ_COLOR_MAIN:UIColor = DZM_COLOR_253_85_103
+var DZM_READ_COLOR_MAIN:UIColor { return DZM_COLOR_ARC } // DZM_COLOR_253_85_103
 
 /// 菜单默认颜色
-var DZM_READ_COLOR_MENU_COLOR:UIColor = DZM_COLOR_230_230_230
+var DZM_READ_COLOR_MENU_COLOR:UIColor { return DZM_COLOR_ARC } // DZM_COLOR_235_235_235
 
 /// 菜单背景颜色
-var DZM_READ_COLOR_MENU_BG_COLOR:UIColor = DZM_COLOR_46_46_46.withAlphaComponent(0.95)
+var DZM_READ_COLOR_MENU_BG_COLOR:UIColor { return DZM_COLOR_ARC.withAlphaComponent(0.95) } // UIColor.black.withAlphaComponent(0.95)
+/// 一切为了好玩 》》》》》
+
+///// 主题颜色
+//var DZM_READ_COLOR_MAIN:UIColor = DZM_COLOR_253_85_103
+//
+///// 菜单默认颜色
+//var DZM_READ_COLOR_MENU_COLOR:UIColor = DZM_COLOR_230_230_230
+//
+///// 菜单背景颜色
+//var DZM_READ_COLOR_MENU_BG_COLOR:UIColor = DZM_COLOR_46_46_46.withAlphaComponent(0.95)
 
 /// 阅读背景颜色列表
 let DZM_READ_BG_COLORS:[UIColor] = [UIColor.white, DZM_COLOR_238_224_202, DZM_COLOR_205_239_205, DZM_COLOR_206_233_241, DZM_COLOR_58_52_54, DZM_COLOR_BG_0]
