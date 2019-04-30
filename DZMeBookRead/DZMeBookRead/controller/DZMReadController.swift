@@ -230,6 +230,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
             
             // 检查当前内容是否包含书签
             readMenu.topView.checkForMark()
+            
+            // 刷新阅读进度
+            readMenu.bottomView.progressView.reloadProgress()
         }
     }
     
@@ -246,6 +249,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
     
             // 检查当前内容是否包含书签
             readMenu.topView.checkForMark()
+            
+            // 刷新阅读进度
+            readMenu.bottomView.progressView.reloadProgress()
         }
     }
     
