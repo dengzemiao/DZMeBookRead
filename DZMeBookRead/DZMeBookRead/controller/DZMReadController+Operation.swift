@@ -15,13 +15,26 @@ extension DZMReadController {
         
         if recordModel != nil {
             
-            let controller = DZMReadViewController()
-            
-            controller.recordModel = recordModel
-            
-            controller.readModel = readModel
-            
-            return controller
+            if DZMReadConfigure.shared().openLongPress { // 需要返回支持长按的控制器
+                
+                let controller = DZMReadLongPressViewController()
+                
+                controller.recordModel = recordModel
+                
+                controller.readModel = readModel
+                
+                return controller
+                
+            }else{ // 无长按功能
+                
+                let controller = DZMReadViewController()
+                
+                controller.recordModel = recordModel
+                
+                controller.readModel = readModel
+                
+                return controller
+            }
         }
         
         return nil

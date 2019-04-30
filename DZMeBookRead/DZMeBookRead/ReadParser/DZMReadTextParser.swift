@@ -137,7 +137,7 @@ class DZMReadTextParser: DZMReadParser {
                 // 章节数量分析:
                 // count + 1  = 匹配到的章节数量 + 最后一个章节
                 // 1 + count + 1  = 第一章前面的前言内容 + 匹配到的章节数量 + 最后一个章节
-                print("章节总数: \(count + 1)  当前正在解析: \(i + 1)")
+                DZMLog("章节总数: \(count + 1)  当前正在解析: \(i + 1)")
                 
                 var range = NSMakeRange(0, 0)
                 

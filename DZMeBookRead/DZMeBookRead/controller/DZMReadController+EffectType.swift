@@ -14,35 +14,7 @@ extension DZMReadController {
     func creatPageController(displayController:DZMReadViewController? = nil) {
         
         // 清理
-        currentDisplayController?.removeFromParent()
-        currentDisplayController = nil
-        
-        if pageViewController != nil {
-            
-            pageViewController?.view.removeFromSuperview()
-            
-            pageViewController?.removeFromParent()
-            
-            pageViewController = nil
-        }
-        
-        if coverController != nil {
-            
-            coverController?.view.removeFromSuperview()
-            
-            coverController?.removeFromParent()
-            
-            coverController = nil
-        }
-        
-        if scrollController != nil {
-            
-            scrollController?.view.removeFromSuperview()
-            
-            scrollController?.removeFromParent()
-            
-            scrollController = nil
-        }
+        clearPageController()
         
         // 创建
         if DZMReadConfigure.shared().effectType == .simulation { // 仿真
@@ -107,6 +79,40 @@ extension DZMReadController {
         
         // 记录
         currentDisplayController = displayController
+    }
+    
+    /// 清理所有阅读控制器
+    func clearPageController() {
+        
+        currentDisplayController?.removeFromParent()
+        currentDisplayController = nil
+        
+        if pageViewController != nil {
+            
+            pageViewController?.view.removeFromSuperview()
+            
+            pageViewController?.removeFromParent()
+            
+            pageViewController = nil
+        }
+        
+        if coverController != nil {
+            
+            coverController?.view.removeFromSuperview()
+            
+            coverController?.removeFromParent()
+            
+            coverController = nil
+        }
+        
+        if scrollController != nil {
+            
+            scrollController?.view.removeFromSuperview()
+            
+            scrollController?.removeFromParent()
+            
+            scrollController = nil
+        }
     }
     
     /// 手动设置翻页(注意: 非滚动模式调用)

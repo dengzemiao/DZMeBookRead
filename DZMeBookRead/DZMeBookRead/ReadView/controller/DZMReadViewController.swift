@@ -17,13 +17,13 @@ class DZMReadViewController: DZMViewController {
     weak var readModel:DZMReadModel!
     
     /// 顶部状态栏
-    private var topView:DZMReadViewStatusTopView!
+    var topView:DZMReadViewStatusTopView!
+    
+    /// 底部状态栏
+    var bottomView:DZMReadViewStatusBottomView!
     
     /// 阅读视图
     private var readView:DZMReadView!
-    
-    /// 底部状态栏
-    private var bottomView:DZMReadViewStatusBottomView!
     
     override func viewDidLoad() {
         
@@ -51,16 +51,21 @@ class DZMReadViewController: DZMViewController {
         topView.frame = CGRect(x: readRect.minX, y: readRect.minY, width: readRect.width, height: DZM_READ_STATUS_TOP_VIEW_HEIGHT)
         
         // 阅读视图
-        readView = DZMReadView()
-        readView.content = recordModel.contentAttributedString
-        view.addSubview(readView)
-        readView.frame = DZM_READ_VIEW_RECT
+        initReadView()
         
         // 底部状态栏
         bottomView = DZMReadViewStatusBottomView()
         view.addSubview(bottomView)
         bottomView.frame = CGRect(x: readRect.minX, y: readRect.maxY - DZM_READ_STATUS_BOTTOM_VIEW_HEIGHT, width: readRect.width, height: DZM_READ_STATUS_BOTTOM_VIEW_HEIGHT)
+    }
+    
+    /// 初始化阅读视图
+    func initReadView() {
         
+        readView = DZMReadView()
+        readView.content = recordModel.contentAttributedString
+        view.addSubview(readView)
+        readView.frame = DZM_READ_VIEW_RECT
     }
     
     /// 刷新阅读进度显示
@@ -80,5 +85,10 @@ class DZMReadViewController: DZMViewController {
             // 显示进度
             bottomView.progress.text = "\(recordModel.page.intValue + 1)/\(recordModel.chapterModel!.pageCount.intValue)"
         }
+    }
+    
+    deinit {
+        
+        bottomView?.removeTimer()
     }
 }

@@ -57,6 +57,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
         
         // 初始化控制器
         creatPageController(displayController: GetCurrentReadViewController(isUpdateFont: true))
+        
+        // 监控阅读长按视图通知
+        monitorReadLongPressView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +95,39 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
         contentView.delegate = self
         view.addSubview(contentView)
         contentView.frame = CGRect(x: 0, y: 0, width: DZM_READ_CONTENT_VIEW_WIDTH, height: DZM_READ_CONTENT_VIEW_HEIGHT)
+    }
+    
+    // MARK: 监控阅读长按视图通知
+    
+    // 监控阅读长按视图通知
+    private func monitorReadLongPressView() {
+        
+        if DZMReadConfigure.shared().openLongPress {
+            
+            DZM_READ_NOTIFICATION_MONITOR(target: self, action: #selector(longPressViewNotification(notification:)))
+        }
+    }
+    
+    // 处理通知
+    @objc private func longPressViewNotification(notification:Notification) {
+        
+        // 获得状态
+        let info = notification.userInfo
+        
+        // 隐藏菜单
+        readMenu.showMenu(isShow: false)
+        
+        // 解析状态
+        if info != nil && info!.keys.contains(DZM_READ_KEY_LONG_PRESS_VIEW) {
+            
+            let isOpen = info![DZM_READ_KEY_LONG_PRESS_VIEW] as! NSNumber
+            
+            coverController?.gestureRecognizerEnabled = isOpen.boolValue
+            
+            pageViewController?.gestureRecognizerEnabled = isOpen.boolValue
+            
+            readMenu.singleTap.isEnabled = isOpen.boolValue
+        }
     }
     
     
@@ -320,5 +356,14 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
             
             completion?()
         }
+    }
+    
+    deinit {
+        
+        // 移除阅读长按视图监控
+        DZM_READ_NOTIFICATION_REMOVE(target: self)
+        
+        // 清理阅读控制器
+        clearPageController()
     }
 }

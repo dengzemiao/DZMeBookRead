@@ -21,6 +21,9 @@
 /// 章节列表顶部
 #import "DZMSegmentedControl.h"
 
+// 放大镜
+#import "DZMMagnifierView.h"
+
 /// 进度条
 #import "ASValueTrackingSlider.h"
 

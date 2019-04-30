@@ -227,6 +227,19 @@ func TextLineSpacing(_ string:String, _ lineSpacing:CGFloat, _ lineBreakMode:NSL
     return NSMutableAttributedString(string: string, attributes: attrs)
 }
 
+
+// MARK: 延迟执行
+
+/// 延迟执行
+func DelayHandle(_ execute:@escaping ()->Void) { DelayHandle(0.01, execute) }
+
+/// 延迟执行
+func DelayHandle(_ delay:TimeInterval, _ execute:@escaping ()->Void) {
+    
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay, execute: execute)
+}
+
+
 // MARK: Block
 
 /// 动画完成
