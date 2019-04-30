@@ -125,7 +125,7 @@ class DZMReadConfigure: NSObject {
 //        return DZM_READ_TEXT_COLORS[bgColorIndex.intValue]
         
         // 字体颜色列表选择
-//         return DZM_READ_TEXT_COLORS[textColorIndex.intValue]
+//        return DZM_READ_TEXT_COLORS[textColorIndex.intValue]
         
         // 日夜间切换
 //         if DZMUserDefaults.bool(DZM_READ_KEY_MODE_DAY_NIGHT) {
