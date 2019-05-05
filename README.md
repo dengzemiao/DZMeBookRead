@@ -7,9 +7,9 @@
 
 ***
 
-#### OC如何集成改DEMO
+#### OC如何集成本DEMO
 
-示例: [OCDZMeBookRead](https://github.com/dengzemiao/OCDZMeBookRead)
+    示例:  https://github.com/dengzemiao/OCDZMeBookRead
 
 ***
 
