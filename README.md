@@ -9,7 +9,7 @@
 
 #### OC如何集成改DEMO
 
-    示例:  https://github.com/dengzemiao/OCDZMeBookRead
+    示例: [https://github.com/dengzemiao/OCDZMeBookRead](https://github.com/dengzemiao/OCDZMeBookRead)
 
 ***
 
