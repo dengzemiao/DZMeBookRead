@@ -9,7 +9,7 @@
 
 #### OC如何集成改DEMO
 
-示例:  https://github.com/dengzemiao/OCDZMeBookRead
+    示例:  https://github.com/dengzemiao/OCDZMeBookRead
 
 ***
 
@@ -37,13 +37,13 @@
 
 #### 小说相关库：
 
-放大镜: https://github.com/dengzemiao/DZMMagnifierView
+    放大镜: https://github.com/dengzemiao/DZMMagnifierView
 
-阅读打开书籍效果: https://github.com/dengzemiao/DZMAnimatedTransitioning
+    阅读打开书籍效果: https://github.com/dengzemiao/DZMAnimatedTransitioning
 
-小说《覆盖效果》: https://github.com/dengzemiao/DZMCoverAnimation
+    小说《覆盖效果》: https://github.com/dengzemiao/DZMCoverAnimation
 
-UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
+    UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
 
 ***
 
@@ -59,21 +59,39 @@ UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22
 
 #### epub提示
 
-DTCoreText同样也可以解析txt，epub...分页相关的功能，很方便。不需要像我这个Demo中一样复杂的解析处理。当然有喜欢研究CoreText可以参考下我的Demo。
+    DTCoreText同样也可以解析txt，epub...分页相关的功能，很方便。不需要像我这个Demo中一样复杂的解析处理。当然有喜欢研究CoreText可以参考下我的Demo。
 
-DTCoreText对于epub来说，主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,
+    DTCoreText对于epub来说，主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,
 
-他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
+    他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
 
-Github地址：https://github.com/Cocoanetics/DTCoreText
+    Github地址：https://github.com/Cocoanetics/DTCoreText
+
+***
+
+#### 功能扩展 ( 本地阅读 快速进入 ):
+
+    快速进入有2中做法:
+
+    1.单独写一个快速进入的解析器,先解析第一章(或者第一页,数值自己控制)出来进行使用.其他后台线程解析获取。
+        
+        通过DEMO里面给与的正则搜索获得文章的章节位置ranges,然后取出第一个range进行解析进入阅读,其他的后台解析读取
+        
+        每次解析一个章节时需要检查本地是否存在,这样就可以在阅读过程中,可能随意点击一个没有解析到的章节
+        
+        直接优先解析出来进行阅读,且还可以像网络数据一样预加载前后章节,相当于解析器里面存的就是服务器数据
+        
+        你只是在获取回来使用而已。这样也不会出现重复解析章节的情况。
+    
+    2.直接全部解析成章节内容列表放在内存中使用, 一般不是天大的章节数目内存还是够用的。
 
 ***
 
 #### DEMO老版本
 
-2019-4-29 (停止更新)
-Swift4.0 - https://github.com/dengzemiao/DZMeBookRead-Swift4.0
+    2019-4-29 (停止更新)
+    Swift4.0 - https://github.com/dengzemiao/DZMeBookRead-Swift4.0
 
-2018-9-6 (停止更新)
-Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
+    2018-9-6 (停止更新)
+    Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
 
