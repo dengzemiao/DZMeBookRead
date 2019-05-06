@@ -134,7 +134,7 @@ class DZMRMFontSizeView: DZMRMBaseView {
         
         fontSize.frame = CGRect(x: leftButton.frame.maxX, y: itemY, width: rightButton.frame.minX - leftButton.frame.maxX, height: itemH)
         
-        displayProgress.frame = CGRect.init(x: w - displayProgressWH - DZM_SPACE_SA_2, y: (h - displayProgressWH) / 2, width: displayProgressWH, height: displayProgressWH)
+        displayProgress.frame = CGRect(x: w - displayProgressWH - DZM_SPACE_SA_2, y: (h - displayProgressWH) / 2, width: displayProgressWH, height: displayProgressWH)
     }
     
     required init?(coder aDecoder: NSCoder) {

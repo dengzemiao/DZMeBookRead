@@ -52,7 +52,7 @@ class DZMReadParser: NSObject {
                 // 内容Size (滚动模式 || 长按菜单)
                 let maxW = DZM_READ_VIEW_RECT.width
                 
-                pageModel.contentSize = CGSize.init(width: maxW, height: DZMCoreText.GetAttrStringHeight(attrString: content, maxW: maxW))
+                pageModel.contentSize = CGSize(width: maxW, height: DZMCoreText.GetAttrStringHeight(attrString: content, maxW: maxW))
                 
                 
                 // 当前页面开头是什么数据开头 (滚动模式)

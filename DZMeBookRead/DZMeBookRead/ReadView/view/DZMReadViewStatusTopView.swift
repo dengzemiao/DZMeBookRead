@@ -55,7 +55,7 @@ class DZMReadViewStatusTopView: UIView {
         bookName.frame = CGRect(x: 0, y: 0, width: labelW, height: h)
         
         // 章节名
-        chapterName.frame = CGRect.init(x: w - labelW, y: 0, width: labelW, height: h)
+        chapterName.frame = CGRect(x: w - labelW, y: 0, width: labelW, height: h)
     }
     
     required init?(coder aDecoder: NSCoder) {

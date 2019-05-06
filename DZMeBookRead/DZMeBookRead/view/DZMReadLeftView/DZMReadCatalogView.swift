@@ -54,7 +54,7 @@ class DZMReadCatalogView: UIView,UITableViewDelegate,UITableViewDataSource {
             
             tableView.reloadData()
 
-            let chapterListModel = (readModel.chapterListModels as NSArray).filtered(using: NSPredicate.init(format: "id == %@", readModel.recordModel.chapterModel.id)).first as? DZMReadChapterListModel
+            let chapterListModel = (readModel.chapterListModels as NSArray).filtered(using: NSPredicate(format: "id == %@", readModel.recordModel.chapterModel.id)).first as? DZMReadChapterListModel
 
             if chapterListModel != nil {
 

@@ -26,7 +26,7 @@ class DZMReadLongPressViewController: DZMReadViewController {
         readView = DZMReadLongPressView()
         readView.pageModel = pageModel
         view.addSubview(readView)
-        readView.frame = CGRect.init(x: rect.minX, y: rect.minY, width: rect.width, height: pageModel.contentSize.height)
+        readView.frame = CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: pageModel.contentSize.height)
     }
     
     // MARK: 页面触摸拖拽处理

@@ -52,7 +52,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 完整章节名称
     var fullName:String! { return DZM_READ_CHAPTER_NAME(name) }
     
-    /// 完成富文本内容
+    /// 完整富文本内容
     var fullContent:NSAttributedString!
     
     /// 分页总高 (上下滚动模式使用)

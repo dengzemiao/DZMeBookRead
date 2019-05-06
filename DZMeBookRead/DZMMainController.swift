@@ -24,7 +24,7 @@ class DZMMainController: DZMViewController {
         hint.font = UIFont.systemFont(ofSize: 15)
         hint.isEditable = false
         view.addSubview(hint)
-        hint.frame = CGRect.init(x: DZM_SPACE_SA_15, y: NavgationBarHeight + DZM_SPACE_SA_15, width: ScreenWidth - DZM_SPACE_SA_30, height: DZM_SPACE_SA_300)
+        hint.frame = CGRect(x: DZM_SPACE_SA_15, y: NavgationBarHeight + DZM_SPACE_SA_15, width: ScreenWidth - DZM_SPACE_SA_30, height: DZM_SPACE_SA_300)
         
         // 跳转
         let button = UIButton(type: .custom)
