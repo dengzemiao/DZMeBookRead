@@ -39,7 +39,34 @@ class DZMMainController: DZMViewController {
     // 跳转
     @objc private func read() {
         
-        print("缓存文件地址: ", DZM_READ_DOCUMENT_DIRECTORY_PATH)
+        /*
+         
+         如果iOS12.2或者更高版本报这个错误 原因是MBProgressHUD导致的（暂不处理, 可以先注释MBProgressHUD使用）
+
+         https://github.com/jdg/MBProgressHUD/issues/552
+         
+         Main Thread Checker: UI API called on a background thread: -[UIApplication applicationState]
+         PID: 11304, TID: 942122, Thread name: com.apple.CoreMotion.MotionThread, Queue name: com.apple.root.default-qos.overcommit, QoS: 0
+         Backtrace:
+         4   libobjc.A.dylib                     0x00000001809a76f4 <redacted> + 56
+         5   CoreMotion                          0x00000001870f1638 CoreMotion + 292408
+         6   CoreMotion                          0x00000001870f1b68 CoreMotion + 293736
+         7   CoreMotion                          0x00000001870f1a78 CoreMotion + 293496
+         8   CoreMotion                          0x000000018711f8a8 CoreMotion + 481448
+         9   CoreMotion                          0x000000018711f8ec CoreMotion + 481516
+         10  CoreFoundation                      0x000000018173378c <redacted> + 28
+         11  CoreFoundation                      0x0000000181733074 <redacted> + 276
+         12  CoreFoundation                      0x000000018172e368 <redacted> + 2276
+         13  CoreFoundation                      0x000000018172d764 CFRunLoopRunSpecific + 452
+         14  CoreFoundation                      0x000000018172e498 CFRunLoopRun + 84
+         15  CoreMotion                          0x000000018711f280 CoreMotion + 479872
+         16  libsystem_pthread.dylib             0x00000001813ad920 <redacted> + 132
+         17  libsystem_pthread.dylib             0x00000001813ad87c _pthread_start + 48
+         18  libsystem_pthread.dylib             0x00000001813b5dcc thread_start + 4
+         
+         */
+        
+        print("缓存文件地址:", DZM_READ_DOCUMENT_DIRECTORY_PATH)
         
         MBProgressHUD.showLoading("整本解析速度慢,以后则秒进!", to: view)
       

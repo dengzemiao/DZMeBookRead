@@ -190,7 +190,7 @@ class DZMReadConfigure: NSObject {
     }
     
     /// 阅读字体
-    func font(_ isTitle:Bool = false) ->UIFont {
+    func font(isTitle:Bool = false) ->UIFont {
         
         let size = SA_SIZE(CGFloat(fontSize.intValue + (isTitle ? DZM_READ_FONT_SIZE_SPACE_TITLE : 0)))
         
@@ -216,7 +216,7 @@ class DZMReadConfigure: NSObject {
     
     /// 字体属性
     /// isPaging: 为YES的时候只需要返回跟分页相关的属性即可 (原因:包含UIColor,小数点相关的...不可返回,因为无法进行比较)
-    func attributes(_ isTitle:Bool, _ isPageing:Bool = false) ->[NSAttributedString.Key:Any] {
+    func attributes(isTitle:Bool, isPageing:Bool = false) ->[NSAttributedString.Key:Any] {
         
         // 段落配置
         let paragraphStyle = NSMutableParagraphStyle()
@@ -249,11 +249,11 @@ class DZMReadConfigure: NSObject {
         
         if isPageing {
             
-            return [.font: font(isTitle), .paragraphStyle: paragraphStyle]
+            return [.font: font(isTitle: isTitle), .paragraphStyle: paragraphStyle]
             
         }else{
             
-            return [.foregroundColor: textColor, .font: font(isTitle), .paragraphStyle: paragraphStyle]
+            return [.foregroundColor: textColor, .font: font(isTitle: isTitle), .paragraphStyle: paragraphStyle]
         }
     }
     

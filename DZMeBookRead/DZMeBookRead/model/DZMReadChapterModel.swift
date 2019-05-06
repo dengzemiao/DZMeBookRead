@@ -77,7 +77,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 更新字体
     func updateFont() {
         
-        let tempAttributes = DZMReadConfigure.shared().attributes(false, true)
+        let tempAttributes = DZMReadConfigure.shared().attributes(isTitle: false, isPageing: true)
         
         if !NSDictionary(dictionary: attributes).isEqual(to: tempAttributes) {
             
@@ -96,9 +96,9 @@ class DZMReadChapterModel: NSObject,NSCoding {
     /// 完整内容排版
     private func fullContentAttrString() ->NSMutableAttributedString {
         
-        let titleString = NSMutableAttributedString(string: fullName, attributes: DZMReadConfigure.shared().attributes(true))
+        let titleString = NSMutableAttributedString(string: fullName, attributes: DZMReadConfigure.shared().attributes(isTitle: true))
         
-        let contentString = NSMutableAttributedString(string: content, attributes: DZMReadConfigure.shared().attributes(false))
+        let contentString = NSMutableAttributedString(string: content, attributes: DZMReadConfigure.shared().attributes(isTitle: false))
         
         titleString.append(contentString)
         
