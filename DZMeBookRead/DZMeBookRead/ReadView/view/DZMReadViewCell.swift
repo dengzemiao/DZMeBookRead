@@ -66,11 +66,6 @@ class DZMReadViewCell: UITableViewCell {
         readView.frame = CGRect(x: 0, y: y, width: DZM_READ_VIEW_RECT.width, height: h)
     }
     
-    class func HEIGHT(pageModel:DZMReadPageModel!) ->CGFloat {
-        
-        return pageModel.contentSize.height + pageModel.headTypeHeight
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")

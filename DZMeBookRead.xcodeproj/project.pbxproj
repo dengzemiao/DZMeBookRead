@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF0750AA228133CF00786ADF /* DZMReadHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0750A9228133CF00786ADF /* DZMReadHomeView.swift */; };
+		AF0750AC2281349D00786ADF /* DZMReadHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */; };
 		AF46131222704E72005F1DD8 /* DZMReadViewBGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */; };
 		AF46131422706495005F1DD8 /* DZMRMSpacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */; };
 		AF487D7A22715DE7002CFAC9 /* DZMRMEffectTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */; };
@@ -100,6 +102,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF0750A9228133CF00786ADF /* DZMReadHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadHomeView.swift; sourceTree = "<group>"; };
+		AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadHomeViewCell.swift; sourceTree = "<group>"; };
 		AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewBGController.swift; sourceTree = "<group>"; };
 		AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMSpacingView.swift; sourceTree = "<group>"; };
 		AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMEffectTypeView.swift; sourceTree = "<group>"; };
@@ -490,6 +494,8 @@
 				AF4B3EAA2277F01500CEC375 /* DZMReadLongPressCursorView.swift */,
 				AF48FB4B2266FBC200850378 /* DZMReadViewStatusBottomView.swift */,
 				AF48FB4D2266FBD100850378 /* DZMReadViewStatusTopView.swift */,
+				AF0750A9228133CF00786ADF /* DZMReadHomeView.swift */,
+				AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 			files = (
 				AF48FB392266FA7600850378 /* DZMSpaceList.swift in Sources */,
 				AF46131422706495005F1DD8 /* DZMRMSpacingView.swift in Sources */,
+				AF0750AC2281349D00786ADF /* DZMReadHomeViewCell.swift in Sources */,
 				AF4B3EA72277EC1E00CEC375 /* DZMReadLongPressView.swift in Sources */,
 				AF48FB3E2266FA7600850378 /* ASValuePopUpView.m in Sources */,
 				AF5306D82268742D0094EFB9 /* DZMRMSettingView.swift in Sources */,
@@ -682,6 +689,7 @@
 				AF5306D0226813A30094EFB9 /* DZMEnumList.swift in Sources */,
 				AF48FAD02266D1F800850378 /* MBProgressHUD.m in Sources */,
 				AF48FB3A2266FA7600850378 /* DZMKeyedArchiver.swift in Sources */,
+				AF0750AA228133CF00786ADF /* DZMReadHomeView.swift in Sources */,
 				AF5952F822697557007DF477 /* DZMRMFuncView.swift in Sources */,
 				AF48FAD22266D26A00850378 /* DZMMainController.swift in Sources */,
 				AF487D7A22715DE7002CFAC9 /* DZMRMEffectTypeView.swift in Sources */,

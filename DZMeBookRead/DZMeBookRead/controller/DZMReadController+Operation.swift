@@ -349,7 +349,7 @@ extension DZMReadController {
             readModel.recordModel = recordModel
             
             readModel.recordModel.save()
-            
+           
             DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = recordModel.locationFirst
         }
     }

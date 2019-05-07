@@ -27,14 +27,11 @@ class DZMReadPageModel: NSObject,NSCoding {
     /// 根据开头类型返回开头高度 (目前主要是滚动模式使用)
     var headTypeHeight:CGFloat! = 0
     
-    /// 当前内容Size (目前主要是滚动模式使用)
+    /// 当前内容Size (目前主要是(滚动模式 || 长按模式)使用)
     var contentSize:CGSize! = CGSize.zero
     
     /// 当前内容头部类型 (目前主要是滚动模式使用)
     var headTypeIndex:NSNumber!
-    
-    
-    // MARK: 快捷获取
     
     /// 当前内容头部类型 (目前主要是滚动模式使用)
     var headType:DZMPageHeadType! {
@@ -43,6 +40,19 @@ class DZMReadPageModel: NSObject,NSCoding {
         
         get{ return DZMPageHeadType(rawValue: headTypeIndex.intValue) }
     }
+    
+    /// 当前内容总高(cell 高度)
+    var cellHeight:CGFloat! {
+        
+        // 内容高度 + 头部高度
+        return contentSize.height + headTypeHeight
+    }
+    
+    
+    // MARK: 快捷获取
+    
+    /// 书籍首页
+    var isHomePage:Bool { return range.location == DZM_READ_BOOK_HOME_PAGE }
     
     /// 获取显示内容(考虑可能会变换字体颜色的情况)
     var showContent:NSAttributedString! {

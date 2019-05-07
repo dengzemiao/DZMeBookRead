@@ -251,6 +251,9 @@ typealias DZMAnimationCompletion = ()->Void
 /// 没有章节了(可以指定为任意标识,默认是空则为没有更多章节)
 let DZM_READ_NO_MORE_CHAPTER:NSNumber! = nil
 
+/// 书籍首页-书名页
+let DZM_READ_BOOK_HOME_PAGE:NSInteger = -1
+
 /// 用于指定章节最后一页
 let DZM_READ_LAST_PAGE:NSInteger = -1
 

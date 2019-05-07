@@ -185,6 +185,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
         // 清空坐标
         DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = nil
         
+        // 返回
         navigationController?.popViewController(animated: true)
     }
     

@@ -41,7 +41,7 @@ class DZMMainController: DZMViewController {
         
         /*
          
-         如果iOS12.2或者更高版本报这个错误 原因是MBProgressHUD导致的（暂不处理, 可以先注释MBProgressHUD使用）
+         (真机情况,模拟器不会出现)如果iOS12.2或者更高版本报这个错误 原因是MBProgressHUD导致的（暂不处理, 可以先注释MBProgressHUD使用,真机需要拔掉数据线不连接xcode使用就没事）
 
          https://github.com/jdg/MBProgressHUD/issues/552
          

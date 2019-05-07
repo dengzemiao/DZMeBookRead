@@ -85,7 +85,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
             
             fullContent = fullContentAttrString()
             
-            pageModels = DZMReadParser.pageing(attrString: fullContent, rect: CGRect(origin: CGPoint.zero, size: DZM_READ_VIEW_RECT.size))
+            pageModels = DZMReadParser.pageing(attrString: fullContent, rect: CGRect(origin: CGPoint.zero, size: DZM_READ_VIEW_RECT.size), isFirstChapter: isFirstChapter)
             
             pageCount = NSNumber(value: pageModels.count)
             

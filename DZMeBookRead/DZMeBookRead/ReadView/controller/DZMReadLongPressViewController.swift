@@ -16,17 +16,25 @@ class DZMReadLongPressViewController: DZMReadViewController {
     // 初始化阅读视图
     override func initReadView() {
         
-        // 阅读视图范围
-        let rect = DZM_READ_VIEW_RECT!
-        
-        // 长按功能需要内容高度防止拖拽超出界限
-        let pageModel = recordModel.pageModel!
-        
-        // 阅读视图
-        readView = DZMReadLongPressView()
-        readView.pageModel = pageModel
-        view.addSubview(readView)
-        readView.frame = CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: pageModel.contentSize.height)
+        // 是否为书籍首页
+        if recordModel.pageModel.isHomePage {
+            
+            super.initReadView()
+            
+        }else{
+            
+            // 阅读视图范围
+            let rect = DZM_READ_VIEW_RECT!
+            
+            // 长按功能需要内容高度防止拖拽超出界限
+            let pageModel = recordModel.pageModel!
+            
+            // 阅读视图
+            readView = DZMReadLongPressView()
+            readView.pageModel = pageModel
+            view.addSubview(readView)
+            readView.frame = CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: pageModel.contentSize.height)
+        }
     }
     
     // MARK: 页面触摸拖拽处理
@@ -57,6 +65,9 @@ class DZMReadLongPressViewController: DZMReadViewController {
     
     /// 解析触摸事件
     private func drag(touches: Set<UITouch>, status: DZMPanGesStatus) {
+        
+        // 是否为书籍首页
+        if recordModel.pageModel.isHomePage { return }
         
         if readView?.isOpenDrag ?? false {
             

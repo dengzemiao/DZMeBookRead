@@ -20,10 +20,22 @@ class DZMReadParser: NSObject {
     /// - Parameters:
     ///   - attrString: 内容
     ///   - rect: 显示范围
+    ///   - isFirstChapter: 是否为本文章第一个展示章节,如果是则加入书籍首页。(小技巧:如果不需要书籍首页,可不用传,默认就是不带书籍首页)
     /// - Returns: 内容分页列表
-    @objc class func pageing(attrString:NSAttributedString, rect:CGRect) ->[DZMReadPageModel] {
+    @objc class func pageing(attrString:NSAttributedString, rect:CGRect, isFirstChapter:Bool = false) ->[DZMReadPageModel] {
         
         var pageModels:[DZMReadPageModel] = []
+        
+        if isFirstChapter { // 第一页为书籍页面
+            
+            let pageModel = DZMReadPageModel()
+            
+            pageModel.range = NSMakeRange(DZM_READ_BOOK_HOME_PAGE, 1)
+            
+            pageModel.contentSize = DZM_READ_VIEW_RECT.size
+            
+            pageModels.append(pageModel)
+        }
         
         let ranges = DZMCoreText.GetPageingRanges(attrString: attrString, rect: rect)
         

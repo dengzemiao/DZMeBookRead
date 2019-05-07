@@ -104,15 +104,29 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = DZMReadViewCell.cell(tableView)
-        
         let chapterID = chapterIDs[indexPath.section]
         
         let chapterModel = GetChapterModel(chapterID: chapterID)
         
-        cell.pageModel = chapterModel!.pageModels[indexPath.row]
+        let pageModel = chapterModel!.pageModels[indexPath.row]
         
-        return cell
+        // 是否为书籍首页
+        if pageModel.isHomePage {
+            
+            let cell = DZMReadHomeViewCell.cell(tableView)
+            
+            cell.homeView.readModel = vc.readModel
+            
+            return cell
+            
+        }else{
+            
+            let cell = DZMReadViewCell.cell(tableView)
+            
+            cell.pageModel = pageModel
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,7 +135,7 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
         
         let chapterModel = GetChapterModel(chapterID: chapterID)
         
-        return DZMReadViewCell.HEIGHT(pageModel: chapterModel!.pageModels[indexPath.row])
+        return chapterModel!.pageModels[indexPath.row].cellHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -138,6 +152,44 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
         
         // 预加载下一章
         preloadingNext(chapterModel)
+    }
+    
+    /// 书籍首页将要出现
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row != 0 { return }
+        
+        let chapterID = chapterIDs[indexPath.section]
+        
+        let chapterModel = GetChapterModel(chapterID: chapterID)
+        
+        let pageModel = chapterModel!.pageModels[indexPath.row]
+        
+        if pageModel.isHomePage {
+            
+            topView?.isHidden = true
+            
+            bottomView?.isHidden = true
+        }
+    }
+    
+    /// 书籍首页消失
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row != 0 { return }
+        
+        let chapterID = chapterIDs[indexPath.section]
+        
+        let chapterModel = GetChapterModel(chapterID: chapterID)
+        
+        let pageModel = chapterModel!.pageModels[indexPath.row]
+        
+        if pageModel.isHomePage {
+            
+            topView?.isHidden = false
+            
+            bottomView?.isHidden = false
+        }
     }
     
     
