@@ -10,7 +10,7 @@ import UIKit
 
 class DZMReadView: UIView {
     
-    /// 当前页模型(目前只用于滚动模式)
+    /// 当前页模型(使用contentSize绘制)
     var pageModel:DZMReadPageModel! {
         
         didSet{
@@ -19,7 +19,7 @@ class DZMReadView: UIView {
         }
     }
     
-    /// 当前页内容(目前用于所有左右切换模式)
+    /// 当前页内容(使用固定范围绘制)
     var content:NSAttributedString! {
         
         didSet{
