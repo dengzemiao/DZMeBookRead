@@ -9,7 +9,7 @@
 import UIKit
 
 /// 记录当前章节阅读到的坐标
-var DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION:NSNumber! = NSNumber(value: 0)
+var DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION:NSNumber!
 
 class DZMReadRecordModel: NSObject,NSCoding {
 
@@ -24,9 +24,6 @@ class DZMReadRecordModel: NSObject,NSCoding {
     
     
     // MARK: 快捷获取
-    
-    /// 书籍首页
-    var isBookMainPage:Bool { return page.intValue == DZM_READ_BOOK_MAIN_PAGE }
     
     /// 当前记录分页模型
     var pageModel:DZMReadPageModel! { return  chapterModel.pageModels[page.intValue] }

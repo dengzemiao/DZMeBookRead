@@ -59,9 +59,6 @@ class DZMReadConfigure: NSObject {
     
     // MARK: 阅读页面配置
     
-    /// 是否显示书籍首页 (未支持)
-    /// var openBookMainPage:Bool = true
-    
     /// 开启长按菜单功能 (滚动模式是不支持长按功能的)
     var openLongPress:Bool = true
     

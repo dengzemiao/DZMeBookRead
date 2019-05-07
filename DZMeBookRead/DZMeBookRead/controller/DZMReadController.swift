@@ -183,7 +183,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
     func readMenuClickBack(readMenu: DZMReadMenu!) {
         
         // 清空坐标
-        DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = NSNumber(value: 0)
+        DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = nil
         
         navigationController?.popViewController(animated: true)
     }
