@@ -141,11 +141,17 @@ extension DZMReadController {
 //                    // 获取章节数据
 //                    let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                    // 解析章节数据并且保存
-//                    _ = DZMReadChapterModel.model(data)
+//                    // 解析章节数据
+//                    let chapterModel = DZMReadChapterModel(data)
+//
+//                    // 章节类容需要进行排版一篇
+//                    chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                    // 保存
+//                    chapterModel.save()
 //
 //                    // 修改阅读记录
-//                    recordModel.modify(chapterID: chapterID, toPage: toPage, isSave: false)
+//                    recordModel.modify(chapterID: chapterModel.chapterID, toPage: toPage, isSave: false)
 //
 //                    // 更新阅读记录
 //                    self?.updateReadRecord(recordModel: recordModel)
@@ -169,8 +175,14 @@ extension DZMReadController {
 //                    // 获取章节数据
 //                    let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                    // 解析章节数据并且保存
-//                    _ = DZMReadChapterModel.model(data)
+//                    // 解析章节数据
+//                    let chapterModel = DZMReadChapterModel(data)
+//
+//                    // 章节类容需要进行排版一篇
+//                    chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                    // 保存
+//                    chapterModel.save()
 //                }
 //            }
 //        }
@@ -222,11 +234,17 @@ extension DZMReadController {
 //                        // 获取章节数据
 //                        let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                        // 解析章节数据并且保存
-//                        _ = DZMReadChapterModel.model(data)
+//                        // 解析章节数据
+//                        let chapterModel = DZMReadChapterModel(data)
+//
+//                        // 章节类容需要进行排版一篇
+//                        chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                        // 保存
+//                        chapterModel.save()
 //
 //                        // 修改阅读记录
-//                        recordModel.modify(chapterID: chapterID, toPage: DZM_READ_LAST_PAGE, isSave: false)
+//                        recordModel.modify(chapterID: chapterModel.chapterID, toPage: DZM_READ_LAST_PAGE, isSave: false)
 //
 //                        // 更新阅读记录
 //                        self?.updateReadRecord(recordModel: recordModel)
@@ -294,11 +312,17 @@ extension DZMReadController {
 //                        // 获取章节数据
 //                        let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                        // 解析章节数据并且保存
-//                        _ = DZMReadChapterModel.model(data)
+//                        // 解析章节数据
+//                        let chapterModel = DZMReadChapterModel(data)
+//
+//                        // 章节类容需要进行排版一篇
+//                        chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                        // 保存
+//                        chapterModel.save()
 //
 //                        // 修改阅读记录
-//                        recordModel.modify(chapterID: chapterID, toPage: 0, isSave: false)
+//                        recordModel.modify(chapterID: chapterModel.chapterID, toPage: 0, isSave: false)
 //
 //                        // 更新阅读记录
 //                        self?.updateReadRecord(recordModel: recordModel)
@@ -326,8 +350,14 @@ extension DZMReadController {
 //                    // 获取章节数据
 //                    let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                    // 解析章节数据并且保存
-//                    _ = DZMReadChapterModel.model(data)
+//                    // 解析章节数据
+//                    let chapterModel = DZMReadChapterModel(data)
+//                    
+//                    // 章节类容需要进行排版一篇
+//                    chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//                    
+//                    // 保存
+//                    chapterModel.save()
 //                }
 //            }
 //        }

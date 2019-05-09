@@ -396,7 +396,7 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                 
                 // ----- 搜索网络小说 -----
                 
-//                // 加载章节数据
+                // 加载章节数据
 //                NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
 //
 //                    if type == .success {
@@ -404,8 +404,14 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
 //                        // 获取章节数据
 //                        let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                        // 解析章节数据并且保存
-//                        let tempChapterModel = DZMReadChapterModel.model(data)
+//                        // 解析章节数据
+//                        let tempChapterModel = DZMReadChapterModel(data)
+//
+//                        // 章节类容需要进行排版一篇
+//                        tempChapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                        // 保存
+//                        tempChapterModel.save()
 //
 //                        // 加入阅读内容列表
 //                        self?.chapterModels[chapterID!.stringValue] = tempChapterModel
@@ -418,13 +424,13 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
 //
 //                        // 阅读章节ID列表加入
 //                        self?.chapterIDs.insert(chapterID!, at: previousIndex)
-//                        
+//
 //                        // 移除加载列表
 //                        self?.loadChapterIDs.remove(at: loadIndex)
 //
 //                        // 刷新
 //                        self?.tableView.reloadData()
-//                        
+//
 //                        // 定位
 //                        self?.tableView.contentOffset = CGPoint(x: 0, y: self!.tableView.contentOffset.y + chapterModel.pageTotalHeight)
 //                    }
@@ -486,30 +492,36 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                 
 //                // 加载章节数据
 //                NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
-//                    
+//
 //                    if type == .success {
-//                        
+//
 //                        // 获取章节数据
 //                        let data = HTTP_RESPONSE_DATA_DICT(response)
-//                        
-//                        // 解析章节数据并且保存
-//                        let tempChapterModel = DZMReadChapterModel.model(data)
-//                        
+//
+//                        // 解析章节数据
+//                        let tempChapterModel = DZMReadChapterModel(data)
+//
+//                        // 章节类容需要进行排版一篇
+//                        tempChapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                        // 保存
+//                        tempChapterModel.save()
+//
 //                        // 加入阅读内容列表
 //                        self?.chapterModels[chapterID!.stringValue] = tempChapterModel
-//                        
+//
 //                        // 当前章节索引
 //                        let nextIndex = max(0, (self!.chapterIDs.index(of: chapterModel.id)! - 1))
-//                        
+//
 //                        // 加载列表索引
 //                        let loadIndex = self!.loadChapterIDs.index(of: chapterID!)!
-//                        
+//
 //                        // 阅读章节ID列表加入
 //                        self?.chapterIDs.insert(chapterID!, at: nextIndex)
-//                        
+//
 //                        // 移除加载列表
 //                        self?.loadChapterIDs.remove(at: loadIndex)
-//                        
+//
 //                        // 刷新
 //                        self?.tableView.insertSections(IndexSet(integer: nextIndex), with: .none)
 //                    }

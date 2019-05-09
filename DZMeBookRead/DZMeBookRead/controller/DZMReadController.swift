@@ -182,6 +182,12 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
     /// 点击返回
     func readMenuClickBack(readMenu: DZMReadMenu!) {
         
+        // 清空所有阅读缓存
+        // DZMKeyedArchiver.clear()
+        
+        // 清空指定书籍缓存
+        // DZMKeyedArchiver.remove(folderName: bookID)
+        
         // 清空坐标
         DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = nil
         
