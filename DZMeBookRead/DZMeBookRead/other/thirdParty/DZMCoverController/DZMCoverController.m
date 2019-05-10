@@ -143,7 +143,8 @@
         // 正在动画
         if (self.isAnimateChange) { return; }
         
-        self.isAnimateChange = YES;
+        // 放弃动画时则不需要设置正在动画中
+        if (self.openAnimate) { self.isAnimateChange = YES; }
         
         self.isPanBegin = YES;
         
@@ -249,7 +250,8 @@
     // 正在动画
     if (self.isAnimateChange) { return; }
     
-    self.isAnimateChange = YES;
+    // 放弃动画时则不需要设置正在动画中
+    if (self.openAnimate) { self.isAnimateChange = YES; }
     
     CGPoint touchPoint = [tap locationInView:self.view];
     
