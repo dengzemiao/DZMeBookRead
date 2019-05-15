@@ -187,7 +187,7 @@ class DZMReadTextParser: DZMReadParser {
                     chapterModel.name = content.substring(lastRange)
                     
                     // 内容
-                    chapterModel.content = content.substring(NSMakeRange(lastRange.location, content.length - lastRange.location))
+                    chapterModel.content = content.substring(NSMakeRange(lastRange.location + lastRange.length, content.length - lastRange.location - lastRange.length))
                     
                 }else { // 中间章节
                     
@@ -195,12 +195,12 @@ class DZMReadTextParser: DZMReadParser {
                     chapterModel.name = content.substring(lastRange)
                     
                     // 内容
-                    chapterModel.content = content.substring(NSMakeRange(lastRange.location, location - lastRange.location))
+                    chapterModel.content = content.substring(NSMakeRange(lastRange.location + lastRange.length, location - lastRange.location - lastRange.length))
                 }
                 
                 // 章节内容中不需要带章节名,阅读的时候在手动加入。这里需要先清理出去,获得纯内容文本
                 // 章节开头双空格 + 章节纯内容
-                chapterModel.content = DZM_READ_PH_SPACE + chapterModel.content.replacingOccurrences(of: chapterModel.name, with: "").removeSEHeadAndTail
+                chapterModel.content = DZM_READ_PH_SPACE + chapterModel.content.removeSEHeadAndTail
                 
                 // 设置上一个章节ID
                 chapterModel.previousChapterID = lastChapterModel?.id ?? DZM_READ_NO_MORE_CHAPTER
