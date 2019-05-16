@@ -328,9 +328,21 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
             
         }else{ // 内存中不存在章节列表
             
-            if DZMReadChapterModel.isExist(bookID: vc.readModel.bookID, chapterID: chapterID) { // 本地存在章节内容文件
+            // 检查是否存在章节内容
+            let isExist = DZMReadChapterModel.isExist(bookID: vc.readModel.bookID, chapterID: chapterID)
+            
+            // 存在 || 不存在(但是为本地阅读)
+            if isExist || vc.readModel.bookSourceType == .local {
                 
-                chapterModel = DZMReadChapterModel.model(bookID: vc.readModel.bookID, chapterID: chapterID)
+                // 获取章节数据
+                if !isExist {
+                    
+                    chapterModel = DZMReadTextFastParser.parser(readModel: vc.readModel, chapterID: chapterID)
+                    
+                }else{
+                    
+                    chapterModel = DZMReadChapterModel.model(bookID: vc.readModel.bookID, chapterID: chapterID)
+                }
                 
                 chapterModels[chapterID.stringValue] = chapterModel
             }
@@ -360,11 +372,25 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
         // 预加载下一章
         DispatchQueue.global().async { [weak self] () in
             
-            if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) { // 本地存在章节内容文件
+            // 检查是否存在章节内容
+            let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
+            
+            // 存在 || 不存在(但是为本地阅读)
+            if isExist || self?.vc.readModel.bookSourceType == .local {
                 
-                // 获取缓存文件
-                let tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
+                // 章节内容
+                var tempChapterModel:DZMReadChapterModel!
                 
+                // 获取章节数据
+                if !isExist {
+                
+                    tempChapterModel = DZMReadTextFastParser.parser(readModel: self?.vc.readModel, chapterID: chapterID)
+                    
+                }else{
+
+                    tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
+                }
+            
                 // 加入阅读内容列表
                 self?.chapterModels[chapterID!.stringValue] = tempChapterModel
                 
@@ -457,10 +483,24 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
         // 预加载下一章
         DispatchQueue.global().async { [weak self] () in
             
-            if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) { // 本地存在章节内容文件
+            // 检查是否存在章节内容
+            let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
+            
+            // 存在 || 不存在(但是为本地阅读)
+            if isExist || self?.vc.readModel.bookSourceType == .local {
                 
-                // 获取缓存文件
-                let tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID)
+                // 章节内容
+                var tempChapterModel:DZMReadChapterModel!
+                
+                // 获取章节数据
+                if !isExist {
+                
+                    tempChapterModel = DZMReadTextFastParser.parser(readModel: self?.vc.readModel, chapterID: chapterID)
+                
+                }else{
+
+                    tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
+                }
                 
                 // 加入阅读内容列表
                 self?.chapterModels[chapterID!.stringValue] = tempChapterModel

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DZMReadTextParser: DZMReadParser {
+class DZMReadTextParser: NSObject {
 
     /// 异步解析本地链接
     ///
@@ -63,6 +63,9 @@ class DZMReadTextParser: DZMReadParser {
             // 阅读模型
             let readModel = DZMReadModel.model(bookID: bookID)
             
+            // 书籍类型
+            readModel.bookSourceType = .local
+            
             // 小说名称
             readModel.bookName = bookName
             
@@ -100,7 +103,7 @@ class DZMReadTextParser: DZMReadParser {
         let parten = "第[0-9一二三四五六七八九十百千]*[章回].*"
         
         // 排版
-        let content = contentTypesetting(content: content)
+        let content = DZMReadParser.contentTypesetting(content: content)
         
         // 正则匹配结果
         var results:[NSTextCheckingResult] = []

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AF0750AA228133CF00786ADF /* DZMReadHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0750A9228133CF00786ADF /* DZMReadHomeView.swift */; };
 		AF0750AC2281349D00786ADF /* DZMReadHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */; };
+		AF0A61DB228BF69100AC6E74 /* DZMReadTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0A61DA228BF69100AC6E74 /* DZMReadTextParser.swift */; };
+		AF0A61DD228BF6A400AC6E74 /* DZMReadTextFastParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0A61DC228BF6A400AC6E74 /* DZMReadTextFastParser.swift */; };
 		AF46131222704E72005F1DD8 /* DZMReadViewBGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */; };
 		AF46131422706495005F1DD8 /* DZMRMSpacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */; };
 		AF487D7A22715DE7002CFAC9 /* DZMRMEffectTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */; };
@@ -58,7 +60,6 @@
 		AF48FB552267033800850378 /* DZMReadParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB542267033800850378 /* DZMReadParser.swift */; };
 		AF48FB59226706D500850378 /* DZMFontList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB58226706D500850378 /* DZMFontList.swift */; };
 		AF48FB5B226709B200850378 /* DZMColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB5A226709B200850378 /* DZMColorList.swift */; };
-		AF48FB5D22670D8200850378 /* DZMReadTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB5C22670D8200850378 /* DZMReadTextParser.swift */; };
 		AF48FB5F22672F8F00850378 /* DZMReadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB5E22672F8F00850378 /* DZMReadContentView.swift */; };
 		AF48FB632267322C00850378 /* DZMReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF48FB622267322C00850378 /* DZMReadModel.swift */; };
 		AF4B3EA12277EA6800CEC375 /* DZMMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4B3EA02277EA6800CEC375 /* DZMMagnifierView.m */; };
@@ -104,6 +105,8 @@
 /* Begin PBXFileReference section */
 		AF0750A9228133CF00786ADF /* DZMReadHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadHomeView.swift; sourceTree = "<group>"; };
 		AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadHomeViewCell.swift; sourceTree = "<group>"; };
+		AF0A61DA228BF69100AC6E74 /* DZMReadTextParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadTextParser.swift; sourceTree = "<group>"; };
+		AF0A61DC228BF6A400AC6E74 /* DZMReadTextFastParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadTextFastParser.swift; sourceTree = "<group>"; };
 		AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewBGController.swift; sourceTree = "<group>"; };
 		AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMSpacingView.swift; sourceTree = "<group>"; };
 		AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMEffectTypeView.swift; sourceTree = "<group>"; };
@@ -168,7 +171,6 @@
 		AF48FB542267033800850378 /* DZMReadParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadParser.swift; sourceTree = "<group>"; };
 		AF48FB58226706D500850378 /* DZMFontList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMFontList.swift; sourceTree = "<group>"; };
 		AF48FB5A226709B200850378 /* DZMColorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMColorList.swift; sourceTree = "<group>"; };
-		AF48FB5C22670D8200850378 /* DZMReadTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadTextParser.swift; sourceTree = "<group>"; };
 		AF48FB5E22672F8F00850378 /* DZMReadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadContentView.swift; sourceTree = "<group>"; };
 		AF48FB622267322C00850378 /* DZMReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadModel.swift; sourceTree = "<group>"; };
 		AF4B3E9F2277EA6800CEC375 /* DZMMagnifierView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZMMagnifierView.h; sourceTree = "<group>"; };
@@ -515,7 +517,8 @@
 			isa = PBXGroup;
 			children = (
 				AF48FB542267033800850378 /* DZMReadParser.swift */,
-				AF48FB5C22670D8200850378 /* DZMReadTextParser.swift */,
+				AF0A61DA228BF69100AC6E74 /* DZMReadTextParser.swift */,
+				AF0A61DC228BF6A400AC6E74 /* DZMReadTextFastParser.swift */,
 			);
 			path = ReadParser;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				AF5306D0226813A30094EFB9 /* DZMEnumList.swift in Sources */,
 				AF48FAD02266D1F800850378 /* MBProgressHUD.m in Sources */,
 				AF48FB3A2266FA7600850378 /* DZMKeyedArchiver.swift in Sources */,
+				AF0A61DB228BF69100AC6E74 /* DZMReadTextParser.swift in Sources */,
 				AF0750AA228133CF00786ADF /* DZMReadHomeView.swift in Sources */,
 				AF5952F822697557007DF477 /* DZMRMFuncView.swift in Sources */,
 				AF48FAD22266D26A00850378 /* DZMMainController.swift in Sources */,
@@ -700,6 +704,7 @@
 				AF5306CE226812910094EFB9 /* DZMUserDefaults.swift in Sources */,
 				AF48FB502266FBFB00850378 /* DZMReadViewCell.swift in Sources */,
 				AF48FB382266FA7600850378 /* DZMPublic.swift in Sources */,
+				AF0A61DD228BF6A400AC6E74 /* DZMReadTextFastParser.swift in Sources */,
 				AF48FB432266FA7600850378 /* DZMReadMenu.swift in Sources */,
 				AF5306DE226874D60094EFB9 /* DZMRMFontTypeView.swift in Sources */,
 				AF48FB5F22672F8F00850378 /* DZMReadContentView.swift in Sources */,
@@ -712,7 +717,6 @@
 				AF48FB482266FB0500850378 /* DZMReadViewController.swift in Sources */,
 				AF48FAF92266F4FC00850378 /* DZMReadController+EffectType.swift in Sources */,
 				AF48FAF12266F36A00850378 /* DZMReadRecordModel.swift in Sources */,
-				AF48FB5D22670D8200850378 /* DZMReadTextParser.swift in Sources */,
 				AF48FAC92266D1A600850378 /* MBProgressHUD+DZM.m in Sources */,
 				AF48FB422266FA7600850378 /* DZMViewController.swift in Sources */,
 				AF487D852271B0F6002CFAC9 /* DZMReadLeftView.swift in Sources */,

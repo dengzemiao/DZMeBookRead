@@ -1,6 +1,6 @@
 # DZMeBookRead
 
-![Version](https://img.shields.io/badge/Version-1.1-orange.svg)
+![Version](https://img.shields.io/badge/Version-1.2-orange.svg)
 ![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
 ![Xcode Version](https://img.shields.io/badge/Xcode-10.2-orange.svg)
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
@@ -31,8 +31,17 @@
     
     下载不同版本可在上面的 Branch 选项中选择下载版本。
     
-    v1.1 (Swift4.2) (master分支) { (需要书籍首页的可以下载这个版本,单纯的网络小说Txt版本)
+    v1.2 (Swift4.2) (master分支) { (需要书籍首页的可以下载这个版本,单纯的网络小说Txt版本)
     
+        2019-5-16 更新: 加入TXT全本快速进入阅读。
+    }
+    
+    v1.1 (Swift4.2) { (需要书籍首页的可以下载这个版本,单纯的网络小说Txt版本)
+    
+        2019-5-16 更新: 解析文本,代码细节优化。
+        
+        2019-5-10 更新: 修复无效果快速点击BUG。
+        
         2019-5-7 更新: 加入书籍首页支持。
     }
     

@@ -16,6 +16,9 @@ class DZMReadModel: NSObject,NSCoding {
     /// 小说名称
     var bookName:String!
     
+    /// 小说来源类型
+    var bookSourceType:DZMBookSourceType! = .network
+    
     /// 当前阅读记录
     var recordModel:DZMReadRecordModel!
     
@@ -24,6 +27,15 @@ class DZMReadModel: NSObject,NSCoding {
     
     /// 章节列表(如果是网络小说可以不需要放在这里记录,直接在目录视图里面加载接口或者读取本地数据库就好了。)
     var chapterListModels:[DZMReadChapterListModel]! = []
+    
+    
+    // MARK: 快速进入
+    
+    /// 本地小说全文
+    var fullText:String!
+    
+    /// 章节内容范围数组 [章节ID:[章节优先级:章节内容Range]]
+    var ranges:[String:[String:NSRange]]!
     
     
     // MARK: 辅助
@@ -75,9 +87,15 @@ class DZMReadModel: NSObject,NSCoding {
         
         bookName = aDecoder.decodeObject(forKey: "bookName") as? String
         
+        bookSourceType = DZMBookSourceType(rawValue: (aDecoder.decodeObject(forKey: "bookSourceType") as! NSNumber).intValue)
+        
         chapterListModels = aDecoder.decodeObject(forKey: "chapterListModels") as? [DZMReadChapterListModel]
         
         markModels = aDecoder.decodeObject(forKey: "markModels") as? [DZMReadMarkModel]
+        
+        fullText = aDecoder.decodeObject(forKey: "fullText") as? String
+        
+        ranges = aDecoder.decodeObject(forKey: "ranges") as? [String:[String:NSRange]]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -86,9 +104,15 @@ class DZMReadModel: NSObject,NSCoding {
         
         aCoder.encode(bookName, forKey: "bookName")
         
+        aCoder.encode(NSNumber(value: bookSourceType.rawValue), forKey: "bookSourceType")
+        
         aCoder.encode(chapterListModels, forKey: "chapterListModels")
         
         aCoder.encode(markModels, forKey: "markModels")
+        
+        aCoder.encode(fullText, forKey: "fullText")
+        
+        aCoder.encode(ranges, forKey: "ranges")
     }
     
     init(_ dict:Any? = nil) {

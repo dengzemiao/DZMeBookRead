@@ -8,6 +8,14 @@
 
 import UIKit
 
+/// 书籍来源类型
+enum DZMBookSourceType:NSInteger {
+    /// 网络小说
+    case network
+    /// 本地小说
+    case local
+}
+
 /// 阅读翻页类型
 enum DZMEffectType:NSInteger {
     /// 仿真

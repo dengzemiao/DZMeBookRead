@@ -93,7 +93,7 @@ extension DZMReadController {
         
         GoToChapter(chapterID: chapterID, number: toPage, isLocation: false)
     }
-        
+    
     /// 跳转指定章节(指定坐标)
     func GoToChapter(chapterID:NSNumber!, location:NSInteger) {
         
@@ -108,27 +108,40 @@ extension DZMReadController {
         
         // 书籍ID
         let bookID = recordModel.bookID
-        
+       
         // 检查是否存在章节内容
-        if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) {
+        let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
+        
+        // 存在 || 不存在(但是为本地阅读)
+        if isExist || readModel.bookSourceType == .local {
+            
+            if !isExist {
+                
+                // 获取章节数据
+                _ = DZMReadTextFastParser.parser(readModel: readModel, chapterID: chapterID)
+            }
             
             if isLocation {
                 
+                // 坐标定位
                 recordModel.modify(chapterID: chapterID, location: number, isSave: false)
                 
             }else{
                 
+                // 分页定位
                 recordModel.modify(chapterID: chapterID, toPage: number, isSave: false)
             }
             
+            // 阅读阅读记录
             updateReadRecord(recordModel: recordModel)
             
+            // 展示阅读
             creatPageController(displayController: GetReadViewController(recordModel: recordModel))
             
         }else{ // 加载网络章节数据
-            
-            // ----- 搜索网络小说 -----
-            
+                
+                // ----- 搜索网络小说 -----
+                
 //            MBProgressHUD.showLoading(view)
 //
 //            // 加载章节数据
@@ -162,27 +175,30 @@ extension DZMReadController {
 //            }
         }
         
-            // ----- 搜索网络小说 -----
-
+        // ----- 搜索网络小说 -----
+        
 //        // 预加载下一章(可选)
-//        if !recordModel.isLastChapter && !DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) {
+//        if readModel.bookSourceType == .network { // 网络小说
 //
-//            // 加载章节数据
-//            NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
+//            if !recordModel.isLastChapter && !DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) {
 //
-//                if type == .success {
+//                // 加载章节数据
+//                NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
 //
-//                    // 获取章节数据
-//                    let data = HTTP_RESPONSE_DATA_DICT(response)
+//                    if type == .success {
 //
-//                    // 解析章节数据
-//                    let chapterModel = DZMReadChapterModel(data)
+//                        // 获取章节数据
+//                        let data = HTTP_RESPONSE_DATA_DICT(response)
 //
-//                    // 章节类容需要进行排版一篇
-//                    chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//                        // 解析章节数据
+//                        let chapterModel = DZMReadChapterModel(data)
 //
-//                    // 保存
-//                    chapterModel.save()
+//                        // 章节类容需要进行排版一篇
+//                        chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                        // 保存
+//                        chapterModel.save()
+//                    }
 //                }
 //            }
 //        }
@@ -214,14 +230,22 @@ extension DZMReadController {
         // 第一页
         if recordModel.isFirstPage {
             
-            if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) { // 是否有上一章数据
+            // 检查是否存在章节内容
+            let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
+            
+            // 存在 || 不存在(但是为本地阅读)
+            if isExist || readModel.bookSourceType == .local {
                 
+                // 获取章节数据
+                if !isExist { _ = DZMReadTextFastParser.parser(readModel: readModel, chapterID: chapterID) }
+                
+                // 修改阅读记录
                 recordModel.modify(chapterID: chapterID, toPage: DZM_READ_LAST_PAGE, isSave: false)
                 
             }else{ // 加载网络章节数据
-                
+                    
                 // ----- 搜索网络小说 -----
-                
+                    
 //                MBProgressHUD.showLoading(view)
 //
 //                // 加载章节数据
@@ -253,7 +277,7 @@ extension DZMReadController {
 //                        self?.setViewController(displayController: GetReadViewController(recordModel: recordModel), isAbove: true, animated: true)
 //                    }
 //                }
-                
+
                 return nil
             }
             
@@ -292,14 +316,22 @@ extension DZMReadController {
         // 最后一页
         if recordModel.isLastPage {
             
-            if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) { // 是否有下一章数据
+            // 检查是否存在章节内容
+            let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
+            
+            // 存在 || 不存在(但是为本地阅读)
+            if isExist || readModel.bookSourceType == .local {
                 
+                // 获取章节数据
+                if !isExist { _ = DZMReadTextFastParser.parser(readModel: readModel, chapterID: chapterID) }
+                
+                // 修改阅读记录
                 recordModel.modify(chapterID: chapterID, toPage: 0, isSave: false)
                 
             }else{ // 加载网络章节数据
-                
+                    
                 // ----- 搜索网络小说 -----
-                
+                    
 //                MBProgressHUD.showLoading(view)
 //
 //                // 加载章节数据
@@ -331,8 +363,8 @@ extension DZMReadController {
 //                        self?.setViewController(displayController: GetReadViewController(recordModel: recordModel), isAbove: false, animated: true)
 //                    }
 //                }
-                
-                return nil
+//
+//                return nil
             }
             
         }else{ recordModel.nextPage() }
@@ -340,24 +372,27 @@ extension DZMReadController {
         // ----- 搜索网络小说 -----
         
 //        // 预加载下一章(可选)
-//        if !recordModel.isLastChapter && !DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) {
+//        if readModel.bookSourceType == .network { // 网络小说
 //
-//            // 加载章节数据
-//            NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
+//            if !recordModel.isLastChapter && !DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) {
 //
-//                if type == .success {
+//                // 加载章节数据
+//                NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
 //
-//                    // 获取章节数据
-//                    let data = HTTP_RESPONSE_DATA_DICT(response)
+//                    if type == .success {
 //
-//                    // 解析章节数据
-//                    let chapterModel = DZMReadChapterModel(data)
-//                    
-//                    // 章节类容需要进行排版一篇
-//                    chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
-//                    
-//                    // 保存
-//                    chapterModel.save()
+//                        // 获取章节数据
+//                        let data = HTTP_RESPONSE_DATA_DICT(response)
+//
+//                        // 解析章节数据
+//                        let chapterModel = DZMReadChapterModel(data)
+//
+//                        // 章节类容需要进行排版一篇
+//                        chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
+//
+//                        // 保存
+//                        chapterModel.save()
+//                    }
 //                }
 //            }
 //        }
@@ -379,7 +414,7 @@ extension DZMReadController {
             readModel.recordModel = recordModel
             
             readModel.recordModel.save()
-           
+            
             DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = recordModel.locationFirst
         }
     }
