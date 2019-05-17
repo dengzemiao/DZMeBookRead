@@ -21,9 +21,18 @@ extension DZMReadModel {
         
         markModel.chapterID = recordModel.chapterModel.id
         
-        markModel.name = recordModel.chapterModel.name
-        
-        markModel.content = recordModel.contentString.removeSEHeadAndTail.removeEnterAll
+        if recordModel.pageModel.isHomePage {
+            
+            markModel.name = "(无章节名)"
+            
+            markModel.content = bookName
+            
+        }else{
+            
+            markModel.name = recordModel.chapterModel.name
+            
+            markModel.content = recordModel.contentString.removeSEHeadAndTail.removeEnterAll
+        }
         
         markModel.time = NSNumber(value: Timer1970())
         
