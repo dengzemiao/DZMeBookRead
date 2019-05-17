@@ -43,13 +43,11 @@ class DZMRMEffectTypeView: DZMRMBaseView {
             addSubview(item)
             items.append(item)
             
-            if i == DZMReadConfigure.shared().effectIndex.intValue { clickItem(item) }
+            if i == DZMReadConfigure.shared().effectIndex.intValue { selectItem(item) }
         }
     }
     
-    @objc private func clickItem(_ item:UIButton) {
-        
-        if selectItem == item { return }
+    private func selectItem(_ item:UIButton) {
         
         selectItem?.isSelected = false
         
@@ -60,12 +58,19 @@ class DZMRMEffectTypeView: DZMRMBaseView {
         item.layer.borderColor = DZM_READ_COLOR_MAIN.cgColor
         
         selectItem = item
+    }
+    
+    @objc private func clickItem(_ item:UIButton) {
+        
+        if selectItem == item { return }
+        
+        selectItem(item)
         
         DZMReadConfigure.shared().effectIndex = NSNumber(value: item.tag)
         
         DZMReadConfigure.shared().save()
         
-        readMenu?.delegate?.readMenuClickFont?(readMenu: readMenu)
+        readMenu?.delegate?.readMenuClickEffect?(readMenu: readMenu)
     }
     
     override func layoutSubviews() {

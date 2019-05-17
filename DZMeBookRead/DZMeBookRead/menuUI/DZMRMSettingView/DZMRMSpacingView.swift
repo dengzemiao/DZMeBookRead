@@ -42,13 +42,11 @@ class DZMRMSpacingView: DZMRMBaseView {
             addSubview(item)
             items.append(item)
             
-            if i == DZMReadConfigure.shared().spacingIndex.intValue { clickItem(item) }
+            if i == DZMReadConfigure.shared().spacingIndex.intValue { selectItem(item) }
         }
     }
     
-    @objc private func clickItem(_ item:DZMRMSpacingItem) {
-        
-        if selectItem == item { return }
+    private func selectItem(_ item:DZMRMSpacingItem) {
         
         selectItem?.tintColor = DZM_READ_COLOR_MENU_COLOR
         selectItem?.layer.borderColor = DZM_READ_COLOR_MENU_COLOR.cgColor
@@ -57,6 +55,13 @@ class DZMRMSpacingView: DZMRMBaseView {
         item.layer.borderColor = DZM_READ_COLOR_MAIN.cgColor
         
         selectItem = item
+    }
+    
+    @objc private func clickItem(_ item:DZMRMSpacingItem) {
+        
+        if selectItem == item { return }
+        
+        selectItem(item)
         
         DZMReadConfigure.shared().spacingIndex = NSNumber(value: item.tag)
         

@@ -38,19 +38,24 @@ class DZMRMBGColorView: DZMRMBaseView {
             addSubview(item)
             items.append(item)
             
-            if i == DZMReadConfigure.shared().bgColorIndex.intValue { clickItem(item) }
+            if i == DZMReadConfigure.shared().bgColorIndex.intValue { selectItem(item) }
         }
     }
     
-    @objc private func clickItem(_ item:UIButton) {
-        
-        if selectItem == item { return }
+    private func selectItem(_ item:UIButton) {
         
         selectItem?.layer.borderWidth = 0
         
         item.layer.borderWidth = 1.5
         
         selectItem = item
+    }
+    
+    @objc private func clickItem(_ item:UIButton) {
+        
+        if selectItem == item { return }
+        
+        selectItem(item)
         
         DZMReadConfigure.shared().bgColorIndex = NSNumber(value: item.tag)
         

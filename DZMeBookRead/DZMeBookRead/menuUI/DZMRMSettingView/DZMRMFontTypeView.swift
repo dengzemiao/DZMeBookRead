@@ -43,13 +43,11 @@ class DZMRMFontTypeView: DZMRMBaseView {
             addSubview(item)
             items.append(item)
             
-            if i == DZMReadConfigure.shared().fontIndex.intValue { clickItem(item) }
+            if i == DZMReadConfigure.shared().fontIndex.intValue { selectItem(item) }
         }
     }
     
-    @objc private func clickItem(_ item:UIButton) {
-        
-        if selectItem == item { return }
+    private func selectItem(_ item:UIButton) {
         
         selectItem?.isSelected = false
         
@@ -60,6 +58,13 @@ class DZMRMFontTypeView: DZMRMBaseView {
         item.layer.borderColor = DZM_READ_COLOR_MAIN.cgColor
         
         selectItem = item
+    }
+    
+    @objc private func clickItem(_ item:UIButton) {
+        
+        if selectItem == item { return }
+        
+        selectItem(item)
         
         DZMReadConfigure.shared().fontIndex = NSNumber(value: item.tag)
         
