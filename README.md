@@ -1,6 +1,6 @@
 # DZMeBookRead
 
-![Version](https://img.shields.io/badge/Version-1.2-orange.svg)
+![Version](https://img.shields.io/badge/Version-1.3-orange.svg)
 ![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
 ![Xcode Version](https://img.shields.io/badge/Xcode-10.2-orange.svg)
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
@@ -31,14 +31,21 @@
     
     下载不同版本可在上面的 Branch 选项中选择下载版本。
     
-    v1.2 (Swift4.2) (master分支) { (需要书籍首页的可以下载这个版本,单纯的网络小说Txt版本)
+    v1.3 (Swift4.2) (master分支) { (TXT,有书籍首页)
     
+        2019-5-17 修复: 更换滚动模式章节内容存储方式。待以后有解决方案在转回v1.2版本存储方式。(通过在章节列表Model存放滚动模式中的章节内容Model)
+    }
+    
+    v1.2 (Swift4.2) { (TXT,有书籍首页)
+    
+        2019-5-20 BUG: 滚动模式在iOS12版本以上会出现闪退,原因是字典里面的章节内容对象提前释放了,iOS12以下却没有问题,暂时没有更好的存储方式准备先替换为v1.3版本存储方式。
+        
         2019-5-17 修复: 书籍首页添加标签BUG, 第一次进入创建阅读页多次BUG。
     
         2019-5-16 更新: 加入TXT全本快速进入阅读。
     }
     
-    v1.1 (Swift4.2) { (需要书籍首页的可以下载这个版本,单纯的网络小说Txt版本)
+    v1.1 (Swift4.2) { (TXT,有书籍首页)
     
         2019-5-16 更新: 解析文本,代码细节优化。
         
@@ -47,7 +54,7 @@
         2019-5-7 更新: 加入书籍首页支持。
     }
     
-    v1.0 (Swift4.2) { (不需要书籍首页的可以下载这个版本,单纯的网络小说Txt版本)
+    v1.0 (Swift4.2) { (TXT,无书籍首页)
     
         2019-4-29 更新: 重做Demo, 升级Swift4.2, 解决遗留问题, 优化代码使用。
     }
