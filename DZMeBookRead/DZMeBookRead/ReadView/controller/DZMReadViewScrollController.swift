@@ -29,7 +29,7 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
     private var loadChapterIDs:[NSNumber] = []
     
     /// 当前阅读的章节列表,通过已有的章节ID列表,来获取章节模型。
-    private var chapterModels:[String:DZMReadChapterModel] = [String:DZMReadChapterModel]()
+    private var chapterModels:[String:DZMReadChapterModel] = [:]
     
     /// 记录滚动坐标
     private var scrollPoint:CGPoint!
@@ -391,12 +391,12 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                     tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
                 }
             
+                // 加入阅读内容列表
+                self?.chapterModels[chapterID!.stringValue] = tempChapterModel
+                
                 DispatchQueue.main.async { [weak self] () in
                     
                     if self != nil {
-                        
-                        // 加入阅读内容列表
-                        self?.chapterModels[chapterID!.stringValue] = tempChapterModel
                         
                         // 当前章节索引
                         let previousIndex = max(0, (self!.chapterIDs.index(of: chapterModel.id)! - 1))
@@ -502,12 +502,12 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                     tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
                 }
                 
+                // 加入阅读内容列表
+                self?.chapterModels[chapterID!.stringValue] = tempChapterModel
+                
                 DispatchQueue.main.async { [weak self] () in
                     
                     if self != nil {
-                        
-                        // 加入阅读内容列表
-                        self?.chapterModels[chapterID!.stringValue] = tempChapterModel
                         
                         // 当前章节索引
                         let nextIndex = self!.chapterIDs.index(of: chapterModel.id)! + 1

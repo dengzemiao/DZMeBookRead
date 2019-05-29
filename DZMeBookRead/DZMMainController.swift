@@ -107,7 +107,7 @@ class DZMMainController: DZMViewController {
         
         print("缓存文件地址:", DZM_READ_DOCUMENT_DIRECTORY_PATH)
         
-//        MBProgressHUD.showLoading("正在快速解析全文...", to: view)
+        MBProgressHUD.showLoading("正在快速解析全文...", to: view)
         
         let url = Bundle.main.url(forResource: "求魔", withExtension: "txt")
         
@@ -117,11 +117,11 @@ class DZMMainController: DZMViewController {
             
             print("快速解析结束时间:",TimerString("YYYY-MM-dd-HH-mm-ss"), Date().timeIntervalSince1970)
             
-//            MBProgressHUD.hide(self?.view)
+            MBProgressHUD.hide(self?.view)
             
             if readModel == nil {
                 
-//                MBProgressHUD.showMessage("快速解析失败")
+                MBProgressHUD.showMessage("快速解析失败")
                 
                 return
             }
