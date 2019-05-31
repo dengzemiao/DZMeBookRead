@@ -20,6 +20,8 @@ class DZMMainController: DZMViewController {
          
          https://github.com/jdg/MBProgressHUD/issues/552
          
+         该问题以及解决 MBProgressHUD.m 503行 注释了报错代码。
+         
          Main Thread Checker: UI API called on a background thread: -[UIApplication applicationState]
          PID: 11304, TID: 942122, Thread name: com.apple.CoreMotion.MotionThread, Queue name: com.apple.root.default-qos.overcommit, QoS: 0
          Backtrace:
