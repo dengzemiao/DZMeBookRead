@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource,DZMCoverControllerDelegate,DZMReadContentViewDelegate,DZMReadCatalogViewDelegate,DZMReadMarkViewDelegate {
+class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource,DZMCoverControllerDelegate,DZMReadContentViewDelegate,DZMReadCatalogViewDelegate,DZMReadMarkViewDelegate, DUATranslationProtocol {
 
     // MARK: 数据相关
     
@@ -35,6 +35,9 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
     
     /// 翻页控制器 (无效果,覆盖)
     var coverController:DZMCoverController!
+    
+    /// 翻页控制器（无效果,平移）
+    var panController:DUAtranslationController!
     
     /// 非滚动模式时,当前显示 DZMReadViewController
     var currentDisplayController:DZMReadViewController?
