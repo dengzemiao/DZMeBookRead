@@ -16,8 +16,8 @@ class DZMMainController: DZMViewController {
         
         /*
          
-         现在有个BUG在iOS12以后，滚动模式 DZMReadViewScrollController -> chapterModels 字段里面章节model会提前释放，不会被强引用，很是郁闷, 低版本没有问题。
-         拿到Demo的可以测试一下滚动模式下会不会有问题。其实就是章节Model提前释放了,但是我存放的是字典对象，理论上是强引用对象的，现在iOS12却出现这样的问题。
+         现在有个BUG在iOS12.2以后, iOS12.2以前到没出现，我这边测试机用的X才会系列会出现，其他机型好像也不会，滚动模式 DZMReadViewScrollController -> chapterModels 字段里面章节model会提前释放，不会被强引用，很是郁闷, 低版本没有问题。
+         拿到Demo的可以测试一下滚动模式下会不会有问题。其实就是章节Model提前释放了,但是我存放的是字典对象，理论上是强引用对象的，现在12.2却出现这样的问题。
          
          (真机情况,模拟器不会出现)如果iOS12.2或者更高版本报这个错误 原因是MBProgressHUD导致的（暂不处理, 可以先注释MBProgressHUD使用,真机需要拔掉数据线不连接xcode使用就没事）
          
