@@ -150,7 +150,7 @@ class DZMMainController: DZMViewController {
 //        let readModel = DZMReadModel.model(bookID: bookID)
 //
 //        // 检查是否当前将要阅读的章节是否等于阅读记录
-//        if chapterID == readModel.recordModel.chapterModel?.id {
+//        if chapterID != readModel.recordModel.chapterModel?.id { // 如果不一致则需要检查本地是否有没有,没有则下载,并修改阅读记录为该章节。
 //
 //            // 检查马上要阅读章节是否本地存在
 //            if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) { // 存在
