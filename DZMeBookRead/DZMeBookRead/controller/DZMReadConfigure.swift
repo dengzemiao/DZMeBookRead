@@ -87,7 +87,8 @@ class DZMReadConfigure: NSObject {
     // MARK: 快捷获取
     
     /// 使用分页进度 || 总文章进度(网络文章也可以使用)
-    /// 总文章进度注意: 总文章进度需要有整本书的章节总数,以及当前章节带有从0开始排序的索引。如果还需要在拖拽过程中展示章节名,则需要带上章节列表数据。
+    /// 总文章进度注意: 总文章进度需要有整本书的章节总数,以及当前章节带有从0开始排序的索引。
+    /// 如果还需要在拖拽底部功能条上进度条过程中展示章节名,则需要带上章节列表数据,并去 DZMRMProgressView 文件中找到 ASValueTrackingSliderDataSource 修改返回数据源为章节名。
     var progressType:DZMProgressType! { return DZMProgressType(rawValue: progressIndex.intValue) }
     
     /// 翻页类型
