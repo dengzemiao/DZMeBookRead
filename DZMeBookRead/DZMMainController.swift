@@ -16,9 +16,14 @@ class DZMMainController: DZMViewController {
         
         /*
          
+         现在有个BUG在iOS12.2以后, iOS12.2以前到没出现，我这边测试机用的X才会系列会出现，其他机型好像也不会，滚动模式 DZMReadViewScrollController -> chapterModels 字段里面章节model会提前释放，不会被强引用，很是郁闷, 低版本没有问题。
+         拿到Demo的可以测试一下滚动模式下会不会有问题。其实就是章节Model提前释放了,但是我存放的是字典对象，理论上是强引用对象的，现在12.2却出现这样的问题。
+         
          (真机情况,模拟器不会出现)如果iOS12.2或者更高版本报这个错误 原因是MBProgressHUD导致的（暂不处理, 可以先注释MBProgressHUD使用,真机需要拔掉数据线不连接xcode使用就没事）
          
          https://github.com/jdg/MBProgressHUD/issues/552
+         
+         该问题以及解决 MBProgressHUD.m 503行 注释了报错代码。
          
          Main Thread Checker: UI API called on a background thread: -[UIApplication applicationState]
          PID: 11304, TID: 942122, Thread name: com.apple.CoreMotion.MotionThread, Queue name: com.apple.root.default-qos.overcommit, QoS: 0
@@ -140,10 +145,12 @@ class DZMMainController: DZMViewController {
 //        MBProgressHUD.showLoading(view)
 //
 //        // 获得阅读模型
+//        // 网络小说的话, readModel 里面有个 chapterListModels 字段,这个是章节列表,我里面有数据是因为我是全本解析本地需要有个地方存储,网络小说可能一开始没有
+//        // 运行会在章节列表UI定位的地方崩溃,直接注释就可以了,网络小说的章节列表可以直接在章节列表UI里面单独请求在定位处理。
 //        let readModel = DZMReadModel.model(bookID: bookID)
 //
 //        // 检查是否当前将要阅读的章节是否等于阅读记录
-//        if chapterID == readModel.recordModel.chapterModel?.id {
+//        if chapterID != readModel.recordModel.chapterModel?.id { // 如果不一致则需要检查本地是否有没有,没有则下载,并修改阅读记录为该章节。
 //
 //            // 检查马上要阅读章节是否本地存在
 //            if DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID) { // 存在

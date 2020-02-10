@@ -505,26 +505,26 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     MBBackgroundView *bezelView = self.bezelView;
     if (![bezelView respondsToSelector:@selector(addMotionEffect:)]) return;
 
-    if (self.defaultMotionEffectsEnabled) {
-        CGFloat effectOffset = 10.f;
-        UIInterpolatingMotionEffect *effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-        effectX.maximumRelativeValue = @(effectOffset);
-        effectX.minimumRelativeValue = @(-effectOffset);
-
-        UIInterpolatingMotionEffect *effectY = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-        effectY.maximumRelativeValue = @(effectOffset);
-        effectY.minimumRelativeValue = @(-effectOffset);
-
-        UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
-        group.motionEffects = @[effectX, effectY];
-
-        [bezelView addMotionEffect:group];
-    } else {
+//    if (self.defaultMotionEffectsEnabled) {
+//        CGFloat effectOffset = 10.f;
+//        UIInterpolatingMotionEffect *effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+//        effectX.maximumRelativeValue = @(effectOffset);
+//        effectX.minimumRelativeValue = @(-effectOffset);
+//
+//        UIInterpolatingMotionEffect *effectY = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+//        effectY.maximumRelativeValue = @(effectOffset);
+//        effectY.minimumRelativeValue = @(-effectOffset);
+//
+//        UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
+//        group.motionEffects = @[effectX, effectY];
+//
+//        [bezelView addMotionEffect:group];
+//    } else {
         NSArray *effects = [bezelView motionEffects];
         for (UIMotionEffect *effect in effects) {
             [bezelView removeMotionEffect:effect];
         }
-    }
+//    }
 #endif
 }
 
