@@ -10,7 +10,7 @@ import UIKit
 
 class DZMRMEffectTypeView: DZMRMBaseView {
 
-    private var effectNames:[String] = ["仿真","平移","滚动","无效果"]
+    private var effectNames:[String] = ["仿真","覆盖","滚动","平移","无效果"]
     
     private var items:[UIButton] = []
     
@@ -82,7 +82,7 @@ class DZMRMEffectTypeView: DZMRMBaseView {
         let w = frame.size.width
         let h = frame.size.height
         
-        let itemW = DZM_SPACE_SA_70
+        let itemW = DZM_SPACE_SA_60
         let itemH = DZM_SPACE_SA_30
         let itemY = (h - itemH) / 2
         let itemSpaceW = (w - CGFloat(count) * itemW) / (CGFloat(count - 1))

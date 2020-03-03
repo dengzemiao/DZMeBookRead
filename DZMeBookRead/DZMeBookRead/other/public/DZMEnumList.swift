@@ -24,6 +24,8 @@ enum DZMEffectType:NSInteger {
     case translation
     /// 滚动
     case scroll
+    /// 平移
+    case pan
     /// 无效果
     case no
 }
