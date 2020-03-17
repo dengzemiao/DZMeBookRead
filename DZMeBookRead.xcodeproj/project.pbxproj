@@ -83,6 +83,7 @@
 		AF5952FA22697599007DF477 /* DZMRMProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5952F922697599007DF477 /* DZMRMProgressView.swift */; };
 		AF5952FC2269B814007DF477 /* DZMReadModel+Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5952FB2269B814007DF477 /* DZMReadModel+Mark.swift */; };
 		AF5952FE2269D57D007DF477 /* 求魔.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF5952FD2269D57D007DF477 /* 求魔.txt */; };
+		AFF8192324206A8C00C466B4 /* DZMPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF8192224206A8C00C466B4 /* DZMPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +196,7 @@
 		AF5952F922697599007DF477 /* DZMRMProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMProgressView.swift; sourceTree = "<group>"; };
 		AF5952FB2269B814007DF477 /* DZMReadModel+Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DZMReadModel+Mark.swift"; sourceTree = "<group>"; };
 		AF5952FD2269D57D007DF477 /* 求魔.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "求魔.txt"; sourceTree = "<group>"; };
+		AFF8192224206A8C00C466B4 /* DZMPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +450,7 @@
 			children = (
 				AF48FB312266FA7500850378 /* DZMTableView.swift */,
 				AF48FB322266FA7500850378 /* DZMViewController.swift */,
+				AFF8192224206A8C00C466B4 /* DZMPageViewController.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				AF48FB432266FA7600850378 /* DZMReadMenu.swift in Sources */,
 				AF5306DE226874D60094EFB9 /* DZMRMFontTypeView.swift in Sources */,
 				AF48FB5F22672F8F00850378 /* DZMReadContentView.swift in Sources */,
+				AFF8192324206A8C00C466B4 /* DZMPageViewController.swift in Sources */,
 				AF5952F62269751E007DF477 /* DZMRMBottomView.swift in Sources */,
 				AF48FAED2266F30A00850378 /* DZMReadChapterListModel.swift in Sources */,
 				AF487D822271A0D6002CFAC9 /* DZMSegmentedControl.m in Sources */,

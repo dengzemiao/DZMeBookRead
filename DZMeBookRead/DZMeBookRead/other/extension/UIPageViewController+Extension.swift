@@ -26,6 +26,20 @@ extension UIPageViewController {
         }
     }
     
+    /// tap手势
+    var tapGestureRecognizer:UITapGestureRecognizer? {
+
+        for ges in gestureRecognizers {
+            
+            if ges.isKind(of: UITapGestureRecognizer.classForCoder()) {
+                
+                return ges as? UITapGestureRecognizer
+            }
+        }
+        
+        return nil
+    }
+    
     /// tap手势启用
     var tapGestureRecognizerEnabled:Bool {
         
@@ -33,10 +47,7 @@ extension UIPageViewController {
         
         set{
             
-            for ges in gestureRecognizers {
-                
-                if ges.isKind(of: UITapGestureRecognizer.classForCoder()) { ges.isEnabled = newValue }
-            }
+            tapGestureRecognizer?.isEnabled = newValue
             
             objc_setAssociatedObject(self, &TapIsGestureRecognizerEnabled, newValue , objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }

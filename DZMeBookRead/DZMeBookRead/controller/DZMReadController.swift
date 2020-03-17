@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource,DZMCoverControllerDelegate,DZMReadContentViewDelegate,DZMReadCatalogViewDelegate,DZMReadMarkViewDelegate {
+class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource,DZMPageViewControllerDelegate,DZMCoverControllerDelegate,DZMReadContentViewDelegate,DZMReadCatalogViewDelegate,DZMReadMarkViewDelegate {
 
     // MARK: 数据相关
     
@@ -28,7 +28,7 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
     var readMenu:DZMReadMenu!
     
     /// 翻页控制器 (仿真)
-    var pageViewController:UIPageViewController!
+    var pageViewController:DZMPageViewController!
     
     /// 翻页控制器 (滚动)
     var scrollController:DZMReadViewScrollController!

@@ -24,7 +24,14 @@ extension DZMReadController {
             // 创建
             let options = [UIPageViewController.OptionsKey.spineLocation : NSNumber(value: UIPageViewController.SpineLocation.min.rawValue)]
             
-            pageViewController = UIPageViewController(transitionStyle: .pageCurl,navigationOrientation: .horizontal,options: options)
+            pageViewController = DZMPageViewController(transitionStyle: .pageCurl,navigationOrientation: .horizontal,options: options)
+            
+            // 自定义tap手势，禁用了系统的，系统的因为不好修改点击区域进行自由控制上下页以及菜单弹出范围
+            // 如果需要使用系统的设置 false 就行了
+            pageViewController.openCustomTapGes = true
+            
+            // 自定义tap手势的相关代理
+            pageViewController.aDelegate = self
             
             pageViewController.delegate = self
             
@@ -190,6 +197,40 @@ extension DZMReadController {
     /// 准备切换
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
+        readMenu.showMenu(isShow: false)
+    }
+    
+    // MARK: -- DZMPageViewControllerDelegate
+    
+    /// 获取上一页
+    func pageViewController(_ pageViewController: DZMPageViewController, getViewControllerBefore viewController: UIViewController!) {
+        
+        // 获取上一页
+        let readViewController = GetAboveReadViewController() as? DZMReadViewController
+        
+        // 手动设置
+        setViewController(displayController: readViewController, isAbove: true, animated: true)
+        
+        // 更新阅读记录
+        updateReadRecord(controller: readViewController)
+        
+        // 关闭菜单
+        readMenu.showMenu(isShow: false)
+    }
+    
+    /// 获取下一页
+    func pageViewController(_ pageViewController: DZMPageViewController, getViewControllerAfter viewController: UIViewController!) {
+        
+        // 获取下一页
+        let readViewController = GetBelowReadViewController() as? DZMReadViewController
+        
+        // 手动设置
+        setViewController(displayController:readViewController, isAbove: false, animated: true)
+        
+        // 更新阅读记录
+        updateReadRecord(controller: readViewController)
+        
+        // 关闭菜单
         readMenu.showMenu(isShow: false)
     }
     
