@@ -188,6 +188,13 @@ class DZMReadController: DZMViewController,DZMReadMenuDelegate,UIPageViewControl
         // 清空指定书籍缓存
         // DZMKeyedArchiver.remove(folderName: bookID)
         
+        // 移除 DZMPageViewController，因为这个仿真模式的 UIPageViewController 不手动移除会照成内存泄漏，对象不释放
+        // 它需要提前手动移除，要不然会导致释放不了走不了 deinit() 函数
+        if (DZMReadConfigure.shared().effectType == .simulation) {
+            
+            clearPageController()
+        }
+        
         // 清空坐标
         DZM_READ_RECORD_CURRENT_CHAPTER_LOCATION = nil
         
