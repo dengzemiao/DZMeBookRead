@@ -20,6 +20,8 @@ enum DZMBookSourceType:NSInteger {
 enum DZMEffectType:NSInteger {
     /// 仿真
     case simulation
+    /// 覆盖
+    case cover
     /// 平移
     case translation
     /// 滚动

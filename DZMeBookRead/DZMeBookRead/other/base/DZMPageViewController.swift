@@ -25,11 +25,6 @@ private let RightWidth:CGFloat = ScreenWidth / 3
 
 class DZMPageViewController: UIPageViewController, UIGestureRecognizerDelegate {
 
-    // 开启自定义Tap手势
-    // 自定义tap手势，禁用了系统的，系统的因为不好修改点击区域进行自有控制上下页的范围
-    // 如果需要使用系统的设置 false 就行了
-    var openCustomTapGes:Bool = false
-    
     // 自定义tap手势的相关代理
     var aDelegate:DZMPageViewControllerDelegate?
     
@@ -40,16 +35,13 @@ class DZMPageViewController: UIPageViewController, UIGestureRecognizerDelegate {
         
         super.viewDidLoad()
         
-        if (openCustomTapGes) {
+        tapGestureRecognizerEnabled = false
         
-            tapGestureRecognizerEnabled = false
-            
-            customTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchTap(tap:)))
+        customTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchTap(tap:)))
 
-            customTapGestureRecognizer.delegate = self
+        customTapGestureRecognizer.delegate = self
 
-            view.addGestureRecognizer(customTapGestureRecognizer)
-        }
+        view.addGestureRecognizer(customTapGestureRecognizer)
     }
     
     // tap事件

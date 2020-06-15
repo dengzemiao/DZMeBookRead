@@ -16,8 +16,11 @@ extension DZMReadController {
         // 清理
         clearPageController()
         
+        // 翻页类型
+        let effectType = DZMReadConfigure.shared().effectType
+        
         // 创建
-        if DZMReadConfigure.shared().effectType == .simulation { // 仿真
+        if effectType == .simulation { // 仿真
             
             if displayController == nil { return }
             
@@ -26,10 +29,6 @@ extension DZMReadController {
             
             pageViewController = DZMPageViewController(transitionStyle: .pageCurl,navigationOrientation: .horizontal,options: options)
             
-            // 自定义tap手势，禁用了系统的，系统的因为不好修改点击区域进行自由控制上下页以及菜单弹出范围
-            // 如果需要使用系统的设置 false 就行了
-            pageViewController.openCustomTapGes = true
-            
             // 自定义tap手势的相关代理
             pageViewController.aDelegate = self
             
@@ -37,8 +36,32 @@ extension DZMReadController {
             
             pageViewController.dataSource = self
             
+            contentView.insertSubview(pageViewController.view, at: 0)
+            
+            pageViewController.view.backgroundColor = UIColor.clear
+            
+            pageViewController.view.frame = contentView.bounds
+            
             // 翻页背部带文字效果
             pageViewController.isDoubleSided = true
+            
+            pageViewController.setViewControllers((displayController != nil ? [displayController!] : nil), direction: .forward, animated: false, completion: nil)
+            
+        }else if effectType == .translation { // 平移
+            
+            if displayController == nil { return }
+            
+            // 创建
+            let options = [UIPageViewController.OptionsKey.spineLocation : NSNumber(value: UIPageViewController.SpineLocation.min.rawValue)]
+            
+            pageViewController = DZMPageViewController(transitionStyle: .scroll,navigationOrientation: .horizontal,options: options)
+            
+            // 自定义tap手势的相关代理
+            pageViewController.aDelegate = self
+            
+            pageViewController.delegate = self
+            
+            pageViewController.dataSource = self
             
             contentView.insertSubview(pageViewController.view, at: 0)
             
@@ -48,7 +71,7 @@ extension DZMReadController {
             
             pageViewController.setViewControllers((displayController != nil ? [displayController!] : nil), direction: .forward, animated: false, completion: nil)
             
-        }else if DZMReadConfigure.shared().effectType == .scroll { // 滚动
+        }else if effectType == .scroll { // 滚动
             
             scrollController = DZMReadViewScrollController()
             
@@ -130,9 +153,18 @@ extension DZMReadController {
             // 仿真
             if pageViewController != nil {
                 
-                let direction:UIPageViewController.NavigationDirection = isAbove ? .reverse : .forward
-                
-                pageViewController.setViewControllers([displayController, GetReadViewBGController(recordModel: displayController?.recordModel, targetView: displayController?.view)], direction: direction, animated: animated, completion: nil)
+                if (DZMReadConfigure.shared().effectType == .translation) { // 平移
+                    
+                    let direction:UIPageViewController.NavigationDirection = isAbove ? .reverse : .forward
+                    
+                    pageViewController.setViewControllers([displayController], direction: direction, animated: animated, completion: nil)
+                    
+                } else { // 仿真
+                    
+                    let direction:UIPageViewController.NavigationDirection = isAbove ? .reverse : .forward
+                    
+                    pageViewController.setViewControllers([displayController, GetReadViewBGController(recordModel: displayController?.recordModel, targetView: displayController?.view)], direction: direction, animated: animated, completion: nil)
+                }
                 
                 return
             }
@@ -239,53 +271,68 @@ extension DZMReadController {
     /// 获取上一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        // 翻页累计
-        tempNumber -= 1
-        
-        // 获取当前页阅读记录
-        var recordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.recordModel
-        
-        // 如果没有则从背面页面获取
-        if recordModel == nil {
+        if (DZMReadConfigure.shared().effectType == .translation) { // 平移
             
-            recordModel = (viewController as? DZMReadViewBGController)?.recordModel
-        }
-        
-        if abs(tempNumber) % 2 == 0 { // 背面
+            return GetAboveReadViewController()
             
-            recordModel = GetAboveReadRecordModel(recordModel: recordModel)
+        } else { // 仿真
             
-            return GetReadViewBGController(recordModel: recordModel)
+            // 翻页累计
+            tempNumber -= 1
             
-        }else{ // 内容
+            // 获取当前页阅读记录
+            var recordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.recordModel
             
-            return GetReadViewController(recordModel: recordModel)
+            // 如果没有则从背面页面获取
+            if recordModel == nil {
+                
+                recordModel = (viewController as? DZMReadViewBGController)?.recordModel
+            }
+            
+            if abs(tempNumber) % 2 == 0 { // 背面
+                
+                recordModel = GetAboveReadRecordModel(recordModel: recordModel)
+                
+                return GetReadViewBGController(recordModel: recordModel)
+                
+            }else{ // 内容
+                
+                return GetReadViewController(recordModel: recordModel)
+            }
         }
     }
     
     /// 获取下一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        tempNumber += 1
-        
-        // 获取当前页阅读记录
-        var recordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.recordModel
-        
-        // 如果没有则从背面页面获取
-        if recordModel == nil {
+        if (DZMReadConfigure.shared().effectType == .translation) { // 平移
             
-            recordModel = (viewController as? DZMReadViewBGController)?.recordModel
-        }
-        
-        if abs(tempNumber) % 2 == 0 { // 背面
+            return GetBelowReadViewController()
             
-            return GetReadViewBGController(recordModel: recordModel)
+        } else { // 仿真
             
-        }else{ // 内容
+            // 翻页累计
+            tempNumber += 1
             
-            recordModel = GetBelowReadRecordModel(recordModel: recordModel)
+            // 获取当前页阅读记录
+            var recordModel:DZMReadRecordModel? = (viewController as? DZMReadViewController)?.recordModel
             
-            return GetReadViewController(recordModel: recordModel)
+            // 如果没有则从背面页面获取
+            if recordModel == nil {
+                
+                recordModel = (viewController as? DZMReadViewBGController)?.recordModel
+            }
+            
+            if abs(tempNumber) % 2 == 0 { // 背面
+                
+                return GetReadViewBGController(recordModel: recordModel)
+                
+            }else{ // 内容
+                
+                recordModel = GetBelowReadRecordModel(recordModel: recordModel)
+                
+                return GetReadViewController(recordModel: recordModel)
+            }
         }
     }
 }
