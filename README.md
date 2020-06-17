@@ -103,6 +103,12 @@
 
 ***
 
+#### 阅读打开书籍效果：
+
+![阅读打开书籍效果](gif_1.gif)
+
+***
+
 #### 小说相关库：
 
     放大镜: https://github.com/dengzemiao/DZMMagnifierView
