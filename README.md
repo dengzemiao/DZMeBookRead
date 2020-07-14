@@ -123,7 +123,11 @@
 
 #### 上架APP：
 
-* [简阅](https://apps.apple.com/cn/app/%E7%AE%80%E9%98%85-%E5%81%9A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E8%BD%AF%E4%BB%B6/id1494994480)
+* [简阅](https://apps.apple.com/cn/app/id1494994480)
+
+* [搜书大师](https://apps.apple.com/cn/app/id1523194349)
+
+（抖音上很多小说APP都有使用或者借鉴到本demo）.....
 
 ***
 
