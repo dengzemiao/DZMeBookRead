@@ -384,10 +384,12 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                 // 获取章节数据
                 if !isExist {
                 
+                    // 章节还没从全文里面解析出来，需要解析出来使用
                     tempChapterModel = DZMReadTextFastParser.parser(readModel: self?.vc.readModel, chapterID: chapterID)
                     
                 }else{
 
+                    // 本地存在章节，取出来使用
                     tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
                 }
             
@@ -420,7 +422,7 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                 
             }else{ // 加载网络章节数据
                 
-                // ----- 搜索网络小说 -----
+                // ----- 搜索网络小说，多对照上面本地存在的步骤 -----
                 
                 // 加载章节数据
 //                NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
@@ -494,11 +496,13 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                 
                 // 获取章节数据
                 if !isExist {
-                
+                    
+                    // 章节还没从全文里面解析出来，需要解析出来使用
                     tempChapterModel = DZMReadTextFastParser.parser(readModel: self?.vc.readModel, chapterID: chapterID)
                 
                 }else{
-
+                    
+                    // 本地存在章节，取出来使用
                     tempChapterModel = DZMReadChapterModel.model(bookID: bookID, chapterID: chapterID!)
                 }
                 
@@ -528,7 +532,7 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
                 
             }else{ // 加载网络章节数据
                 
-                // ----- 搜索网络小说 -----
+                // ----- 搜索网络小说，多对照上面本地存在的步骤 -----
                 
 //                // 加载章节数据
 //                NJHTTPTool.request_novel_read(bookID, chapterID) { [weak self] (type, response, error) in
@@ -551,7 +555,7 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
 //                        self?.chapterModels[chapterID!.stringValue] = tempChapterModel
 //
 //                        // 当前章节索引
-//                        let nextIndex = max(0, (self!.chapterIDs.index(of: chapterModel.id)! - 1))
+//                        let nextIndex = self!.chapterIDs.index(of: chapterModel.id)! + 1
 //
 //                        // 加载列表索引
 //                        let loadIndex = self!.loadChapterIDs.index(of: chapterID!)!
