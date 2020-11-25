@@ -370,7 +370,9 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
         let bookID = chapterModel.bookID
         
         // 预加载下一章
-        DispatchQueue.global().async { [weak self] () in
+        // DispatchQueue.global().async { [weak self] () in
+        // 由于字典在异步下存在线程安全，这里换成同步，防止字典内对象中途释放或者野指针
+        DispatchQueue.global().sync { [weak self] () in
             
             // 检查是否存在章节内容
             let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
@@ -483,7 +485,9 @@ class DZMReadViewScrollController: DZMViewController,UITableViewDelegate,UITable
         let bookID = chapterModel.bookID
         
         // 预加载下一章
-        DispatchQueue.global().async { [weak self] () in
+        // DispatchQueue.global().async { [weak self] () in
+        // 由于字典在异步下存在线程安全，这里换成同步，防止字典内对象中途释放或者野指针
+        DispatchQueue.global().sync { [weak self] () in
             
             // 检查是否存在章节内容
             let isExist = DZMReadChapterModel.isExist(bookID: bookID, chapterID: chapterID)
