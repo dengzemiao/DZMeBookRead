@@ -56,11 +56,21 @@ class DZMReadCatalogView: UIView,UITableViewDelegate,UITableViewDataSource {
        
             if !readModel.chapterListModels.isEmpty {
                 
-                let chapterListModel = (readModel.chapterListModels as NSArray).filtered(using: NSPredicate(format: "id == %@", readModel.recordModel.chapterModel.id)).first as? DZMReadChapterListModel
+                var row = -1
                 
-                if chapterListModel != nil {
+                for (index, item) in readModel.chapterListModels.enumerated() {
                     
-                    tableView.scrollToRow(at: IndexPath(row: readModel.chapterListModels.index(of: chapterListModel!)!, section: 0), at: .middle, animated: false)
+                    if (item.id == readModel.recordModel.chapterModel.id) {
+                        
+                        row = index
+                        
+                        break
+                    }
+                }
+                
+                if row != -1 {
+                    
+                    tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .middle, animated: false)
                 }
             }
         }
