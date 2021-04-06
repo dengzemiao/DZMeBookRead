@@ -136,6 +136,8 @@
 
 * [搜书大师](https://apps.apple.com/cn/app/id1523194349)
 
+* [笔趣阁](https://apps.apple.com/cn/app/id1367152987)
+
 （抖音上很多小说APP都有使用或者借鉴到本demo）.....
 
 ***
