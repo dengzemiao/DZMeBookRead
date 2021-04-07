@@ -238,6 +238,9 @@ class DZMReadConfigure: NSObject {
             // 行间距
             paragraphStyle.lineSpacing = lineSpacing
             
+            // 换行模式（避免每页尾部留空白）
+            paragraphStyle.lineBreakMode = .byCharWrapping
+            
             // 段间距
             paragraphStyle.paragraphSpacing = paragraphSpacing
             
