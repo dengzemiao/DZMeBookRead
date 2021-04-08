@@ -11,6 +11,7 @@
 		AF0750AC2281349D00786ADF /* DZMReadHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */; };
 		AF0A61DB228BF69100AC6E74 /* DZMReadTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0A61DA228BF69100AC6E74 /* DZMReadTextParser.swift */; };
 		AF0A61DD228BF6A400AC6E74 /* DZMReadTextFastParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0A61DC228BF6A400AC6E74 /* DZMReadTextFastParser.swift */; };
+		AF203596261EF37100C47E74 /* en.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF203595261EF37000C47E74 /* en.txt */; };
 		AF46131222704E72005F1DD8 /* DZMReadViewBGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */; };
 		AF46131422706495005F1DD8 /* DZMRMSpacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */; };
 		AF487D7A22715DE7002CFAC9 /* DZMRMEffectTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */; };
@@ -108,6 +109,7 @@
 		AF0750AB2281349D00786ADF /* DZMReadHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadHomeViewCell.swift; sourceTree = "<group>"; };
 		AF0A61DA228BF69100AC6E74 /* DZMReadTextParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadTextParser.swift; sourceTree = "<group>"; };
 		AF0A61DC228BF6A400AC6E74 /* DZMReadTextFastParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DZMReadTextFastParser.swift; sourceTree = "<group>"; };
+		AF203595261EF37000C47E74 /* en.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.txt; sourceTree = "<group>"; };
 		AF46131122704E72005F1DD8 /* DZMReadViewBGController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMReadViewBGController.swift; sourceTree = "<group>"; };
 		AF46131322706495005F1DD8 /* DZMRMSpacingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMSpacingView.swift; sourceTree = "<group>"; };
 		AF487D7922715DE7002CFAC9 /* DZMRMEffectTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZMRMEffectTypeView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				AF48FAD12266D26A00850378 /* DZMMainController.swift */,
 				AF48FAC12266D15C00850378 /* DZMeBookRead-Bridging-Header.h */,
 				AF5952FD2269D57D007DF477 /* 求魔.txt */,
+				AF203595261EF37000C47E74 /* en.txt */,
 			);
 			path = DZMeBookRead;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				AF48FA9A2266D08400850378 /* Assets.xcassets in Resources */,
 				AF5952FE2269D57D007DF477 /* 求魔.txt in Resources */,
 				AF48FACA2266D1A600850378 /* MBProgressHUD.bundle in Resources */,
+				AF203596261EF37100C47E74 /* en.txt in Resources */,
 				AF4B3EA42277EAF000CEC375 /* magnifier_0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
