@@ -2,75 +2,93 @@
 
 ![Version](https://img.shields.io/badge/Version-1.3-orange.svg)
 ![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
-![Xcode Version](https://img.shields.io/badge/Xcode-11.2-orange.svg)
+![Xcode Version](https://img.shields.io/badge/Xcode-12.4-orange.svg)
 ![Author](https://img.shields.io/badge/Author-DZM-blue.svg)
 
 ***
 
-### 有BUG请联系我 iOS技术QQ群 (进群转微信群) :  52181885 
-### 技术(任何)进阶交流群(进群转微信群): 942885030 (新群)
+#### 一、联系方式
+
+#### iOS技术QQ群 ( 进群转wx群，群公告有wx群二维码 ) :  52181885 
+#### 技术交流群 ( 进群转wx群，群公告有wx群二维码 ) : 942885030
 
 ***
 
-#### OC如何集成本DEMO
-
-    示例:  https://github.com/dengzemiao/OCDZMeBookRead
-
-***
-
-#### DEMO效果：
+#### 二、DEMO 效果
 
 ![DEMO效果](gif_0.gif)
 
 ***
 
+#### 三、简介与版本记录
+
+```
+提示: 
+
+下载不同版本可在上面的 Branch 选项中选择下载版本, master 分支为最新版本。
+
+v1.3 (Swift4.2) {
+    
+    2021-4-9 更新: 优化长按弹出操作菜单代码，解决隐藏操作菜单闪动问题，更新为 Xcode 12.4
+    
+    2021-4-8 更新: 页尾留白问题解决，新问题：英文阅读单纯被分割，但是按单词分割，页尾则会留白，参考 DZMReadConfigure.swift 文件 242 行。
+    
+    2020-11-25 更新: 感谢 @dreeye 小伙伴的帮助！！修复滚动模式滚动内容崩溃问题，之前是由于存放章节字典有线程安全问题导致章节对象中途释放出现野指针崩溃，现在已经修复，滚动模式可以正常使用了。 
+
+    2020-11-25 更新：滚动模式崩溃问题：“现在有个BUG在iOS12.2以后, iOS12.2以前到没出现，我这边测试机用的X才会系列会出现，其他机型好像也不会，滚动模式 DZMReadViewScrollController -> chapterModels 字段里面章节model会提前释放，不会被强引用，很是郁闷, 低版本没有问题。拿到Demo的可以测试一下滚动模式下会不会有问题。其实就是章节Model提前释放了,但是我存放的是字典对象，理论上是强引用对象的，现在12.2却出现这样的问题”
+
+    2020-6-15 更新: 加入【平移翻页模式】
+}
+
+v1.2 (Swift4.2) { (同上版本)
+
+    2019-5-20 BUG: 滚动模式在iOS12版本以上会出现闪退,原因是字典里面的章节内容对象提前释放了,iOS12以下却没有问题,暂时没有更好的存储方式所以先替换为之前版本存储方式。
+    
+    2019-5-17 修复: 书籍首页添加标签BUG, 第一次进入创建阅读页多次BUG。
+
+    2019-5-16 更新: 加入TXT全本快速进入阅读。
+
+    2020-3-17 由于系统 UIPageViewController 的点击左右翻页范围太小，且不可自由控制，增加自定义手势开关支持随意控制仿真模式左右翻页菜单的点击区域控制。
+}
+
+v1.1 (Swift4.2) { (TXT,有书籍首页)
+
+    2019-5-16 更新: 解析文本,代码细节优化。
+    
+    2019-5-10 修复: 无效果快速点击BUG。
+    
+    2019-5-7 更新: 加入书籍首页支持。
+}
+
+v1.0 (Swift4.2) { (TXT,无书籍首页)
+
+    2019-4-29 更新: 重做Demo, 升级Swift4.2, 解决遗留问题, 优化代码使用。
+}
+```
+
 ***
 
-#### 简介:
+#### 四、导入项目流程
 
-    提示: 导入项目流程 - 往下滚动
-    
-    下载不同版本可在上面的 Branch 选项中选择下载版本, master 分支为最新版本。
-    
-    v1.3 (Swift4.2) { (同上版本)
-        
-        2021-4-8 更新: 页尾留白问题解决，新问题：英文阅读单纯被分割，但是按单词分割，页尾则会留白，参考 DZMReadConfigure.swift 文件 242 行。
-        
-        2020-11-25 更新: 感谢 @dreeye 小伙伴的帮助！！修复滚动模式滚动内容崩溃问题，之前是由于存放章节字典有线程安全问题导致章节对象中途释放出现野指针崩溃，现在已经修复，滚动模式可以正常使用了。 
+![文件介绍1](icon_0.png)
 
-        2020-11-25 更新：滚动模式崩溃问题：“现在有个BUG在iOS12.2以后, iOS12.2以前到没出现，我这边测试机用的X才会系列会出现，其他机型好像也不会，滚动模式 DZMReadViewScrollController -> chapterModels 字段里面章节model会提前释放，不会被强引用，很是郁闷, 低版本没有问题。拿到Demo的可以测试一下滚动模式下会不会有问题。其实就是章节Model提前释放了,但是我存放的是字典对象，理论上是强引用对象的，现在12.2却出现这样的问题”
-
-        2020-6-15 更新: 加入【平移翻页模式】
-    }
-    
-    v1.2 (Swift4.2) { (同上版本)
-    
-        2019-5-20 BUG: 滚动模式在iOS12版本以上会出现闪退,原因是字典里面的章节内容对象提前释放了,iOS12以下却没有问题,暂时没有更好的存储方式所以先替换为之前版本存储方式。
-        
-        2019-5-17 修复: 书籍首页添加标签BUG, 第一次进入创建阅读页多次BUG。
-    
-        2019-5-16 更新: 加入TXT全本快速进入阅读。
-
-        2020-3-17 由于系统 UIPageViewController 的点击左右翻页范围太小，且不可自由控制，增加自定义手势开关支持随意控制仿真模式左右翻页菜单的点击区域控制。
-    }
-    
-    v1.1 (Swift4.2) { (TXT,有书籍首页)
-    
-        2019-5-16 更新: 解析文本,代码细节优化。
-        
-        2019-5-10 修复: 无效果快速点击BUG。
-        
-        2019-5-7 更新: 加入书籍首页支持。
-    }
-    
-    v1.0 (Swift4.2) { (TXT,无书籍首页)
-    
-        2019-4-29 更新: 重做Demo, 升级Swift4.2, 解决遗留问题, 优化代码使用。
-    }
-    
 ***
 
-#### 项目思路理解：
+#### 五、epub 支持提示
+
+```
+DTCoreText同样也可以解析txt，epub...分页相关的功能，很方便。不需要像我这个Demo中一样复杂的解析处理。当然有喜欢研究CoreText可以参考下我的Demo。
+
+DTCoreText对于epub来说，主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,
+
+他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
+
+Github地址：https://github.com/Cocoanetics/DTCoreText
+```
+
+***
+
+#### 六、项目思路理解：
 
     1. 将一个完整的TXT或者文本解析成一章一章的章节模型，通过归档的模式进行缓存起来(归档解析速度比数据库要快)。
 
@@ -114,59 +132,40 @@
 
 ***
 
-#### 阅读打开书籍效果：
+#### 七、附带功能
 
-![阅读打开书籍效果](gif_1.gif)
+* [OC 如何集成](https://github.com/dengzemiao/OCDZMeBookRead)
 
-***
+* 小说相关库或文章
 
-#### 小说相关库：
+    * [放大镜](https://github.com/dengzemiao/DZMMagnifierView)
 
-    放大镜: https://github.com/dengzemiao/DZMMagnifierView
+    * [阅读打开书籍效果](https://github.com/dengzemiao/DZMAnimatedTransitioning)
 
-    阅读打开书籍效果: https://github.com/dengzemiao/DZMAnimatedTransitioning
+    * [小说《覆盖效果》](https://github.com/dengzemiao/DZMCoverAnimation)
 
-    小说《覆盖效果》: https://github.com/dengzemiao/DZMCoverAnimation
+    * [UIPageViewController 翻页背景颜色修改](http://www.jianshu.com/p/3e75fa22ada8) 
 
-    UIPageViewController 翻页背景颜色修改: http://www.jianshu.com/p/3e75fa22ada8
+* 上架APP
 
-***
+    * [简阅](https://apps.apple.com/cn/app/id1494994480)
 
-#### 上架APP：
+    * [搜书大师](https://apps.apple.com/cn/app/id1523194349)
 
-* [简阅](https://apps.apple.com/cn/app/id1494994480)
+    * [笔趣阁](https://apps.apple.com/cn/app/id1367152987)
 
-* [搜书大师](https://apps.apple.com/cn/app/id1523194349)
+    * 抖音上很多小说APP都有使用或借鉴到本DEMO
 
-* [笔趣阁](https://apps.apple.com/cn/app/id1367152987)
+* DEMO老版本
 
-（抖音上很多小说APP都有使用或者借鉴到本demo）.....
-
-***
-
-#### 导入项目流程:
-
-![文件介绍1](icon_0.png)
-
-***
-
-#### epub提示
-
-    DTCoreText同样也可以解析txt，epub...分页相关的功能，很方便。不需要像我这个Demo中一样复杂的解析处理。当然有喜欢研究CoreText可以参考下我的Demo。
-
-    DTCoreText对于epub来说，主要功能就是能够将我们输入的HTML文件进行解析,并自动关联相对应的css样式（也帮我们解析好了),我们需要做的就是输入一个HTML文件,
-
-    他就会给我们输出带有排版样式的NSAttributedString，然后我们直接使用CoreText进行画这个NSAttributedString就可以啦！
-
-    Github地址：https://github.com/Cocoanetics/DTCoreText
-
-***
-
-#### DEMO老版本
-
+    ```
     2019-4-29 (停止更新)
     Swift4.0 - https://github.com/dengzemiao/DZMeBookRead-Swift4.0
 
     2018-9-6 (停止更新)
     Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
+    ```
+    
+* 阅读打开书籍效果
 
+    ![阅读打开书籍效果](gif_1.gif)
