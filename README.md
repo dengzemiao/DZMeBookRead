@@ -14,7 +14,7 @@
 
 ***
 
-#### 二、DEMO 效果
+#### 二、DEMO 效果（导入项目流程看 `第四步`）
 
 ![DEMO效果](gif_0.gif)
 
@@ -132,7 +132,7 @@ Github地址：https://github.com/Cocoanetics/DTCoreText
 
 ***
 
-#### 七、附带功能
+#### 七、附带信息
 
 * [OC 如何集成](https://github.com/dengzemiao/OCDZMeBookRead)
 
@@ -166,6 +166,6 @@ Github地址：https://github.com/Cocoanetics/DTCoreText
     Swift3.x - https://github.com/dengzemiao/DZMeBookRead-Swift3.x
     ```
     
-* 阅读打开书籍效果
+* [阅读打开书籍效果](https://github.com/dengzemiao/DZMAnimatedTransitioning)
 
     ![阅读打开书籍效果](gif_1.gif)
