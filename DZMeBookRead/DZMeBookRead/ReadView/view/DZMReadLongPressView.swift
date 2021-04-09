@@ -474,7 +474,7 @@ class DZMReadLongPressView: DZMReadView {
     
     /// 隐藏或显示菜单
     private func showMenu(isShow:Bool) {
-        
+
         if isShow { // 显示
             
             if !rects.isEmpty {
@@ -499,7 +499,10 @@ class DZMReadLongPressView: DZMReadView {
             
         }else{ // 隐藏
             
-            UIMenuController.shared.setMenuVisible(false, animated: true)
+            DelayHandle {
+                
+                UIMenuController.shared.setMenuVisible(false, animated: true)
+            }
         }
     }
     
