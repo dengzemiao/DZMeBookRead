@@ -108,14 +108,14 @@ class DZMReadLongPressView: DZMReadView {
     
     /// 单击事件
     @objc private func tapAction(tap:UITapGestureRecognizer) {
-        
+
         // 重置页面数据
         reset()
     }
     
     /// 长按事件
     @objc private func longAction(long:UILongPressGestureRecognizer) {
-        
+
         // 触摸位置
         let point = long.location(in: self)
 
@@ -220,23 +220,26 @@ class DZMReadLongPressView: DZMReadView {
     
     /// 拖拽事件解析
     func drag(status:DZMPanGesStatus, point:CGPoint, windowPoint:CGPoint) {
-   
+
         // 检查是否超出范围
         let point = CGPoint(x: min(max(point.x, 0), pageModel.contentSize.width), y: min(max(point.y, 0), pageModel.contentSize.height))
 
         // 触摸开始
         if status == .begin {
-           
-            // 隐藏菜单
-            showMenu(isShow: false)
             
             if LCursorView.frame.insetBy(dx: DZM_READ_LONG_PRESS_CURSOR_VIEW_OFFSET, dy: DZM_READ_LONG_PRESS_CURSOR_VIEW_OFFSET).contains(point) { // 触摸到左边光标
+                
+                // 隐藏菜单
+                showMenu(isShow: false)
                 
                 isCursorLorR = true
                 
                 isTouchCursor = true
                 
             }else if RCursorView.frame.insetBy(dx: DZM_READ_LONG_PRESS_CURSOR_VIEW_OFFSET, dy: DZM_READ_LONG_PRESS_CURSOR_VIEW_OFFSET).contains(point) { // 触摸到右边光标
+                
+                // 隐藏菜单
+                showMenu(isShow: false)
                 
                 isCursorLorR = false
                 
@@ -300,10 +303,6 @@ class DZMReadLongPressView: DZMReadView {
                     self?.showMenu(isShow: true)
                 })
                 
-            }else{
-                
-                // 显示菜单
-                showMenu(isShow: true)
             }
             
             // 结束触摸
@@ -474,7 +473,7 @@ class DZMReadLongPressView: DZMReadView {
     
     /// 隐藏或显示菜单
     private func showMenu(isShow:Bool) {
-
+        
         if isShow { // 显示
             
             if !rects.isEmpty {
