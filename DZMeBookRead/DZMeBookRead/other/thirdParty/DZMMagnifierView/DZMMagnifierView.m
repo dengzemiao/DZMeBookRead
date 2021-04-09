@@ -63,6 +63,15 @@
         self.layer.cornerRadius = DZM_MV_WH / 2;
         self.layer.masksToBounds = YES;
         self.windowLevel = UIWindowLevelAlert;
+        // iOS13 以后苹果增加了 SceneDelegate 来管理窗口，必须将自定义 Window 注册到 SceneDelegate 中
+        if (@available(iOS 13.0, *)) {
+            for (UIWindowScene *windowScene in [UIApplication sharedApplication].connectedScenes) {
+                if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                    self.windowScene = windowScene;
+                    break;
+                }
+            }
+        }
         
         CALayer *contentLayer = [CALayer layer];
         contentLayer.frame = self.bounds;
