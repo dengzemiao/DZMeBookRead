@@ -146,7 +146,7 @@ Github地址：https://github.com/Cocoanetics/DTCoreText
 
     * [小说《覆盖效果》](https://github.com/dengzemiao/DZMCoverAnimation)
 
-    * [UIPageViewController 翻页背景颜色修改](http://www.jianshu.com/p/3e75fa22ada8) 
+    * [UIPageViewController 翻页背景颜色修改](https://juejin.cn/post/6877454461199974408) 
 
 * 上架APP
 
