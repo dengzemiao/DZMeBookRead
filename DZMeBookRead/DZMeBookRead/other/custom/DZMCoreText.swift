@@ -81,24 +81,81 @@ class DZMCoreText: NSObject {
         return location
     }
     
-    
     /// 获得触摸位置那一行文字的Range
     ///
     /// - Parameters:
     ///   - point: 触摸位置
     ///   - frameRef: CTFrame
-    /// - Returns: CTLine
+    /// - Returns: 一行的 NSRange
     @objc class func GetTouchLineRange(point:CGPoint, frameRef:CTFrame?) ->NSRange {
-        
-        var range:NSRange = NSMakeRange(NSNotFound, 0)
         
         let line = GetTouchLine(point: point, frameRef: frameRef)
         
-        if line != nil {
+        return GetLineRange(line: line)
+    }
+    
+    /// 获得触摸位置那一个段落文字的Range，没传
+    ///
+    /// - Parameters:
+    ///   - point: 触摸位置
+    ///   - frameRef: CTFrame
+    ///   - content: 当前的页的正文内容，传了则获取长按的段落 NSRange，没传则获取一行文字的 NSRange
+    /// - Returns: 一个段落的 NSRange || 一行文字的 NSRange
+    @objc class func GetTouchParagraphRange(point:CGPoint, frameRef:CTFrame?, content:String? = nil) ->NSRange {
+        
+        let line = GetTouchLine(point: point, frameRef: frameRef)
+        
+        var range:NSRange =  GetLineRange(line: line)
+        
+        // 如果有正文，则获取整个段落的 NSRange
+        
+        if (line != nil && content != nil) {
             
-            let lineRange = CTLineGetStringRange(line!)
+            let lines:[CTLine] = CTFrameGetLines(frameRef!) as! [CTLine]
             
-            range = NSMakeRange(lineRange.location == kCFNotFound ? NSNotFound : lineRange.location, lineRange.length)
+            let index = lines.index(of: line!)!
+            
+            var num = 0
+            
+            var rangeHeader = range
+            
+            var rangeFooter = range
+            
+            var isHeader = false
+            
+            var isFooter = false
+            
+            repeat {
+                
+                if (!isHeader) {
+                    
+                    let line = lines[index - num]
+                    
+                    rangeHeader =  GetLineRange(line: line)
+                    
+                    let headerString = content?.substring(rangeHeader)
+                    
+                    isHeader = headerString?.contains(DZM_READ_PH_SPACE) ?? true
+                }
+                
+                if (!isFooter) {
+                    
+                    let line = lines[index + num]
+                    
+                    rangeFooter =  GetLineRange(line: line)
+                    
+                    let footerString = content?.substring(rangeFooter)
+                    
+                    isFooter = footerString?.contains("\n") ?? true
+                }
+                
+                print(num, isHeader, rangeHeader, isFooter, rangeFooter)
+                
+                num += 1
+                
+            } while (!isHeader || !isFooter)
+            
+            range = NSMakeRange(rangeHeader.location, rangeFooter.location + rangeFooter.length - rangeHeader.location)
         }
         
         return range
@@ -372,6 +429,24 @@ class DZMCoreText: NSObject {
         }
 
         return height
+    }
+    
+    /// 获取一行文字的 Range
+    ///
+    /// - Parameter line: CTLine
+    /// - Returns: 一行文字的 Range
+    @objc class func GetLineRange(line:CTLine?) ->NSRange {
+        
+        var range:NSRange = NSMakeRange(NSNotFound, 0)
+        
+        if line != nil {
+            
+            let lineRange = CTLineGetStringRange(line!)
+            
+            range = NSMakeRange(lineRange.location == kCFNotFound ? NSNotFound : lineRange.location, lineRange.length)
+        }
+        
+        return range
     }
     
     /// 获取行高

@@ -139,7 +139,7 @@ class DZMReadLongPressView: DZMReadView {
         }else{ // 触摸结束
 
             // 获得选中区域
-            selectRange = DZMCoreText.GetTouchLineRange(point: point, frameRef: frameRef)
+            selectRange = DZMCoreText.GetTouchParagraphRange(point: point, frameRef: frameRef, content: pageModel.content?.string)
 
             // 获得选中选中范围
             rects = DZMCoreText.GetRangeRects(range: selectRange!, frameRef: frameRef, content: pageModel.content?.string)
