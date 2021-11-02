@@ -94,7 +94,7 @@ class DZMCoreText: NSObject {
         return GetLineRange(line: line)
     }
     
-    /// 获得触摸位置那一个段落文字的Range，没传
+    /// 获得触摸位置那一个段落的 NSRange || 一行文字的 NSRange
     ///
     /// - Parameters:
     ///   - point: 触摸位置
