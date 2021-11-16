@@ -56,6 +56,8 @@
     
     if (self) {
         
+        BOOL isIpad = [self isIpad];
+        
         self.offsetPoint = CGPointMake(0, -40);
         self.scale = DZM_MV_SCALE;
         
@@ -72,6 +74,11 @@
                 }
             }
         }
+        if (isIpad) {
+            self.layer.borderWidth = 1;
+            self.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.9] CGColor];
+        }
+        
         CALayer *contentLayer = [CALayer layer];
         contentLayer.frame = self.bounds;
         contentLayer.delegate = self;
@@ -81,23 +88,28 @@
         
         self.transform = CGAffineTransformMakeScale(0.5, 0.5);
         
-        UIImageView *coverOne = [[UIImageView alloc] init];
-        coverOne.image = [UIImage imageNamed:@"magnifier_0"];
-        coverOne.frame = CGRectMake(0, 0, DZM_MV_WH, DZM_MV_WH);
-        [self addSubview: coverOne];
-        self.coverOne = coverOne;
+        // ipad 会奔溃，所以先不使用图片
+        if (!isIpad) {
+            
+            UIImageView *coverOne = [[UIImageView alloc] init];
+            coverOne.image = [UIImage imageNamed:@"magnifier_0"];
+            coverOne.frame = CGRectMake(0, 0, DZM_MV_WH, DZM_MV_WH);
+            [self addSubview: coverOne];
+            self.coverOne = coverOne;
+
+            UIImageView *coverTwo = [[UIImageView alloc] init];
+            coverTwo.image = [UIImage imageNamed:@"magnifier_1"];
+            coverTwo.frame = CGRectMake(0, 0, DZM_MV_WH, DZM_MV_WH);
+            [self addSubview:coverTwo];
+            self.coverTwo = coverTwo;
+        }
         
-        UIImageView *coverTwo = [[UIImageView alloc] init];
-        coverTwo.image = [UIImage imageNamed:@"magnifier_1"];
-        coverTwo.frame = CGRectMake(0, 0, DZM_MV_WH, DZM_MV_WH);
-        [self addSubview:coverTwo];
-        self.coverTwo = coverTwo;
     }
     
     return self;
 }
 
-- (void)setoffsetPoint:(CGPoint)offsetPoint {
+- (void)setOffsetPoint:(CGPoint)offsetPoint {
     
     _offsetPoint = offsetPoint;
 
@@ -183,6 +195,15 @@
     CGContextTranslateCTM(ctx, -1 * self.targetPoint.x, -1 * self.targetPoint.y);
 
     [self.targetWindow.layer renderInContext:ctx];
+}
+
+- (BOOL)isIpad {
+    
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    if([deviceType isEqualToString:@"iPad"]) { return YES; }
+    
+    return NO;
 }
 
 - (void)dealloc
