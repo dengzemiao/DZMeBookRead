@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Darwin
 
 class DZMCoreText: NSObject {
     
@@ -113,6 +114,8 @@ class DZMCoreText: NSObject {
             
             let lines:[CTLine] = CTFrameGetLines(frameRef!) as! [CTLine]
             
+            let count = lines.count
+            
             let index = lines.index(of: line!)!
             
             var num = 0
@@ -129,27 +132,33 @@ class DZMCoreText: NSObject {
                 
                 if (!isHeader) {
                     
-                    let line = lines[index - num]
+                    let newIndex = index - num
+                    
+                    let line = lines[newIndex]
                     
                     rangeHeader =  GetLineRange(line: line)
                     
                     let headerString = content?.substring(rangeHeader)
                     
                     isHeader = headerString?.contains(DZM_READ_PH_SPACE) ?? true
+                    
+                    if (newIndex == 0) { isHeader = true }
                 }
                 
                 if (!isFooter) {
                     
-                    let line = lines[index + num]
+                    let newIndex = index + num
+                    
+                    let line = lines[newIndex]
                     
                     rangeFooter =  GetLineRange(line: line)
                     
                     let footerString = content?.substring(rangeFooter)
                     
                     isFooter = footerString?.contains("\n") ?? true
+                    
+                    if (newIndex == (count - 1)) { isFooter = true }
                 }
-                
-                print(num, isHeader, rangeHeader, isFooter, rangeFooter)
                 
                 num += 1
                 
