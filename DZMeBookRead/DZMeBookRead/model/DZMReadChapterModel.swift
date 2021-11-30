@@ -171,7 +171,7 @@ class DZMReadChapterModel: NSObject,NSCoding {
     // MARK: 构造
     
     /// 获取章节对象,如果则创建对象返回
-    class func model(bookID:String!, chapterID:NSNumber!, isUpdateFont:Bool = true) ->DZMReadChapterModel {
+    @objc class func model(bookID:String!, chapterID:NSNumber!, isUpdateFont:Bool = true) ->DZMReadChapterModel {
         
         var chapterModel:DZMReadChapterModel!
         

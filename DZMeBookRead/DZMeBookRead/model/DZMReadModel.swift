@@ -58,7 +58,7 @@ class DZMReadModel: NSObject,NSCoding {
     // MARK: 构造
     
     /// 获取阅读对象,如果则创建对象返回
-    class func model(bookID:String!) ->DZMReadModel {
+    @objc class func model(bookID:String!) ->DZMReadModel {
         
         var readModel:DZMReadModel!
         

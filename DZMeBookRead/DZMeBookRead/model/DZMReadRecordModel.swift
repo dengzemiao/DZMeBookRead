@@ -148,7 +148,7 @@ class DZMReadRecordModel: NSObject,NSCoding {
     // MARK: 构造
     
     /// 获取阅读记录对象,如果则创建对象返回
-    class func model(bookID:String!) ->DZMReadRecordModel {
+    @objc class func model(bookID:String!) ->DZMReadRecordModel {
         
         var recordModel:DZMReadRecordModel!
         
