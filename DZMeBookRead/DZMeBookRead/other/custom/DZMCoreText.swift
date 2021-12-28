@@ -247,7 +247,7 @@ class DZMCoreText: NSObject {
             
             let lines:[CTLine] = CTFrameGetLines(frameRef!) as! [CTLine]
             
-            for (index, line) in lines.enumerated() {
+            for line in lines {
                 
                 let lintRange = GetLineRange(line: line)
                 
