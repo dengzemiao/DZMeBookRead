@@ -181,6 +181,9 @@ class DZMMainController: DZMViewController {
 //                        // 章节类容需要进行排版一篇
 //                        chapterModel.content = DZMReadParser.contentTypesetting(content: chapterModel.content)
 //
+//                        // 刷新分页
+//                        chapterModel.updateFont()
+//
 //                        // 保存
 //                        chapterModel.save()
 //
